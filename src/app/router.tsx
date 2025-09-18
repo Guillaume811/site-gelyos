@@ -4,7 +4,11 @@ import RootLayout from '@/app/layout/RootLayout'
 
 // Lazy pages
 const Home = lazy(() => import('@/pages/Home'))
+const Service = lazy(() => import('@/pages/Service'))
 const About = lazy(() => import('@/pages/About'))
+const Portfolio = lazy(() => import('@/pages/Portfolio'))
+const Blog = lazy(() => import('@/pages/Blog'))
+const Contact = lazy(() => import('@/pages/Contact'))
 const NotFound = lazy(() => import('@/pages/NotFound'))
 
 const router = createBrowserRouter([
@@ -14,7 +18,11 @@ const router = createBrowserRouter([
     errorElement: <NotFound />, // fallback simple (peut être un ErrorBoundary dédié)
     children: [
       { index: true, element: <Home /> },
-      { path: 'about', element: <About /> },
+      { path: 'service', element: <Service /> },
+      { path: 'apropos', element: <About /> },
+      { path: 'portfolio', element: <Portfolio /> },
+      { path: 'blog', element: <Blog /> },
+      { path: 'Contact', element: <Contact /> },
       { path: '*', element: <NotFound /> },
     ],
   },
