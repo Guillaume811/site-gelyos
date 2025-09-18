@@ -1,0 +1,42 @@
+.navRoot {
+    font-family: $font-title;
+    font-size: $font-size-btn;
+    background-color: $color-bg;
+    cursor: pointer;
+    //padding: .5rem .5rem;
+    border-radius: 40px;
+    max-width: max-content;
+    border: 1px solid $color-text;
+    padding: .5rem .5rem;
+
+    .list{
+        list-style: none;
+        display: flex;
+        gap: 1.25rem;
+        padding: 0;
+        margin: 0;
+
+        .link{
+
+             > a {
+                /* Base link styles (même boîte pour tous les états) */
+                display: inline-flex;
+                align-items: center;
+                text-decoration: none;
+                color: $color-text;
+                padding: .8rem 1rem;
+                border-radius: 40px;
+                transition: background-color .3s, color .3s;
+
+                /* Même élément pour hover ET active */
+                &:hover,
+                &.active {
+                background-color: $color-primary;
+                color: $color-bg;
+                }
+            }
+        }
+
+        
+    }
+}
