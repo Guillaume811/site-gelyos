@@ -1,42 +1,55 @@
 .navRoot {
-    font-family: $font-title;
-    font-size: $font-size-btn;
-    background-color: $color-bg;
-    cursor: pointer;
-    //padding: .5rem .5rem;
-    border-radius: 40px;
-    max-width: max-content;
-    border: 1px solid $color-text;
-    padding: .5rem .5rem;
+  font-family: $font-title;
+  font-size: $font-size-btn;
+  background-color: $color-bg;
+  cursor: pointer;
+  border-radius: 40px;
+  max-width: max-content;
+  border: 1px solid $color-text;
+  padding: .5rem .5rem;
+  position: relative;
 
-    .list{
-        list-style: none;
-        display: flex;
-        gap: 1.25rem;
-        padding: 0;
-        margin: 0;
+  .list {
+    list-style: none;
+    display: flex;
+    gap: 1.25rem;
+    padding: 0;
+    margin: 0;
+    position: relative;
 
-        .link{
+    .activeBg {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      border-radius: 40px;
+      background-color: $color-primary;
+      z-index: 0;
+      height: 100%;
+    }
 
-             > a {
-                /* Base link styles (même boîte pour tous les états) */
-                display: inline-flex;
-                align-items: center;
-                text-decoration: none;
-                color: $color-text;
-                padding: .8rem 1rem;
-                border-radius: 40px;
-                transition: background-color .3s, color .3s;
+    .link {
+      position: relative;
 
-                /* Même élément pour hover ET active */
-                &:hover,
-                &.active {
-                background-color: $color-primary;
-                color: $color-bg;
-                }
-            }
+      > a {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        color: $color-text;
+        padding: .8rem 1rem;
+        border-radius: 40px;
+        transition: color .3s;
+        z-index: 1; // au-dessus de la pill
+        transition: transform 0.25s ease;
+
+        &:hover {
+          transform: scale(1.05);
         }
 
-        
+        &.active {
+          color: $color-bg;
+        }
+      }
     }
+  }
 }
