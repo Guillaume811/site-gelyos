@@ -48,6 +48,9 @@ export default function MainNav({ className }: Props) {
             left: rect.left - parentRect.left,
             width: rect.width,
             });
+        } else {
+            // Aucun lien actif → cacher la pill (width 0)
+            setIndicatorStyle({ left: 0, width: 0 });
         }
     }, [location.pathname, links]);
 
@@ -58,7 +61,9 @@ export default function MainNav({ className }: Props) {
             <motion.div
             className={styles.activeBg}
             animate={indicatorStyle}
-            transition={{ type: "spring", stiffness: 500, damping: 30 }}
+            initial={false}
+            style={{ opacity: indicatorStyle.width === 0 ? 0 : 1 }}
+            transition={{ type: "spring", stiffness: 600, damping: 30 }}
             />
 
             {links.map((link) => (
