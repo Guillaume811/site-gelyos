@@ -1,0 +1,15 @@
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+
+    .brand{
+        max-width: max-content;
+
+        .logo {
+            width: 164px;
+        }
+    }
+}
