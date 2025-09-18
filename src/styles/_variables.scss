@@ -1,6 +1,9 @@
 @use './fonts' as *;
 
 // Fonts
+$font-title: 'Righteous', sans-serif;
+$font-body: 'Roboto', sans-serif;
+
 
 // Colors
 $color-bg: #1D252C;
@@ -14,4 +17,4 @@ $space-2: .5rem;
 $space-3: 1rem;
 
 // Border radius
-$radius: 12px;
+$radius-1: 12px;

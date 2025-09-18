@@ -10,7 +10,7 @@ html, body, #root { height: 100%; }
 
 body {
   margin: 0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji';
+  font-family: $font-body;
   background: $color-bg;
   color: #e5e7eb;
 }
