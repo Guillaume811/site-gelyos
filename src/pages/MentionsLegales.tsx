@@ -1,4 +1,4 @@
-export default function MentionsLégales() {
+export default function MentionsLegales() {
   return (
     <section>
       <h1>Mentions légales</h1>
