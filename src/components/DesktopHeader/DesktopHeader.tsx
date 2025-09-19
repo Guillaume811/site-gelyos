@@ -13,9 +13,9 @@ export default function DesktopHeader() {
 
             <MainNav className={styles.nav} />
             
-            <PrimaryButtonLink to="/contact" className={styles.ctaButton}>
+            <PrimaryButtonLink to="/contact">
                 Contact
-            </PrimaryButtonLink>     
+            </PrimaryButtonLink>    
         </header>   
     )
 }

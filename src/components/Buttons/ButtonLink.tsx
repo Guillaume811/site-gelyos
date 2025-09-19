@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import type { ComponentPropsWithoutRef } from 'react'
+import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import type { To } from 'react-router-dom'
 import clsx from 'clsx'
 import styles from './Button.module.scss'
@@ -11,6 +11,7 @@ type Props = Omit<ComponentPropsWithoutRef<typeof Link>, 'to' | 'className'> & {
   to: To
   variant?: Variant
   className?: string
+  icon?: ReactNode;
 }
 
 /**
@@ -19,10 +20,20 @@ type Props = Omit<ComponentPropsWithoutRef<typeof Link>, 'to' | 'className'> & {
  * Props: `to` (destination), optional `variant` ('primary' | 'secondary'), and `children`.
  * Shares the same visual styles as <Button>.
  */
-export function ButtonLink({ to, variant = 'primary', className, children, ...rest }: Props) {
+export function ButtonLink({ to, variant = 'primary', className, children, icon, ...rest }: Props) {
   return (
-    <Link to={to} className={clsx(styles.btn, styles[variant], className)} {...rest}>
-      {children}
+    <Link to={to} className={clsx(styles.btn, styles[variant], icon && styles.hasIcon, className)} {...rest}>
+
+      <span className={styles.btnText}>
+        {children}
+      </span>
+      
+      {icon && (
+        <span className={styles.btnIcon} aria-hidden="true">
+          {icon}
+        </span>
+      )}
+      
     </Link>
   )
 }

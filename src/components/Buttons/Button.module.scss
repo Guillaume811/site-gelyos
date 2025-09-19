@@ -8,13 +8,23 @@
   border-radius: 40px;
   max-width: max-content;
 }
-
 .primary {
   background-color: $color-secondary;
   color: $color-bg;
-  -webkit-box-shadow: 0px 0px 11px 0px $color-secondary; 
-  box-shadow: 0px 0px 11px 0px $color-secondary;
+  -webkit-box-shadow: 0 0 11px 0 $color-secondary;
+  box-shadow: 0 0 11px 0 $color-secondary;
+  transition:
+    background-color .3s ease,
+    color .3s ease,
+    backdrop-filter .3s ease;
+
+  &:hover {
+    background-color: rgba($color-bg, 0.3); // semi-transparent
+    color: $color-secondary;
+    backdrop-filter: blur(6px);
+  }
 }
+
 
 .secondary {
   background-color: $color-bg;
