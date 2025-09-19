@@ -13,6 +13,7 @@ export default defineConfig({
       '@layout': path.resolve(__dirname, 'src/app/layout'),
       '@styles': path.resolve(__dirname, 'src/styles'),
       '@assets': path.resolve(__dirname, 'src/assets'),
+      '@ressources': path.resolve(__dirname, 'src/ressources'),
      },
     },
   css: {

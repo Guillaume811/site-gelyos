@@ -7,7 +7,8 @@
       "@components/*": ["src/components/*"],
       "@layout/*": ["src/app/layout/*"],
       "@styles/*": ["src/styles/*"],
-      "@assets/*": ["src/assets/*"]
+      "@assets/*": ["src/assets/*"],
+      "@ressources/*": ["src/ressources/*"]
     },
 
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
