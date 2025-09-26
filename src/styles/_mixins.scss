@@ -6,3 +6,28 @@
   box-shadow: 0 10px 25px rgba(0,0,0,.08);
   background: #fff;
 }
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-center-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-center-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin box-shadow($color) {
+  -webkit-box-shadow: 0 0 11px 0 $color;
+  box-shadow: 0 0 11px 0 $color;
+}
