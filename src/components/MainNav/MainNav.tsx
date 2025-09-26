@@ -10,6 +10,29 @@ type Props = {
     className?: string
 }
 
+/* Component MainNav
+* Render logic :
+* Uses "useMemo" to get a stable list of routes with "getMainNavRoutes()".
+* Uses "useLocation" to read the current URL path.
+* Uses "useState" (indicatorStyle) to store the blue pill position (left, width).
+* Uses "useRef" (linkRefs) to keep anchor elements by their route path.
+* On every "location.pathname" change (useEffect):
+*   - Finds the active route by matching the current path with "route.path".
+*   - Reads the active link size/position with "getBoundingClientRect()".
+*   - Finds the parent <ul> via "el.closest('ul')" to compute relative "left".
+*   - Updates "indicatorStyle" so the animated pill moves to the active link.
+*   - If no active link, sets width to 0 to hide the pill.
+
+* View TSX :
+* Returns a <nav> (aria-label="Navigation principale") with a <ul> list.
+* Renders an animated <motion.div> (styles.activeBg) that acts as the blue pill.
+* Maps "navRoutes" to <li> items with class "styles.link".
+* Each item renders a <NavLink>:
+*   - "to" uses the route path from the registry.
+*   - "ref" stores the element in "linkRefs" for measurements.
+*   - "className" adds "styles.active" when the route is active.
+* The pill visibility is controlled by "indicatorStyle.width" (0 = hidden).
+*/
 export default function MainNav({ className }: Props) {
 
     const navRoutes = useMemo(() => getMainNavRoutes(), [])
@@ -21,7 +44,6 @@ export default function MainNav({ className }: Props) {
         });
     const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
 
-    // À chaque changement de route, on calcule position et largeur du lien actif
     useEffect(() => {
         const activeLink = navRoutes.find((r) => location.pathname.startsWith(r.path));
 
@@ -35,7 +57,6 @@ export default function MainNav({ className }: Props) {
             width: rect.width,
             });
         } else {
-            // Aucun lien actif → cacher la pill (width 0)
             setIndicatorStyle({ left: 0, width: 0 });
         }
     }, [location.pathname, navRoutes]);
@@ -43,7 +64,6 @@ export default function MainNav({ className }: Props) {
     return (
         <nav className={clsx(styles.navRoot, className)} aria-label="Navigation principale">
             <ul className={styles.list}>
-                {/* La pill ANIMÉE qui se déplace */}
                 <motion.div
                 className={styles.activeBg}
                 animate={indicatorStyle}
