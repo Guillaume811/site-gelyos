@@ -9,6 +9,21 @@ import mailIcon from '@/assets/icons/mail.png'
 import linkedinIcon from '@/assets/icons/linkedin.png'
 import githubIcon from '@/assets/icons/github.png'
 
+
+/* Component Footer
+* Render logic :
+* Uses "getMainNavRoutes()" to get the list of main navigation routes.
+* External links (tel, mail, LinkedIn, GitHub) use proper aria-labels.
+
+* View TSX :
+* Returns a <footer> with a grid container of three columns:
+*   -> Left column: brand logo linking to home + a short tagline.
+*   -> Center column: a horizontal list of site links (from routes),
+*      then legal links (Mentions légales, Confidentialité),
+*      and a small copyright line.
+*   -> Right column: 4 icon links (phone, email, LinkedIn, GitHub),
+*      each as an <a> with an <img> inside, accessible and focusable.
+*/
 export default function Footer() {
   const navRoutes = getMainNavRoutes()
 
