@@ -11,8 +11,7 @@
 .primary {
   background-color: $color-secondary;
   color: $color-bg;
-  -webkit-box-shadow: 0 0 11px 0 $color-secondary;
-  box-shadow: 0 0 11px 0 $color-secondary;
+  @include box-shadow($color-secondary);
   transition:
     background-color .3s ease,
     color .3s ease,
@@ -30,6 +29,5 @@
   background-color: $color-bg;
   color: $color-primary;
   border: 2px solid $color-primary;
-  -webkit-box-shadow: 0px 0px 11px 0px $color-primary; 
-  box-shadow: 0px 0px 11px 0px $color-primary;
+  @include box-shadow($color-primary);
 }
