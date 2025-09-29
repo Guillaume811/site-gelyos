@@ -1,25 +1,30 @@
 import Heading from '../Heading/Heading'
 import styles from './CallToAction.module.scss'
 import { PrimaryButtonLink } from '@/components/Buttons/ButtonLink'
+import { ctaContent } from '@/ressources/textes/ctaContent'
+import ReactMarkdown from 'react-markdown'
+import remarkBreaks from 'remark-breaks'
 
 export default function CallToAction() {
+
+  const { title, text, button } = ctaContent.home
+
   return (
     <section className={styles.cta} aria-labelledby="cta-title">
-        <div className={styles.line} aria-hidden="true" />
-        <div className={styles.container}>
-        <Heading id="cta-title" level={2} className={styles.title}>
-            Votre site est-il vraiment optimisé ?
+      <div className={styles.line} aria-hidden="true" />
+      <div className={styles.container}>
+        <Heading id="cta-title" level={3} className={styles.title}>
+          <ReactMarkdown>{title}</ReactMarkdown>
         </Heading>
         <p className={styles.text}>
-            Bénéficiez d’un audit gratuit de votre site internet pour identifier ses points forts et ses axes d’amélioration.
-            Je vous fournis une analyse claire et des recommandations personnalisées pour booster votre visibilité en ligne.
+          <ReactMarkdown remarkPlugins={[remarkBreaks]}>{text}</ReactMarkdown>
         </p>
         <div className={styles.actions}>
-            <PrimaryButtonLink to="/contact">
-            Recevoir mon audit offert
-            </PrimaryButtonLink>
+          <PrimaryButtonLink to="/contact">
+            {button}
+          </PrimaryButtonLink>
         </div>
-        </div>
+      </div>
     </section>
   )
 }
