@@ -4,10 +4,19 @@ import { PrimaryButtonLink } from '@/components/Buttons/ButtonLink'
 import { ctaContent } from '@/ressources/textes/ctaContent'
 import ReactMarkdown from 'react-markdown'
 import remarkBreaks from 'remark-breaks'
+import { useLocation } from 'react-router-dom'
+import { routes } from '@/ressources/routes'
 
 export default function CallToAction() {
 
-  const { title, text, button } = ctaContent.home
+  const { pathname } = useLocation()
+
+  const currentRoute = routes.find(route => route.path === pathname)
+  const content = currentRoute ? ctaContent[currentRoute.name] : undefined
+
+  if (!content) return null
+
+  const { title, text, button } = content
 
   return (
     <section className={styles.cta} aria-labelledby="cta-title">
