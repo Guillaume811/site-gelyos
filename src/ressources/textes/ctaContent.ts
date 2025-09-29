@@ -1,5 +1,19 @@
 import type { RouteName } from "@/ressources/routes"
 
+/* CTA content registry
+* Purpose:
+* - Centralize per-route CTA copy outside components.
+*
+* Type:
+* - Partial<Record<RouteName, { title: string; text: string; button: string }>>
+*   -> keys are route names (home, services, aPropos, portfolio, ...).
+*   -> "Partial" means some routes can be missing (no CTA shown on those pages).
+*
+* Usage notes:
+* - "title" and "text" support Markdown (e.g., **bold**).
+* - Use "\n" for line breaks (with remark-breaks enabled in ReactMarkdown).
+* - Keeps UI logic separate from content; easy to update or translate later.
+*/
 export const ctaContent: Partial<Record<RouteName, {
     title: string
     text: string

@@ -11,6 +11,18 @@ type Props = {
   className?: string
 } & HTMLAttributes<HTMLHeadingElement>
 
+/* Component Heading
+* Render logic :
+* - Receives a "level" (1..6) to choose the correct semantic tag.
+* - Builds the intrinsic tag name: "h1".."h6" from the level.
+* - Merges per-level CSS Module class with optional "className" via clsx.
+* - Forwards all native heading props via "...rest".
+* - No state or effects; pure presentational component.
+
+* View TSX :
+* - Returns the computed <h{level}> element with the right class.
+* - Renders "children" inside the heading tag.
+*/
 export default function Heading({ level, children, className, ...rest }: Props) {
 
   const Tag = (`h${level}` as IntrinsicHeading)

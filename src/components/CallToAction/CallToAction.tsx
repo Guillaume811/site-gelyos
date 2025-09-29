@@ -7,6 +7,20 @@ import remarkBreaks from 'remark-breaks'
 import { useLocation } from 'react-router-dom'
 import { routes } from '@/ressources/routes'
 
+/* Component CallToAction
+* Render logic :
+* Uses "useLocation" to get the current pathname.
+* Finds the exact matching route from "routes" and reads CTA content from "ctaContent".
+* If no content exists for the current route, returns null (no CTA shown).
+* Destructures { title, text, button } from the matched content.
+
+* View TSX :
+* Renders a <section> with an accessible title using aria-labelledby="cta-title".
+* Shows a decorative line (aria-hidden) and a centered container.
+* <Heading level={3}> renders the title; Markdown allows **bold** keywords.
+* The main text is rendered with ReactMarkdown (with line breaks support via remarkBreaks).
+* A primary button links to "/contact" using <PrimaryButtonLink>.
+*/
 export default function CallToAction() {
 
   const { pathname } = useLocation()
