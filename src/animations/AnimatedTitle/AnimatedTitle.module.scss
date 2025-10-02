@@ -1,0 +1,9 @@
+.animatedText {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.char {
+  display: inline-block;
+  transform-origin: bottom;
+}
