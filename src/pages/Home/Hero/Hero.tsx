@@ -5,6 +5,7 @@ import styles from './Hero.module.scss'
 import { heroContent } from '@/ressources/content/home/hero'
 import { AnimatedText } from '@/animations/AnimatedTitle/AnimatedTitle'
 import { TypewriterText } from '@/animations/TypewriterText/TypewriterText'
+import { SlideUpFadeStagger } from '@/animations/SlideUpFadeStagger/SlideUpFadeStagger'
 
 export default function Hero() {
 
@@ -17,9 +18,9 @@ export default function Hero() {
           <AnimatedText text={title} />
         </Heading>
 
-        <TypewriterText text={text} speed={50} startDelay={3000} className={styles.text} />
+        <TypewriterText text={text} speed={45} startDelay={1500} className={styles.text} />
 
-        <div className={styles.actions}>
+        <SlideUpFadeStagger className={styles.actions} delay={11.5} stagger={0.15} duration={1}>
           {firstButton && (
             <PrimaryButtonLink to={firstButton.to}>
               {firstButton.label}
@@ -31,7 +32,7 @@ export default function Hero() {
               {secondButton.label}
             </SecondaryButtonLink>
           )}
-        </div>
+        </SlideUpFadeStagger>
       </div>
 
       <div className={styles.right}>
