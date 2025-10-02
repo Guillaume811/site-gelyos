@@ -2,26 +2,48 @@
 import Heading from '@/components/Heading/Heading'
 import { PrimaryButtonLink, SecondaryButtonLink } from '@/components/Buttons/ButtonLink'
 import styles from './Hero.module.scss'
-import heroImage from '@/assets/pictures/hero.png'
+import ReactMarkdown from 'react-markdown'
+import remarkBreaks from 'remark-breaks'
+import { heroContent } from '@/ressources/content/home/hero'
 
 export default function Hero() {
+
+  const { title, text, firstButton, secondButton, image } = heroContent
+
   return (
     <section className={styles.hero}>
       <div className={styles.left}>
         <Heading level={1} className={styles.title}>
-          Développement Web Sur Mesure
+          <ReactMarkdown remarkPlugins={[remarkBreaks]}>
+            {title}
+          </ReactMarkdown>
         </Heading>
+
         <p className={styles.text}>
-          Je vous conçois des sites internet sur mesure avec un développement web personnalisé - site vitrine, e-commerce ou application web - pour servir vos objectifs, reflèter votre marque et convertir vos visiteurs en clients.
+          <ReactMarkdown>
+            {text}
+          </ReactMarkdown>
         </p>
+
         <div className={styles.actions}>
-          <PrimaryButtonLink to="/contact">Parlons de votre projet</PrimaryButtonLink>
-          <SecondaryButtonLink to="/services">Voir mes réalisations</SecondaryButtonLink>
+          {firstButton && (
+            <PrimaryButtonLink to={firstButton.to}>
+              {firstButton.label}
+            </PrimaryButtonLink>
+          )}
+
+          {secondButton && (
+            <SecondaryButtonLink to={secondButton.to}>
+              {secondButton.label}
+            </SecondaryButtonLink>
+          )}
         </div>
       </div>
 
       <div className={styles.right}>
-        <img src={heroImage} alt="Illustration site moderne" />
+        {image && (
+          <img src={image.src} alt={image.alt} />
+        )}
       </div>
     </section>
   )
