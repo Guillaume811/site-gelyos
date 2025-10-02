@@ -2,9 +2,9 @@
 import Heading from '@/components/Heading/Heading'
 import { PrimaryButtonLink, SecondaryButtonLink } from '@/components/Buttons/ButtonLink'
 import styles from './Hero.module.scss'
-import ReactMarkdown from 'react-markdown'
-import remarkBreaks from 'remark-breaks'
 import { heroContent } from '@/ressources/content/home/hero'
+import { AnimatedText } from '@/animations/AnimatedTitle/AnimatedTitle'
+import { TypewriterText } from '@/animations/TypewriterText/TypewriterText'
 
 export default function Hero() {
 
@@ -14,16 +14,10 @@ export default function Hero() {
     <section className={styles.hero}>
       <div className={styles.left}>
         <Heading level={1} className={styles.title}>
-          <ReactMarkdown remarkPlugins={[remarkBreaks]}>
-            {title}
-          </ReactMarkdown>
+          <AnimatedText text={title} />
         </Heading>
 
-        <p className={styles.text}>
-          <ReactMarkdown>
-            {text}
-          </ReactMarkdown>
-        </p>
+        <TypewriterText text={text} speed={50} startDelay={3000} className={styles.text} />
 
         <div className={styles.actions}>
           {firstButton && (
