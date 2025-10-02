@@ -1,0 +1,37 @@
+.section {
+  padding: 4rem 1rem;
+
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "left right";
+    gap: 2rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "left"
+        "right";
+      text-align: center;
+    }
+  }
+
+  .left  { grid-area: left; }
+  .right { grid-area: right; }
+}
+
+/* Inversion via grid areas (fiable en Grid) */
+.reverse {
+  .container { grid-template-areas: "right left"; }
+
+  @media (max-width: 768px) {
+    .container {
+      grid-template-areas:
+        "right"
+        "left";
+    }
+  }
+}
