@@ -14,6 +14,7 @@ export default defineConfig({
       '@styles': path.resolve(__dirname, 'src/styles'),
       '@assets': path.resolve(__dirname, 'src/assets'),
       '@ressources': path.resolve(__dirname, 'src/ressources'),
+      '@animations': path.resolve(__dirname, 'src/animations')
      },
     },
   css: {
