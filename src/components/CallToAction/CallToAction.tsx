@@ -1,7 +1,7 @@
 import Heading from '../Heading/Heading'
 import styles from './CallToAction.module.scss'
 import { PrimaryButtonLink } from '@/components/Buttons/ButtonLink'
-import { ctaContent } from '@/ressources/textes/ctaContent'
+import { ctaContent } from '@/ressources/content/ctaContent/ctaContent'
 import ReactMarkdown from 'react-markdown'
 import remarkBreaks from 'remark-breaks'
 import { useLocation } from 'react-router-dom'
