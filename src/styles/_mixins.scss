@@ -1,10 +1,10 @@
 @use './variables' as *;
 
 @mixin card {
-  border-radius: $radius-1;
-  padding: $space-3;
-  box-shadow: 0 10px 25px rgba(0,0,0,.08);
-  background: #fff;
+  border-radius: 30px;
+  padding: 1.5rem;
+  border: 4px solid $color-primary;
+  background: $color-bg;
 }
 
 @mixin flex-center {
