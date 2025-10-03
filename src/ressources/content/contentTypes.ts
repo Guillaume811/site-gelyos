@@ -12,12 +12,27 @@ export interface ButtonContent {
     to: RoutePath
 }
 
+//TODO: passer les 3 ? en obligatoire et changer le code dans le composant Hero + changer son nom
 export interface Content {
     title: RichText
-    subtitle?: RichText
     text: RichText
     firstButton?: ButtonContent
     secondButton?: ButtonContent
     image?: ImageContent
-    images?: ImageContent[]
 }
+
+export interface ServiceCard {
+    id: RichText,
+    icon: ImageContent,
+    title: RichText,
+    description: RichText,
+    secondButton: ButtonContent
+}
+
+export interface ServicesPreview {
+    title: RichText,
+    text: RichText,
+    firstButton: ButtonContent,
+    cards: ServiceCard[]
+}
+
