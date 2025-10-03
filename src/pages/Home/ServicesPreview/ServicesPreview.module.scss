@@ -1,0 +1,57 @@
+.section {
+  height: calc(100vh * var(--cards-count, 4)); /* nb de cards * 100vh */
+  display: flex;
+  justify-content: center;
+}
+
+.stickyContainer {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  box-sizing: border-box;
+
+  display: flex;         /* on passe en flex pour gérer les colonnes différemment */
+  gap: 2rem;
+}
+
+.left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* CENTRÉ verticalement */
+  gap: 1.5rem;
+}
+
+.right {
+  flex: 1;
+  position: relative;
+  height: 100%;              /* occupe toute la hauteur sticky */
+  display: flex;
+  flex-direction: column;    /* pile de cartes */
+}
+
+.viewport {
+  height: 100%;              /* toute la hauteur sticky */
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10rem;
+  will-change: transform;
+}
+
+.cardWrapper {
+  flex: 0 0 auto;
+  will-change: transform, opacity;
+  display: flex;
+  justify-content: center;
+}
