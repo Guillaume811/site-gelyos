@@ -38,7 +38,7 @@ function splitAny(node?: ReactNode): ReactNode {
   return node
 }
 
-export function AnimatedText({ text }: { text: string }) {
+export function AnimatedTitle({ text }: { text: string }) {
   return (
     <motion.span
       variants={container}
