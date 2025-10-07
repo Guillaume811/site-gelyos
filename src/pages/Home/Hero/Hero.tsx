@@ -3,7 +3,7 @@ import Heading from '@/components/Heading/Heading'
 import { PrimaryButtonLink, SecondaryButtonLink } from '@/components/Buttons/ButtonLink'
 import styles from './Hero.module.scss'
 import { heroContent } from '@/ressources/content/home/hero'
-import { AnimatedText } from '@/animations/AnimatedTitle/AnimatedTitle'
+import { AnimatedTitle } from '@/animations/AnimatedTitle/AnimatedTitle'
 import { TypewriterText } from '@/animations/TypewriterText/TypewriterText'
 import { SlideUpFadeStagger } from '@/animations/SlideUpFadeStagger/SlideUpFadeStagger'
 
@@ -15,7 +15,7 @@ export default function Hero() {
     <section className={styles.hero}>
       <div className={styles.left}>
         <Heading level={1} className={styles.title}>
-          <AnimatedText text={title} />
+          <AnimatedTitle text={title} />
         </Heading>
 
         <TypewriterText text={text} speed={45} startDelay={1500} className={styles.text} />
