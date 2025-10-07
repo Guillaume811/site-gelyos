@@ -1,81 +1,89 @@
 .card {
-    display: grid;
-    gap: 0.75rem;
-    @include card;
-    width: 80%;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: grid;
+  gap: 0.75rem;
+  width: 80%;
+  padding: 1.25rem;
+  border-radius: 1rem;
+  background: #0f172a;
 
-    /* État hover/focus “lift” léger, sans bloquer l’accessibilité */
-    &:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-    }
+  position: relative;
+  isolation: isolate;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 
-    &:focus-within {
-        outline: 2px solid transparent;
-        box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.1);
-    }
+  > * {
+    position: relative;
+    z-index: 3; /* contenu au-dessus */
+  }
 
-    /* Icône (picto) */
-    .icon {
-        inline-size: 2.5rem;
-        block-size: 2.5rem;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
+  /* === Bordure statique (fixe) === */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px; /* épaisseur */
+    background: #3b82f6;
 
-        img {
-            inline-size: 100%;
-            block-size: 100%;
-            object-fit: contain;
-            display: block;
-        }
-    }
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
 
-    /* Titre */
-    .title {
-        font-weight: 700;
-        line-height: 1.25;
-    }
+    z-index: 1;
+    pointer-events: none;
+  }
 
-    /* Texte */
-    .text {
-        color: $color-text;
-        line-height: 1.55;
-    }
+  /* === Bordure animée (highlight fin qui tourne) === */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: #1e3a8a; /* foncé */
 
-    /* Zone d’actions (boutons/links) */
-    .actions {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin-top: auto; /* pousse les actions en bas si le contenu haut grandit */
+    /* garder uniquement l’anneau */
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
 
-        /* Boutons/links alignés avec ta règle: inline-flex, centrés */
-        :is(a, button) {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            gap: 0.5rem;
-        }
-    }
+    /* ne montrer qu’un petit segment avec un mask radial */
+    mask-image: conic-gradient(
+      transparent 0deg 170deg,
+      #000 170deg 190deg,
+      transparent 190deg 360deg
+    );
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: cover;
 
-    /* Réduction des animations si l’utilisateur préfère moins de mouvement */
-    @media (prefers-reduced-motion: reduce) {
-        transition: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2; /* au-dessus de la bordure statique */
+    pointer-events: none;
 
-        &:hover {
-            transform: none;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
-        }
-    }
+    transform-origin: 50% 50%;
+  }
 
-    /* Responsive local */
-    @media (max-width: 768px) {
-        padding: 1rem;
+  &:hover,
+  &:focus-within {
+    transform: scale(1.02);
+    background: #1e293b;
+  }
 
-        .title { font-size: 1.05rem; }
-        .text  { font-size: 0.95rem; }
-    }
+  &:hover::before,
+  &:focus-within::before {
+    opacity: 1;
+    animation: border-sweep 3s linear infinite;
+  }
+}
+
+/* fait tourner le petit segment autour de la carte */
+@keyframes border-sweep {
+  to {
+    transform: rotate(360deg);
+  }
 }
