@@ -1,0 +1,55 @@
+.item {
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+  transition: border-color 0.3s ease;
+
+  &.open {
+    border-color: $color-primary;
+    @include box-shadow($color-primary);
+
+    .header .title {
+      color: $color-secondary;
+    }
+  }
+
+  .header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    color: inherit;
+    text-align: left;
+
+    .title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: color 0.25s ease;
+    }
+
+    .icon {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: $color-secondary;
+    }
+  }
+
+  .content {
+    overflow: hidden;
+    padding: 0 1.25rem;
+
+    /* tu utilises "container" au lieu de "inner" dans tes conventions */
+    .container,
+    .inner {
+      padding: 0.75rem 0 1rem;
+      line-height: 1.6;
+    }
+  }
+}
