@@ -19,8 +19,12 @@
     }
   }
 
-  .left  { grid-area: left; }
-  .right { grid-area: right; }
+  .left  { 
+    grid-area: left; 
+  }
+  .right { 
+    grid-area: right; 
+  }
 }
 
 /* Inversion via grid areas (fiable en Grid) */
