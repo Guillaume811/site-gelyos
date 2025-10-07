@@ -1,5 +1,6 @@
 import type { RoutePath } from '@/ressources/routes'
 
+// ======== Common content types ========
 export type RichText = string
 
 export interface ImageContent {
@@ -12,6 +13,7 @@ export interface ButtonContent {
     to: RoutePath
 }
 
+// ======== Home page content types ========
 //TODO: passer les 3 ? en obligatoire et changer le code dans le composant Hero + changer son nom
 export interface Content {
     title: RichText
@@ -36,3 +38,36 @@ export interface ServicesPreview {
     cards: ServiceCard[]
 }
 
+// ======== Services page content types ========
+export interface ServiceAccordionItem {
+    id: RichText,
+    title: RichText,
+    description: RichText
+}
+
+export interface ServiceSectionContent {
+    id: RichText,
+    title: RichText,
+    text: RichText,
+    image: ImageContent,
+    accordionItems: ServiceAccordionItem[]
+}
+
+export interface ServicePageContent {
+    title: RichText,
+    text: RichText,
+    services: ServiceSectionContent[]
+}
+
+// ======== About page content types ========
+export interface AboutSectionContent {
+    id: RichText,
+    title: RichText,
+    description: RichText,
+    image: ImageContent
+}
+
+export interface AboutPageContent {
+    title: RichText,
+    sections: AboutSectionContent[]
+}
