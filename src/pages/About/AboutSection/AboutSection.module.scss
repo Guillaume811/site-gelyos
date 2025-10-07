@@ -1,0 +1,25 @@
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .text {
+    p + p {
+      margin-top: 1rem;
+    }
+  }
+}
+
+.right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 1rem;
+    object-fit: cover;
+  }
+}
