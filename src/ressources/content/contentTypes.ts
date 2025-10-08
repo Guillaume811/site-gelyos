@@ -13,6 +13,11 @@ export interface ButtonContent {
     to: RoutePath
 }
 
+export interface PageHeaderContent {
+    title: RichText
+    image: ImageContent
+}
+
 // ======== Home page content types ========
 //TODO: passer les 3 ? en obligatoire et changer le code dans le composant Hero + changer son nom
 export interface Content {
@@ -24,50 +29,50 @@ export interface Content {
 }
 
 export interface ServiceCard {
-    id: RichText,
-    icon: ImageContent,
-    title: RichText,
-    description: RichText,
+    id: RichText
+    icon: ImageContent
+    title: RichText
+    description: RichText
     secondButton: ButtonContent
 }
 
 export interface ServicesPreview {
-    title: RichText,
-    text: RichText,
-    firstButton: ButtonContent,
+    title: RichText
+    text: RichText
+    firstButton: ButtonContent
     cards: ServiceCard[]
 }
 
 // ======== Services page content types ========
 export interface ServiceAccordionItem {
-    id: RichText,
-    title: RichText,
+    id: RichText
+    title: RichText
     description: RichText
 }
 
 export interface ServiceSectionContent {
-    id: RichText,
-    title: RichText,
-    text: RichText,
-    image: ImageContent,
+    id: RichText
+    title: RichText
+    text: RichText
+    image: ImageContent
     accordionItems: ServiceAccordionItem[]
 }
 
 export interface ServicePageContent {
-    title: RichText,
-    text: RichText,
+    header: PageHeaderContent
+    text: RichText
     services: ServiceSectionContent[]
 }
 
 // ======== About page content types ========
 export interface AboutSectionContent {
-    id: RichText,
-    title: RichText,
-    description: RichText,
+    id: RichText
+    title: RichText
+    description: RichText
     image: ImageContent
 }
 
 export interface AboutPageContent {
-    title: RichText,
+    header: PageHeaderContent
     sections: AboutSectionContent[]
 }

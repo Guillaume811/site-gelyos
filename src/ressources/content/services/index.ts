@@ -1,12 +1,12 @@
 import type { ServicePageContent } from "@/ressources/content/contentTypes";
-import { intro } from "./intro";
+import { headerServices, introServices } from "./headerIntro";
 import { devWeb } from "./devWeb";
 import { devApp } from "./devApp";
 import { maintenance } from "./maintenance";
 import { seo } from "./seo";
 
 export const servicesPageContent: ServicePageContent = {
-  title: intro.title,
-  text: intro.text,
-  services: [devWeb, devApp, maintenance, seo],
+  header: headerServices,
+  text: introServices.text,
+  services: [devWeb, devApp, maintenance, seo]
 };
