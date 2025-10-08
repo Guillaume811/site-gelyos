@@ -1,0 +1,42 @@
+.section {
+  position: relative;
+  height: 60vh;
+  overflow: hidden;
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  z-index: 0;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.titleBox {
+  display: inline-block;
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  background: rgba($color-bg, 0.85);
+  backdrop-filter: saturate(120%) blur(2px);
+  -webkit-backdrop-filter: saturate(120%) blur(2px);
+
+  :global(h1) {
+    margin: 0;
+  }
+}
