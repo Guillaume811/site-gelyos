@@ -1,13 +1,13 @@
-import Heading from "@/components/Heading/Heading";
 import AboutSection from "./AboutSection/AboutSection";
 import { aboutPageContent } from "@/ressources/content/about";
+import HeaderSection from "@/components/HeaderSection/HeaderSection";
 
 export default function About() {
-  const { title, sections } = aboutPageContent;
+  const { header, sections } = aboutPageContent;
 
   return (
     <>
-      <Heading level={1}>{title}</Heading>
+      <HeaderSection title={header.title} image={header.image} />
 
       {sections.map((section, index) => (
         <AboutSection

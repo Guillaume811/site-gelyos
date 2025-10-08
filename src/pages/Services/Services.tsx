@@ -1,14 +1,14 @@
-import Heading from "@/components/Heading/Heading";
 import PageIntro from "@/components/PageIntro/PageIntro";
 import ServicesSection from "./ServicesSection/ServicesSection";
 import { servicesPageContent } from "@/ressources/content/services";
+import HeaderSection from "@/components/HeaderSection/HeaderSection";
 
 export default function Services() {
-  const { title, text, services } = servicesPageContent;
+  const { header, text, services } = servicesPageContent;
 
   return (
     <>
-      <Heading level={1}>{title}</Heading>
+      <HeaderSection title={header.title} image={header.image} />
       <PageIntro text={text} />
 
       {services.map((service, index) => (
