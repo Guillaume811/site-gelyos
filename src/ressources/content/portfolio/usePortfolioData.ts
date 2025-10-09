@@ -64,11 +64,18 @@ export function usePortfolioData() {
         fetchCategory("application", controller.signal),
         fetchCategory("freelance", controller.signal),
       ]);
+
       setData({ vitrine, ecommerce, application, freelance });
     } catch (e) {
-      const msg = e instanceof Error ? e.message : String(e);
-      setError(msg);
-      setData(null);
+        // ⬇️ gestion plus fine de l’erreur
+        if (e instanceof DOMException && e.name === "AbortError") {
+          // ✅ requête annulée volontairement → on ne fait rien
+          return;
+        }
+
+        const msg = e instanceof Error ? e.message : String(e);
+        setError(msg);
+        setData(null);
     } finally {
       setLoading(false);
     }
