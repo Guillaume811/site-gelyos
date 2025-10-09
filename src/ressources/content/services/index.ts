@@ -7,6 +7,6 @@ import { seo } from "./seo";
 
 export const servicesPageContent: ServicePageContent = {
   header: headerServices,
-  text: introServices.text,
+  intro: introServices,
   services: [devWeb, devApp, maintenance, seo]
 };
