@@ -1,16 +1,37 @@
+/* src/pages/Portfolio/components/PortfolioSection/PortfolioSection.module.scss */
+
 .container {
-  padding: 3rem 0;
-}
+  padding: 3rem 3rem;
+  display: block;
 
-.header {
-  margin-bottom: 1.25rem;
-}
+  .header {
+    margin-bottom: 1.25rem;
+    display: grid;
+    gap: 0.5rem; // espace entre le titre et la description
 
-.description {
-  margin-top: 0.5rem;
-}
+    @media (min-width: 1024px) {
+      gap: 0.6rem;
+    }
 
-/* Espace autour du carrousel générique */
-.carouselWrapper {
-  position: relative;
+    @media (max-width: 767px) {
+      gap: 0.4rem;
+    }
+  }
+
+  .description {
+    max-width: 60%;
+  }
+
+  .carouselWrapper {
+    position: relative;
+  }
+
+  /* Responsive du container */
+  @media (max-width: 767px) {
+    padding: 2rem 1.25rem;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 3rem 4rem;
+  }
 }
