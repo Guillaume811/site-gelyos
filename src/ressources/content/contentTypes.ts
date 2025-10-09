@@ -18,6 +18,10 @@ export interface PageHeaderContent {
     image: ImageContent
 }
 
+export interface IntroContent {
+    text: RichText
+}
+
 // ======== Home page content types ========
 //TODO: passer les 3 ? en obligatoire et changer le code dans le composant Hero + changer son nom
 export interface Content {
@@ -60,7 +64,7 @@ export interface ServiceSectionContent {
 
 export interface ServicePageContent {
     header: PageHeaderContent
-    text: RichText
+    intro: IntroContent
     services: ServiceSectionContent[]
 }
 
@@ -75,4 +79,24 @@ export interface AboutSectionContent {
 export interface AboutPageContent {
     header: PageHeaderContent
     sections: AboutSectionContent[]
+}
+
+// ======== Portfolio page content types ========
+
+export interface PortfolioSectionIntro {
+    title: RichText
+    description: RichText
+}
+
+export interface PortfolionSectionContent {
+    vitrine: PortfolioSectionIntro
+    ecommerce: PortfolioSectionIntro
+    application: PortfolioSectionIntro
+    freelance: PortfolioSectionIntro
+}
+
+export interface PortfolioPageContent {
+    header: PageHeaderContent
+    intro: IntroContent
+    sections: PortfolionSectionContent
 }
