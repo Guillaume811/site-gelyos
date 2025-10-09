@@ -27,7 +27,7 @@
   align-items: center;
 }
 
-@mixin box-shadow($color) {
-  -webkit-box-shadow: 0 0 11px 0 $color;
-  box-shadow: 0 0 11px 0 $color;
+@mixin box-shadow($color, $blur: 11px) {
+  -webkit-box-shadow: 0 0 $blur 0 $color;
+  box-shadow: 0 0 $blur 0 $color;
 }
