@@ -130,9 +130,9 @@ export default function useCarousel(opts: UseCarouselOptions): UseCarouselReturn
     if (viewportWidth <= 0) return;
     const n = itemsPerView;
     const totalGaps = Math.max(0, n - 1) * gapPx;
-    const w = Math.max(0, (viewportWidth - totalGaps) / n);
+    const w = Math.max(0, (viewportWidth - totalGaps) / (n + peekRatio));
     setSlideWidth(w);
-  }, [viewportWidth, itemsPerView, gapPx]);
+  }, [viewportWidth, itemsPerView, gapPx, peekRatio]);
 
   const itemStride = slideWidth + gapPx;
 
