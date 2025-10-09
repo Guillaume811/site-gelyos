@@ -1,4 +1,6 @@
-export type Category = 'vitrine' | 'ecomerce' | 'application' | 'freelance';
+export const CATEGORY_VALUES = ["vitrine", "ecommerce", "application", "freelance"] as const;
+
+export type Category = typeof CATEGORY_VALUES[number];
 
 export type ProjectCarouselImage = {
     id: string
@@ -26,7 +28,7 @@ export type Project = {
 
 export type PortfolioData = {
     vitrine: Project[]
-    ecomerce: Project[]
+    ecommerce: Project[]
     application: Project[]
     freelance: Project[]
 }
