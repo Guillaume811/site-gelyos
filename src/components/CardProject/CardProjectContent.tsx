@@ -31,8 +31,8 @@ function CardProjectContentBase({
       {/* Corps */}
       <div data-part="body">
         <h3 id={headingId} data-part="title" aria-label={title}>
-          {client ? <span data-part="client">{client} — </span> : null}
-          {title}
+          {client ? <span data-part="client">{client}</span> : null}
+          <span data-part="project">{title}</span>
         </h3>
 
         <p data-part="desc">{shortDescription}</p>

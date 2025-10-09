@@ -1,19 +1,23 @@
 /* Conteneur de la carte (layout + bordures) */
 .root {
-  /* Contour 3px color-primary + bords arrondis */
   border: 3px solid $color-primary;
   border-radius: 1rem;
-  background: #fff;
+  background: $color-bg;
   overflow: hidden;
-  /* Padding léger pour aérer le contenu */
   padding: 0.75rem;
-  /* Effets doux */
-  transition: box-shadow .25s ease, transform .2s ease;
-  box-shadow: 0 6px 24px rgba(0,0,0,.06);
+  transition: transform .25s ease, box-shadow .25s ease, z-index 0s;
+  position: relative;
+  z-index: 0;
+
+  /* ⬇️ Ajouts pour gérer la taille depuis le parent */
+  width: 100%;
+  height: 100%;
+  min-height: var(--card-min-h, auto);
+
 }
 
 .root:hover {
-  box-shadow: 0 10px 28px rgba(0,0,0,.1);
+  @include box-shadow($color-primary);
   transform: translateY(-1px);
 }
 
@@ -24,11 +28,20 @@
 
 /* --------- Ciblage des sous-parties via data-part (déclarées dans CardProjectContent) --------- */
 
-/* Image : bords arrondis */
+/* Zone média : applique le ratio configurable + masque le débordement */
+.root [data-part="media"] {
+  aspect-ratio: var(--card-ratio, 4/3);
+  max-height: var(--media-max-h, none);
+  overflow: hidden;
+  border-radius: 0.75rem;
+  background: rgba(0,0,0,.04);
+}
+
+/* Image : bords arrondis (OK de garder aussi ici) */
 .root [data-part="img"] {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   border-radius: 0.75rem;
   object-fit: cover;
 }
@@ -39,11 +52,11 @@
   display: grid;
   gap: 0.5rem;
   margin-top: 0.75rem;
-}
 
-/* Client en color-secondary */
-.root [data-part="client"] {
-  color: $color-secondary;
+  /* permet au corps de prendre l'espace restant si min-height est défini */
+  /* (inutile si tu ne définis pas --card-min-h) */
+  /* place le si tu veux un équilibrage vertical régulier */
+  /* grid-auto-rows: min-content; */
 }
 
 /* Titre (nom du projet) en color-primary */
@@ -51,23 +64,35 @@
   color: $color-primary;
   font-size: 1.125rem;
   line-height: 1.3;
+  font-family: $font-title, sans-serif;
 }
 
-/* Description */
-.root [data-part="desc"] {
-  color: rgba(0,0,0,.75);
+/* Client en color-secondary */
+.root [data-part="client"] {
+  display: block;
+  text-align: center;
+  color: $color-secondary;
+  margin-bottom: 0.125rem;
 }
+
+.root [data-part="project"] {
+  display: block;
+}
+
+
 
 /* Actions : bouton collé à droite pour le skin Portfolio */
 .root [data-part="actions"] {
-  margin-top: 0.5rem;
+  margin-top: 1.5rem;
   display: flex;
   justify-content: flex-end; /* ⟵ à droite (Portfolio) */
 }
 
 /* Bouton (on garde l'esthétique du composant Button, on peut juste ajuster l'espacement) */
 .actionBtn {
-  /* inline-flex déjà côté Button */
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  @include box-shadow($color-primary, 3px);
 }
 
 /* Responsive léger */
