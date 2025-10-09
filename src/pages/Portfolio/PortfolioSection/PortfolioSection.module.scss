@@ -24,6 +24,9 @@
 
   .carouselWrapper {
     position: relative;
+    --card-ratio: 21/9;
+    --card-min-h: 300px;
+    //--media-max-h: 160px;
   }
 
   /* Responsive du container */
