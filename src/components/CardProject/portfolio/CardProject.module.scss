@@ -1,0 +1,78 @@
+/* Conteneur de la carte (layout + bordures) */
+.root {
+  /* Contour 3px color-primary + bords arrondis */
+  border: 3px solid $color-primary;
+  border-radius: 1rem;
+  background: #fff;
+  overflow: hidden;
+  /* Padding léger pour aérer le contenu */
+  padding: 0.75rem;
+  /* Effets doux */
+  transition: box-shadow .25s ease, transform .2s ease;
+  box-shadow: 0 6px 24px rgba(0,0,0,.06);
+}
+
+.root:hover {
+  box-shadow: 0 10px 28px rgba(0,0,0,.1);
+  transform: translateY(-1px);
+}
+
+/* Opacité réduite quand la carte est "dimmed" (3ᵉ partielle) */
+.dimmed {
+  opacity: .5;
+}
+
+/* --------- Ciblage des sous-parties via data-part (déclarées dans CardProjectContent) --------- */
+
+/* Image : bords arrondis */
+.root [data-part="img"] {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  object-fit: cover;
+}
+
+/* Corps : texte aligné à gauche + espacement */
+.root [data-part="body"] {
+  text-align: left;
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+/* Client en color-secondary */
+.root [data-part="client"] {
+  color: $color-secondary;
+}
+
+/* Titre (nom du projet) en color-primary */
+.root [data-part="title"] {
+  color: $color-primary;
+  font-size: 1.125rem;
+  line-height: 1.3;
+}
+
+/* Description */
+.root [data-part="desc"] {
+  color: rgba(0,0,0,.75);
+}
+
+/* Actions : bouton collé à droite pour le skin Portfolio */
+.root [data-part="actions"] {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: flex-end; /* ⟵ à droite (Portfolio) */
+}
+
+/* Bouton (on garde l'esthétique du composant Button, on peut juste ajuster l'espacement) */
+.actionBtn {
+  /* inline-flex déjà côté Button */
+}
+
+/* Responsive léger */
+@media (min-width: 768px) {
+  .root [data-part="title"] {
+    font-size: 1.25rem;
+  }
+}
