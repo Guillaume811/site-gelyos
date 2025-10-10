@@ -3,6 +3,7 @@ import DesktopHeader from '@/components/DesktopHeader/DesktopHeader'
 import CallToAction from '@/components/CallToAction/CallToAction'
 import styles from './RootLayout.module.scss'
 import Footer from '@/components/Footer/Footer'
+import { ModalProjectProvider } from '@/components/ModalProject/providers/ModalProjectProvider'
 
 
 export default function RootLayout() {
@@ -11,13 +12,16 @@ export default function RootLayout() {
   const hideCta = pathname === '/contact'
 
   return (
-    <div className={styles.wrapper}>
-      <DesktopHeader />
-      <main className={styles.main}>
-        <Outlet />
-      </main>
-      {!hideCta && <CallToAction />}
-      <Footer />
-    </div>
+    <ModalProjectProvider>
+      <div className={styles.wrapper}>
+        <DesktopHeader />
+        <main className={styles.main}>
+          <Outlet />
+        </main>
+        {!hideCta && <CallToAction />}
+        <Footer />
+      </div>
+    </ModalProjectProvider>
+    
   )
 }
