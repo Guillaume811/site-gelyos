@@ -3,10 +3,10 @@ import { ChevronDown } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import styles from "./AccordionItem.module.scss";
 import clsx from "clsx";
-import type { ServiceAccordionItem } from "@/ressources/content/contentTypes";
+import type { AccordionItemContent } from "@/ressources/content/contentTypes";
 
 interface Props {
-  item: ServiceAccordionItem;
+  item: AccordionItemContent;
   isOpen: boolean;
   onToggle: () => void;
 }
