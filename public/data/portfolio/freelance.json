@@ -9,9 +9,23 @@
         "shortDescription": "Paphius quin etiam et Cornelius senatores, ambo venenorum artibus pravis se polluisse confessi, eodem pronuntiante Maximino sunt interfecti. pari sorte etiam procurator monetae extinctus est. Sericum enim et Asbolium supra dictos.",
         "category": "freelance",
         "description": "Paphius quin etiam et Cornelius senatores, ambo venenorum artibus pravis se polluisse confessi, eodem pronuntiante Maximino sunt interfecti. pari sorte etiam procurator monetae extinctus est. Sericum enim et Asbolium supra dictos, quoniam cum hortaretur passim nominare, quos vellent, adiecta religione firmarat, nullum igni vel ferro se puniri iussurum, plumbi validis ictibus interemit. et post hoe flammis Campensem aruspicem dedit, in negotio eius nullo sacramento constrictus.",
-        "technologies": ["React", "Typescript", "SCSS"],
-        "features": ["Design Responsive", "Animation CSS", "Formulaire de contact"],
-        "result": ["Site livré dans les temps", "Client satisfait"],
+        "accordionItems": [
+            {
+                "id": "technologies",
+                "title": "Technologies utilisées",
+                "description": "React, Typescript, SCSS"
+            },
+            {
+                "id": "features",
+                "title": "Fonctionnalités clés",
+                "description": "Design Responsive, Animation CSS, Formulaire de contact"
+            },
+            {
+                "id": "result",
+                "title": "Résultats",
+                "description": "Site livré dans les temps, Client satisfait"
+            }
+        ],
         "url": "https://www.google.com",
         "carousel": [
             {
@@ -44,9 +58,23 @@
         "shortDescription": "Paphius quin etiam et Cornelius senatores, ambo venenorum artibus pravis se polluisse confessi, eodem pronuntiante Maximino sunt interfecti. pari sorte etiam procurator monetae extinctus est. Sericum enim et Asbolium supra dictos.",
         "category": "freelance",
         "description": "Paphius quin etiam et Cornelius senatores, ambo venenorum artibus pravis se polluisse confessi, eodem pronuntiante Maximino sunt interfecti. pari sorte etiam procurator monetae extinctus est. Sericum enim et Asbolium supra dictos, quoniam cum hortaretur passim nominare, quos vellent, adiecta religione firmarat, nullum igni vel ferro se puniri iussurum, plumbi validis ictibus interemit. et post hoe flammis Campensem aruspicem dedit, in negotio eius nullo sacramento constrictus.",
-        "technologies": ["React", "Typescript", "SCSS"],
-        "features": ["Design Responsive", "Animation CSS", "Formulaire de contact"],
-        "result": ["Site livré dans les temps", "Client satisfait"],
+        "accordionItems": [
+            {
+                "id": "technologies",
+                "title": "Technologies utilisées",
+                "description": "React, Typescript, SCSS"
+            },
+            {
+                "id": "features",
+                "title": "Fonctionnalités clés",
+                "description": "Design Responsive, Animation CSS, Formulaire de contact"
+            },
+            {
+                "id": "result",
+                "title": "Résultats",
+                "description": "Site livré dans les temps, Client satisfait"
+            }
+        ],
         "url": "https://www.google.com",
         "carousel": [
             {
@@ -79,9 +107,23 @@
         "shortDescription": "Paphius quin etiam et Cornelius senatores, ambo venenorum artibus pravis se polluisse confessi, eodem pronuntiante Maximino sunt interfecti. pari sorte etiam procurator monetae extinctus est. Sericum enim et Asbolium supra dictos.",
         "category": "freelance",
         "description": "Paphius quin etiam et Cornelius senatores, ambo venenorum artibus pravis se polluisse confessi, eodem pronuntiante Maximino sunt interfecti. pari sorte etiam procurator monetae extinctus est. Sericum enim et Asbolium supra dictos, quoniam cum hortaretur passim nominare, quos vellent, adiecta religione firmarat, nullum igni vel ferro se puniri iussurum, plumbi validis ictibus interemit. et post hoe flammis Campensem aruspicem dedit, in negotio eius nullo sacramento constrictus.",
-        "technologies": ["React", "Typescript", "SCSS"],
-        "features": ["Design Responsive", "Animation CSS", "Formulaire de contact"],
-        "result": ["Site livré dans les temps", "Client satisfait"],
+        "accordionItems": [
+            {
+                "id": "technologies",
+                "title": "Technologies utilisées",
+                "description": "React, Typescript, SCSS"
+            },
+            {
+                "id": "features",
+                "title": "Fonctionnalités clés",
+                "description": "Design Responsive, Animation CSS, Formulaire de contact"
+            },
+            {
+                "id": "result",
+                "title": "Résultats",
+                "description": "Site livré dans les temps, Client satisfait"
+            }
+        ],
         "url": "https://www.google.com",
         "carousel": [
             {
@@ -114,9 +156,23 @@
         "shortDescription": "Paphius quin etiam et Cornelius senatores, ambo venenorum artibus pravis se polluisse confessi, eodem pronuntiante Maximino sunt interfecti. pari sorte etiam procurator monetae extinctus est. Sericum enim et Asbolium supra dictos.",
         "category": "freelance",
         "description": "Paphius quin etiam et Cornelius senatores, ambo venenorum artibus pravis se polluisse confessi, eodem pronuntiante Maximino sunt interfecti. pari sorte etiam procurator monetae extinctus est. Sericum enim et Asbolium supra dictos, quoniam cum hortaretur passim nominare, quos vellent, adiecta religione firmarat, nullum igni vel ferro se puniri iussurum, plumbi validis ictibus interemit. et post hoe flammis Campensem aruspicem dedit, in negotio eius nullo sacramento constrictus.",
-        "technologies": ["React", "Typescript", "SCSS"],
-        "features": ["Design Responsive", "Animation CSS", "Formulaire de contact"],
-        "result": ["Site livré dans les temps", "Client satisfait"],
+        "accordionItems": [
+            {
+                "id": "technologies",
+                "title": "Technologies utilisées",
+                "description": "React, Typescript, SCSS"
+            },
+            {
+                "id": "features",
+                "title": "Fonctionnalités clés",
+                "description": "Design Responsive, Animation CSS, Formulaire de contact"
+            },
+            {
+                "id": "result",
+                "title": "Résultats",
+                "description": "Site livré dans les temps, Client satisfait"
+            }
+        ],
         "url": "https://www.google.com",
         "carousel": [
             {
@@ -149,9 +205,23 @@
         "shortDescription": "Paphius quin etiam et Cornelius senatores, ambo venenorum artibus pravis se polluisse confessi, eodem pronuntiante Maximino sunt interfecti. pari sorte etiam procurator monetae extinctus est. Sericum enim et Asbolium supra dictos.",
         "category": "freelance",
         "description": "Paphius quin etiam et Cornelius senatores, ambo venenorum artibus pravis se polluisse confessi, eodem pronuntiante Maximino sunt interfecti. pari sorte etiam procurator monetae extinctus est. Sericum enim et Asbolium supra dictos, quoniam cum hortaretur passim nominare, quos vellent, adiecta religione firmarat, nullum igni vel ferro se puniri iussurum, plumbi validis ictibus interemit. et post hoe flammis Campensem aruspicem dedit, in negotio eius nullo sacramento constrictus.",
-        "technologies": ["React", "Typescript", "SCSS"],
-        "features": ["Design Responsive", "Animation CSS", "Formulaire de contact"],
-        "result": ["Site livré dans les temps", "Client satisfait"],
+        "accordionItems": [
+            {
+                "id": "technologies",
+                "title": "Technologies utilisées",
+                "description": "React, Typescript, SCSS"
+            },
+            {
+                "id": "features",
+                "title": "Fonctionnalités clés",
+                "description": "Design Responsive, Animation CSS, Formulaire de contact"
+            },
+            {
+                "id": "result",
+                "title": "Résultats",
+                "description": "Site livré dans les temps, Client satisfait"
+            }
+        ],
         "url": "https://www.google.com",
         "carousel": [
             {
