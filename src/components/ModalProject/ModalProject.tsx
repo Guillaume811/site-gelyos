@@ -68,50 +68,53 @@ export default function ModalProject({ project, isOpen, onClose }: ModalProjectP
                 </div>
               }
               right={
-                <div className={styles.right}>
-                  {/* Logo du client */}
-                  {project.image && (
-                    <img
-                      src={project.image}
-                      alt={`Logo du client ${project.client ?? ""}`}
-                      className={styles.logo}
-                    />
-                  )}
+                <div className={styles.rightScroll}>
+                    <div className={styles.right}>
+                        {/* Logo du client */}
+                        {project.image && (
+                            <img
+                            src={project.image}
+                            alt={`Logo du client ${project.client ?? ""}`}
+                            className={styles.logo}
+                            />
+                        )}
 
-                  {/* Infos projet */}
-                  {project.client && (
-                    <Heading level={4} className={styles.client}>
-                      {project.client}
-                    </Heading>
-                  )}
+                        {/* Infos projet */}
+                        {project.client && (
+                            <Heading level={4} className={styles.client}>
+                            {project.client}
+                            </Heading>
+                        )}
 
-                  <Heading
-                    level={2}
-                    id={`modal-title-${project.id}`}
-                    className={styles.title}
-                  >
-                    {project.title}
-                  </Heading>
+                        <Heading
+                            level={2}
+                            id={`modal-title-${project.id}`}
+                            className={styles.title}
+                        >
+                            {project.title}
+                        </Heading>
 
-                  <p className={styles.description}>{project.description}</p>
+                        <p className={styles.description}>{project.description}</p>
 
-                  {/* Accordéon (à adapter selon ton contenu) */}
-                  {project.accordionItems && project.accordionItems.length > 0 && (
-                    <Accordion items={project.accordionItems} />
-                  )}
+                        {/* Accordéon (à adapter selon ton contenu) */}
+                        {project.accordionItems && project.accordionItems.length > 0 && (
+                            <Accordion items={project.accordionItems} />
+                        )}
 
-                  {/* Lien vers le site */}
-                  {project.url && (
-                    <PrimaryButtonLink
-                      to={project.url}
-                      className={styles.button}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Voir le site
-                    </PrimaryButtonLink>
-                  )}
+                        {/* Lien vers le site */}
+                        {project.url && (
+                            <PrimaryButtonLink
+                            to={project.url}
+                            className={styles.button}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            >
+                            Voir le site
+                            </PrimaryButtonLink>
+                        )}
+                    </div>
                 </div>
+                
               }
             />
           </motion.div>

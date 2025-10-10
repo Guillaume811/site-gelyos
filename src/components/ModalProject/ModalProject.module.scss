@@ -27,7 +27,7 @@
   border-radius: 1rem;
   background: $color-bg;
   color: $color-text;
-  padding: 1.25rem;
+  //padding: 1.25rem;
 
   @include box-shadow($color-primary);
 
@@ -85,6 +85,7 @@
         display: grid;
         grid-template-columns: 2fr 1fr !important; 
         align-items: start;
+        padding: 0;
     }
 }
 
@@ -191,5 +192,27 @@
 
   .right .button {
     width: 100%;
+  }
+}
+
+.rightScroll {
+  max-block-size: calc(100vh - 8rem);
+  overflow-y: auto;
+  padding-inline-end: 0.5rem;
+
+  scrollbar-width: thin;
+  scrollbar-color: rgba($color-primary, 0.4) transparent;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba($color-primary, 0.4);
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
   }
 }
