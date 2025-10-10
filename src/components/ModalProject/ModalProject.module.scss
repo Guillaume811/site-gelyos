@@ -1,0 +1,195 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+
+  /* fond + flou d’arrière-plan */
+  background: rgba($color-bg, 0.55);
+  backdrop-filter: blur(8px);
+
+  /* scroll éventuel si le contenu déborde */
+  overflow: auto;
+
+  /* évite que le contenu derrière capte des interactions */
+  pointer-events: auto;
+
+  /* empêche le flicker sur certains navigateurs */
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.modal {
+  position: relative;
+  width: min(1300px, 100%);
+  border: 3px solid $color-primary;
+  border-radius: 1rem;
+  background: $color-bg;
+  color: $color-text;
+  padding: 1.25rem;
+
+  @include box-shadow($color-primary);
+
+  /* garantit que le contenu interne scrolle mais la modale reste centrée */
+  max-height: calc(100vh - 4rem);
+  overflow: auto;
+
+  /* petite transition d’élévation visuelle */
+  transition: transform 220ms ease, box-shadow 220ms ease;
+
+  &:hover {
+    @include box-shadow($color-primary);
+  }
+
+  /* croix de fermeture */
+  .closeButton {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    inline-size: 2.5rem;
+    block-size: 2.5rem;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid rgba($color-primary, 0.35);
+    border-radius: 0.75rem;
+    background: rgba($color-bg, 0.65);
+    cursor: pointer;
+
+    transition: transform 160ms ease, border-color 160ms ease, background-color 160ms ease;
+
+    svg {
+      inline-size: 1.25rem;
+      block-size: 1.25rem;
+    }
+
+    &:hover {
+      background: rgba($color-primary, 0.08);
+      border-color: rgba($color-primary, 0.7);
+      transform: scale(1.04);
+    }
+
+    &:focus-visible {
+      outline: 3px solid rgba($color-secondary, 0.7);
+      outline-offset: 2px;
+    }
+  }
+}
+
+/* Mise en page interne (TwoColumnSection) */
+.layout {
+    > * {
+        display: grid;
+        grid-template-columns: 2fr 1fr !important; 
+        align-items: start;
+    }
+}
+
+.left {
+
+  .imageWrapper {
+    position: relative;
+    inline-size: 100%;
+    /* ratio 21/9 configurable */
+    --card-ratio: 21 / 9;
+
+    border-radius: 0.75rem;
+    overflow: hidden;
+    border: 2px solid rgba($color-primary, 0.35);
+
+    /* gestion ratio via pseudo-wrapper */
+    &::before {
+      content: "";
+      display: block;
+      padding-block-end: calc(100% / (var(--card-ratio)));
+    }
+
+    /* image centrée */
+    .image {
+      position: absolute;
+      inset: 0;
+      inline-size: 100%;
+      block-size: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .imageTitle {
+    text-align: center;
+    margin-block-start: 0.75rem;
+    line-height: 1.2;
+    margin-block-end: 0.5rem;
+    color: $color-primary;
+  }
+}
+
+.right {
+
+  display: grid;
+  align-content: start;
+  gap: 0.75rem;
+
+  .logo {
+    inline-size: clamp(96px, 35%, 180px);
+    block-size: auto;
+    border-radius: 0.5rem;
+    border: 2px solid rgba($color-primary, 0.35);
+    padding: 0.5rem;
+    background: rgba($color-bg, 0.5);
+    margin: auto;
+  }
+
+  .client {
+    margin-block: 0.25rem 0.25rem;
+    text-align: center;
+    color: $color-secondary;
+  }
+
+  .title {
+    margin-block: 0 0.25rem;
+    font-size: 1.5rem;
+    color: $color-primary;
+  }
+
+  .description {
+    opacity: 0.9;
+  }
+
+  .button {
+    margin-block-start: 0.5rem;
+    justify-self: end;
+  }
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .modal {
+    padding: 1rem;
+  }
+
+  .left .imageWrapper {
+    border-width: 2px;
+  }
+
+  .right .logo {
+    inline-size: clamp(88px, 40%, 160px);
+  }
+}
+
+@media (max-width: 720px) {
+  /* Quand TwoColumnSection empile les colonnes, on respire un peu */
+  .modal {
+    padding: 0.875rem 0.875rem 1rem;
+  }
+
+  .closeButton {
+    /* si besoin, agrandir la zone tactile sur mobile */
+  }
+
+  .right .button {
+    width: 100%;
+  }
+}
