@@ -25,6 +25,12 @@ const urlLooseSchema = z.string().trim().refine(
   "URL invalide"
 ).optional();
 
+export const accordionItemSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  description: z.string(),
+});
+
 /** Image du carrousel (modal) */
 export const projectCarouselImageSchema = z.object({
   id: idStringSchema,
@@ -50,11 +56,7 @@ export const projectSchema = z.object({
 
   category: categorySchema,
 
-  technologies: z.array(z.string().min(1)).default([]),
-  features: z.array(z.string().min(1)).default([]),
-
-  /** Résultats textuels (facultatif) */
-  result: z.array(z.string().min(1)).optional(),
+  accordionItems: z.array(accordionItemSchema).optional(),
 
   url: urlLooseSchema,
 

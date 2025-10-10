@@ -1,3 +1,5 @@
+import type { AccordionItemContent } from "../contentTypes";
+
 export const CATEGORY_VALUES = ["vitrine", "ecommerce", "application", "freelance"] as const;
 
 export type Category = typeof CATEGORY_VALUES[number];
@@ -19,9 +21,7 @@ export type Project = {
     shortDescription: string
     description: string
     category: Category
-    technologies: string[]
-    features: string[]
-    results?: string[]
+    accordionItems?: AccordionItemContent[]; 
     url?: string
     carousel?: ProjectCarouselImage[]
 }

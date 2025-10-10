@@ -22,7 +22,7 @@ export interface IntroContent {
     text: RichText
 }
 
-export interface AccordionItem {
+export interface AccordionItemContent {
     id: RichText
     title: RichText
     description: RichText
@@ -61,7 +61,7 @@ export interface ServiceSectionContent {
     title: RichText
     text: RichText
     image: ImageContent
-    ServiceAccordionItems: AccordionItem[]
+    ServiceAccordionItems: AccordionItemContent[]
 }
 
 export interface ServicePageContent {
