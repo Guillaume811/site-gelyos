@@ -26,6 +26,7 @@
   scroll-behavior: smooth;
   /* Scroll snap sur les slides (activé/désactivé en JS selon drag) */
   scroll-snap-type: x mandatory;
+  
 
   /* Améliore le drag sur iOS */
   -webkit-overflow-scrolling: touch;
@@ -34,6 +35,7 @@
   --mask-fade: linear-gradient(to right, rgba(0,0,0,1) 92%, rgba(0,0,0,0.15) 98%, rgba(0,0,0,0) 100%);
   -webkit-mask-image: var(--mask-fade);
   mask-image: var(--mask-fade);
+
 }
 
 /* Piste horizontale des slides (gap géré inline) */
