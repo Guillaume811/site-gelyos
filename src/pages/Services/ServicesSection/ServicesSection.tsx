@@ -14,7 +14,7 @@ export default function ServicesSection({
   title,
   text,
   image,
-  accordionItems,
+  ServiceAccordionItems,
   reverse = false,
   className,
 }: Props) {
@@ -28,7 +28,7 @@ export default function ServicesSection({
       <div className={styles.text}>
         <ReactMarkdown>{text}</ReactMarkdown>
       </div>
-      <Accordion items={accordionItems} />
+      <Accordion items={ServiceAccordionItems} />
     </div>
   }
   right={

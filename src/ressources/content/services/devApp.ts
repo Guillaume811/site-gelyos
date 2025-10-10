@@ -10,7 +10,7 @@ export const devApp: ServiceSectionContent = {
         src: pictureDevApp,
         alt: 'Illustration de développement d’application.'
     },
-    accordionItems: [
+    ServiceAccordionItems: [
         {
             id: 'analyse',
             title: 'Analyse fonctionnelle',

@@ -10,7 +10,7 @@ export const devWeb: ServiceSectionContent = {
         src: pictureDevWeb,
         alt: 'Illustration de design UI/UX avec éléments d’interface.'
     },
-    accordionItems: [
+    ServiceAccordionItems: [
         {
             id: 'cahier-charges',
             title: 'Rédaction du cahier des charges',

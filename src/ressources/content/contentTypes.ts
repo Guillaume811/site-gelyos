@@ -22,6 +22,12 @@ export interface IntroContent {
     text: RichText
 }
 
+export interface AccordionItem {
+    id: RichText
+    title: RichText
+    description: RichText
+}
+
 // ======== Home page content types ========
 //TODO: passer les 3 ? en obligatoire et changer le code dans le composant Hero + changer son nom
 export interface Content {
@@ -48,18 +54,14 @@ export interface ServicesPreview {
 }
 
 // ======== Services page content types ========
-export interface ServiceAccordionItem {
-    id: RichText
-    title: RichText
-    description: RichText
-}
+
 
 export interface ServiceSectionContent {
     id: RichText
     title: RichText
     text: RichText
     image: ImageContent
-    accordionItems: ServiceAccordionItem[]
+    ServiceAccordionItems: AccordionItem[]
 }
 
 export interface ServicePageContent {

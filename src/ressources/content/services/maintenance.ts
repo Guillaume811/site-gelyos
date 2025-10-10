@@ -10,7 +10,7 @@ export const maintenance: ServiceSectionContent = {
         src: pictureMaintenance,
         alt: `Illustration de maintenance d'un site web`
     },
-    accordionItems: [
+    ServiceAccordionItems: [
         {
             id: 'mises-a-jour',
             title: 'Mises à jour régulières',

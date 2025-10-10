@@ -10,7 +10,7 @@ export const seo: ServiceSectionContent = {
         src: pictureSeo,
         alt: 'Illustration de SEO avec des éléments de graphique.'
     },
-    accordionItems: [
+    ServiceAccordionItems: [
         {
             id: 'audit',
             title: 'Audit SEO complet',
