@@ -1,0 +1,144 @@
+.container {
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+}
+
+.title {
+  margin: 0;
+}
+
+.infoList {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.infoItem {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border: 2px solid rgba($color-primary, 0.25);
+  border-radius: 0.75rem;
+  background: rgba($color-bg, 0.35);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    @include box-shadow(rgba($color-primary, 0.25), 14px);
+  }
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+  border-radius: 0.625rem;
+  border: 2px solid rgba($color-primary, 0.35);
+  background: rgba($color-primary, 0.06);
+
+  svg {
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+  }
+}
+
+.text {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.infoTitle {
+  margin: 0;
+}
+
+.infoDesc {
+  margin: 0;
+  opacity: 0.95;
+}
+
+/* Lien inline directement sous la description (pas de marge ajoutée) */
+.infoLink {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px dashed rgba($color-primary, 0.5);
+  transition: border-color 160ms ease, transform 160ms ease;
+
+  &:hover {
+    border-color: rgba($color-primary, 0.8);
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    outline: 3px solid rgba($color-secondary, 0.7);
+    outline-offset: 2px;
+  }
+}
+
+.paragraph {
+  opacity: 0.95;
+}
+
+.socialRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+  border-radius: 0.625rem;
+  border: 2px solid rgba($color-primary, 0.35);
+  background: rgba($color-bg, 0.35);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 160ms ease, border-color 160ms ease, background-color 160ms ease;
+
+  /*img {
+    display: block;
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+  }*/
+
+  &:hover {
+    transform: translateY(-1px);
+    border-color: rgba($color-primary, 0.65);
+    background: rgba($color-primary, 0.08);
+  }
+
+  &:focus-visible {
+    outline: 3px solid rgba($color-secondary, 0.7);
+    outline-offset: 2px;
+  }
+}
+
+.socialIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /*svg {
+    inline-size: 1.125rem;
+    block-size: 1.125rem;
+  }*/
+}
+
+.socialLabel {
+  line-height: 1;
+}
+
+@media (max-width: 720px) {
+  .infoItem {
+    padding: 0.625rem;
+  }
+}

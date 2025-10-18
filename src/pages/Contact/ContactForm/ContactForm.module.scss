@@ -1,0 +1,205 @@
+/* Personnalisation focus : variables CSS sur le composant */
+.form {
+  --focus-ring-color: rgba(#5b9cff, 0.85);
+  --focus-ring-width: 3px;
+  --focus-ring-offset: 2px;
+}
+
+/* Mixin focus ring — réutilisable partout */
+@mixin focus-ring($color: var(--focus-ring-color), $width: var(--focus-ring-width), $offset: var(--focus-ring-offset)) {
+  outline: $width solid $color;
+  outline-offset: $offset;
+}
+
+/* Form layout */
+.form {
+  display: grid;
+  gap: 1rem;
+}
+
+/* 2 colonnes pour les 4 champs de tête */
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem 0.75rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.375rem;
+}
+
+.label {
+  font-weight: 600;
+}
+
+/* Inputs / Textarea */
+.input,
+.textarea {
+  appearance: none;
+  border: 2px solid rgba($color-primary, 0.35);
+  background: rgba($color-bg, 0.35);
+  color: $color-text;
+  border-radius: 0.75rem;
+  padding: 0.625rem 0.75rem;
+  transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+
+  &:hover {
+    border-color: rgba($color-primary, 0.6);
+    background: rgba($color-primary, 0.08);
+  }
+
+  &:focus-visible {
+    @include focus-ring(); /* <= focus customisable via variables CSS */
+  }
+}
+
+.textarea {
+  resize: vertical;
+  min-block-size: 8rem;
+}
+
+/* Radios */
+.fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.legend {
+  font-weight: 700;
+  margin-block-end: 0.375rem;
+}
+
+.radios {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 1fr;
+}
+
+.radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.5rem;
+  border: 2px solid rgba($color-primary, 0.25);
+  border-radius: 0.75rem;
+  background: rgba($color-bg, 0.25);
+  transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+
+  input[type="radio"] {
+    inline-size: 1rem;
+    block-size: 1rem;
+    accent-color: $color-primary;
+
+    &:focus-visible {
+      @include focus-ring();
+    }
+  }
+
+  &:hover {
+    transform: translateY(-1px);
+    border-color: rgba($color-primary, 0.5);
+  }
+}
+
+/* RGPD */
+.consent {
+  display: grid;
+  gap: 0.375rem;
+}
+
+.checkboxLabel {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+
+  input[type="checkbox"] {
+    inline-size: 1rem;
+    block-size: 1rem;
+    margin-top: 0.2rem;
+    accent-color: $color-primary;
+
+    &:focus-visible {
+      @include focus-ring();
+    }
+  }
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submit {
+  display: inline-flex; /* conforme à tes conventions */
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  border: 2px solid $color-primary;
+  background: $color-primary;
+  color: $color-bg;
+  border-radius: 0.75rem;
+  padding: 0.625rem 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease, border-color 160ms ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    @include box-shadow(rgba($color-primary, 0.25), 14px);
+  }
+
+  &:focus-visible {
+    @include focus-ring();
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* Messages */
+.error {
+  color: red; /* assure-toi d’avoir cette variable ; sinon utilise $color-secondary */
+  font-size: 0.9375rem;
+}
+
+.globalError {
+  border: 2px solid rgba(red, 0.6);
+  background: rgba(red, 0.08);
+  border-radius: 0.75rem;
+  padding: 0.5rem 0.75rem;
+
+  &:focus-visible {
+    @include focus-ring();
+  }
+}
+
+.success {
+  border: 2px solid rgba($color-secondary, 0.6);
+  background: rgba($color-secondary, 0.08);
+  border-radius: 0.75rem;
+  padding: 0.5rem 0.75rem;
+
+  &:focus-visible {
+    @include focus-ring();
+  }
+}
+
+/* Note sous le formulaire */
+.note {
+  opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}

@@ -102,3 +102,20 @@ export interface PortfolioPageContent {
     intro: IntroContent
     sections: PortfolionSectionContent
 }
+
+// ======== Contact page content types ========
+
+export interface ContactInfo {
+    title: RichText
+    description: RichText
+}
+
+export interface ContactPageContent {
+    header: PageHeaderContent
+    intro: IntroContent
+    title: RichText
+    email: ContactInfo
+    phone: ContactInfo
+    text: RichText
+    textForm: RichText
+}
