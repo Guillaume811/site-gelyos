@@ -1,4 +1,4 @@
-.header {
+/*.header {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -12,4 +12,52 @@
             width: 164px;
         }
     }
+}*/
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+
+  // Effet verre
+  background: rgba($color-bg, 0.72); // fond semi-transparent
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  // Fallback si pas de support du backdrop-filter
+  @supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+    background: rgba($color-bg, 0.92); // un peu plus opaque pour la lisibilité
+  }
+
+  transition: background-color 200ms ease, box-shadow 200ms ease;
+
+  .brand {
+    max-width: max-content;
+
+    .logo {
+      width: 164px;
+      display: block;
+    }
+  }
+}
+
+// Légère élévation quand on scrolle (séparateur + profondeur)
+.scrolled {
+  @include box-shadow($color-primary);
+  // Optionnel si tu veux plus net :
+  // border-bottom: 1px solid rgba($color-text, 0.06);
+}
+
+/* Accessibilité / préférences utilisateur */
+@media (prefers-reduced-transparency: reduce) {
+  .header {
+    background: rgba($color-bg, 0.98);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
 }
