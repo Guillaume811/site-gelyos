@@ -4,86 +4,20 @@
   width: 80%;
   padding: 1.25rem;
   border-radius: 1rem;
-  background: #0f172a;
+  background: $color-bg;
+  border: 2px solid $color-primary;
+  transition: 
+    transform 180ms ease, 
+    background-color 200ms ease,
+    box-shadow 200ms ease;
 
-  position: relative;
-  isolation: isolate;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-
-  > * {
-    position: relative;
-    z-index: 3; /* contenu au-dessus */
-  }
-
-  /* === Bordure statique (fixe) === */
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 2px; /* épaisseur */
-    background: #3b82f6;
-
-    -webkit-mask:
-      linear-gradient(#000 0 0) content-box,
-      linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-            mask-composite: exclude;
-
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  /* === Bordure animée (highlight fin qui tourne) === */
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 2px;
-    background: #1e3a8a; /* foncé */
-
-    /* garder uniquement l’anneau */
-    -webkit-mask:
-      linear-gradient(#000 0 0) content-box,
-      linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-            mask-composite: exclude;
-
-    /* ne montrer qu’un petit segment avec un mask radial */
-    mask-image: conic-gradient(
-      transparent 0deg 170deg,
-      #000 170deg 190deg,
-      transparent 190deg 360deg
-    );
-    mask-repeat: no-repeat;
-    mask-position: center;
-    mask-size: cover;
-
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 2; /* au-dessus de la bordure statique */
-    pointer-events: none;
-
-    transform-origin: 50% 50%;
-  }
-
-  &:hover,
-  &:focus-within {
+  &:hover {
     transform: scale(1.02);
-    background: #1e293b;
+    //background: lighten($color-bg, 10%);
+    @include box-shadow($color-primary);
   }
 
-  &:hover::before,
-  &:focus-within::before {
-    opacity: 1;
-    animation: border-sweep 3s linear infinite;
-  }
-}
-
-/* fait tourner le petit segment autour de la carte */
-@keyframes border-sweep {
-  to {
-    transform: rotate(360deg);
+  .button{
+    padding: 1rem 1.5rem;
   }
 }

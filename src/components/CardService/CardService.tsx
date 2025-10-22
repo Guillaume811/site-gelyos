@@ -2,6 +2,7 @@ import styles from "./CardService.module.scss";
 import Heading from "@/components/Heading/Heading";
 import { SecondaryButtonLink } from '@/components/Buttons/ButtonLink'
 import type { ServiceCard } from "@/ressources/content/contentTypes";
+import ReactMarkdown from "react-markdown";
 
 interface Props {
   data: ServiceCard;
@@ -23,13 +24,21 @@ export default function CardService({ data, className }: Props) {
         {title}
       </Heading>
 
-      <p className={styles.text}>{description}</p>
-
-      <div className={styles.actions}>
-        <SecondaryButtonLink to={secondButton.to} aria-label={`${secondButton.label} — ${title}`}>
-          {secondButton.label}
-        </SecondaryButtonLink>
+      <div className={styles.text}>
+        <ReactMarkdown>
+          {description}
+        </ReactMarkdown>
       </div>
+      
+
+      <SecondaryButtonLink 
+        to={secondButton.to} 
+        aria-label={`${secondButton.label} — ${title}`}
+        className={styles.button}
+      >
+        {secondButton.label}
+      </SecondaryButtonLink>
+
     </div>
   );
 }
