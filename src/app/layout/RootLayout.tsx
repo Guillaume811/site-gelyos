@@ -4,6 +4,7 @@ import CallToAction from '@/components/CallToAction/CallToAction'
 import styles from './RootLayout.module.scss'
 import Footer from '@/components/Footer/Footer'
 import { ModalProjectProvider } from '@/components/ModalProject/providers/ModalProjectProvider'
+import MobileHeader from '@/components/MobileHeader/MobileHeader'
 
 
 export default function RootLayout() {
@@ -14,6 +15,7 @@ export default function RootLayout() {
   return (
     <ModalProjectProvider>
       <div className={styles.wrapper}>
+        <MobileHeader />
         <DesktopHeader />
         <main className={styles.main}>
           <Outlet />
