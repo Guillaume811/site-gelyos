@@ -4,9 +4,9 @@ import pictureExpertise from '@/assets/pictures/expertise.jpg'
 export const expertise: AboutSectionContent = {
     id: 'expertise',
     title: 'Mon expertise à votre service',
-    description: `**Création de sites vitrines sur mesure** pour mettre en valeur votre activité.
-    **Site e-commerce personnalisés** pour booster vos ventes en ligne.
-    **Applications évolutives** adaptées à vos besoins métiers.
+    description: `**Création de sites vitrines sur mesure** pour mettre en valeur votre activité.  
+    **Site e-commerce personnalisés** pour booster vos ventes en ligne.  
+    **Applications évolutives** adaptées à vos besoins métiers.  
     **Optimisation SEO** pour améliorer votre visibilité sur Google.`,
     image: {
         src: pictureExpertise,
