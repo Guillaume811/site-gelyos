@@ -36,6 +36,10 @@
 
   transition: background-color 200ms ease, box-shadow 200ms ease;
 
+    @media (max-width: 991px) {
+        display: none;
+    }
+
   .brand {
     max-width: max-content;
 
