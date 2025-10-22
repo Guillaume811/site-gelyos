@@ -1,0 +1,228 @@
+@use "@/styles/variables" as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background: transparent;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+}
+
+/* Logo à gauche, fond verre arrondi (pill) */
+.brand {
+  position: relative;
+  z-index: 110;
+  max-width: max-content;
+  text-decoration: none;
+}
+
+.logoWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  background: rgba($color-bg, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+  display: block;
+}
+
+/* Actions à droite (au-dessus de la slide) */
+.actions {
+  position: relative;
+  z-index: 110; /* > header et > panneau pour être sûr */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Boutons/icônes – style verre + arrondi */
+.iconBtn {
+  inline-size: 40px;
+  block-size: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid $color-primary;
+  border-radius: 999px;
+  background: rgba($color-bg, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: $color-text;
+  text-decoration: none;
+  user-select: none;
+  cursor: pointer;
+
+  transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease;
+
+  &:hover {
+    background: rgba($color-primary, 0.10);
+    border-color: rgba($color-primary, 0.28);
+    transform: translateY(-1px);
+  }
+}
+
+/* Icônes */
+.icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  transition: stroke 200ms ease;
+}
+
+/* --- Panneau fond: slide depuis la droite, SOUS les actions --- */
+.panel {
+  position: fixed;
+  inset: 0 0 0 auto;
+  width: min(84vw, 320px);
+  z-index: 90;
+  background: rgba($color-bg, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-left: 1px solid rgba($color-text, 0.06);
+  display: flex;
+  flex-direction: column;
+
+  /* perf et état initial en cas de JS off */
+  will-change: transform;
+  transform: translateX(100%);
+}
+
+/* Mobile seulement */
+@media (min-width: 992px) {
+  .header { display: none; }
+}
+
+.phoneBtn, .mailBtn {
+  /* couleurs par défaut (fermé) */
+  color: $color-text;
+  border-color: $color-primary; // tu avais une bordure primary h24
+}
+
+/* Quand le panneau est ouvert */
+.header[data-open="true"] {
+  .phoneBtn {
+    color: #44CC33;          /* vert */
+    border-color: rgba(#44CC33, 0.7);
+    background: rgba(#44CC33, 0.10); /* léger hint, optionnel */
+  }
+  .mailBtn {
+    color: #E67E22;            /* “couleur enveloppe” */
+    border-color: rgba(#E67E22, 0.7);
+    background: rgba(#E67E22, 0.08);   /* léger hint, optionnel */
+  }
+}
+
+/* Contenu du menu dans le panel (sous la barre du haut) */
+.menu {
+  list-style: none;
+  margin: 0;
+  padding: 5.5rem 1rem 2rem;
+  display: grid;
+  gap: 0.25rem;
+}
+
+.menuItem { margin: 0; padding: 0; }
+
+.menuLink {
+  display: inline-flex;
+  align-items: center;
+  width: auto;
+  font-family: $font-title;
+  padding: 1rem 1.5rem;
+  border-radius: 999rem;
+  color: $color-text;
+  text-decoration: none;
+  background: transparent;
+  transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  overflow: hidden;
+
+  &:active { 
+    transform: translateY(0);
+    outline: none;
+  }
+
+  &:active{
+    outline: none;
+  }
+}
+
+.active {
+  background: $color-primary;
+  color: $color-bg;
+}
+
+/* Footer collé en bas, centré */
+.panelFooter {
+  margin-top: auto;
+  padding: 1rem 1rem 1.25rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* Encadré arrondi 999rem, style “verre” léger */
+.socialBox {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 2px solid rgba($color-primary, 0.6);
+  border-radius: 999rem;
+  background: rgba($color-bg, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Boutons sociaux ronds */
+.socialLink {
+  inline-size: 40px;
+  block-size: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999rem;
+  text-decoration: none;
+  transition: transform 160ms ease, background-color 160ms ease;
+
+  &:hover {
+    background: rgba($color-primary, 0.08);
+    transform: translateY(-1px);
+  }
+}
+
+.socialIcon {
+  display: block;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  background: rgba($color-bg, 0.25);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
