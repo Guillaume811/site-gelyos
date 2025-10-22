@@ -5,6 +5,7 @@ import { PrimaryButtonLink } from "@/components/Buttons/ButtonLink";
 import { servicesPreviewContent } from "@/ressources/content/home/servicesPreview";
 import styles from "./ServicesPreview.module.scss";
 import ServicesPreviewItem from "./ServicesPreviewItem";
+import ReactMarkdown from "react-markdown";
 
 type CSSVars = React.CSSProperties & { ["--cards-count"]?: number };
 
@@ -88,7 +89,13 @@ export default function ServicesPreview() {
           <Heading id="services-heading" level={2}>
             {title}
           </Heading>
-          <p>{text}</p>
+
+          <div>
+            <ReactMarkdown>
+              {text}
+            </ReactMarkdown>
+          </div>
+          
           <PrimaryButtonLink to={firstButton.to}>
             {firstButton.label}
           </PrimaryButtonLink>
