@@ -21,5 +21,9 @@
     height: auto;
     border-radius: 1rem;
     object-fit: cover;
+
+    @media (max-width: 768px) {
+    width: 75%;
+  }
   }
 }
