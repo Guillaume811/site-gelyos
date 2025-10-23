@@ -5,7 +5,7 @@ export const devWeb: ServiceSectionContent = {
     id: 'dev-web',
     title: 'Création de sites internet sur mesure',
     text: `Un **site internet sur mesure** est l'outil idéal pour développer votre présence en ligne.
-    Que ce soit pour un **site vitrine** destinéà présenter vos services, une **site e-commerce** pour vendre vos produits ou un **site institutionnel**, je conçois des solutions uniques qui reflètent votre marque et atteignent vos objectifs.`,
+    Que ce soit pour un **site vitrine** destiné à présenter vos services, une **site e-commerce** pour vendre vos produits ou un **site institutionnel**, je conçois des solutions uniques qui reflètent votre marque et atteignent vos objectifs.`,
     image: {
         src: pictureDevWeb,
         alt: 'Illustration de design UI/UX avec éléments d’interface.'

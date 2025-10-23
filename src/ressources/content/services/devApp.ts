@@ -5,7 +5,7 @@ export const devApp: ServiceSectionContent = {
     id: 'dev-app',
     title: `Développement d'Application personnalisées`,
     text: `Les **applications web et mobiles sur mesure** permettent de créer des outils adaptés à vos besoins spécifiques : gestion interne, plateforme métier, SaaS ou solution innovente.
-    Je développe des **applications performantes et évolutives **, pensée pour simplifier vos processus et apporter une réelle valeur à votre entreprise.`,
+    Je développe des **applications performantes et évolutives**, pensée pour simplifier vos processus et apporter une réelle valeur à votre entreprise.`,
     image: {
         src: pictureDevApp,
         alt: 'Illustration de développement d’application.'
