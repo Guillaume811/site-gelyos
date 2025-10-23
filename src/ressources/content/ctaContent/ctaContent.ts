@@ -27,19 +27,19 @@ export const ctaContent: Partial<Record<RouteName, {
     },
 
     services: {
-        title: "Vous avez un projet de **site internet sur mesure**, d'**application web personnalisée** ou besoin d'une **optimisation SEO** ?",
+        title: "Vous avez un projet de site internet sur mesure, d'application web personnalisée ou besoin d'une optimisation SEO ?",
         text: "PArlons de votre prjet dès aujourd'hui et recevez un devis gratuit.",
         button: "Recevoir mon devis offert"
     },
 
     aPropos: {
-        title: "Vous cherchez un **partenaire fiable et passionné** pour votre projet digital ?",
+        title: "Vous cherchez un partenaire fiable et passionné pour votre projet digital ?",
         text: "**Parlons de votre projet dès aujourd'hui** et construisons ensemble une solution sur mesure.",
         button: "Contactez-moi"
     },
 
     portfolio: {
-        title: "Vous souhaitez un projet similaire ou discuter de la **création de votre site internet sur mesure** ?",
+        title: "Vous souhaitez un projet similaire ou discuter de la création de votre site internet sur mesure ?",
         text: "Contactez-moi dès aujourd'hui pour obtenir un devis gratuit et donner vie à vos idées digitales.",
         button: "Recevoir mon devis offert"
     }

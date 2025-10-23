@@ -37,7 +37,7 @@ export default function CallToAction() {
       <div className={styles.line} aria-hidden="true" />
       <div className={styles.container}>
         <Heading id="cta-title" level={3} className={styles.title}>
-          <ReactMarkdown>{title}</ReactMarkdown>
+          {title}
         </Heading>
         <p className={styles.text}>
           <ReactMarkdown remarkPlugins={[remarkBreaks]}>{text}</ReactMarkdown>
