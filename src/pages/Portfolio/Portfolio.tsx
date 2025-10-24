@@ -1,67 +1,58 @@
+import { useMemo } from "react";
 import { portfolioContent } from "@/ressources/content/portfolio/portfolioContent";
 import { usePortfolioData } from "@/ressources/content/portfolio/usePortfolioData";
+import type { Project } from "@/ressources/content/portfolio/types";
 import HeaderSection from "@/components/HeaderSection/HeaderSection";
 import PageIntro from "@/components/PageIntro/PageIntro";
-import PortfolioSection from "./PortfolioSection/PortfolioSection";
+import GridProject from "@/components/GridProject/GridProject";
 
 export default function Portfolio() {
   const { data, loading, error, reload } = usePortfolioData();
-  const { header, intro, sections } = portfolioContent;
+  const { header, intro } = portfolioContent;
+
+  const allProjects = useMemo<Project[]>(() => {
+  if (!data) return [];
+
+  const arr: Project[] = [
+    ...(data.vitrine ?? []),
+    ...(data.ecommerce ?? []),
+    ...(data.application ?? []),
+    ...(data.freelance ?? []),
+  ];
+
+  // Tri du plus récent au plus ancien :
+  // - d’abord par `order` DESC (valeur la plus grande = le plus récent)
+  // - fallback si `order` manquant: `id` puis `slug` (tri asc) pour stabilité
+  return arr.slice().sort((a, b) => {
+    const ao = typeof a.order === "number" ? a.order : Number.NEGATIVE_INFINITY;
+    const bo = typeof b.order === "number" ? b.order : Number.NEGATIVE_INFINITY;
+    if (bo !== ao) return bo - ao; // DESC sur `order`
+
+    const aid = String(a.id ?? "");
+    const bid = String(b.id ?? "");
+    if (aid !== bid) return aid.localeCompare(bid);
+
+    const aslug = String(a.slug ?? "");
+    const bslug = String(b.slug ?? "");
+    return aslug.localeCompare(bslug);
+  });
+}, [data]);
 
   return (
     <div>
       {/* H1 unique rendu par HeaderSection */}
       <HeaderSection title={header.title} image={header.image} />
+      <PageIntro text={intro.text} />
 
-      {/* Intro immédiatement après le header */}
-      <section aria-labelledby="portfolio-intro">
-        {/* Pas de H1 ici : HeaderSection gère déjà le titre principal */}
-        <PageIntro text={intro.text} />
-      </section>
-
+      {loading && <p>Chargement…</p>}
       {error && (
-        <div role="alert" aria-live="polite" style={{ padding: "1rem", color: "crimson" }}>
-          <p>Impossible de charger les projets.</p>
-          <pre style={{ whiteSpace: "pre-wrap" }}>{error}</pre>
-          <button onClick={reload} aria-label="Recharger les projets">
-            Réessayer
-          </button>
-        </div>
+        <p role="alert">
+          Une erreur est survenue. <button onClick={reload}>Réessayer</button>
+        </p>
       )}
 
-      {loading && (
-        <div role="status" aria-live="polite" style={{ padding: "1rem" }}>
-          Chargement des projets…
-        </div>
-      )}
-
-      {!loading && !error && data && (
-        <>
-          <PortfolioSection
-            id="section-vitrine"
-            title={sections.vitrine.title}
-            description={sections.vitrine.description}
-            projects={data.vitrine}
-          />
-          <PortfolioSection
-            id="section-ecommerce"
-            title={sections.ecommerce.title}
-            description={sections.ecommerce.description}
-            projects={data.ecommerce}
-          />
-          <PortfolioSection
-            id="section-application"
-            title={sections.application.title}
-            description={sections.application.description}
-            projects={data.application}
-          />
-          <PortfolioSection
-            id="section-freelance"
-            title={sections.freelance.title}
-            description={sections.freelance.description}
-            projects={data.freelance}
-          />
-        </>
+      {!!allProjects.length && (
+        <GridProject projects={allProjects} />
       )}
     </div>
   );

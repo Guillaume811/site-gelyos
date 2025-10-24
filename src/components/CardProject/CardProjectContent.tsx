@@ -3,6 +3,13 @@ import type { ReactNode } from "react";
 import { memo } from "react";
 import clsx from "clsx";
 
+const CATEGORY_LABELS = {
+  vitrine: "Sites vitrine",
+  ecommerce: "E-commerce",
+  application: "Applications",
+  freelance: "Freelance",
+} as const;
+
 export interface CardProjectContentProps {
   project: Project;
   /** Slot action rendu par le skin (ex. <button> ou <ButtonLink/>) */
@@ -34,6 +41,12 @@ function CardProjectContentBase({
           {client ? <span data-part="client">{client}</span> : null}
           <span data-part="project">{title}</span>
         </h3>
+
+        {project.category ? (
+          <span data-part="category" data-category={project.category}>
+            {CATEGORY_LABELS[project.category] ?? project.category}
+          </span>
+        ) : null}
 
         <p data-part="desc">{shortDescription}</p>
 
