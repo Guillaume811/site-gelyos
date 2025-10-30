@@ -1,7 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import type { Project } from "@/ressources/content/portfolio/types";
-import TwoColumnSection from "@/components/TwoColumnSection/TwoColumnSection";
 import Accordion from "@/components/Accordion/Accordion";
 import Heading from "@/components/Heading/Heading";
 import { PrimaryButtonLink } from "@/components/Buttons/ButtonLink";
@@ -37,86 +36,83 @@ export default function ModalProject({ project, isOpen, onClose }: ModalProjectP
             exit={{ scale: 0.9, opacity: 0 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
           >
-            {/* Bouton de fermeture */}
-            <button
-              type="button"
-              className={styles.closeButton}
-              onClick={onClose}
-              aria-label="Fermer la modale"
-            >
-              <X aria-hidden="true" />
-            </button>
+            
 
-            <TwoColumnSection
-              className={styles.layout}
-              left={
-                <div className={styles.left}>
-                  {firstImage && (
-                    <>
-                        <Heading level={3} className={styles.imageTitle}>
-                            {firstImage.title}
-                        </Heading>
-                        <div className={styles.imageWrapper}>
-                            <img
-                                src={firstImage.src}
-                                alt={firstImage.alt}
-                                className={styles.image}
-                            />
-                      </div>
-                    </>
+            <div className={styles.content}>
+              {/* Bouton de fermeture */}
+              <button
+                type="button"
+                className={styles.closeButton}
+                onClick={onClose}
+                aria-label="Fermer la modale"
+              >
+                <X aria-hidden="true" />
+              </button>
+
+              <div className={styles.left}>
+                {firstImage && (
+                  <>
+                      <Heading level={3} className={styles.imageTitle}>
+                          {firstImage.title}
+                      </Heading>
+                      <div className={styles.imageWrapper}>
+                          <img
+                              src={firstImage.src}
+                              alt={firstImage.alt}
+                              className={styles.image}
+                          />
+                    </div>
+                  </>
+                )}
+              </div>
+
+              <div className={styles.right}>
+                <div className={styles.scrollArea} role="region" aria-label="Détails du projet">
+                  {/* Logo du client */}
+                  {project.image && (
+                      <img
+                      src={project.image}
+                      alt={`Logo du client ${project.client ?? ""}`}
+                      className={styles.logo}
+                      />
+                  )}
+
+                  {/* Infos projet */}
+                  {project.client && (
+                      <Heading level={4} className={styles.client}>
+                      {project.client}
+                      </Heading>
+                  )}
+
+                  <Heading
+                      level={2}
+                      id={`modal-title-${project.id}`}
+                      className={styles.title}
+                  >
+                      {project.title}
+                  </Heading>
+
+                  <p className={styles.description}>{project.description}</p>
+
+                  {/* Accordéon (à adapter selon ton contenu) */}
+                  {project.accordionItems && project.accordionItems.length > 0 && (
+                      <Accordion items={project.accordionItems} />
+                  )}
+
+                  {/* Lien vers le site */}
+                  {project.url && (
+                      <PrimaryButtonLink
+                      to={project.url}
+                      className={styles.button}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >
+                      Voir le site
+                      </PrimaryButtonLink>
                   )}
                 </div>
-              }
-              right={
-                <div className={styles.rightScroll}>
-                    <div className={styles.right}>
-                        {/* Logo du client */}
-                        {project.image && (
-                            <img
-                            src={project.image}
-                            alt={`Logo du client ${project.client ?? ""}`}
-                            className={styles.logo}
-                            />
-                        )}
-
-                        {/* Infos projet */}
-                        {project.client && (
-                            <Heading level={4} className={styles.client}>
-                            {project.client}
-                            </Heading>
-                        )}
-
-                        <Heading
-                            level={2}
-                            id={`modal-title-${project.id}`}
-                            className={styles.title}
-                        >
-                            {project.title}
-                        </Heading>
-
-                        <p className={styles.description}>{project.description}</p>
-
-                        {/* Accordéon (à adapter selon ton contenu) */}
-                        {project.accordionItems && project.accordionItems.length > 0 && (
-                            <Accordion items={project.accordionItems} />
-                        )}
-
-                        {/* Lien vers le site */}
-                        {project.url && (
-                            <PrimaryButtonLink
-                            to={project.url}
-                            className={styles.button}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            >
-                            Voir le site
-                            </PrimaryButtonLink>
-                        )}
-                    </div>
-                </div>
-                
-              }
-            />
+              </div>
+            </div>
           </motion.div>
         </motion.div>
       )}
