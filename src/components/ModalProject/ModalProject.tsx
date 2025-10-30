@@ -1,9 +1,11 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
-import type { Project } from "@/ressources/content/portfolio/types";
+import type { Project, ProjectCarouselImage } from "@/ressources/content/portfolio/types";
 import Accordion from "@/components/Accordion/Accordion";
 import Heading from "@/components/Heading/Heading";
 import { PrimaryButtonLink } from "@/components/Buttons/ButtonLink";
+import PictureCarousel from "@/components/Carousel/PictureCarousel";
+import type { PictureItem } from "@/components/Carousel/PictureCarousel";
 import styles from "./ModalProject.module.scss";
 
 type ModalProjectProps = {
@@ -50,20 +52,90 @@ export default function ModalProject({ project, isOpen, onClose }: ModalProjectP
               </button>
 
               <div className={styles.left}>
-                {firstImage && (
-                  <>
-                      <Heading level={3} className={styles.imageTitle}>
-                          {firstImage.title}
-                      </Heading>
-                      <div className={styles.imageWrapper}>
-                          <img
-                              src={firstImage.src}
-                              alt={firstImage.alt}
-                              className={styles.image}
-                          />
-                    </div>
-                  </>
-                )}
+                {/*{(() => {
+                  const source: ProjectCarouselImage[] = project.carousel ?? [];
+
+                  const items: PictureItem[] = source.map((it) => ({
+                    src: it.src,                           // chemins déjà corrects: "/pictures/..."
+                    alt: it.alt ?? project.title,
+                    title: it.title,
+                  }));
+
+                  // Fallback si pas de carousel: utiliser l'image principale si dispo
+                  if (!items.length && firstImage) {
+                    items.push({
+                      src: firstImage.src,
+                      alt: firstImage.alt,
+                      title: firstImage.title,
+                    });
+                  }
+
+                  return items.length ? <PictureCarousel items={items} /> : null;
+                })()}*/}
+
+                {(() => {
+                    const DEBUG_CAROUSEL = true;
+
+                    // 1) Datasource brute
+                    const source: ProjectCarouselImage[] = project.carousel ?? [];
+
+                    // 2) Fallback éventuel
+                    const hasFallback = Boolean(firstImage);
+
+                    // 3) Mapping → PictureItem[]
+                    const items: PictureItem[] =
+                      source.map((it) => ({
+                        src: it.src,                                 // on ne modifie PAS les chemins ici
+                        alt: it.alt ?? project.title,
+                        title: it.title,
+                      }));
+
+                    if (!items.length && hasFallback && firstImage) {
+                      items.push({
+                        src: firstImage.src,
+                        alt: firstImage.alt,
+                        title: firstImage.title,
+                      });
+                    }
+
+                    // 4) Logs détaillés
+                    if (DEBUG_CAROUSEL) {
+                      // group pour ne pas polluer la console
+                      
+                      console.groupCollapsed?.(
+                        `[ModalProject] Carousel (${String(project.id)} — ${project.title})`
+                      );
+
+                      console.log("BASE_URL (vite):", import.meta.env.BASE_URL);
+                      console.log("project.id:", project.id);
+                      console.log("project.title:", project.title);
+                      console.log("carousel (source):", source);
+                      console.log("firstImage (fallback):", firstImage ?? null);
+
+                      // on liste les URLs finales
+                      console.table(
+                        items.map((it, idx) => ({
+                          idx,
+                          src: it.src,
+                          alt: it.alt,
+                          title: it.title ?? "",
+                        }))
+                      );
+
+                      if (!items.length) {
+                        console.warn(
+                          "[ModalProject] Aucun item pour le carousel. Vérifie project.carousel[] OU firstImage."
+                        );
+                      }
+
+                      
+                      console.groupEnd?.();
+                    }
+
+                    // 5) Affichage
+                    return items.length ? <PictureCarousel items={items} /> : null;
+                  })()}
+
               </div>
 
               <div className={styles.right}>
