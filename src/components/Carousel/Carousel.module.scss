@@ -1,172 +1,76 @@
-/* Conteneur global du carrousel */
+/* src/components/Carousel/Carousel.module.scss */
+
 .root {
-  display: grid;
-  gap: 0.75rem;
-}
-
-/* Texte écran lecteur (annonces aria-live) */
-.srOnly {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  white-space: nowrap !important;
-  border: 0 !important;
-}
-
-/* Viewport qui masque le dépassement horizontal.
-   Le padding-right est injecté inline pour gérer le "peek". */
-.viewport {
   position: relative;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-behavior: smooth;
-  /* Scroll snap sur les slides (activé/désactivé en JS selon drag) */
-  scroll-snap-type: x mandatory;
-  
+  width: 100%;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  touch-action: pan-y; // autorise le scroll vertical de la page
 
-  /* Améliore le drag sur iOS */
-  -webkit-overflow-scrolling: touch;
+  .viewport {
+    overflow: hidden;
+    width: 100%;
+  }
 
-  /* Masque de dégradé à droite pour un fondu visuel subtil du "peek" */
-  --mask-fade: linear-gradient(to right, rgba(0,0,0,1) 92%, rgba(0,0,0,0.15) 98%, rgba(0,0,0,0) 100%);
-  -webkit-mask-image: var(--mask-fade);
-  mask-image: var(--mask-fade);
+  .track {
+    display: flex;
+    will-change: transform;
+  }
 
+  .slide {
+    flex: 0 0 100%;
+    // Empêche les décalages de mise en page si les images se chargent
+    img, picture, video, canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
 }
 
-/* Piste horizontale des slides (gap géré inline) */
-.track {
-  display: inline-grid;
-  grid-auto-flow: column;
-  align-items: stretch;
-}
-
-/* Slide unitaire (largeur injectée inline) */
-.slide {
-  scroll-snap-align: start;
-  /* Empêche les shrink bizarres */
-  min-height: 100%;
-  
-}
-
-/* --------- Contrôles --------- */
+/* Hooks optionnels pour placer des contrôles plus tard (flèches / dots) */
 .controls {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
+  pointer-events: none;  // les enfants remettront pointer-events: auto
+  position: absolute;
+  inset: 0;
 }
 
-.arrows {
-  display: inline-flex;
-  gap: 0.5rem;
-}
-
-/* Boutons flèches */
-.arrow {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.375rem 0.625rem;
-  border-radius: 0.5rem;
-  border: 1px solid rgba(0, 0, 0, 0.14);
-  background: #fff;
-  cursor: pointer;
-  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.12s ease;
-}
-
-.arrow:hover {
-  background: rgba(0, 0, 0, 0.04);
-  border-color: rgba(0, 0, 0, 0.22);
-}
-
-.arrow:active {
-  transform: translateY(1px);
-}
-
-.arrow:disabled,
-.arrow[aria-disabled="true"] {
-  opacity: 0.45;
-  cursor: not-allowed;
-}
-
-/* Focus visible accessible */
-.arrow:focus-visible,
-.dot:focus-visible {
-  outline: 2px solid rgba(0, 0, 0, 0.6);
-  outline-offset: 2px;
-}
-
-/* Indicateurs (puces) */
 .dots {
+  position: absolute;
+  left: 50%;
+  bottom: .5rem;
+  transform: translateX(-50%);
   display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
+  gap: .4rem;
 }
 
 .dot {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 999px;
-  background: rgba(0, 0, 0, 0.2);
-  border: 0;
-  padding: 0;
-  cursor: pointer;
-  transition: transform 0.15s ease, background-color 0.2s ease;
-}
-
-.dot:hover {
-  transform: scale(1.08);
-}
-
-.dotActive,
-.dot[aria-selected="true"] {
-  background: rgba(0, 0, 0, 0.85);
-}
-
-/* --------- Scrollbar (optionnel – discret) --------- */
-.viewport::-webkit-scrollbar {
+  width: 8px;
   height: 8px;
-}
-.viewport::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.05);
-  border-radius: 999px;
-}
-.viewport::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.22);
-  border-radius: 999px;
-}
-.viewport:hover::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.35);
+  border-radius: 9999px;
+  background: rgba(0,0,0,.25);
+  pointer-events: auto;
+  &.active { background: rgba(0,0,0,.6); }
 }
 
-/* --------- Préférences utilisateur --------- */
-@media (prefers-reduced-motion: reduce) {
-  .viewport {
-    scroll-behavior: auto;
-  }
-  .arrow,
-  .dot {
-    transition: none;
-  }
-}
+.arrows {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
 
-/* Exemple d’adaptation couleur si $color-primary défini */
-.dotActive,
-.dot[aria-selected="true"] {
-  @if variable-exists(color-primary) {
-    background: rgba($color-primary, 0.95);
-  }
-}
-
-.arrow {
-  @if variable-exists(color-primary) {
-    &:focus-visible {
-      outline-color: rgba($color-primary, 0.6);
-    }
+  .arrow {
+    pointer-events: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: .5rem;
+    border: 1px solid #e5e7eb;
+    background: rgba(255,255,255,.85);
+    backdrop-filter: blur(4px);
   }
 }
