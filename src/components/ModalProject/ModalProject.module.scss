@@ -18,26 +18,6 @@
   border: 1px solid $color-primary;
   @include box-shadow($color-primary);
 
-  /*.closeButton {
-    position: absolute;
-    top: .75rem;
-    right: .75rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.25rem;
-    height: 2.25rem;
-    border-radius: 999rem;
-    border: 1px solid $color-primary;
-    background: $color-bg;
-    cursor: pointer;
-
-    &:focus-visible {
-      outline: 2px solid $color-primary;
-      outline-offset: 2px;
-    }
-  }*/
-
   .content {
     position: relative;
     display: grid;
