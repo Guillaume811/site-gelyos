@@ -4,8 +4,8 @@ import type { Project, ProjectCarouselImage } from "@/ressources/content/portfol
 import Accordion from "@/components/Accordion/Accordion";
 import Heading from "@/components/Heading/Heading";
 import { PrimaryButtonLink } from "@/components/Buttons/ButtonLink";
-import PictureCarousel from "@/components/Carousel/PictureCarousel";
-import type { PictureItem } from "@/components/Carousel/PictureCarousel";
+import PictureCarousel from "@/components/Carousel/PictureCarousel/PictureCarousel";
+import type { PictureItem } from "@/components/Carousel/PictureCarousel/PictureCarousel";
 import styles from "./ModalProject.module.scss";
 
 type ModalProjectProps = {
@@ -52,26 +52,6 @@ export default function ModalProject({ project, isOpen, onClose }: ModalProjectP
               </button>
 
               <div className={styles.left}>
-                {/*{(() => {
-                  const source: ProjectCarouselImage[] = project.carousel ?? [];
-
-                  const items: PictureItem[] = source.map((it) => ({
-                    src: it.src,                           // chemins déjà corrects: "/pictures/..."
-                    alt: it.alt ?? project.title,
-                    title: it.title,
-                  }));
-
-                  // Fallback si pas de carousel: utiliser l'image principale si dispo
-                  if (!items.length && firstImage) {
-                    items.push({
-                      src: firstImage.src,
-                      alt: firstImage.alt,
-                      title: firstImage.title,
-                    });
-                  }
-
-                  return items.length ? <PictureCarousel items={items} /> : null;
-                })()}*/}
 
                 {(() => {
                     const DEBUG_CAROUSEL = true;
