@@ -1,0 +1,85 @@
+/* SCSS minimal pour PictureCarousel (Swiper) */
+
+.root {
+  position: relative;
+  width: 100%;
+}
+
+.picture {
+  /* Conteneur Swiper (le composant lui ajoute ses classes) */
+  .viewport {
+    width: 100%;
+    overflow: hidden;
+
+    /* --- Contrôles Swiper via variables CSS --- */
+    /* Flèches */
+    //--swiper-navigation-size: 1.5rem;
+    //--swiper-navigation-color: #67C3FB;
+
+    /* Dots (pagination) */
+    --swiper-pagination-color: #FE953F;
+    --swiper-pagination-bullet-inactive-color: #9ca3af;
+    --swiper-pagination-bullet-inactive-opacity: 1;
+  }
+
+  /* Chaque slide */
+  .slide {
+    figure { 
+        margin: 0; 
+    }
+
+    /* Calque image : taille maîtrisée, pas de crop */
+    .imageLayer {
+      width: 100%;
+      height: 575px;        /* ajuste si besoin (ex: 360/480) */
+      overflow: hidden;
+      text-align: center;   /* centrage horizontal sans flex/grid */
+    }
+
+    /* Image non zoomée, contenue dans le calque */
+    .image {
+      display: inline-block;   /* centré via text-align du parent */
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      border-radius: .5rem;
+    }
+
+    /* Légende optionnelle */
+    .caption {
+        font-family: $font-title;
+        margin-bottom: .5rem;
+        font-size: 1.2rem;
+        color: $color-secondary;
+        text-align: center;
+    }
+  }
+
+    .navPrev, .navNext {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 5;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 99rem;
+        border: 1px solid $color-primary;
+        background: rgba($color-bg,.85);
+        backdrop-filter: blur(4px);
+        cursor: pointer;
+    }
+    .navPrev {
+        left: .5rem;
+    }
+    .navNext {
+        right: .5rem;
+    }
+  
+  @media (max-width: 768px) {
+    .slide .imageLayer { height: 310px; }
+  }
+}
