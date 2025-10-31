@@ -153,6 +153,7 @@ export default function ContactForm({
           <input
             id={`${formId}-firstName`}
             className={styles.input}
+            placeholder={L.firstName}
             name="firstName"
             type="text"
             autoComplete="family-name"
@@ -174,6 +175,7 @@ export default function ContactForm({
           <input
             id={`${formId}-lastName`}
             className={styles.input}
+            placeholder={L.lastName}
             name="lastName"
             type="text"
             autoComplete="given-name"
@@ -195,6 +197,7 @@ export default function ContactForm({
           <input
             id={`${formId}-email`}
             className={styles.input}
+            placeholder={L.email}
             name="email"
             type="email"
             autoComplete="email"
@@ -216,6 +219,7 @@ export default function ContactForm({
           <input
             id={`${formId}-phone`}
             className={styles.input}
+            placeholder={L.phone}
             name="phone"
             type="tel"
             autoComplete="tel"
@@ -234,7 +238,7 @@ export default function ContactForm({
 
       <fieldset className={styles.fieldset} aria-describedby={`${formId}-need-desc`}>
         <legend className={styles.legend}>{L.needTitle}</legend>
-        <div id={`${formId}-need-desc`} className="sr-only">Choix unique</div>
+        {/*<div id={`${formId}-need-desc`} className="sr-only">Choix unique</div>*/}
         <div className={styles.radios} role="radiogroup" aria-label={L.needTitle}>
           {(["audit", "dev", "maintenance", "seo"] as NeedValue[]).map((value) => (
             <label key={value} className={styles.radio}>
@@ -256,6 +260,7 @@ export default function ContactForm({
         <textarea
           id={`${formId}-message`}
           className={styles.textarea}
+          placeholder={L.message}
           name="message"
           rows={6}
           required

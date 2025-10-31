@@ -2,10 +2,14 @@
   display: grid;
   align-content: start;
   gap: 1rem;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  background-color: $color-primary;
 }
 
 .title {
   margin: 0;
+  color: $color-bg;
 }
 
 .infoList {
@@ -19,40 +23,35 @@
   align-items: start;
   gap: 0.75rem;
   padding: 0.75rem;
-  border: 2px solid rgba($color-primary, 0.25);
-  border-radius: 0.75rem;
-  background: rgba($color-bg, 0.35);
-  transition: transform 180ms ease, box-shadow 180ms ease;
-
-  &:hover {
-    transform: translateY(-1px);
-    @include box-shadow(rgba($color-primary, 0.25), 14px);
-  }
+  align-items: center;
 }
 
 .icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  inline-size: 2.5rem;
-  block-size: 2.5rem;
-  border-radius: 0.625rem;
-  border: 2px solid rgba($color-primary, 0.35);
-  background: rgba($color-primary, 0.06);
+  inline-size: 4rem;
+  block-size: 4rem;
+  //border-radius: 0.625rem;
+  //border: 2px solid rgba($color-bg, 0.35);
+  //background: rgba($color-bg, 0.06);
+  color: $color-bg;;
 
   svg {
-    inline-size: 1.25rem;
-    block-size: 1.25rem;
+    inline-size: 2rem;
+    block-size: 2rem;
   }
 }
 
 .text {
   display: grid;
   gap: 0.25rem;
+  color: $color-bg;
 }
 
 .infoTitle {
   margin: 0;
+  color: $color-bg;
 }
 
 .infoDesc {
@@ -66,22 +65,23 @@
   align-items: center;
   text-decoration: none;
   color: inherit;
-  border-bottom: 1px dashed rgba($color-primary, 0.5);
-  transition: border-color 160ms ease, transform 160ms ease;
+  border: 2px solid $color-bg;
+  border-radius: 10px;
+  padding: 0.5rem;
+  width: fit-content;
+  transition: background 160ms ease, transform 160ms ease;
 
   &:hover {
-    border-color: rgba($color-primary, 0.8);
+    background: $color-bg;
+    color: $color-text;
     transform: translateY(-1px);
-  }
-
-  &:focus-visible {
-    outline: 3px solid rgba($color-secondary, 0.7);
-    outline-offset: 2px;
   }
 }
 
 .paragraph {
-  opacity: 0.95;
+  font-family: $font-title;
+  color: $color-bg;
+  text-align: center;
 }
 
 .socialRow {
@@ -89,6 +89,10 @@
   align-items: center;
   gap: 0.75rem;
   flex-wrap: wrap;
+  background: $color-bg;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  width: fit-content;
 }
 
 .socialLink {

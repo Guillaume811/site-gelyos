@@ -46,7 +46,7 @@ export default function ContactInfo({
               className={styles.infoLink}
               aria-label={`Envoyer un e-mail à ${emailAddress}`}
             >
-              {emailAddress}
+              Envoyer nous un E-mail
             </a>
 
           </div>
@@ -68,7 +68,7 @@ export default function ContactInfo({
               className={styles.infoLink}
               aria-label={`Appeler le ${phoneNumber}`}
             >
-              {phoneNumber}
+              Appelez-nous
             </a>
           </div>
         </div>
