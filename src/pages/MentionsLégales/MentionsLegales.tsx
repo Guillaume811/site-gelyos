@@ -57,7 +57,7 @@ export default function MentionsLegales() {
           </div>
         </div>
 
-        <div className={styles.paragraphe}>
+        <div id="confidential" className={styles.paragraphe}>
           <Heading level={2}>{cookies.title}</Heading>
           <div className={styles.text}>
             <ReactMarkdown remarkPlugins={[remarkBreaks]}>

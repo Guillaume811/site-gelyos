@@ -49,7 +49,7 @@ export default function Footer() {
                 </ul>
                 <div className={styles.legal}>
                     <Link to="/mentions-legales">Mentions légales</Link>
-                    <Link to="/mentions-legales">Confidentialité</Link>
+                    <Link to="/mentions-legales#confidential">Confidentialité</Link>
                 </div>
                 <p className={styles.copyright}>
                     Copyright © 2025 GELYOS
