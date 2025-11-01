@@ -5,6 +5,7 @@ import styles from './RootLayout.module.scss'
 import Footer from '@/components/Footer/Footer'
 import { ModalProjectProvider } from '@/components/ModalProject/providers/ModalProjectProvider'
 import MobileHeader from '@/components/MobileHeader/MobileHeader'
+import ScrollToTop from '@/components/ScrollToTop/ScrollToTop'
 
 
 export default function RootLayout() {
@@ -14,6 +15,7 @@ export default function RootLayout() {
 
   return (
     <ModalProjectProvider>
+      <ScrollToTop />
       <div className={styles.wrapper}>
         <MobileHeader />
         <DesktopHeader />
