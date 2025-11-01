@@ -119,3 +119,23 @@ export interface ContactPageContent {
     text: RichText
     textForm: RichText
 }
+
+// ======== Mention page content types ========
+
+export interface ParagrapheInfo {
+    title: RichText
+    description: RichText
+    secondButton?: ButtonContent
+}
+
+export interface MentionPageContent {
+    header: PageHeaderContent
+    editeur: ParagrapheInfo
+    hebergement: ParagrapheInfo
+    conception: ParagrapheInfo
+    intellectuelle: ParagrapheInfo
+    responsabilite: ParagrapheInfo
+    cookies: ParagrapheInfo
+    confidentialite: ParagrapheInfo
+    loi:ParagrapheInfo
+}

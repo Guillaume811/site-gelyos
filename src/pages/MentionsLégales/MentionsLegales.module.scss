@@ -1,0 +1,24 @@
+.container {
+    padding: 4rem 4rem;
+    display: grid;
+    gap: 2.5rem;
+
+    .paragraphe {
+
+        .text {
+            padding: 2rem;
+
+            a {
+                color: $color-primary;
+            }
+
+            a:hover {
+                color: $color-secondary;
+            }
+
+            p {
+                margin: 0 0 1rem;
+            }
+        }
+    }
+}
