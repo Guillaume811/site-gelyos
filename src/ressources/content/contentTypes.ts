@@ -53,6 +53,23 @@ export interface ServicesPreview {
     cards: ServiceCard[]
 }
 
+export interface ProcessCard {
+    id: RichText
+    icon: ImageContent
+    title: RichText
+    description: RichText
+}
+
+export interface DivProcess {
+    title: RichText
+    cards: ProcessCard[]
+}
+
+export interface DivAvantages {
+    title: RichText
+    cards: ProcessCard[]
+}
+
 // ======== Services page content types ========
 
 
