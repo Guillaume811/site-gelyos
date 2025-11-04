@@ -1,9 +1,9 @@
 import type { DivProcess } from "@/ressources/content/contentTypes";
-import iconAnalyse from '@/assets/icons/iconWeb.png'
-import iconConception from '@/assets/icons/iconWeb.png'
-import iconDev from '@/assets/icons/iconWeb.png'
-import iconTest from '@/assets/icons/iconWeb.png'
-import iconSuivi from '@/assets/icons/iconWeb.png'
+import iconAnalyse from '@/assets/icons/iconAnalyse.png'
+import iconConception from '@/assets/icons/iconConception.png'
+import iconDev from '@/assets/icons/iconDev.png'
+import iconTest from '@/assets/icons/iconTest.png'
+import iconSuivi from '@/assets/icons/iconSuivi.png'
 
 export const divProcessContent: DivProcess = {
     title: 'Un process clair pour un site web sur mesure réussi',
