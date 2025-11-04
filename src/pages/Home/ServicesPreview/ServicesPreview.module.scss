@@ -2,51 +2,83 @@
   height: calc(100vh * var(--cards-count, 4)); /* nb de cards * 100vh */
   display: flex;
   justify-content: center;
-}
 
-.stickyContainer {
-  position: sticky;
-  top: 0;
-  height: 100vh;
+  @media (max-width: 768px) {
+    height: auto;
+  }
 
-  max-width: 1400px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 2rem;
-  box-sizing: border-box;
+  .stickyContainer {
+    position: sticky;
+    top: 0;
+    height: 100vh;
 
-  display: flex;         /* on passe en flex pour gérer les colonnes différemment */
-  gap: 2rem;
-}
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem;
+    box-sizing: border-box;
 
-.left {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;   /* CENTRÉ verticalement */
-  gap: 1.5rem;
-}
+    display: flex;         /* on passe en flex pour gérer les colonnes différemment */
+    gap: 2rem;
 
-.right {
-  flex: 1;
-  position: relative;
-  height: 100%;              /* occupe toute la hauteur sticky */
-  display: flex;
-  flex-direction: column;    /* pile de cartes */
-}
+    @media (max-width: 768px) {
+      position: static;
+      height: auto;
+      display: flex;
+      flex-direction: column; /* left au-dessus de right */
+      gap: 1.5rem;
 
-.viewport {
-  height: 100%;              /* toute la hauteur sticky */
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-}
+      .left,
+      .right {
+        width: 100%;             /* pleine largeur sur mobile */
+      }
+    }
 
-.list {
-  display: flex;
-  flex-direction: column;
-  gap: 10rem;
-  will-change: transform;
+    .left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;   /* CENTRÉ verticalement */
+      gap: 1.5rem;
+    }
+
+    .right {
+      flex: 1;
+      position: relative;
+      height: 100%;              /* occupe toute la hauteur sticky */
+      display: flex;
+      flex-direction: column;    /* pile de cartes */
+
+      .viewport {
+        height: 100%;              /* toute la hauteur sticky */
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+
+        @media (max-width: 768px) {
+          transform: none !important;
+          translate: 0 !important;
+        }
+
+        .list {
+          display: flex;
+          flex-direction: column;
+          gap: 10rem;
+          will-change: transform;
+
+          @media (max-width: 768px) {
+            gap: 2rem;
+            will-change: auto;
+            transform: none !important;   /* <-- clé */
+            translate: 0 !important; 
+            
+            > :first-child { margin-top: 0; }
+            > :last-child  { margin-bottom: 0; }
+          }
+        }
+      }
+    }
+  }
 }
 
 .cardWrapper {
@@ -54,4 +86,9 @@
   will-change: transform, opacity;
   display: flex;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    transform: none !important; /* empêche les recouvrements */
+    opacity: 1 !important;
+  }
 }

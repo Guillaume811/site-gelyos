@@ -17,6 +17,10 @@
     @include box-shadow($color-primary);
   }
 
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+
   .button{
     padding: 1rem 1.5rem;
   }
