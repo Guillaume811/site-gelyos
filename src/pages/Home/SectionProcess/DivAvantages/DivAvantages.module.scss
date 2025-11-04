@@ -1,0 +1,33 @@
+.container {
+
+    display: grid;
+    gap: 5rem;
+    width: 100%;
+
+    .grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 3rem;
+        margin: 0;
+        padding: 1rem;
+        list-style: none;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+  }
+
+  .cell {
+    max-width: 250px!important;
+    border: 2px solid $color-primary;
+    border-radius: 20px;
+    @include box-shadow($color-primary);
+
+  }
+
+  .avantageCard {
+    /* Variante visuelle propre aux avantages (carte “tuile”) */
+    /* ex: supprimer la pseudo-ligne verticale, ajouter une ombre subtile */
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  }
+}

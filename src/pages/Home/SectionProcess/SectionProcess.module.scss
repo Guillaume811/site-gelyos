@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 7rem;
+    align-items: start;
+    padding: 2rem;
+    margin: auto;
+
+    @media (min-width: 768px) {
+        //grid-template-columns: 1fr 1fr;
+        align-items: start;
+    }
+
+    .process {
+        /* Espace réservé aux styles globaux de la colonne process si besoin */
+    }
+
+    .avantages {
+        /* Espace réservé aux styles globaux de la colonne avantages si besoin */
+    }
+}
