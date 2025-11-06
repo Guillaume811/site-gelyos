@@ -35,12 +35,17 @@
 
 /* Image : bords arrondis, occupe bien l'espace à gauche en desktop */
 .root [data-part="media"] {
-  background: rgba(0, 0, 0, 0.04);
+  /* background: rgba(0, 0, 0, 0.04);
   border-radius: 0.75rem;
   overflow: hidden;
 
   /* Hauteur un peu plus généreuse pour la home */
-  aspect-ratio: 16/10;
+  //aspect-ratio: 16/10;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+
 
   @media (min-width: 768px) {
     aspect-ratio: auto;
