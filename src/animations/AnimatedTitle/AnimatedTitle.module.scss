@@ -1,6 +1,9 @@
 .animatedText {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
 }
 
 .char {

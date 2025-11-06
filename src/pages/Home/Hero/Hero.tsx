@@ -9,7 +9,7 @@ import { SlideUpFadeStagger } from '@/animations/SlideUpFadeStagger/SlideUpFadeS
 
 export default function Hero() {
 
-  const { title, text, firstButton, secondButton, image } = heroContent
+  const { title, text, firstButton, secondButton, /* image */ } = heroContent
 
   return (
     <section className={styles.hero}>
@@ -22,24 +22,24 @@ export default function Hero() {
 
         <SlideUpFadeStagger className={styles.actions} delay={11.5} stagger={0.15} duration={1}>
           {firstButton && (
-            <PrimaryButtonLink to={firstButton.to}>
+            <PrimaryButtonLink to={firstButton.to} className={styles.primaryBtn}>
               {firstButton.label}
             </PrimaryButtonLink>
           )}
 
           {secondButton && (
-            <SecondaryButtonLink to={secondButton.to}>
+            <SecondaryButtonLink to={secondButton.to} className={styles.secondaryBtn}>
               {secondButton.label}
             </SecondaryButtonLink>
           )}
         </SlideUpFadeStagger>
       </div>
 
-      <div className={styles.right}>
+      {/* <div className={styles.right}>
         {image && (
           <img src={image.src} alt={image.alt} />
         )}
-      </div>
+      </div> */}
     </section>
   )
 }

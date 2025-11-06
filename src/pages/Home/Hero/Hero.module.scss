@@ -1,6 +1,6 @@
 .hero {
   display: flex;
-  justify-content: space-between; /* left collé à gauche, right collé à droite */
+  justify-content: center;
   align-items: center;
   min-block-size: 100dvh; /* plein écran, mieux que 100vh sur mobile */
   width: 100%;
@@ -16,6 +16,7 @@
       font-size: clamp(2.5rem, 1rem + 3vw, 4rem);
       font-weight: 800;
       margin: 0;
+      align-items: center;
     }
 
     .text {
@@ -24,12 +25,22 @@
       color: $color-text;
       margin: 0;
       min-height: 6em;
+      text-align: center;
     }
 
     .actions {
       display: flex;
+      justify-content: center;
       gap: 1rem;
       flex-wrap: wrap; /* sécurité si très étroit */
+
+      .primaryBtn,
+      .secondaryBtn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+      }
     }
   }
 
@@ -60,6 +71,11 @@
 
     .actions {
       justify-content: center; /* boutons centrés mais sur une ligne */
+      .primaryBtn,
+      .secondaryBtn {
+        width: 100%;
+        max-width: 320px;
+      }
     }
 
     .right {
