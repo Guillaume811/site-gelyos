@@ -1,8 +1,7 @@
 .carousel {
   width: 100%;
-  max-width: 960px;
   margin: 0 auto;
-  padding: 0 0.5rem;
+  padding: 0;
   min-width: 0;
   overflow: hidden;
 }
@@ -27,14 +26,21 @@
 
 .card {
   width: 100%;
-  max-width: 640px;
   min-width: 0;
+  max-width: 640px;
+  margin: 0 auto;
 
   img,
   video {
     display: block;
     max-width: 100%;
     height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    max-width: clamp(280px, 90vw, 400px);
   }
 }
 

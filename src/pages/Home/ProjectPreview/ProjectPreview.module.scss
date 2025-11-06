@@ -1,5 +1,5 @@
 .projectPreview {
-  padding: 2rem;
+  padding: clamp(1rem, 5vw, 2rem);
 
   .container {
     display: grid;
@@ -31,8 +31,15 @@
   }
 
   .carousel {
-    margin-top: 1.5rem; /* hook minimal, ajuste librement */
+    margin-top: 1.5rem;
+    width: 100%;
     min-width: 0;
+    max-width: clamp(320px, 90vw, 1100px);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    overflow-x: clip;
+    contain: inline-size paint;
   }
   
 }
