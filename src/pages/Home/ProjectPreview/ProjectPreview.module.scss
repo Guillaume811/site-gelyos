@@ -15,9 +15,14 @@
     .left {
     max-width: 800px;
 
-        p {
-        font-size: 18px;
+      .title {
+        @media (max-width: 768px) {
+          margin: 0 0 2.5rem;
         }
+      }
+      p {
+        font-size: 18px;
+      }
     }
 
     .right {

@@ -22,6 +22,10 @@
     color: $color-secondary;
     backdrop-filter: blur(6px);
   }
+
+  @media (max-width: 768px) {
+    text-align: center;
+  }
 }
 
 
@@ -30,4 +34,8 @@
   color: $color-primary;
   border: 2px solid $color-primary;
   @include box-shadow($color-primary);
+
+  @media (max-width: 768px) {
+    text-align: center;
+  }
 }

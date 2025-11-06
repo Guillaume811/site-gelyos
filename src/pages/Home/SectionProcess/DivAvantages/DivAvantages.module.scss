@@ -4,6 +4,10 @@
     gap: 5rem;
     width: 100%;
 
+    @media (max-width: 768px) {
+      gap: 1.5rem;
+    }
+
     .grid {
         display: flex;
         flex-wrap: wrap;
