@@ -1,0 +1,53 @@
+.carousel {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 0.5rem;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.swiper {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+:global(.swiper),
+:global(.swiper-wrapper),
+:global(.swiper-slide) {
+  min-width: 0;
+}
+
+.slide {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
+.card {
+  width: 100%;
+  max-width: 640px;
+  min-width: 0;
+
+  img,
+  video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+:global(.swiper-pagination) {
+  position: static;
+  margin-top: 1rem;
+}
+
+:global(.swiper-pagination-bullet) {
+  background: rgba(255, 255, 255, 0.4);
+  opacity: 1;
+}
+
+:global(.swiper-pagination-bullet-active) {
+  background: #67c3fb;
+}
