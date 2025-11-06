@@ -6,7 +6,7 @@ import iconSeo from '@/assets/icons/iconSeo.png'
 
 export const servicesPreviewContent: ServicesPreview = {
     title: 'Service de développement web sur mesure',
-    text: 'Je vous accompagne dans la **création de sites internet sur mesure**, la **refonte de projets existant**, ainsi que dans l\'**optimisation SEO** et la maintenance technique** pour garantir performance et visibilité.',
+    text: 'Je vous accompagne dans la **création de sites internet sur mesure**, la **refonte de projets existant**, ainsi que dans l\'**optimisation SEO** et la **maintenance technique** pour garantir performance et visibilité.',
     firstButton: {
         label: 'Trouver la solution adaptée à mon projet',
         to: '/services',
