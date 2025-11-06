@@ -70,6 +70,12 @@ export interface DivAvantages {
     cards: ProcessCard[]
 }
 
+export interface ProjectPreview {
+    title: RichText
+    text: RichText
+    firstButton: ButtonContent
+}
+
 // ======== Services page content types ========
 
 
