@@ -1,8 +1,8 @@
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { Pagination, A11y } from "swiper/modules";
-
 import styles from "./PictureCarousel.module.scss";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import "../../../styles/swiper.css";
 
 export type PictureItem = {
   src: string;
