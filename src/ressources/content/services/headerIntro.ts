@@ -1,5 +1,5 @@
 import type { IntroContent, PageHeaderContent } from "@/ressources/content/contentTypes";
-import pictureHeaderService from '@/assets/pictures/header-service.png'
+import pictureHeaderService from '@/assets/pictures/header-service.webp'
 
 export const headerServices: PageHeaderContent = {
     title: 'Services en développment web sur mesure',

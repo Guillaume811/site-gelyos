@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import MainNav from '@components/MainNav/MainNav'
 import { PrimaryButtonLink } from '@components/Buttons/ButtonLink'
 import styles from './DesktopHeader.module.scss'
-import logo from '@/assets/pictures/logo-long.png'
+import logo from '@/assets/pictures/logo-long.webp'
 import { useEffect, useState } from 'react'
 import clsx from 'clsx'
 

@@ -1,8 +1,8 @@
 import type { DivAvantages } from "@/ressources/content/contentTypes";
-import iconPersonnalise from '@/assets/icons/iconPersonnalise.png'
-import iconPerformance from '@/assets/icons/iconPerformance.png'
-import iconAccompagnement from '@/assets/icons/iconAccompagnement.png'
-import iconFiabilite from '@/assets/icons/iconFiabilite.png'
+import iconPersonnalise from '@/assets/icons/iconPersonnalise.webp'
+import iconPerformance from '@/assets/icons/iconPerformance.webp'
+import iconAccompagnement from '@/assets/icons/iconAccompagnement.webp'
+import iconFiabilite from '@/assets/icons/iconFiabilite.webp'
 
 export const divAvantagesContent: DivAvantages = {
     title: 'Les avantages d\'un process personnalisé',

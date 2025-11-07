@@ -1,5 +1,5 @@
 import type { AboutSectionContent } from "@/ressources/content/contentTypes";
-import pictureTechno from '@/assets/pictures/Techno.png'
+import pictureTechno from '@/assets/pictures/Techno.webp'
 
 export const technologies: AboutSectionContent = {
     id: 'technologies',

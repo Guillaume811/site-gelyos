@@ -1,5 +1,5 @@
 import type { PortfolioPageContent } from "@/ressources/content/contentTypes";
-import pictureHeaderPortfolio from '@/assets/pictures/header-portfolio.jpg'
+import pictureHeaderPortfolio from '@/assets/pictures/header-portfolio.webp'
 
 export const portfolioContent: PortfolioPageContent = {
     header: {

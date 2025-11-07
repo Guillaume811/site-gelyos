@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom'
 import styles from './Footer.module.scss'
-import logoUrl from '@/assets/pictures/logo-long.png'
+import logoUrl from '@/assets/pictures/logo-long.webp'
 import { getMainNavRoutes } from '@/ressources/routes'
 
 // Icônes (place-les dans src/assets/icons/)
-import phoneIcon from '@/assets/icons/phone.png'
-import mailIcon from '@/assets/icons/mail.png'
-import linkedinIcon from '@/assets/icons/linkedin.png'
-import githubIcon from '@/assets/icons/github.png'
+import phoneIcon from '@/assets/icons/phone.webp'
+import mailIcon from '@/assets/icons/mail.webp'
+import linkedinIcon from '@/assets/icons/linkedin.webp'
+import githubIcon from '@/assets/icons/github.webp'
 
 
 /* Component Footer

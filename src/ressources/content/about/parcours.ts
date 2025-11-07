@@ -1,5 +1,5 @@
 import type { AboutSectionContent } from "@/ressources/content/contentTypes";
-import pictureParcours from '@/assets/pictures/parcours.png'
+import pictureParcours from '@/assets/pictures/parcours.webp'
 
 export const parcours: AboutSectionContent = {
     id: 'parcours',

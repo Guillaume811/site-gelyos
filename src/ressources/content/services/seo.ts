@@ -1,5 +1,5 @@
 import type { ServiceSectionContent } from "@/ressources/content/contentTypes";
-import pictureSeo from '@/assets/pictures/serviceSeo.jpg'
+import pictureSeo from '@/assets/pictures/serviceSeo.webp'
 
 export const seo: ServiceSectionContent = {
     id: 'seo',

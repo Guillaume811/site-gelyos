@@ -5,9 +5,9 @@ import type { Variants } from "framer-motion";
 import { getAllExceptMentions, type RouteItem } from "@/ressources/routes";
 import clsx from "clsx";
 import styles from "./MobileHeader.module.scss";
-import logo from "@/assets/pictures/logo-long.png";
-import linkedinIcon from "@/assets/icons/linkedin-contact.png";
-import maltIcon from "@/assets/icons/malt.png";
+import logo from "@/assets/pictures/logo-long.webp";
+import linkedinIcon from "@/assets/icons/linkedin-contact.webp";
+import maltIcon from "@/assets/icons/malt.webp";
 
 export default function MobileHeader() {
 

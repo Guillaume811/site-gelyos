@@ -1,5 +1,5 @@
 import type { ServiceSectionContent } from "@/ressources/content/contentTypes";
-import pictureDevApp from '@/assets/pictures/devApp.jpg'
+import pictureDevApp from '@/assets/pictures/devApp.webp'
 
 export const devApp: ServiceSectionContent = {
     id: 'dev-app',
