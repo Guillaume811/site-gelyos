@@ -19,7 +19,7 @@ export const devWeb: ServiceSectionContent = {
         {
             id: 'design',
             title: 'Élaboration des maquettes (UI/UX)',
-            description: `Avant toute ligne de code, je crée des maquettes ergonomiques et esthétiques. L'objectif est de proposer une expérience utilisateur fluide et intuitive, tout en respectant votre identité visuelle.`
+            description: `Avant toute ligne de code, nous créons des maquettes ergonomiques et esthétiques. L'objectif est de proposer une expérience utilisateur fluide et intuitive, tout en respectant votre identité visuelle.`
         },
         {
             id: 'seo',
@@ -29,12 +29,12 @@ export const devWeb: ServiceSectionContent = {
         {
             id: 'developpement',
             title: 'Développement Web & Mobile',
-            description: `Je développe un site robuste, rapide et reesponsive, qui s'adapte à tous les écrans (ordinateurs, tablettes, mobiles). Le code est propre, sécurisé et évolutif, afin de pouvoir ajouter de nouvelles fonctionnalités si nécessaire.`
+            description: `Nous développons un site robuste, rapide et responsive, qui s'adapte à tous les écrans (ordinateurs, tablettes, mobiles). Le code est propre, sécurisé et évolutif, afin de pouvoir ajouter de nouvelles fonctionnalités si nécessaire.`
         },
         {
             id: 'maintenance',
             title: 'Maintenance & Évolutions',
-            description: `Après la mise en ligne, je reste disponible pour assurer la sécurité, corriger d'éventuels bugs et accompagner vos évolutions futures. Votre site reste performant et à jour dans le temps.`
+            description: `Après la mise en ligne, nous restons disponible pour assurer la sécurité, corriger d'éventuels bugs et accompagner vos évolutions futures. Votre site reste performant et à jour dans le temps.`
         }
     ]
 }

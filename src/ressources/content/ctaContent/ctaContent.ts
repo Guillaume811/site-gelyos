@@ -28,7 +28,7 @@ export const ctaContent: Partial<Record<RouteName, {
 
     services: {
         title: "Vous avez un projet de site internet sur mesure, d'application web personnalisée ou besoin d'une optimisation SEO ?",
-        text: "PArlons de votre prjet dès aujourd'hui et recevez un devis gratuit.",
+        text: "Parlons de votre prjet dès aujourd'hui et recevez un devis gratuit.",
         button: "Recevoir mon devis offert"
     },
 

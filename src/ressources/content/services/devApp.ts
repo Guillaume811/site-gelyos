@@ -5,7 +5,7 @@ export const devApp: ServiceSectionContent = {
     id: 'dev-app',
     title: `Développement d'Application personnalisées`,
     text: `Les **applications web et mobiles sur mesure** permettent de créer des outils adaptés à vos besoins spécifiques : gestion interne, plateforme métier, SaaS ou solution innovente.
-    Je développe des **applications performantes et évolutives**, pensée pour simplifier vos processus et apporter une réelle valeur à votre entreprise.`,
+    Nous développons des **applications performantes et évolutives**, pensée pour simplifier vos processus et apporter une réelle valeur à votre entreprise.`,
     image: {
         src: pictureDevApp,
         alt: 'Illustration de développement d’application.'
@@ -19,12 +19,12 @@ export const devApp: ServiceSectionContent = {
         {
             id: 'conception',
             title: 'Conception technique',
-            description: `Je choisis les technologies les plus adaptées à votre projet (framework, base de données, hébergement). Une architecture solide assure performance, sécurité et évolutivité.`
+            description: `Nous choisissons les technologies les plus adaptées à votre projet (framework, base de données, hébergement). Une architecture solide assure performance, sécurité et évolutivité.`
         },
         {
             id: 'developpement',
             title: 'Développement & Intégration',
-            description: `Du front-end au back-end, je développe une application performante et intuitive. L'interface utilisateur est fluide et moderne, tandis que le back-end garantit stabilité et rapidité.`
+            description: `Du front-end au back-end, nous développons une application performante et intuitive. L'interface utilisateur est fluide et moderne, tandis que le back-end garantit stabilité et rapidité.`
         },
         {
             id: 'test',
