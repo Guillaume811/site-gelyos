@@ -1,0 +1,61 @@
+.banner {
+  position: fixed;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 1000;
+  background: rgba(13, 20, 38, 0.8);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: grid;
+  gap: 1rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 2fr auto;
+    align-items: center;
+  }
+}
+
+.text {
+  font-size: 0.95rem;
+  line-height: 1.5;
+
+  a {
+    color: #67c3fb;
+    margin-left: 0.35rem;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.primary,
+.secondary {
+  border-radius: 999px;
+  padding: 0.65rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.primary {
+  background: #fe953f;
+  color: #0d1426;
+}
+
+.secondary {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
