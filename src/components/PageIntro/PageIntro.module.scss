@@ -1,3 +1,5 @@
+@use '@/styles/variables' as *;
+
 .intro {
   max-width: 48rem;
   margin-inline: auto;
@@ -8,6 +10,11 @@
   .content {
     p + p {
       margin-top: 1rem;
+    }
+
+    em {
+      font-style: normal;
+      font-family: $font-title;
     }
 
     /*strong {
