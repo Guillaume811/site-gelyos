@@ -19,6 +19,23 @@
             p {
                 margin: 0 0 1rem;
             }
+
+            .cookieButton {
+                font-family: $font-title;
+                margin-top: 1rem;
+                padding: 0.65rem 1.5rem;
+                border-radius: 999px;
+                border: 1px solid $color-primary;
+                background: $color-bg;
+                color: $color-primary;
+                font-weight: 600;
+                cursor: pointer;
+                @include box-shadow($color-primary);
+
+                &:hover {
+                    
+                }
+            }
         }
     }
 }

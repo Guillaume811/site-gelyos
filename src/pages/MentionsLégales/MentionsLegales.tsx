@@ -4,6 +4,7 @@ import { mentionContent } from "@/ressources/content/mention/mentionContent";
 import Heading from "@/components/Heading/Heading";
 import ReactMarkdown from "react-markdown";
 import remarkBreaks from "remark-breaks";
+import { openCookieBanner } from "@/components/CookieBanner/cookieBannerControls";
 
 export default function MentionsLegales() {
   const { header, editeur, hebergement, conception, intellectuelle, responsabilite, cookies, confidentialite, loi, } = mentionContent;
@@ -48,7 +49,7 @@ export default function MentionsLegales() {
           </div>
         </div>
 
-        <div className={styles.paragraphe}>
+        <div id="cookie" className={styles.paragraphe}>
           <Heading level={2}>{responsabilite.title}</Heading>
           <div className={styles.text}>
             <ReactMarkdown remarkPlugins={[remarkBreaks]}>
@@ -63,6 +64,9 @@ export default function MentionsLegales() {
             <ReactMarkdown remarkPlugins={[remarkBreaks]}>
               {cookies.description}
             </ReactMarkdown>
+            <button type="button" className={styles.cookieButton} onClick={openCookieBanner}>
+              Modifier mes préférences cookies
+            </button>
           </div>
         </div>
 
