@@ -4,7 +4,7 @@ export const routes = [
   { name: 'services', path: '/services', label: 'Services' },
   { name: 'aPropos', path: '/a-propos', label: 'À propos' },
   { name: 'portfolio', path: '/portfolio', label: 'Portfolio' },
-  { name: 'blog', path: '/blog', label: 'Blog' },
+  /* { name: 'blog', path: '/blog', label: 'Blog' }, */
   { name: 'contact', path: '/contact', label: 'Contact' },
   { name: 'mentionsLegales', path: '/mentions-legales',label: 'Mentions légales' }
 ] as const
