@@ -18,9 +18,9 @@ export default function Hero() {
           <AnimatedTitle text={title} />
         </Heading>
 
-        <TypewriterText text={text} speed={45} startDelay={1500} className={styles.text} />
+        <TypewriterText text={text} speed={8} startDelay={1500} className={styles.text} />
 
-        <SlideUpFadeStagger className={styles.actions} delay={11.5} stagger={0.15} duration={1}>
+        <SlideUpFadeStagger className={styles.actions} delay={3} stagger={0.15} duration={1}>
           {firstButton && (
             <PrimaryButtonLink to={firstButton.to} className={styles.primaryBtn}>
               {firstButton.label}
