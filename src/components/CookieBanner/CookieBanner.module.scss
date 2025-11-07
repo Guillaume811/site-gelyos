@@ -4,16 +4,21 @@
   right: 1rem;
   bottom: 1rem;
   z-index: 1000;
-  background: rgba(13, 20, 38, 0.8);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba($color-bg, 0.8);
+  color: $color-text;
+  border: 1px solid $color-primary;
+  @include box-shadow($color-primary);
   border-radius: 16px;
   padding: 1.25rem 1.5rem;
-  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   display: grid;
   gap: 1rem;
+  animation: slideUp 0.4s ease forwards;
+
+  &.closing {
+    animation: slideDown 0.35s ease forwards;
+  }
 
   @media (min-width: 768px) {
     grid-template-columns: 2fr auto;
@@ -26,7 +31,7 @@
   line-height: 1.5;
 
   a {
-    color: #67c3fb;
+    color: $color-primary;
     margin-left: 0.35rem;
     text-decoration: underline;
     text-underline-offset: 2px;
@@ -42,6 +47,7 @@
 
 .primary,
 .secondary {
+  font-family: $font-title;
   border-radius: 999px;
   padding: 0.65rem 1.5rem;
   font-weight: 600;
@@ -50,12 +56,46 @@
 }
 
 .primary {
-  background: #fe953f;
-  color: #0d1426;
+  background: $color-secondary;
+  color: $color-bg;
+  @include box-shadow($color-secondary);
+  transition:
+    background-color .3s ease,
+    color .3s ease,
+    backdrop-filter .3s ease;
+
+  &:hover {
+    background-color: rgba($color-bg, 0.3);
+    color: $color-secondary;
+    backdrop-filter: blur(6px);
+  }
 }
 
 .secondary {
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: #fff;
+  background: $color-bg;
+  border: 1px solid $color-primary;
+  color: $color-primary;
+  @include box-shadow($color-primary);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(120%);
+    opacity: 0;
+  }
 }

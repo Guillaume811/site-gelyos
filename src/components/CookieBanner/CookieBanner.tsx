@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import clsx from 'clsx'
 import styles from './CookieBanner.module.scss'
 import GA_MEASUREMENT_ID from '@/ressources/config/analytics'
 import { OPEN_EVENT } from './cookieBannerControls'
@@ -21,6 +22,7 @@ function applyConsent(choice: ConsentValue) {
 
 export default function CookieBanner() {
   const [visible, setVisible] = useState(false)
+  const [closing, setClosing] = useState(false)
 
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -39,18 +41,26 @@ export default function CookieBanner() {
     }
   }, [])
 
+  const closeWithAnimation = (cb: () => void) => {
+    setClosing(true)
+    window.setTimeout(() => {
+      cb()
+      setClosing(false)
+    }, 350)
+  }
+
   const handleChoice = (choice: ConsentValue) => {
     if (typeof window !== 'undefined') {
       window.localStorage.setItem(CONSENT_KEY, choice)
     }
     applyConsent(choice)
-    setVisible(false)
+    closeWithAnimation(() => setVisible(false))
   }
 
   if (!visible) return null
 
   return (
-    <div className={styles.banner} role="dialog" aria-live="polite" aria-label="Bannière de consentement aux cookies">
+    <div className={clsx(styles.banner, closing && styles.closing)} role="dialog" aria-live="polite" aria-label="Bannière de consentement aux cookies">
       <div className={styles.text}>
         Nous utilisons des cookies pour mesurer l'audience et améliorer votre expérience. Vous pouvez accepter ou refuser l'utilisation des cookies analytiques.
         <a href="/mentions-legales#cookie" rel="noreferrer">
