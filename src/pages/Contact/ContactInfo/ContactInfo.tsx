@@ -3,8 +3,8 @@ import Heading from "@/components/Heading/Heading";
 import { contactContent } from "@/ressources/content/contact/contactContent";
 import styles from "./ContactInfo.module.scss";
 import { Mail, Phone } from "lucide-react";
-import linkedinIcon from '@/assets/icons/linkedin-contact.png'
-import maltIcon from '@/assets/icons/malt.png'
+import linkedinIcon from '@/assets/icons/linkedin-contact.webp'
+import maltIcon from '@/assets/icons/malt.webp'
 
 type ContactInfoProps = {
   id?: string;
