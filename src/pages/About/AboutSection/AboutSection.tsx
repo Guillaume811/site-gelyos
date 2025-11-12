@@ -17,7 +17,7 @@ export default function AboutSection({
   className,
 }: Props) {
 
-console.log("image src:", image?.src, "title:", title);
+//console.log("image src:", image?.src, "title:", title);
 
   return (
     <TwoColumnSection
