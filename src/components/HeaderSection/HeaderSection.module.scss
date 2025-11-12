@@ -17,6 +17,12 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   z-index: 0;
+  will-change: transform;
+
+  @media (max-width: 768px) {
+    background-attachment: scroll;
+    transform: translate3d(0, var(--parallax-offset, 0px), 0);
+  }
 }
 
 .content {
