@@ -7,10 +7,12 @@
   padding: 1rem 2.5rem;
   border-radius: 40px;
   max-width: max-content;
+  text-align: center;
 }
 .primary {
   background-color: $color-secondary;
   color: $color-bg;
+  
   @include box-shadow($color-secondary);
   transition:
     background-color .3s ease,
@@ -20,12 +22,12 @@
   &:hover {
     background-color: rgba($color-bg, 0.3); // semi-transparent
     color: $color-secondary;
+    
     backdrop-filter: blur(6px);
   }
 
   @media (max-width: 768px) {
-    text-align: center;
-    padding: 0.5rem 1.5rem;
+    padding: 0.7rem 1.5rem;
   }
 }
 
@@ -37,7 +39,6 @@
   @include box-shadow($color-primary);
 
   @media (max-width: 768px) {
-    text-align: center;
-    padding: 0.5rem 1.5rem;
+    padding: 0.7rem 1.5rem;
   }
 }

@@ -82,7 +82,7 @@
 /* Bouton (on garde l'esthétique du composant Button, on peut juste ajuster l'espacement) */
 .actionBtn {
   font-size: 1rem;
-  padding: 0.5rem 1rem;
+  padding: 0.7rem 1rem;
   @include box-shadow($color-primary, 3px);
 }
 
