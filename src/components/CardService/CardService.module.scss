@@ -19,9 +19,16 @@
 
   @media (max-width: 768px) {
     width: 100%;
+    
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
   }
 
   .button{
     padding: 1rem 1.5rem;
+    justify-self: end;
+    margin-top: 0.5rem;
   }
 }
