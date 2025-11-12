@@ -150,7 +150,7 @@ export default function MobileHeader() {
               aria-label="LinkedIn"
               title="LinkedIn"
             >
-              <img src={linkedinIcon} alt="LinkedIn" className={styles.socialIcon} />
+              <img src={linkedinIcon} alt="LinkedIn" className={styles.socialIconLinkedin} />
             </a>
 
             <a
@@ -161,7 +161,7 @@ export default function MobileHeader() {
               aria-label="Malt"
               title="Malt"
             >
-              <img src={maltIcon} alt="Malt" className={styles.socialIcon} />
+              <img src={maltIcon} alt="Malt" className={styles.socialIconMalt} />
             </a>
           </div>
         </div>

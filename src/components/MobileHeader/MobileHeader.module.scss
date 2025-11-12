@@ -193,8 +193,8 @@
 
 /* Boutons sociaux ronds */
 .socialLink {
-  inline-size: 40px;
-  block-size: 40px;
+  inline-size: 30px;
+  block-size: 30px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -208,8 +208,16 @@
   }
 }
 
-.socialIcon {
+.socialIconLinkedin {
   display: block;
+  width: 30px;
+  height: 30px;
+}
+
+.socialIconMalt {
+  display: block;
+  width: 25px;
+  height: 25px;
 }
 
 .backdrop {
