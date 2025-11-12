@@ -200,12 +200,6 @@
   justify-content: center;
   border-radius: 999rem;
   text-decoration: none;
-  transition: transform 160ms ease, background-color 160ms ease;
-
-  &:hover {
-    background: rgba($color-primary, 0.08);
-    transform: translateY(-1px);
-  }
 }
 
 .socialIconLinkedin {

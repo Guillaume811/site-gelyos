@@ -84,7 +84,7 @@ export default function ContactInfo({
           className={styles.socialLink}
           aria-label="Visiter mon profil LinkedIn (nouvel onglet)"
         >
-          <img src={linkedinIcon} alt="" />
+          <img src={linkedinIcon} alt="" className={styles.socialIconLinkedin}/>
         </a>
 
         <a
@@ -94,7 +94,7 @@ export default function ContactInfo({
           className={styles.socialLink}
           aria-label="Visiter mon profil Malt (nouvel onglet)"
         >
-          <img src={maltIcon} alt="" />
+          <img src={maltIcon} alt="" className={styles.socialIconMalt}/>
         </a>
       </div>
     </section>
