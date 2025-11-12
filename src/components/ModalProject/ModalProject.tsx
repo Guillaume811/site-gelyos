@@ -20,37 +20,28 @@ const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffec
 
 export default function ModalProject({ project, isOpen, onClose }: ModalProjectProps) {
   useIsomorphicLayoutEffect(() => {
-    if (!isOpen) return;
+    if (!isOpen || !project) return;
     if (typeof window === "undefined") return;
 
-    const { style } = document.body;
-    const previous = {
-      position: style.position,
-      top: style.top,
-      left: style.left,
-      right: style.right,
-      width: style.width,
-      overflow: style.overflow,
-    };
-    const scrollY = window.scrollY;
+    const body = document.body;
+    const html = document.documentElement;
+    const previousOverflowBody = body.style.overflow;
+    const previousOverflowHtml = html.style.overflow;
+    const previousPaddingRight = body.style.paddingRight;
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
 
-    style.position = "fixed";
-    style.top = `-${scrollY}px`;
-    style.width = "100%";
-    style.left = "0";
-    style.right = "0";
-    style.overflow = "hidden";
+    body.style.overflow = "hidden";
+    html.style.overflow = "hidden";
+    if (scrollbarWidth > 0) {
+      body.style.paddingRight = `${scrollbarWidth}px`;
+    }
 
     return () => {
-      style.position = previous.position;
-      style.top = previous.top;
-      style.width = previous.width;
-      style.left = previous.left;
-      style.right = previous.right;
-      style.overflow = previous.overflow;
-      window.scrollTo(0, scrollY);
+      body.style.overflow = previousOverflowBody;
+      html.style.overflow = previousOverflowHtml;
+      body.style.paddingRight = previousPaddingRight;
     };
-  }, [isOpen]);
+  }, [isOpen, project]);
 
   if (!project) return null;
 
