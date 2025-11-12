@@ -14,9 +14,15 @@
   height: min(90vh, 100dvh);
   background: $color-bg;
   border-radius: 20px;
-  overflow: hidden; // empêche le scroll global
+  overflow: hidden; // empeche le scroll global
   border: 1px solid $color-primary;
   @include box-shadow($color-primary);
+
+  @media (max-width: 768px) {
+    height: auto;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
 
   .content {
     position: relative;
@@ -55,24 +61,6 @@
       overflow: hidden;
       display: flex;
       align-items: center;
-
-      /*.imageTitle {
-        margin: 0 0 .5rem;
-        font-weight: 700;
-        font-size: 1rem;
-      }
-
-      .imageWrapper {
-        width: 100%;
-        border-radius: .5rem;
-        overflow: hidden;
-
-        .image {
-          display: block;
-          width: 100%;
-          height: auto;
-        }
-      }*/
     }
 
     .right {
@@ -84,7 +72,7 @@
       .scrollArea {
         min-height: 0;
         max-height: 100%;
-        overflow: auto; // seule zone scrollable
+        overflow: auto; // seule zone scrollable sur desktop
         padding: 1.5rem;
         scrollbar-width: none;      /* Firefox */
         &::-webkit-scrollbar {      /* Chrome/Safari/Edge */
@@ -135,8 +123,17 @@
     @media (max-width: 768px) {
       grid-template-columns: 1fr;
       grid-template-areas:
-        "left"
-        "right";
+        "right"
+        "left";
+      height: auto;
+
+      .right {
+        .scrollArea {
+          max-height: none;
+          overflow: visible;
+          padding: 1rem 0;
+        }
+      }
     }
   }
 }
