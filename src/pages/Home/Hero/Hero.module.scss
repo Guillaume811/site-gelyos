@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-block-size: 100dvh; /* plein écran, mieux que 100vh sur mobile */
+  min-block-size: 100dvh; /* plein ecran, mieux que 100vh sur mobile */
   width: 100%;
 
   .left {
@@ -31,7 +31,7 @@
       display: flex;
       justify-content: center;
       gap: 1rem;
-      flex-wrap: wrap; /* sécurité si très étroit */
+      flex-wrap: wrap; /* securite si tres etroit */
 
       .primaryBtn,
       .secondaryBtn {
@@ -62,14 +62,16 @@
     justify-content: center;
     padding: 2rem 1rem;
     text-align: center;
+    min-block-size: 100svh; /* stabilise la hauteur sur mobile */
 
     .left {
       align-items: center;
-      min-block-size: 70dvh; /* 70–80dvh souhaité pour la colonne top */
+      min-block-size: 70svh; /* 70-80svh souhaite pour la colonne top */
     }
 
     .actions {
-      justify-content: center; /* boutons centrés mais sur une ligne */
+      justify-content: center; /* boutons centres mais sur une ligne */
+
       .primaryBtn,
       .secondaryBtn {
         width: 100%;
