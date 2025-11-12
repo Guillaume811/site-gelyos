@@ -1,8 +1,8 @@
 // src/pages/Portfolio/components/PortfolioSection/PortfolioSection.tsx
 import type { Project } from "@/ressources/content/portfolio/types";
 import type { RichText } from "@/ressources/content/contentTypes";
-import Carousel from "@/components/Carousel/Carousel";
-import CardProject from "@/components/CardProject/portfolio/CardProject";
+//import Carousel from "@/components/Carousel/Carousel";
+//import CardProject from "@/components/CardProject/portfolio/CardProject";
 import Heading from "@/components/Heading/Heading";
 import styles from "./PortfolioSection.module.scss";
 
@@ -17,7 +17,7 @@ export default function PortfolioSection({
   id,
   title,
   description,
-  projects,
+  /* projects */
 }: PortfolioSectionProps) {
   return (
     <section id={id} className={styles.container}>
@@ -27,7 +27,7 @@ export default function PortfolioSection({
       </header>
 
       <div className={styles.carouselWrapper}>
-        <Carousel
+        {/* <Carousel
           items={projects}
           ariaLabel={`Carrousel de projets — ${title}`}
           itemsPerViewDesktop={2}
@@ -37,7 +37,7 @@ export default function PortfolioSection({
           renderItem={(project, ctx) => (
             <CardProject project={project} dimmed={ctx.dimmed} />
           )}
-        />
+        /> */}
       </div>
     </section>
   );

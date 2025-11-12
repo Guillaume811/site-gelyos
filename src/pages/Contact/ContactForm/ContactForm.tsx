@@ -1,5 +1,7 @@
 import { useId, useMemo, useState, type FormEvent } from "react";
 import styles from "./ContactForm.module.scss";
+import { getRecaptchaToken } from "@/services/recaptcha";
+import { submitContactRequest } from "@/services/contactApi";
 
 type NeedValue = "audit" | "dev" | "maintenance" | "seo";
 
@@ -108,7 +110,12 @@ export default function ContactForm({
 
     try {
       setStatus("submitting");
-      await onSubmit?.(data);
+      if (onSubmit) {
+        await onSubmit(data);
+      } else {
+        const token = await getRecaptchaToken("contact_form");
+        await submitContactRequest(data, token);
+      }
       setStatus("success");
       // Reset simple (on garde le besoin sélectionné)
       setData((prev) => ({ ...prev, firstName: "", lastName: "", email: "", phone: "", message: "", rgpd: false }));

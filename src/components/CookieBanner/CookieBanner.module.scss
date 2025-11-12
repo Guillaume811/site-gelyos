@@ -16,10 +16,6 @@
   gap: 1rem;
   animation: slideUp 0.4s ease forwards;
 
-  &.closing {
-    animation: slideDown 0.35s ease forwards;
-  }
-
   @media (min-width: 768px) {
     grid-template-columns: 2fr auto;
     align-items: center;
@@ -76,6 +72,10 @@
   border: 1px solid $color-primary;
   color: $color-primary;
   @include box-shadow($color-primary);
+}
+
+.closing {
+  animation: slideDown 0.35s ease forwards;
 }
 
 @keyframes slideUp {

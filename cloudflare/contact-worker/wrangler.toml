@@ -1,0 +1,10 @@
+name = "gelyos-contact-worker"
+main = "src/index.ts"
+compatibility_date = "2024-11-07"
+
+routes = [
+  { pattern = "gelyos.fr/contact*", zone_id = "12f0aca7a17c7f2d5d700d93b5e97111" },
+  { pattern = "www.gelyos.fr/contact*", zone_id = "12f0aca7a17c7f2d5d700d93b5e97111" }  # optionnel si tu gères le www
+]
+
+# D�finis ALLOWED_ORIGINS dans le dashboard si besoin (ex: "https://gelyos.com,https://www.gelyos.com")
