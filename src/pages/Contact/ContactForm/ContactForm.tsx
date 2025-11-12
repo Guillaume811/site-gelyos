@@ -313,7 +313,7 @@ export default function ContactForm({
         </button>
       </div>
 
-      <p className={styles.note}>{textUnderForm}</p>
+      <p className={styles.note}>{textUnderForm} <a href="/mentions-legales#confidential">Politique de Confidentialité</a></p>
     </form>
   );
 }

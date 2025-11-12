@@ -218,6 +218,16 @@
 /* Note sous le formulaire */
 .note {
   text-align: center;
+
+  a {
+    color: $color-secondary;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
 }
 
 /* Responsive */
