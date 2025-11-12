@@ -53,6 +53,16 @@
         outline: 2px solid $color-primary;
         outline-offset: 2px;
       }
+
+      @media (max-width: 768px) {
+        position: sticky;
+        top: calc(env(safe-area-inset-top, 0px) + 0.75rem);
+        right: .75rem;
+        align-self: flex-start;
+        justify-self: end;
+        grid-area: close;
+        margin: 0;
+      }
     }
 
     .left {
@@ -123,8 +133,10 @@
     @media (max-width: 768px) {
       grid-template-columns: 1fr;
       grid-template-areas:
+        "close"
         "right"
         "left";
+      padding-top: calc(env(safe-area-inset-top, 0px) + 0.75rem);
       height: auto;
 
       .right {
