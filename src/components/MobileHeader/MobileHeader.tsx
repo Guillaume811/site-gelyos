@@ -143,7 +143,7 @@ export default function MobileHeader() {
         <div className={styles.panelFooter}>
           <div className={styles.socialBox} role="group" aria-label="Réseaux sociaux">
             <a
-              href="https://www.linkedin.com/in/ton-profil" /* ⬅︎ remplace */
+              href="https://www.linkedin.com/in/guillaume-huguet/"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.socialLink}
@@ -154,7 +154,7 @@ export default function MobileHeader() {
             </a>
 
             <a
-              href="https://www.malt.fr/profile/ton-profil" /* ⬅︎ remplace */
+              href="https://www.malt.fr/profile/guillaumehuguet1"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.socialLink}

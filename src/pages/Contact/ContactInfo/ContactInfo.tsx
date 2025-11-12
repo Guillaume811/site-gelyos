@@ -16,8 +16,8 @@ type ContactInfoProps = {
 
 export default function ContactInfo({
   id = "contact-info",
-  linkedinUrl = "#",
-  maltUrl = "#",
+  linkedinUrl = "https://www.linkedin.com/in/guillaume-huguet/",
+  maltUrl = "https://www.malt.fr/profile/guillaumehuguet1",
   emailAddress = "guillaumehuguet.gelios@gmail.com",
   phoneNumber = "+33677637864",
 }: ContactInfoProps): ReactElement {

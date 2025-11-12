@@ -7,7 +7,7 @@ import { getMainNavRoutes } from '@/ressources/routes'
 import phoneIcon from '@/assets/icons/phone.webp'
 import mailIcon from '@/assets/icons/mail.webp'
 import linkedinIcon from '@/assets/icons/linkedin.webp'
-import githubIcon from '@/assets/icons/github.webp'
+import malticon from '@/assets/icons/iconMalt.webp'
 
 
 /* Component Footer
@@ -65,7 +65,7 @@ export default function Footer() {
                     <img src={mailIcon} alt="" aria-hidden="true" />
                 </a>
                 <a
-                    href="https://www.linkedin.com/"
+                    href="https://www.linkedin.com/in/guillaume-huguet/"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="LinkedIn"
@@ -73,12 +73,12 @@ export default function Footer() {
                     <img src={linkedinIcon} alt="" aria-hidden="true" />
                 </a>
                 <a
-                    href="https://github.com/"
+                    href="https://www.malt.fr/profile/guillaumehuguet1"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="GitHub"
                 >
-                    <img src={githubIcon} alt="" aria-hidden="true" />
+                    <img src={malticon} alt="" aria-hidden="true" />
                 </a>
             </div>
         </div>
