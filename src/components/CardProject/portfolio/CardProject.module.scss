@@ -13,12 +13,6 @@
   min-height: var(--card-min-h, 280px);
 }
 
-.root:hover {
-    transform: scale(1.03);
-    @include box-shadow($color-primary);
-    //transform: translateY(-1px);
-}
-
 /* Opacité réduite quand la carte est "dimmed" (3ᵉ partielle) */
 .dimmed {
   opacity: .5;
@@ -96,6 +90,12 @@
 @media (min-width: 768px) {
   .root [data-part="title"] {
     font-size: 1.25rem;
+  }
+
+  .root:hover {
+    transform: scale(1.03);
+    @include box-shadow($color-primary);
+    //transform: translateY(-1px);
   }
 }
 

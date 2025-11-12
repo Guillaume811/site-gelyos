@@ -9,11 +9,6 @@
   transition: box-shadow 0.25s ease, transform 0.2s ease;
 }
 
-.root:hover {
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
-  transform: translateY(-1px);
-}
-
 /* Si on veut atténuer la carte partielle dans le carousel home */
 .dimmed {
   opacity: 0.5;
@@ -155,5 +150,12 @@
   justify-content: center;
   line-height: 1;
   text-align: center;
+}
+
+@media (min-width: 768px) {
+  .root:hover {
+    transform: scale(1.03);
+    @include box-shadow($color-primary);
+  }
 }
 
