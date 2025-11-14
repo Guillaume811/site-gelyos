@@ -3,10 +3,11 @@ const RECAPTCHA_URL = 'https://www.google.com/recaptcha/api/siteverify'
 interface Env {
   RECAPTCHA_SECRET: string
   ALLOWED_ORIGINS?: string
-  MAILCHANNELS_FROM_EMAIL: string
-  MAILCHANNELS_FROM_NAME: string
-  MAILCHANNELS_TO: string
-  MAILCHANNELS_SUBJECT_PREFIX?: string
+  BREVO_API_KEY: string
+  BREVO_FROM_EMAIL: string
+  BREVO_FROM_NAME: string
+  BREVO_TO: string
+  BREVO_SUBJECT_PREFIX?: string
 }
 
 function buildCorsHeaders(origin: string, env: Env) {
@@ -33,18 +34,18 @@ async function verifyRecaptcha(token: string, secret: string, remoteIp?: string)
   return (await response.json()) as { success: boolean; score?: number; action?: string; 'error-codes'?: string[] }
 }
 
-function buildMailChannelsPayload(formData: Record<string, string>, env: Env) {
-  const toList = env.MAILCHANNELS_TO.split(',').map((email) => email.trim()).filter(Boolean)
+function buildBrevoPayload(formData: Record<string, string>, env: Env) {
+  const toList = env.BREVO_TO.split(',').map((email) => email.trim()).filter(Boolean)
   if (toList.length === 0) {
-    throw new Error('MAILCHANNELS_TO must contain at least one recipient.')
+    throw new Error('BREVO_TO must contain at least one recipient.')
   }
 
   const fullName = `${formData.firstName ?? ''} ${formData.lastName ?? ''}`.trim() || 'Contact'
   const replyIsValid = formData.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)
-  const replyEmail = replyIsValid ? formData.email : env.MAILCHANNELS_FROM_EMAIL
-  const replyName = replyIsValid ? fullName : env.MAILCHANNELS_FROM_NAME
+  const replyEmail = replyIsValid ? formData.email : env.BREVO_FROM_EMAIL
+  const replyName = replyIsValid ? fullName : env.BREVO_FROM_NAME
 
-  const subjectPrefix = env.MAILCHANNELS_SUBJECT_PREFIX?.trim() || '[Contact]'
+  const subjectPrefix = env.BREVO_SUBJECT_PREFIX?.trim() || '[Contact]'
   const subject = `${subjectPrefix} ${formData.need || ''} - ${fullName}`.trim()
 
   const plainContent = [
@@ -66,24 +67,18 @@ function buildMailChannelsPayload(formData: Record<string, string>, env: Env) {
   ].join('')
 
   return {
-    personalizations: [
-      {
-        to: toList.map((email) => ({ email })),
-        subject,
-      },
-    ],
-    from: {
-      email: env.MAILCHANNELS_FROM_EMAIL,
-      name: env.MAILCHANNELS_FROM_NAME,
+    sender: {
+      email: env.BREVO_FROM_EMAIL,
+      name: env.BREVO_FROM_NAME,
     },
-    reply_to: {
+    to: toList.map((email) => ({ email })),
+    replyTo: {
       email: replyEmail,
       name: replyName,
     },
-    content: [
-      { type: 'text/plain', value: plainContent },
-      { type: 'text/html', value: htmlContent },
-    ],
+    subject,
+    textContent: plainContent,
+    htmlContent,
   }
 }
 
@@ -140,27 +135,28 @@ export default {
 
     let mailPayload: Record<string, unknown>
     try {
-      mailPayload = buildMailChannelsPayload(templateParams, env)
-      console.log('MailChannels payload:', mailPayload)
+      mailPayload = buildBrevoPayload(templateParams, env)
+      console.log('Brevo payload:', mailPayload)
     } catch (err) {
-      console.error('MailChannels payload error:', err)
+      console.error('Brevo payload error:', err)
       return new Response(
-        JSON.stringify({ success: false, message: 'Configuration MailChannels invalide.' }),
+        JSON.stringify({ success: false, message: 'Configuration Brevo invalide.' }),
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },
       )
     }
 
-    const emailResponse = await fetch('https://api.mailchannels.net/tx/v1/send', {
+    const emailResponse = await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'api-key': env.BREVO_API_KEY,
       },
       body: JSON.stringify(mailPayload),
     })
 
     if (!emailResponse.ok) {
       const details = await emailResponse.text()
-      console.error('MailChannels error:', details)
+      console.error('Brevo error:', details)
       return new Response(
         JSON.stringify({ success: false, message: "Impossible d'envoyer l'e-mail pour le moment.", details }),
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } },

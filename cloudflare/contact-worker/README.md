@@ -1,16 +1,22 @@
-# Contact Worker
+Ôªø# Contact Worker
 
-Ce Worker Cloudflare vÈrifie les tokens reCAPTCHA v3 pour le formulaire de contact.
+Ce Worker Cloudflare :
+1. v√©rifie les tokens reCAPTCHA v3 envoy√©s par le front ;
+2. transf√®re le message vers l'API Brevo (Sendinblue) une fois la v√©rification r√©ussie.
 
 ## Installation rapide
 
-1. Installer wrangler : 
-pm install -g wrangler
-2. Se connecter : wrangler login
-3. Depuis ce dossier :
-   - wrangler secret put RECAPTCHA_SECRET
-   - (optionnel) wrangler secret put ALLOWED_ORIGINS (ex: https://gelyos.com,https://www.gelyos.com,http://localhost:5173)
-4. En dev : wrangler dev
-5. En prod : wrangler deploy
+1. Installer wrangler : `npm install -g wrangler`
+2. Se connecter : `wrangler login`
+3. Depuis ce dossier, d√©finir les secrets :
+   - `wrangler secret put RECAPTCHA_SECRET`
+   - `wrangler secret put BREVO_API_KEY`
+   - `wrangler secret put BREVO_FROM_EMAIL`
+   - `wrangler secret put BREVO_FROM_NAME`
+   - `wrangler secret put BREVO_TO` (liste CSV de destinataires)
+   - `wrangler secret put BREVO_SUBJECT_PREFIX` (optionnel, d√©faut `[Contact]`)
+   - (optionnel) `wrangler secret put ALLOWED_ORIGINS` (ex: `https://gelyos.fr,https://www.gelyos.fr`)
+4. En dev : `wrangler dev --remote`
+5. En prod : `wrangler deploy`
 
-Le formulaire front enverra les donnÈes sur l'endpoint exposÈ (/contact). La logique d'envoi d'email peut Ítre ajoutÈe dans src/index.ts une fois la vÈrification reCAPTCHA passÈe.
+Le front doit appeler l'URL expos√©e par la route Worker (ex. `/api/contact`) en envoyant `{ token, payload }` comme dans `src/services/contactApi.ts`.
