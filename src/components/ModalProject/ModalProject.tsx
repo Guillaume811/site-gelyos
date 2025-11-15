@@ -1,4 +1,3 @@
-import { useEffect, useLayoutEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import type { Project, ProjectCarouselImage } from "@/ressources/content/portfolio/types";
@@ -16,33 +15,7 @@ type ModalProjectProps = {
 };
 
 const DEBUG_CAROUSEL = false;
-const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
-
 export default function ModalProject({ project, isOpen, onClose }: ModalProjectProps) {
-  useIsomorphicLayoutEffect(() => {
-    if (!isOpen || !project) return;
-    if (typeof window === "undefined") return;
-
-    const body = document.body;
-    const html = document.documentElement;
-    const previousOverflowBody = body.style.overflow;
-    const previousOverflowHtml = html.style.overflow;
-    const previousPaddingRight = body.style.paddingRight;
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-
-    body.style.overflow = "hidden";
-    html.style.overflow = "hidden";
-    if (scrollbarWidth > 0) {
-      body.style.paddingRight = `${scrollbarWidth}px`;
-    }
-
-    return () => {
-      body.style.overflow = previousOverflowBody;
-      html.style.overflow = previousOverflowHtml;
-      body.style.paddingRight = previousPaddingRight;
-    };
-  }, [isOpen, project]);
-
   if (!project) return null;
 
   const firstImage = project.carousel?.[0];

@@ -1,4 +1,4 @@
-import {
+﻿import {
   useEffect,
   useMemo,
   useRef,
@@ -16,7 +16,7 @@ import { ModalProjectContext } from "./ModalProjectContext";
 type Props = { children: ReactNode };
 
 export function ModalProjectProvider({ children }: Props) {
-  // 1) Charger toutes les données projets une seule fois
+  // 1) Charger toutes les donnÃ©es projets une seule fois
   const { data } = usePortfolioData();
 
   const allProjects: Project[] = useMemo(() => {
@@ -36,7 +36,7 @@ export function ModalProjectProvider({ children }: Props) {
     return m;
   }, [allProjects]);
 
-  // 2) État + synchro URL (?project=slug)
+  // 2) Ã‰tat + synchro URL (?project=slug)
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -46,7 +46,7 @@ export function ModalProjectProvider({ children }: Props) {
   const project = slug ? registry.get(slug) ?? null : null;
   const isOpen = !!project;
 
-  // 3) API: open/close (mémoïsées)
+  // 3) API: open/close (mÃ©moÃ¯sÃ©es)
   const open = useCallback(
     (s: string) => {
       const next = new URLSearchParams(searchParams);
@@ -67,24 +67,14 @@ export function ModalProjectProvider({ children }: Props) {
     setSlug(null);
   }, [searchParams, navigate, location.pathname]);
 
-  // 4) Réagir aux navigations back/forward (ou édition manuelle de l’URL)
+  // 4) RÃ©agir aux navigations back/forward (ou Ã©dition manuelle de lâ€™URL)
   useEffect(() => {
     if (currentSlugFromURL !== slug) {
       setSlug(currentSlugFromURL);
     }
   }, [currentSlugFromURL, slug]);
 
-  // 5) Scroll-lock du body pendant l’ouverture
-  useEffect(() => {
-    if (!isOpen) return;
-    const original = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = original;
-    };
-  }, [isOpen]);
-
-  // 6) Focus-trap + restitution du focus ; ESC pour fermer
+  // 5) Focus-trap + restitution du focus ; ESC pour fermer
   const containerRef = useRef<HTMLDivElement | null>(null);
   const lastFocusRef = useRef<HTMLElement | null>(null);
 
@@ -141,7 +131,7 @@ export function ModalProjectProvider({ children }: Props) {
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
-      // Restituer le focus au déclencheur
+      // Restituer le focus au dÃ©clencheur
       lastFocusRef.current?.focus?.();
     };
   }, [isOpen, close]);
@@ -161,3 +151,5 @@ export function ModalProjectProvider({ children }: Props) {
     </ModalProjectContext.Provider>
   );
 }
+
+
