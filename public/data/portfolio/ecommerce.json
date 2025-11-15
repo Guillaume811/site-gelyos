@@ -2,23 +2,23 @@
     {
         "order": 1,
         "id": "0201",
-        "slug": "projet-12",
-        "image": "/pictures/portfolio/sites-vitrine/test/logo.jpg",
-        "client": "Client 1",
-        "title": "Projet 1",
-        "shortDescription": "Paphius quin etiam et Cornelius senatores, ambo venenorum artibus pravis se polluisse confessi, eodem pronuntiante Maximino sunt interfecti. pari sorte etiam procurator monetae extinctus est. Sericum enim et Asbolium supra dictos.",
+        "slug": "projet-la-petite-emi",
+        "image": "/pictures/portfolio/ecommerce/laPetiteEmi/logo-emi.webp",
+        "client": "La Petite Emi",
+        "title": "Boutique en ligne de bougies, bijoux et impression lasers",
+        "shortDescription": "Boutique en ligne réalisée avec Wordpress et WooComerce pour la petite Emi, créatrice indépendante de bougies, bijoux et object gravés au laser, autour d'un univers artisanal, éthique et plein de douceurs.",
         "category": "ecommerce",
-        "description": "Paphius quin etiam et Cornelius senatores, ambo venenorum artibus pravis se polluisse confessi, eodem pronuntiante Maximino sunt interfecti. pari sorte etiam procurator monetae extinctus est. Sericum enim et Asbolium supra dictos, quoniam cum hortaretur passim nominare, quos vellent, adiecta religione firmarat, nullum igni vel ferro se puniri iussurum, plumbi validis ictibus interemit. et post hoe flammis Campensem aruspicem dedit, in negotio eius nullo sacramento constrictus.",
+        "description": "Ce projet est une boutique en ligne réalisée pour la petite Emi, une créatrice indépendante qui conçoit des bougies, des bijoux et des impressions laser.\n\nL'obectif du site est de présenter ses créations artisanales et de mettre en avant son univers : des pièces fabriquées à la main, éthiques et pleines de douceur. On y retrouve des bougies naturelles, des bijoux en bois et des objets gravés sur-mesure, pensés comme des cadeaux uniques.\n\nLa boutique repose sur Wordpress et Woocommerce, afin de pouvoir gérer facilement les produits et organiser les différentes catégories de créations.",
         "accordionItems": [
             {
                 "id": "technologies",
                 "title": "Technologies utilisées",
-                "description": "React, Typescript, SCSS"
+                "description": "Site développé avec WordPress et WooCommerce."
             },
             {
                 "id": "features",
                 "title": "Fonctionnalités clés",
-                "description": "Design Responsive, Animation CSS, Formulaire de contact"
+                "description": "Boutique en ligne dédiée aux créations de la petit emi\n\nMise en avant des bougies naturelles, des bijoux en bois et des objets gravés au laser\n\nContenus pensés pour refléter un univers artisanal, éthique et plein de douceur"
             },
             {
                 "id": "result",
@@ -26,25 +26,43 @@
                 "description": "Site livré dans les temps, Client satisfait"
             }
         ],
-        "url": "https://www.google.com",
+        "url": "https://la-petite-emi.fr/",
         "carousel": [
             {
                 "id": "01",
-                "src": "/pictures/portfolio/sites-vitrine/test/carousel/01.jpg",
-                "title": "Image 1",
-                "alt": "Image 1"
+                "src": "/pictures/portfolio/ecommerce/laPetiteEmi/carousel/hero-section.webp",
+                "title": "Hero section",
+                "alt": "Hero section"
             },
             {
                 "id": "02",
-                "src": "/pictures/portfolio/sites-vitrine/test/carousel/02.jpg",
-                "title": "Image 2",
-                "alt": "Image 2"
+                "src": "/pictures/portfolio/ecommerce/laPetiteEmi/carousel/gamme-produit.webp",
+                "title": "Gamme de produits",
+                "alt": "Gamme de produits"
             },
             {
                 "id": "03",
-                "src": "/pictures/portfolio/sites-vitrine/test/carousel/03.jpg",
-                "title": "Image 3",
-                "alt": "Image 3"
+                "src": "/pictures/portfolio/ecommerce/laPetiteEmi/carousel/liste-produits.webp",
+                "title": "Liste des produits",
+                "alt": "Liste des produits"
+            },
+            {
+                "id": "04",
+                "src": "/pictures/portfolio/ecommerce/laPetiteEmi/carousel/produit.webp",
+                "title": "Image produit",
+                "alt": "Image produit"
+            },
+            {
+                "id": "05",
+                "src": "/pictures/portfolio/ecommerce/laPetiteEmi/carousel/description.webp",
+                "title": "Description produit",
+                "alt": "Description produit"
+            },
+            {
+                "id": "06",
+                "src": "/pictures/portfolio/ecommerce/laPetiteEmi/carousel/panier.webp",
+                "title": "Panier d'achat",
+                "alt": "Panier d'achat"
             }
         ]
     }
