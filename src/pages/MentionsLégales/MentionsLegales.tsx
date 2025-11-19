@@ -1,3 +1,4 @@
+import { Seo } from "@/components/Seo/Seo";
 import HeaderSection from "@/components/HeaderSection/HeaderSection";
 import styles from './MentionsLegales.module.scss'
 import { mentionContent } from "@/ressources/content/mention/mentionContent";
@@ -10,6 +11,13 @@ export default function MentionsLegales() {
   const { header, editeur, hebergement, conception, intellectuelle, responsabilite, cookies, confidentialite, loi, } = mentionContent;
   return (
     <>
+      <Seo
+        title="Mentions légales | GELYOS"
+        description="Informations légales, hébergement, propriété intellectuelle et politique de confidentialité du site GELYOS."
+        path="/mentions-legales"
+        ogImage="/android-chrome-512x512.png"
+        robots="noindex, follow"
+      />
       <HeaderSection title={header.title} image={header.image} />
       <div className={styles.container}>
 

@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { Seo } from "@/components/Seo/Seo";
 import { portfolioContent } from "@/ressources/content/portfolio/portfolioContent";
 import { usePortfolioData } from "@/ressources/content/portfolio/usePortfolioData";
 import type { Project } from "@/ressources/content/portfolio/types";
@@ -40,6 +41,12 @@ export default function Portfolio() {
 
   return (
     <div>
+      <Seo
+        title="Portfolio GELYOS | Réalisations web et applications"
+        description="Sélection de sites vitrines, e-commerce, applications web et missions freelance réalisés par GELYOS."
+        path="/portfolio"
+        ogImage="/android-chrome-512x512.png"
+      />
       {/* H1 unique rendu par HeaderSection */}
       <HeaderSection title={header.title} image={header.image} />
       <PageIntro text={intro.text} />

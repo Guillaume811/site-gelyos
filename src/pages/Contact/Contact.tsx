@@ -1,5 +1,6 @@
 // src/pages/Contact/Contact.tsx
 import type { ReactElement } from "react";
+import { Seo } from "@/components/Seo/Seo";
 import HeaderSection from "@/components/HeaderSection/HeaderSection";
 import PageIntro from "@/components/PageIntro/PageIntro";
 import TwoColumnSection from "@/components/TwoColumnSection/TwoColumnSection";
@@ -14,6 +15,12 @@ export default function Contact(): ReactElement {
 
   return (
     <>
+      <Seo
+        title="Contact GELYOS | Discutons de votre projet web"
+        description="Parlez-nous de votre projet de site vitrine, e-commerce ou application web. Réponse rapide et accompagnement personnalisé."
+        path="/contact"
+        ogImage="/android-chrome-512x512.png"
+      />
       <HeaderSection title={header.title} image={header.image} />
       <PageIntro text={intro.text} />
 
