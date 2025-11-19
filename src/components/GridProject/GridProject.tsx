@@ -1,5 +1,5 @@
-import type { Project } from "@/ressources/content/portfolio/types";
-import CardProject from "@/components/CardProject/portfolio/CardProject";
+import type { Project } from "~/ressources/content/portfolio/types";
+import CardProject from "~/components/CardProject/portfolio/CardProject";
 import styles from "./GridProject.module.scss";
 
 type Props = {

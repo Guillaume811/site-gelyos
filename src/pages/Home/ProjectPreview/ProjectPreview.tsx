@@ -1,12 +1,12 @@
 import { useMemo } from 'react'
-import Heading from '@/components/Heading/Heading'
-import { PrimaryButtonLink } from '@/components/Buttons/ButtonLink'
+import Heading from '~/components/Heading/Heading'
+import { PrimaryButtonLink } from '~/components/Buttons/ButtonLink'
 import ReactMarkdown from 'react-markdown'
 import styles from './ProjectPreview.module.scss'
-import { projectPreviewContent } from '@/ressources/content/home/projectPreviewContent'
-import CardCarousel from '@/components/Carousel/CardCarousel/CardCarousel'
-import type { Project } from '@/ressources/content/portfolio/types'
-import { usePortfolioData } from '@/ressources/content/portfolio/usePortfolioData'
+import { projectPreviewContent } from '~/ressources/content/home/projectPreviewContent'
+import CardCarousel from '~/components/Carousel/CardCarousel/CardCarousel'
+import type { Project } from '~/ressources/content/portfolio/types'
+import { usePortfolioData } from '~/ressources/content/portfolio/usePortfolioData'
 
 function sortByLatest(a: Project, b: Project) {
   const ao = typeof a.order === 'number' ? a.order : Number.NEGATIVE_INFINITY

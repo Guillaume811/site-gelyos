@@ -1,11 +1,11 @@
 // src/pages/Home/Hero/Hero.tsx
-import Heading from '@/components/Heading/Heading'
-import { PrimaryButtonLink, SecondaryButtonLink } from '@/components/Buttons/ButtonLink'
+import Heading from '~/components/Heading/Heading'
+import { PrimaryButtonLink, SecondaryButtonLink } from '~/components/Buttons/ButtonLink'
 import styles from './Hero.module.scss'
-import { heroContent } from '@/ressources/content/home/hero'
-import { AnimatedTitle } from '@/animations/AnimatedTitle/AnimatedTitle'
-import { TypewriterText } from '@/animations/TypewriterText/TypewriterText'
-import { SlideUpFadeStagger } from '@/animations/SlideUpFadeStagger/SlideUpFadeStagger'
+import { heroContent } from '~/ressources/content/home/hero'
+import { AnimatedTitle } from '~/animations/AnimatedTitle/AnimatedTitle'
+import { TypewriterText } from '~/animations/TypewriterText/TypewriterText'
+import { SlideUpFadeStagger } from '~/animations/SlideUpFadeStagger/SlideUpFadeStagger'
 
 export default function Hero() {
 

@@ -1,5 +1,5 @@
-import type { Project } from '@/ressources/content/portfolio/types'
-import CardProjectHome from '@/components/CardProject/home/CardProjectHome'
+import type { Project } from '~/ressources/content/portfolio/types'
+import CardProjectHome from '~/components/CardProject/home/CardProjectHome'
 import styles from './CardCarousel.module.scss'
 
 import { Swiper, SwiperSlide } from 'swiper/react'

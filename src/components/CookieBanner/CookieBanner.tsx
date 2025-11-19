@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import clsx from 'clsx'
 import styles from './CookieBanner.module.scss'
-import GA_MEASUREMENT_ID from '@/ressources/config/analytics'
+import GA_MEASUREMENT_ID from '~/ressources/config/analytics'
 import { OPEN_EVENT } from './cookieBannerControls'
 
 const CONSENT_KEY = 'cookie-consent'

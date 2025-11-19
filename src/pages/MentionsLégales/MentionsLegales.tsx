@@ -1,11 +1,11 @@
-import { Seo } from "@/components/Seo/Seo";
-import HeaderSection from "@/components/HeaderSection/HeaderSection";
+import { Seo } from "~/components/Seo/Seo";
+import HeaderSection from "~/components/HeaderSection/HeaderSection";
 import styles from './MentionsLegales.module.scss'
-import { mentionContent } from "@/ressources/content/mention/mentionContent";
-import Heading from "@/components/Heading/Heading";
+import { mentionContent } from "~/ressources/content/mention/mentionContent";
+import Heading from "~/components/Heading/Heading";
 import ReactMarkdown from "react-markdown";
 import remarkBreaks from "remark-breaks";
-import { openCookieBanner } from "@/components/CookieBanner/cookieBannerControls";
+import { openCookieBanner } from "~/components/CookieBanner/cookieBannerControls";
 
 export default function MentionsLegales() {
   const { header, editeur, hebergement, conception, intellectuelle, responsabilite, cookies, confidentialite, loi, } = mentionContent;

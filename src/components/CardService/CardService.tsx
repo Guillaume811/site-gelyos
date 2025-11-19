@@ -1,7 +1,7 @@
 import styles from "./CardService.module.scss";
-import Heading from "@/components/Heading/Heading";
-import { SecondaryButtonLink } from '@/components/Buttons/ButtonLink'
-import type { ServiceCard } from "@/ressources/content/contentTypes";
+import Heading from "~/components/Heading/Heading";
+import { SecondaryButtonLink } from '~/components/Buttons/ButtonLink'
+import type { ServiceCard } from "~/ressources/content/contentTypes";
 import ReactMarkdown from "react-markdown";
 
 interface Props {

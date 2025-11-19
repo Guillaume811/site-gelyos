@@ -1,6 +1,6 @@
 import { motion, useTransform, type MotionValue } from "framer-motion";
-import CardService from "@components/CardService/CardService";
-import type { ServiceCard } from "@/ressources/content/contentTypes";
+import CardService from "~components/CardService/CardService";
+import type { ServiceCard } from "~/ressources/content/contentTypes";
 import styles from "./ServicesPreview.module.scss";
 
 interface Props {

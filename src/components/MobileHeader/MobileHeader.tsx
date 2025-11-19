@@ -2,12 +2,12 @@ import { useState, useMemo } from "react";
 import { NavLink } from "react-router-dom";
 import { motion, AnimatePresence  } from "framer-motion";
 import type { Variants } from "framer-motion";
-import { getAllExceptMentions, type RouteItem } from "@/ressources/routes";
+import { getAllExceptMentions, type RouteItem } from "~/ressources/routes";
 import clsx from "clsx";
 import styles from "./MobileHeader.module.scss";
-import logo from "@/assets/pictures/logo-long.webp";
-import linkedinIcon from "@/assets/icons/linkedin-contact.webp";
-import maltIcon from "@/assets/icons/malt.webp";
+import logo from "~/assets/pictures/logo-long.webp";
+import linkedinIcon from "~/assets/icons/linkedin-contact.webp";
+import maltIcon from "~/assets/icons/malt.webp";
 
 export default function MobileHeader() {
 

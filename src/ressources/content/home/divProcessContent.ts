@@ -1,9 +1,9 @@
-import type { DivProcess } from "@/ressources/content/contentTypes";
-import iconAnalyse from '@/assets/icons/iconAnalyse.webp'
-import iconConception from '@/assets/icons/iconConception.webp'
-import iconDev from '@/assets/icons/iconDev.webp'
-import iconTest from '@/assets/icons/iconTest.webp'
-import iconSuivi from '@/assets/icons/iconSuivi.webp'
+import type { DivProcess } from "~/ressources/content/contentTypes";
+import iconAnalyse from '~/assets/icons/iconAnalyse.webp'
+import iconConception from '~/assets/icons/iconConception.webp'
+import iconDev from '~/assets/icons/iconDev.webp'
+import iconTest from '~/assets/icons/iconTest.webp'
+import iconSuivi from '~/assets/icons/iconSuivi.webp'
 
 export const divProcessContent: DivProcess = {
     title: 'Un process clair pour un site web sur mesure réussi',

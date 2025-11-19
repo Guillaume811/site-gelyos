@@ -1,5 +1,5 @@
 import styles from './SectionProcess.module.scss';
-import type { DivProcess as DivProcessContent, DivAvantages as DivAvantagesContent } from '@/ressources/content/contentTypes';
+import type { DivProcess as DivProcessContent, DivAvantages as DivAvantagesContent } from '~/ressources/content/contentTypes';
 import { DivProcess } from './DivProcess/DivProcess';
 import { DivAvantages } from './DivAvantages/DivAvantages';
 

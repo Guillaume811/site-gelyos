@@ -1,11 +1,11 @@
 import { useMemo } from "react";
-import { Seo } from "@/components/Seo/Seo";
-import { portfolioContent } from "@/ressources/content/portfolio/portfolioContent";
-import { usePortfolioData } from "@/ressources/content/portfolio/usePortfolioData";
-import type { Project } from "@/ressources/content/portfolio/types";
-import HeaderSection from "@/components/HeaderSection/HeaderSection";
-import PageIntro from "@/components/PageIntro/PageIntro";
-import GridProject from "@/components/GridProject/GridProject";
+import { Seo } from "~/components/Seo/Seo";
+import { portfolioContent } from "~/ressources/content/portfolio/portfolioContent";
+import { usePortfolioData } from "~/ressources/content/portfolio/usePortfolioData";
+import type { Project } from "~/ressources/content/portfolio/types";
+import HeaderSection from "~/components/HeaderSection/HeaderSection";
+import PageIntro from "~/components/PageIntro/PageIntro";
+import GridProject from "~/components/GridProject/GridProject";
 
 export default function Portfolio() {
   const { data, loading, error, reload } = usePortfolioData();

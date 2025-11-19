@@ -1,4 +1,4 @@
-import type { ServicePageContent } from "@/ressources/content/contentTypes";
+import type { ServicePageContent } from "~/ressources/content/contentTypes";
 import { headerServices, introServices } from "./headerIntro";
 import { devWeb } from "./devWeb";
 import { devApp } from "./devApp";

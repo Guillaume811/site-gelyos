@@ -1,8 +1,8 @@
-import type { ServicesPreview } from "@/ressources/content/contentTypes";
-import iconWeb from '@/assets/icons/iconWeb.webp'
-import iconApp from '@/assets/icons/iconApp.webp'
-import iconMaintenance from '@/assets/icons/iconMaintenance.webp'
-import iconSeo from '@/assets/icons/iconSeo.webp'
+import type { ServicesPreview } from "~/ressources/content/contentTypes";
+import iconWeb from '~/assets/icons/iconWeb.webp'
+import iconApp from '~/assets/icons/iconApp.webp'
+import iconMaintenance from '~/assets/icons/iconMaintenance.webp'
+import iconSeo from '~/assets/icons/iconSeo.webp'
 
 export const servicesPreviewContent: ServicesPreview = {
     title: 'Service de développement web sur mesure',

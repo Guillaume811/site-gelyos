@@ -1,9 +1,9 @@
 import ReactMarkdown from "react-markdown";
-import TwoColumnSection from "@/components/TwoColumnSection/TwoColumnSection";
-import Heading from "@/components/Heading/Heading";
-import Accordion from "@/components/Accordion/Accordion";
+import TwoColumnSection from "~/components/TwoColumnSection/TwoColumnSection";
+import Heading from "~/components/Heading/Heading";
+import Accordion from "~/components/Accordion/Accordion";
 import styles from "./ServicesSection.module.scss";
-import type { ServiceSectionContent } from "@/ressources/content/contentTypes";
+import type { ServiceSectionContent } from "~/ressources/content/contentTypes";
 
 interface Props extends ServiceSectionContent {
   reverse?: boolean;

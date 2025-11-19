@@ -1,4 +1,4 @@
-import type { RoutePath } from '@/ressources/routes'
+import type { RoutePath } from '~/ressources/routes'
 
 // ======== Common content types ========
 export type RichText = string

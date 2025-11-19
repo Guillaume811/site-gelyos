@@ -1,10 +1,10 @@
 import type { MouseEvent } from "react";
 import type { To } from "react-router-dom";
-import type { Project } from "@/ressources/content/portfolio/types";
+import type { Project } from "~/ressources/content/portfolio/types";
 import clsx from "clsx";
-import CardProjectContent from "@/components/CardProject/CardProjectContent";
-import { SecondaryButtonLink } from "@/components/Buttons/ButtonLink";
-import { useModalProject } from "@/components/ModalProject/providers/useModalProject";
+import CardProjectContent from "~/components/CardProject/CardProjectContent";
+import { SecondaryButtonLink } from "~/components/Buttons/ButtonLink";
+import { useModalProject } from "~/components/ModalProject/providers/useModalProject";
 import styles from "./CardProjectHome.module.scss";
 
 export interface CardProjectHomeProps {

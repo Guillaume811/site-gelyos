@@ -1,9 +1,9 @@
-import { Seo } from "@/components/Seo/Seo";
-import { divProcessContent } from "@/ressources/content/home/divProcessContent";
+import { Seo } from "~/components/Seo/Seo";
+import { divProcessContent } from "~/ressources/content/home/divProcessContent";
 import Hero from "./Hero/Hero";
 import { SectionProcess } from "./SectionProcess/SectionProcess";
 import ServicesPreview from "./ServicesPreview/ServicesPreview";
-import { divAvantagesContent } from "@/ressources/content/home/divAvantagesContent";
+import { divAvantagesContent } from "~/ressources/content/home/divAvantagesContent";
 import ProjectPreview from "./ProjectPreview/ProjectPreview";
 
 export default function Home() {

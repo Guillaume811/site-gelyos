@@ -1,8 +1,8 @@
 import ReactMarkdown from "react-markdown";
-import TwoColumnSection from "@/components/TwoColumnSection/TwoColumnSection";
-import Heading from "@/components/Heading/Heading";
+import TwoColumnSection from "~/components/TwoColumnSection/TwoColumnSection";
+import Heading from "~/components/Heading/Heading";
 import styles from "./AboutSection.module.scss";
-import type { AboutSectionContent } from "@/ressources/content/contentTypes";
+import type { AboutSectionContent } from "~/ressources/content/contentTypes";
 
 interface Props extends AboutSectionContent {
   reverse?: boolean;

@@ -1,8 +1,8 @@
-import { Seo } from "@/components/Seo/Seo";
-import PageIntro from "@/components/PageIntro/PageIntro";
+import { Seo } from "~/components/Seo/Seo";
+import PageIntro from "~/components/PageIntro/PageIntro";
 import ServicesSection from "./ServicesSection/ServicesSection";
-import { servicesPageContent } from "@/ressources/content/services";
-import HeaderSection from "@/components/HeaderSection/HeaderSection";
+import { servicesPageContent } from "~/ressources/content/services";
+import HeaderSection from "~/components/HeaderSection/HeaderSection";
 
 export default function Services() {
   const { header, intro, services } = servicesPageContent;

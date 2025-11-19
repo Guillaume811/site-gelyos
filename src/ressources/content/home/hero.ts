@@ -1,5 +1,5 @@
-import heroImage from '@/assets/pictures/hero.webp'
-import type { Content } from '@/ressources/content/contentTypes'
+import heroImage from '~/assets/pictures/hero.webp'
+import type { Content } from '~/ressources/content/contentTypes'
 
 export const heroContent: Content = {
     title: 'Développement\n**Web Sur Mesure**',

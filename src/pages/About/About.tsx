@@ -1,7 +1,7 @@
-import { Seo } from "@/components/Seo/Seo";
+import { Seo } from "~/components/Seo/Seo";
 import AboutSection from "./AboutSection/AboutSection";
-import { aboutPageContent } from "@/ressources/content/about";
-import HeaderSection from "@/components/HeaderSection/HeaderSection";
+import { aboutPageContent } from "~/ressources/content/about";
+import HeaderSection from "~/components/HeaderSection/HeaderSection";
 
 export default function About() {
   const { header, sections } = aboutPageContent;

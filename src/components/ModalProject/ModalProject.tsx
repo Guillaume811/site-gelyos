@@ -1,11 +1,11 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
-import type { Project, ProjectCarouselImage } from "@/ressources/content/portfolio/types";
-import Accordion from "@/components/Accordion/Accordion";
-import Heading from "@/components/Heading/Heading";
-import { PrimaryButtonLink } from "@/components/Buttons/ButtonLink";
-import PictureCarousel from "@/components/Carousel/PictureCarousel/PictureCarousel";
-import type { PictureItem } from "@/components/Carousel/PictureCarousel/PictureCarousel";
+import type { Project, ProjectCarouselImage } from "~/ressources/content/portfolio/types";
+import Accordion from "~/components/Accordion/Accordion";
+import Heading from "~/components/Heading/Heading";
+import { PrimaryButtonLink } from "~/components/Buttons/ButtonLink";
+import PictureCarousel from "~/components/Carousel/PictureCarousel/PictureCarousel";
+import type { PictureItem } from "~/components/Carousel/PictureCarousel/PictureCarousel";
 import styles from "./ModalProject.module.scss";
 
 type ModalProjectProps = {

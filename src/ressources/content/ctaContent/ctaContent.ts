@@ -1,4 +1,4 @@
-import type { RouteName } from "@/ressources/routes"
+import type { RouteName } from "~/ressources/routes"
 
 /* CTA content registry
 * Purpose:

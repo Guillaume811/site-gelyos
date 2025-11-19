@@ -1,9 +1,9 @@
 // src/pages/Portfolio/components/PortfolioSection/PortfolioSection.tsx
-import type { Project } from "@/ressources/content/portfolio/types";
-import type { RichText } from "@/ressources/content/contentTypes";
-//import Carousel from "@/components/Carousel/Carousel";
-//import CardProject from "@/components/CardProject/portfolio/CardProject";
-import Heading from "@/components/Heading/Heading";
+import type { Project } from "~/ressources/content/portfolio/types";
+import type { RichText } from "~/ressources/content/contentTypes";
+//import Carousel from "~/components/Carousel/Carousel";
+//import CardProject from "~/components/CardProject/portfolio/CardProject";
+import Heading from "~/components/Heading/Heading";
 import styles from "./PortfolioSection.module.scss";
 
 export interface PortfolioSectionProps {

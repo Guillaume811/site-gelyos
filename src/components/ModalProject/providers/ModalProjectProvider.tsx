@@ -1,4 +1,4 @@
-﻿import {
+import {
   useEffect,
   useMemo,
   useRef,
@@ -8,15 +8,15 @@
 } from "react";
 import { createPortal } from "react-dom";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
-import ModalProject from "@/components/ModalProject/ModalProject";
-import type { Project } from "@/ressources/content/portfolio/types";
-import { usePortfolioData } from "@ressources/content/portfolio/usePortfolioData";
+import ModalProject from "~/components/ModalProject/ModalProject";
+import type { Project } from "~/ressources/content/portfolio/types";
+import { usePortfolioData } from "~ressources/content/portfolio/usePortfolioData";
 import { ModalProjectContext } from "./ModalProjectContext";
 
 type Props = { children: ReactNode };
 
 export function ModalProjectProvider({ children }: Props) {
-  // 1) Charger toutes les donnÃ©es projets une seule fois
+  // 1) Charger toutes les données projets une seule fois
   const { data } = usePortfolioData();
 
   const allProjects: Project[] = useMemo(() => {
@@ -36,7 +36,7 @@ export function ModalProjectProvider({ children }: Props) {
     return m;
   }, [allProjects]);
 
-  // 2) Ã‰tat + synchro URL (?project=slug)
+  // 2) État + synchro URL (?project=slug)
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -46,7 +46,7 @@ export function ModalProjectProvider({ children }: Props) {
   const project = slug ? registry.get(slug) ?? null : null;
   const isOpen = !!project;
 
-  // 3) API: open/close (mÃ©moÃ¯sÃ©es)
+  // 3) API: open/close (mémoïsées)
   const open = useCallback(
     (s: string) => {
       const next = new URLSearchParams(searchParams);
@@ -67,7 +67,7 @@ export function ModalProjectProvider({ children }: Props) {
     setSlug(null);
   }, [searchParams, navigate, location.pathname]);
 
-  // 4) RÃ©agir aux navigations back/forward (ou Ã©dition manuelle de lâ€™URL)
+  // 4) Réagir aux navigations back/forward (ou édition manuelle de l’URL)
   useEffect(() => {
     if (currentSlugFromURL !== slug) {
       setSlug(currentSlugFromURL);
@@ -131,7 +131,7 @@ export function ModalProjectProvider({ children }: Props) {
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
-      // Restituer le focus au dÃ©clencheur
+      // Restituer le focus au déclencheur
       lastFocusRef.current?.focus?.();
     };
   }, [isOpen, close]);

@@ -1,8 +1,8 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Heading from "@/components/Heading/Heading";
-import { PrimaryButtonLink } from "@/components/Buttons/ButtonLink";
-import { servicesPreviewContent } from "@/ressources/content/home/servicesPreview";
+import Heading from "~/components/Heading/Heading";
+import { PrimaryButtonLink } from "~/components/Buttons/ButtonLink";
+import { servicesPreviewContent } from "~/ressources/content/home/servicesPreview";
 import styles from "./ServicesPreview.module.scss";
 import ServicesPreviewItem from "./ServicesPreviewItem";
 import ReactMarkdown from "react-markdown";

@@ -1,4 +1,4 @@
-import type { Project } from "@/ressources/content/portfolio/types";
+import type { Project } from "~/ressources/content/portfolio/types";
 import type { ReactNode } from "react";
 import { memo } from "react";
 import clsx from "clsx";

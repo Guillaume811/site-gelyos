@@ -3,7 +3,7 @@ import { ChevronDown } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import styles from "./AccordionItem.module.scss";
 import clsx from "clsx";
-import type { AccordionItemContent } from "@/ressources/content/contentTypes";
+import type { AccordionItemContent } from "~/ressources/content/contentTypes";
 
 interface Props {
   item: AccordionItemContent;

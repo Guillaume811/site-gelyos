@@ -1,5 +1,5 @@
-import type { AboutSectionContent } from "@/ressources/content/contentTypes";
-import pictureExpertise from '@/assets/pictures/expertise.webp'
+import type { AboutSectionContent } from "~/ressources/content/contentTypes";
+import pictureExpertise from '~/assets/pictures/expertise.webp'
 
 export const expertise: AboutSectionContent = {
     id: 'expertise',

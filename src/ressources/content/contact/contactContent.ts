@@ -1,5 +1,5 @@
 import type { ContactPageContent } from "../contentTypes";
-import pictureHeaderContact from '@/assets/pictures/header-service.webp'
+import pictureHeaderContact from '~/assets/pictures/header-service.webp'
 
 export const contactContent: ContactPageContent = {
     header: {

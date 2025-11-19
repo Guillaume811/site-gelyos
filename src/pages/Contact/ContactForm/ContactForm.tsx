@@ -1,7 +1,7 @@
 import { useId, useMemo, useState, type FormEvent } from "react";
 import styles from "./ContactForm.module.scss";
-import { getRecaptchaToken } from "@/services/recaptcha";
-import { submitContactRequest } from "@/services/contactApi";
+import { getRecaptchaToken } from "~/services/recaptcha";
+import { submitContactRequest } from "~/services/contactApi";
 
 type NeedValue = "audit" | "dev" | "maintenance" | "seo";
 

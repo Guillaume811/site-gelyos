@@ -1,10 +1,10 @@
 import type { ReactElement } from "react";
-import Heading from "@/components/Heading/Heading";
-import { contactContent } from "@/ressources/content/contact/contactContent";
+import Heading from "~/components/Heading/Heading";
+import { contactContent } from "~/ressources/content/contact/contactContent";
 import styles from "./ContactInfo.module.scss";
 import { Mail, Phone } from "lucide-react";
-import linkedinIcon from '@/assets/icons/linkedin-contact.webp'
-import maltIcon from '@/assets/icons/malt.webp'
+import linkedinIcon from '~/assets/icons/linkedin-contact.webp'
+import maltIcon from '~/assets/icons/malt.webp'
 
 type ContactInfoProps = {
   id?: string;

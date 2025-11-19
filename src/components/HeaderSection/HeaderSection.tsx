@@ -1,8 +1,8 @@
 import { useEffect, useId, useRef } from "react";
 import clsx from "clsx";
-import Heading from "@/components/Heading/Heading";
+import Heading from "~/components/Heading/Heading";
 import styles from "./HeaderSection.module.scss";
-import type { ImageContent } from "@/ressources/content/contentTypes";
+import type { ImageContent } from "~/ressources/content/contentTypes";
 
 interface Props {
   title: string;

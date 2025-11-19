@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import styles from './Footer.module.scss';
-import logoUrl from '@/assets/pictures/logo-long.webp';
-import { getMainNavRoutes } from '@/ressources/routes';
+import logoUrl from '~/assets/pictures/logo-long.webp';
+import { getMainNavRoutes } from '~/ressources/routes';
 
-import phoneIcon from '@/assets/icons/phone.webp';
-import mailIcon from '@/assets/icons/mail.webp';
-import linkedinIcon from '@/assets/icons/linkedin.webp';
-import maltIcon from '@/assets/icons/iconMalt.webp';
+import phoneIcon from '~/assets/icons/phone.webp';
+import mailIcon from '~/assets/icons/mail.webp';
+import linkedinIcon from '~/assets/icons/linkedin.webp';
+import maltIcon from '~/assets/icons/iconMalt.webp';
 
 export default function Footer() {
   const navRoutes = getMainNavRoutes();

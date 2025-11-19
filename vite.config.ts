@@ -6,23 +6,23 @@ import path from 'node:path'
 export default defineConfig({
   plugins: [react()],
    resolve: {
-     alias: {
-      '@': path.resolve(__dirname, 'src'),
-      '@pages': path.resolve(__dirname, 'src/pages'),
-      '@components': path.resolve(__dirname, 'src/components'),
-      '@layout': path.resolve(__dirname, 'src/app/layout'),
-      '@styles': path.resolve(__dirname, 'src/styles'),
-      '@assets': path.resolve(__dirname, 'src/assets'),
-      '@ressources': path.resolve(__dirname, 'src/ressources'),
-      '@animations': path.resolve(__dirname, 'src/animations')
-     },
+     alias: [
+      { find: '~', replacement: path.resolve(__dirname, 'src') },
+      { find: '~pages', replacement: path.resolve(__dirname, 'src/pages') },
+      { find: '~components', replacement: path.resolve(__dirname, 'src/components') },
+      { find: '~layout', replacement: path.resolve(__dirname, 'src/app/layout') },
+      { find: '~styles', replacement: path.resolve(__dirname, 'src/styles') },
+      { find: '~assets', replacement: path.resolve(__dirname, 'src/assets') },
+      { find: '~ressources', replacement: path.resolve(__dirname, 'src/ressources') },
+      { find: '~animations', replacement: path.resolve(__dirname, 'src/animations') }
+     ],
     },
   css: {
     preprocessorOptions: {
       scss: {
         additionalData: `
-          @use "@/styles/variables" as *;
-          @use "@/styles/mixins" as *;
+          @use "~/styles/variables" as *;
+          @use "~/styles/mixins" as *;
         `
       }
     }

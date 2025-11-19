@@ -1,14 +1,14 @@
 import { useEffect } from 'react'
 import { Outlet, useLocation  } from 'react-router-dom'
-import { isAnalyticsEnabled } from '@/ressources/config/analytics'
-import DesktopHeader from '@/components/DesktopHeader/DesktopHeader'
-import CookieBanner from '@/components/CookieBanner/CookieBanner'
-import CallToAction from '@/components/CallToAction/CallToAction'
+import { isAnalyticsEnabled } from '~/ressources/config/analytics'
+import DesktopHeader from '~/components/DesktopHeader/DesktopHeader'
+import CookieBanner from '~/components/CookieBanner/CookieBanner'
+import CallToAction from '~/components/CallToAction/CallToAction'
 import styles from './RootLayout.module.scss'
-import Footer from '@/components/Footer/Footer'
-import { ModalProjectProvider } from '@/components/ModalProject/providers/ModalProjectProvider'
-import MobileHeader from '@/components/MobileHeader/MobileHeader'
-import ScrollToTop from '@/components/ScrollToTop/ScrollToTop'
+import Footer from '~/components/Footer/Footer'
+import { ModalProjectProvider } from '~/components/ModalProject/providers/ModalProjectProvider'
+import MobileHeader from '~/components/MobileHeader/MobileHeader'
+import ScrollToTop from '~/components/ScrollToTop/ScrollToTop'
 
 
 export default function RootLayout() {

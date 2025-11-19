@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import styles from './MainNav.module.scss'
 import { motion } from 'framer-motion'
 import { useEffect, useRef, useState, useMemo } from 'react'
-import { getMainNavRoutes } from '@/ressources/routes'
+import { getMainNavRoutes } from '~/ressources/routes'
 
 // Typage
 type Props = {

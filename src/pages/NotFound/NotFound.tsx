@@ -1,6 +1,6 @@
-import { PrimaryButtonLink } from '@/components/Buttons/ButtonLink'
-import Heading from '@/components/Heading/Heading'
-import { Seo } from '@/components/Seo/Seo'
+import { PrimaryButtonLink } from '~/components/Buttons/ButtonLink'
+import Heading from '~/components/Heading/Heading'
+import { Seo } from '~/components/Seo/Seo'
 import styles from './NotFound.module.scss'
 
 export default function NotFound() {

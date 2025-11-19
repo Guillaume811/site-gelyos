@@ -1,4 +1,4 @@
-import type { ContactFormData } from '@/pages/Contact/ContactForm/ContactForm'
+import type { ContactFormData } from '~/pages/Contact/ContactForm/ContactForm'
 
 const CONTACT_ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT
 

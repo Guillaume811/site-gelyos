@@ -1,7 +1,7 @@
 import styles from './DivAvantages.module.scss';
-import type { DivAvantages as DivAvantagesContent, ProcessCard as ProcessCardContent } from '@/ressources/content/contentTypes';
-import { CardProcess } from '@/components/CardProcess/CardProcess';
-import Heading from '@/components/Heading/Heading';
+import type { DivAvantages as DivAvantagesContent, ProcessCard as ProcessCardContent } from '~/ressources/content/contentTypes';
+import { CardProcess } from '~/components/CardProcess/CardProcess';
+import Heading from '~/components/Heading/Heading';
 
 export type DivAvantagesProps = {
   data: DivAvantagesContent;

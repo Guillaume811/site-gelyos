@@ -1,4 +1,4 @@
-import type { ProjectPreview } from '@/ressources/content/contentTypes'
+import type { ProjectPreview } from '~/ressources/content/contentTypes'
 
 export const projectPreviewContent: ProjectPreview = {
     title: 'Un aperçu de nos créations',
