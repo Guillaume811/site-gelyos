@@ -25,7 +25,7 @@ export default function ContactInfo({
 
   return (
     <section id={id} aria-labelledby={`${id}-title`} className={styles.container}>
-      <Heading level={3} id={`${id}-title`} className={styles.title}>
+      <Heading level={2} id={`${id}-title`} className={styles.title}>
         {title}
       </Heading>
 
@@ -35,7 +35,7 @@ export default function ContactInfo({
             <Mail />
           </div>
           <div className={styles.text}>
-            <Heading level={4} id={`${id}-email-title`} className={styles.infoTitle}>
+            <Heading level={3} id={`${id}-email-title`} className={styles.infoTitle}>
               {email.title}
             </Heading>
             <p id={`${id}-email-desc`} className={styles.infoDesc}>
@@ -57,7 +57,7 @@ export default function ContactInfo({
             <Phone />
           </div>
           <div className={styles.text}>
-            <Heading level={4} id={`${id}-phone-title`} className={styles.infoTitle}>
+            <Heading level={3} id={`${id}-phone-title`} className={styles.infoTitle}>
               {phone.title}
             </Heading>
             <p id={`${id}-phone-desc`} className={styles.infoDesc}>
@@ -84,7 +84,7 @@ export default function ContactInfo({
           className={styles.socialLink}
           aria-label="Visiter mon profil LinkedIn (nouvel onglet)"
         >
-          <img src={linkedinIcon} alt="" className={styles.socialIconLinkedin}/>
+          <img src={linkedinIcon} alt="" className={styles.socialIconLinkedin} width={40} height={40}/>
         </a>
 
         <a
@@ -94,7 +94,7 @@ export default function ContactInfo({
           className={styles.socialLink}
           aria-label="Visiter mon profil Malt (nouvel onglet)"
         >
-          <img src={maltIcon} alt="" className={styles.socialIconMalt}/>
+          <img src={maltIcon} alt="" className={styles.socialIconMalt} width={40} height={40}/>
         </a>
       </div>
     </section>
