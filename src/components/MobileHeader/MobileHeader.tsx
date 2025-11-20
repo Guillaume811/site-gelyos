@@ -44,7 +44,7 @@ export default function MobileHeader() {
     <header 
       className={styles.header} 
       role="banner" 
-      aria-label="En-tête du site"
+      aria-label="En-t�te du site"
       data-open={isOpen ? "true" : "false"}
     >
       <div className={styles.container}>
@@ -72,7 +72,7 @@ export default function MobileHeader() {
           <NavLink
             to="/contact"
             className={clsx(styles.iconBtn, styles.mailBtn)}
-            aria-label="Aller à la page Contact"
+            aria-label="Aller � la page Contact"
             title="Contact"
           >
             {/* Enveloppe */}
@@ -150,7 +150,7 @@ export default function MobileHeader() {
               aria-label="LinkedIn"
               title="LinkedIn"
             >
-              <img src={linkedinIcon} alt="LinkedIn" className={styles.socialIconLinkedin} />
+              <img src={linkedinIcon} alt="LinkedIn" className={styles.socialIconLinkedin} width={32} height={32} />
             </a>
 
             <a
@@ -161,7 +161,7 @@ export default function MobileHeader() {
               aria-label="Malt"
               title="Malt"
             >
-              <img src={maltIcon} alt="Malt" className={styles.socialIconMalt} />
+              <img src={maltIcon} alt="Malt" className={styles.socialIconMalt} width={32} height={32} />
             </a>
           </div>
         </div>
