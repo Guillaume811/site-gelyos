@@ -39,9 +39,11 @@ export default function CallToAction() {
         <Heading id="cta-title" level={3} className={styles.title}>
           {title}
         </Heading>
-        <p className={styles.text}>
-          <ReactMarkdown remarkPlugins={[remarkBreaks]}>{text}</ReactMarkdown>
-        </p>
+        <div className={styles.text}>
+          <ReactMarkdown remarkPlugins={[remarkBreaks]} components={{ p: ({ children }) => <p>{children}</p> }}>
+            {text}
+          </ReactMarkdown>
+        </div>
         <div className={styles.actions}>
           <PrimaryButtonLink to="/contact">
             {button}
