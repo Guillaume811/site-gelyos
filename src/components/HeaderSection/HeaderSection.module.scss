@@ -12,16 +12,19 @@
 .background {
   position: absolute;
   inset: 0;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
   z-index: 0;
-  will-change: transform;
+  overflow: hidden;
+}
 
-  @media (max-width: 768px) {
-    background-attachment: scroll;
-    transform: translate3d(0, var(--parallax-offset, 0px), 0);
+.backgroundImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate3d(0, var(--parallax-offset, 0px), 0);
+  transition: transform 80ms linear;
+
+  @media (max-width: 992px) {
+    transform: none;
   }
 }
 
