@@ -483,3 +483,9 @@ Migrer la logique modale dependante de `react-router-dom` vers des primitives co
 ### Prochaine etape recommandee
 
 Valider manuellement en navigateur l'ouverture/fermeture de modale (clic carte, ESC, focus trap, back/forward), puis migrer la route `/portfolio` vers l'equivalent Next en reutilisant la meme logique modale Next.
+
+### Point ouvert (13-05-2026)
+
+- La modale projet Next remonte en haut de page a l'ouverture.
+- Cause probable : comportement de scroll automatique lie a `router.push` / `router.replace`.
+- Correction prevue : utiliser `{ scroll: false }` ou revoir la logique d'ouverture une fois toutes les pages migrees.
