@@ -685,3 +685,95 @@ Migrer uniquement la page `/portfolio` vers Next.js en conservant URL, contenu, 
 ### Prochaine etape recommandee
 
 Migrer ensuite la page `/contact` en conservant la logique formulaire/API existante et en preparant la transition SEO finale.
+
+## 13-05-2026 — Migration page `/contact` vers Next (phase 11)
+
+### Decision structurante
+
+- [13-05-2026] [page-next] [migration de `/contact` avec conservation de la logique formulaire/API existante] [eviter une re-ecriture risquee du formulaire] [cohabitation Vite/Next maintenue avec adaptation env minimale]
+
+### Objectif
+
+Migrer uniquement la page `/contact` vers Next.js en conservant URL, contenu, design, responsive, accessibilite, logique formulaire et appel API.
+
+### Page migree
+
+- `Contact` (`/contact`)
+
+### Fichiers modifies
+
+- `src/services/contactApi.ts`
+- `src/services/recaptcha.ts`
+- `MIGRATION_LOG.md`
+
+### Fichiers crees
+
+- `src/app/(site)/contact/page.tsx`
+- `src/_pages/Contact/Contact.tsx`
+- `src/_pages/Contact/ContactInfo/ContactInfo.tsx`
+- `src/_pages/Contact/ContactInfo/ContactInfo.module.scss`
+- `src/_pages/Contact/ContactForm/ContactForm.tsx`
+- `src/_pages/Contact/ContactForm/ContactForm.module.scss`
+
+### Sections migrees
+
+- `ContactInfo`
+- `ContactForm`
+
+### Formulaire migre
+
+- Formulaire detecte et migre: `ContactForm`
+- Champs conserves: `firstName`, `lastName`, `email`, `phone`, `need`, `message`, `rgpd`
+- Validation conservee:
+  - `firstName` min 2 caracteres
+  - `lastName` min 2 caracteres
+  - email via regex
+  - telephone optionnel via regex
+  - `message` min 20 caracteres
+  - `rgpd` obligatoire
+- Etats conserves: `idle`, `submitting`, `success`, `error`
+- Messages conserves: erreur champ, erreur globale, succes, focus sur premiere erreur/succes
+
+### Logique API
+
+- Logique de soumission conservee:
+  - token reCAPTCHA via `getRecaptchaToken('contact_form')`
+  - POST vers endpoint formulaire via `submitContactRequest`
+- Adaptation minimale de compatibilite Next:
+  - fallback env ajoute:
+    - `VITE_CONTACT_ENDPOINT` ou `NEXT_PUBLIC_CONTACT_ENDPOINT`
+    - `VITE_RECAPTCHA_SITE_KEY` ou `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`
+- Aucun secret serveur ajoute cote client.
+
+### Metadata migrees
+
+- `title`, `description`, `canonical`, `openGraph` migres depuis la page legacy.
+
+### Verifications effectuees
+
+- [ ] lint
+- [ ] typecheck
+- [ ] tests
+- [x] build
+- [x] verification manuelle
+
+### Resultat
+
+- `npm run build` : OK.
+- `npm run build:next` : OK.
+- Verification HTTP Next `/` : `200`.
+- Verification HTTP Next `/contact` : `200`.
+- Verification presence formulaire sans envoi:
+  - `<form>` detecte
+  - champ `name="email"` detecte
+  - champ `name="message"` detecte
+
+### Risques / points a surveiller
+
+- Dette UX modale deja documentee (scroll a l'ouverture) non traitee ici, conformement au scope.
+- Warning Vite non bloquant sur taille de chunk (`> 500 kB`) toujours present.
+- Le formulaire n'a pas ete soumis vers l'API reelle dans cette session (controle rendu uniquement).
+
+### Prochaine etape recommandee
+
+Lancer une verification manuelle navigateur du parcours formulaire complet (validation, erreur API, succes), puis traiter la phase SEO globale (sitemap/robots) avant nettoyage legacy.

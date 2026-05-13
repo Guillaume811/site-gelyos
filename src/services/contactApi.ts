@@ -1,10 +1,13 @@
 import type { ContactFormData } from '~/pages/Contact/ContactForm/ContactForm'
 
-const CONTACT_ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT
+const CONTACT_ENDPOINT =
+  import.meta.env?.VITE_CONTACT_ENDPOINT ?? process.env.NEXT_PUBLIC_CONTACT_ENDPOINT
 
 export async function submitContactRequest(data: ContactFormData, token: string) {
   if (!CONTACT_ENDPOINT) {
-    throw new Error('Aucun endpoint de formulaire configuré (VITE_CONTACT_ENDPOINT).')
+    throw new Error(
+      'Aucun endpoint de formulaire configure (VITE_CONTACT_ENDPOINT ou NEXT_PUBLIC_CONTACT_ENDPOINT).',
+    )
   }
 
   const response = await fetch(CONTACT_ENDPOINT, {
@@ -18,7 +21,7 @@ export async function submitContactRequest(data: ContactFormData, token: string)
   const result = await response.json().catch(() => null)
 
   if (!response.ok || !result?.success) {
-    const message = result?.message ?? 'Impossible d’envoyer le message pour le moment.'
+    const message = result?.message ?? 'Impossible d envoyer le message pour le moment.'
     throw new Error(message)
   }
 

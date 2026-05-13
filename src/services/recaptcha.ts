@@ -1,7 +1,9 @@
 let scriptPromise: Promise<void> | null = null
 
 function loadRecaptcha(siteKey: string) {
-  if (typeof window === 'undefined') return Promise.reject(new Error('reCAPTCHA ne peut être chargé côté serveur.'))
+  if (typeof window === 'undefined') {
+    return Promise.reject(new Error('reCAPTCHA ne peut etre charge cote serveur.'))
+  }
 
   if (!scriptPromise) {
     scriptPromise = new Promise<void>((resolve, reject) => {
@@ -16,7 +18,7 @@ function loadRecaptcha(siteKey: string) {
       script.defer = true
       script.onload = () => {
         if (!window.grecaptcha) {
-          reject(new Error('reCAPTCHA non disponible après chargement.'))
+          reject(new Error('reCAPTCHA non disponible apres chargement.'))
           return
         }
         window.grecaptcha.ready(() => resolve())
@@ -30,9 +32,12 @@ function loadRecaptcha(siteKey: string) {
 }
 
 export async function getRecaptchaToken(action: string) {
-  const siteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY
+  const siteKey =
+    import.meta.env?.VITE_RECAPTCHA_SITE_KEY ?? process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
   if (!siteKey) {
-    throw new Error('La clé publique reCAPTCHA (VITE_RECAPTCHA_SITE_KEY) est manquante.')
+    throw new Error(
+      'La cle publique reCAPTCHA est manquante (VITE_RECAPTCHA_SITE_KEY ou NEXT_PUBLIC_RECAPTCHA_SITE_KEY).',
+    )
   }
 
   await loadRecaptcha(siteKey)
