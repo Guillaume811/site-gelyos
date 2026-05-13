@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: 'GELYOS | Développement web sur mesure',
   description:
     'Sites vitrines, e-commerce et applications web pensés pour la performance, le SEO et la conversion.',
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     title: 'GELYOS | Développement web sur mesure',
     description:

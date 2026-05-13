@@ -782,3 +782,81 @@ Lancer une verification manuelle navigateur du parcours formulaire complet (vali
 
 - Erreur de configuration detectee sur `/contact`: `La cle publique reCAPTCHA est manquante (VITE_RECAPTCHA_SITE_KEY ou NEXT_PUBLIC_RECAPTCHA_SITE_KEY).`
 - Dette: configurer la cle publique reCAPTCHA avant test complet du formulaire et avant mise en production Next.
+
+## 13-05-2026 — Verification SEO globale Next (phase 12)
+
+### Decision structurante
+
+- [13-05-2026] [seo-next] [sitemap Next App Router cree et canonical Home ajoute] [eviter de publier un sitemap avec URL non migree `/a-propos`] [coherence SEO des routes Next migrees avant nettoyage legacy]
+
+### Objectif
+
+Verifier les elements SEO globaux de la version Next migree et corriger uniquement les points necessaires.
+
+### Fichiers modifies
+
+- `src/app/(site)/page.tsx`
+- `scripts/generate-sitemap.ts`
+- `MIGRATION_LOG.md`
+
+### Fichiers crees
+
+- `src/app/sitemap.ts`
+
+### Verification metadata
+
+- `metadataBase` : configure sur `https://gelyos.fr` dans `src/app/layout.tsx`.
+- Routes verifiees : `/`, `/services`, `/portfolio`, `/contact`, `/mentions-legales`.
+- Points verifies :
+  - `title` : present sur toutes les routes migrees.
+  - `description` : present sur toutes les routes migrees.
+  - `canonical` : present sur toutes les routes migrees apres ajout sur `/`.
+  - `openGraph` : present sur toutes les routes migrees.
+  - `robots` : `noindex,follow` conserve sur `/mentions-legales`.
+
+### robots.txt
+
+- `public/robots.txt` existant conserve (coherent avec le scope actuel).
+- `src/app/robots.ts` : non necessaire a ce stade.
+
+### sitemap
+
+- `public/sitemap.xml` historique detecte avec URL `/a-propos` (route non migree cote Next).
+- `src/app/sitemap.ts` ajoute pour aligner la convention metadata Next.
+- Correction effective appliquee sur la source servie (`public/sitemap.xml`) via `scripts/generate-sitemap.ts`:
+  - exclusion de `aPropos` tant que la route Next n'est pas migree.
+- Sitemap coherent des routes Next migrees et indexables :
+  - `/`
+  - `/services`
+  - `/portfolio`
+  - `/contact`
+
+### Verifications effectuees
+
+- [ ] lint
+- [ ] typecheck
+- [ ] tests
+- [x] build
+- [x] verification manuelle
+
+### Resultat
+
+- `npm run build` : OK.
+- `npm run build:next` : OK.
+- Verification HTTP Next :
+  - `/` : `200`
+  - `/services` : `200`
+  - `/portfolio` : `200`
+  - `/contact` : `200`
+  - `/mentions-legales` : `200`
+  - `/robots.txt` : `200`
+  - `/sitemap.xml` : `200`
+
+### Risques / points a surveiller
+
+- Dette modale (scroll) et dette reCAPTCHA restent ouvertes, non traitees ici conformement au scope.
+- Le sitemap public reste genere par le script Vite ; lors de la migration de `/a-propos`, reintroduire cette URL dans `scripts/generate-sitemap.ts`.
+
+### Prochaine etape recommandee
+
+Finaliser la verification manuelle SEO (balises rendues dans le HTML produit), puis preparer la phase de nettoyage legacy.
