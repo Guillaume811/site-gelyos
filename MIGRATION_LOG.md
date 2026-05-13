@@ -551,3 +551,65 @@ Migrer uniquement la prochaine page simple vers Next.js, en preservant URL, cont
 ### Prochaine etape recommandee
 
 Migrer ensuite la page statique suivante recommandee par le plan (`/services`) en conservant la meme approche route fine + composant metier dans `src/_pages`.
+
+## 13-05-2026 — Migration page `/services` vers Next (phase 9)
+
+### Decision structurante
+
+- [13-05-2026] [page-next] [migration de `/services` en route App Router dediee] [page statique avec logique faible et contenu structure] [progression du plan page par page sans casser Vite]
+
+### Objectif
+
+Migrer uniquement la page `/services` vers Next.js en preservant URL, contenu, design, responsive, accessibilite et metadata.
+
+### Page migree
+
+- `Services` (`/services`)
+
+### Fichiers modifies
+
+- `MIGRATION_LOG.md`
+
+### Fichiers crees
+
+- `src/app/(site)/services/page.tsx`
+- `src/_pages/Services/Services.tsx`
+- `src/_pages/Services/ServicesSection/ServicesSection.tsx`
+- `src/_pages/Services/ServicesSection/ServicesSection.module.scss`
+
+### Sections migrees
+
+- `ServicesSection`
+
+### Changements effectues
+
+- Analyse de la page legacy `src/_legacy/pages/Services/Services.tsx` et de sa section `ServicesSection`.
+- Creation de la route Next `src/app/(site)/services/page.tsx` connectee au composant metier `src/_pages/Services/Services.tsx`.
+- Migration de la structure de page (HeaderSection + PageIntro + mapping des blocs services) sans changer le contenu.
+- Migration de la section `ServicesSection` dans `src/_pages/Services/ServicesSection` avec conservation du rendu TwoColumnSection, Accordion et image.
+- Migration des metadata legacy (`title`, `description`, `canonical`, `openGraph`) dans la route Next.
+- `src/_pages/Services/Services.module.scss` non cree car aucun style local de page n'etait present en legacy.
+
+### Verifications effectuees
+
+- [ ] lint
+- [ ] typecheck
+- [ ] tests
+- [x] build
+- [x] verification manuelle
+
+### Resultat
+
+- `npm run build` : OK.
+- `npm run build:next` : OK.
+- Verification HTTP Next `/` : `200`.
+- Verification HTTP Next `/services` : `200`.
+
+### Risques / points a surveiller
+
+- Dette UX modale deja documentee (scroll a l'ouverture) non traitee ici, conformement au scope.
+- Warning Vite non bloquant sur taille de chunk (`> 500 kB`) toujours present.
+
+### Prochaine etape recommandee
+
+Migrer ensuite la page `/portfolio` vers App Router en reutilisant la logique modale Next deja migree.
