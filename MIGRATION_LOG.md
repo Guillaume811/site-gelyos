@@ -315,3 +315,58 @@ Migrer uniquement la vraie page d'accueil vers `src/_pages/Home` et la connecter
 ### Prochaine etape recommandee
 
 Migrer ensuite le layout public vers `src/app/(site)/layout.tsx` pour retirer progressivement la dependance au wrapper client Home.
+
+## 13-05-2026 — Migration du layout public vers Next (phase 5)
+
+### Decision structurante
+
+- [13-05-2026] [layout-public] [layout legacy reutilise via wrapper client MemoryRouter dans src/app/(site)] [preserver header/footer/navigation/provideurs sans migrer toutes les pages] [Home Next utilise le layout public commun, wrapper local Home reduit]
+
+### Objectif
+
+Migrer uniquement le layout public vers `src/app/(site)/layout.tsx` pour commencer a retirer les wrappers legacy locaux de la Home.
+
+### Fichiers modifies
+
+- `src/app/(site)/layout.tsx`
+- `src/app/(site)/page.tsx`
+- `src/app/layout.tsx`
+- `src/app/layout/RootLayout.module.scss`
+- `src/ressources/config/analytics.ts`
+- `MIGRATION_LOG.md`
+
+### Fichiers crees
+
+- `src/app/(site)/Providers.tsx`
+
+### Changements effectues
+
+- Creation d'un composant client de cohabitation `src/app/(site)/Providers.tsx` qui monte le `RootLayout` legacy dans un `MemoryRouter` avec synchronisation du pathname Next.
+- Migration du layout public Next (`src/app/(site)/layout.tsx`) pour utiliser ce composant et centraliser header/footer/navigation/providers.
+- Home Next reconnectee directement a `Home` (suppression du wrapper local obligatoire sur la route Home).
+- Configuration de `metadataBase` sur `https://gelyos.fr` dans `src/app/layout.tsx`.
+- Correctif CSS Modules Next sur `RootLayout.module.scss` (`p` -> `.wrapper p`).
+- Correctif de compatibilite env dans `analytics.ts` (`import.meta.env?.VITE_GA_ID` + fallback `process.env.NEXT_PUBLIC_GA_ID`).
+
+### Verifications effectuees
+
+- [ ] lint
+- [ ] typecheck
+- [ ] tests
+- [x] build
+- [x] verification manuelle
+
+### Resultat
+
+- `npm run build` : OK.
+- `npm run build:next` : OK.
+- Verification rapide de `/` cote Next: `STATUS=200` via `npm run start:next -p 3100` + requete HTTP locale.
+
+### Risques / points a surveiller
+
+- Le layout Next repose encore sur un `MemoryRouter` transitoire pour les composants legacy React Router.
+- Les liens de navigation legacy dans ce contexte ne migrent pas encore vers un routing Next natif page par page.
+
+### Prochaine etape recommandee
+
+Migrer les composants de navigation partages (`ButtonLink`, `MainNav`, `DesktopHeader`, `MobileHeader`, `Footer`, `CallToAction`) vers des primitives Next (`next/link`, `usePathname`) pour retirer progressivement `react-router-dom` du layout public.

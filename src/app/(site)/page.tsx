@@ -1,5 +1,5 @@
 ﻿import type { Metadata } from 'next'
-import HomeClientShell from '~/_pages/Home/HomeClientShell'
+import Home from '~/_pages/Home/Home'
 
 export const metadata: Metadata = {
   title: 'GELYOS | Développement web sur mesure',
@@ -15,5 +15,5 @@ export const metadata: Metadata = {
 }
 
 export default function SiteHomePage() {
-  return <HomeClientShell />
+  return <Home />
 }
