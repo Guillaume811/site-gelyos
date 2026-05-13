@@ -777,3 +777,8 @@ Migrer uniquement la page `/contact` vers Next.js en conservant URL, contenu, de
 ### Prochaine etape recommandee
 
 Lancer une verification manuelle navigateur du parcours formulaire complet (validation, erreur API, succes), puis traiter la phase SEO globale (sitemap/robots) avant nettoyage legacy.
+
+### Point ouvert (13-05-2026)
+
+- Erreur de configuration detectee sur `/contact`: `La cle publique reCAPTCHA est manquante (VITE_RECAPTCHA_SITE_KEY ou NEXT_PUBLIC_RECAPTCHA_SITE_KEY).`
+- Dette: configurer la cle publique reCAPTCHA avant test complet du formulaire et avant mise en production Next.
