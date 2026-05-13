@@ -12,9 +12,9 @@
   overflow: hidden;
 }
 
-:global(.swiper),
-:global(.swiper-wrapper),
-:global(.swiper-slide) {
+.carousel :global(.swiper),
+.carousel :global(.swiper-wrapper),
+.carousel :global(.swiper-slide) {
   min-width: 0;
 }
 
@@ -44,16 +44,16 @@
   }
 }
 
-:global(.swiper-pagination) {
+.carousel :global(.swiper-pagination) {
   position: static;
   margin-top: 1rem;
 }
 
-:global(.swiper-pagination-bullet) {
+.carousel :global(.swiper-pagination-bullet) {
   background: rgba(255, 255, 255, 0.4);
   opacity: 1;
 }
 
-:global(.swiper-pagination-bullet-active) {
+.carousel :global(.swiper-pagination-bullet-active) {
   background: #67c3fb;
 }

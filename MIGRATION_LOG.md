@@ -245,3 +245,73 @@ Migrer la Home réelle (ancienne `~pages/Home/Home`) vers `src/_pages/Home` en c
 - [x] Identifier les dépendances critiques
 - [x] Identifier les éléments SEO existants
 - [x] Valider la stratégie de migration avec la branche dédiée
+
+## 13-05-2026 — Migration Home React/Vite vers Next (phase 4)
+
+### Decision structurante
+
+- [13-05-2026] [home-next] [wrapper client Home avec MemoryRouter + ModalProjectProvider] [garder le comportement legacy sans migrer tout le routing/modals] [build:next OK sur / pendant la cohabitation]
+
+### Objectif
+
+Migrer uniquement la vraie page d'accueil vers `src/_pages/Home` et la connecter a `src/app/(site)/page.tsx` sans migrer les autres pages.
+
+### Fichiers modifies
+
+- `src/app/(site)/page.tsx`
+- `src/_pages/Home/Home.tsx`
+- `src/_pages/Home/Home.module.scss`
+- `src/_pages/Home/Hero/Hero.tsx`
+- `src/_pages/Home/ServicesPreview/ServicesPreview.tsx`
+- `src/_pages/Home/ProjectPreview/ProjectPreview.tsx`
+- `src/components/Buttons/Button.module.scss`
+- `src/components/Carousel/CardCarousel/CardCarousel.module.scss`
+- `MIGRATION_LOG.md`
+
+### Fichiers crees
+
+- `src/_pages/Home/HomeClientShell.tsx`
+- `src/_pages/Home/Hero/Hero.tsx`
+- `src/_pages/Home/Hero/Hero.module.scss`
+- `src/_pages/Home/ProjectPreview/ProjectPreview.tsx`
+- `src/_pages/Home/ProjectPreview/ProjectPreview.module.scss`
+- `src/_pages/Home/SectionProcess/SectionProcess.tsx`
+- `src/_pages/Home/SectionProcess/SectionProcess.module.scss`
+- `src/_pages/Home/SectionProcess/DivProcess/DivProcess.tsx`
+- `src/_pages/Home/SectionProcess/DivProcess/DivProcess.module.scss`
+- `src/_pages/Home/SectionProcess/DivAvantages/DivAvantages.tsx`
+- `src/_pages/Home/SectionProcess/DivAvantages/DivAvantages.module.scss`
+- `src/_pages/Home/ServicesPreview/ServicesPreview.tsx`
+- `src/_pages/Home/ServicesPreview/ServicesPreview.module.scss`
+- `src/_pages/Home/ServicesPreview/ServicesPreviewItem.tsx`
+
+### Changements effectues
+
+- Copie de la structure Home legacy vers `src/_pages/Home` (Hero, ServicesPreview, SectionProcess, ProjectPreview).
+- Remplacement SEO Home (`Seo` / react-helmet-async) par `metadata` Next dans `src/app/(site)/page.tsx`.
+- Adaptation des liens Home de section vers `next/link`.
+- Correctifs SCSS minimaux pour compatibilite Next CSS Modules.
+- Ajout d'un wrapper client Home avec `MemoryRouter` et `ModalProjectProvider` pour conserver le comportement de la section projets pendant la transition.
+
+### Verifications effectuees
+
+- [ ] lint
+- [ ] typecheck
+- [ ] tests
+- [x] build
+- [x] verification manuelle
+
+### Resultat
+
+- `npm run build` : OK.
+- `npm run build:next` : OK.
+- Verification rapide de `/` cote Next: `STATUS=200` via `npm run start:next -p 3100` + requete HTTP locale.
+
+### Risques / points a surveiller
+
+- Le wrapper `MemoryRouter` + `ModalProjectProvider` est transitoire: la Home Next depend encore partiellement de la logique React Router legacy.
+- Warning Next restant: `metadataBase` non defini.
+
+### Prochaine etape recommandee
+
+Migrer ensuite le layout public vers `src/app/(site)/layout.tsx` pour retirer progressivement la dependance au wrapper client Home.

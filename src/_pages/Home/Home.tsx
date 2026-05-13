@@ -1,18 +1,28 @@
-import Heading from '~/components/Heading/Heading'
+﻿/* Component Home
+ * Render logic:
+ * - Composes the existing homepage sections without changing legacy UI behavior.
+ * - Keeps client runtime because child sections rely on hooks/animations.
+ *
+ * View TSX:
+ * - Renders Hero, ServicesPreview, SectionProcess and ProjectPreview in the same order.
+ */
+'use client'
+
+import { divProcessContent } from "~/ressources/content/home/divProcessContent";
+import Hero from "./Hero/Hero";
+import { SectionProcess } from "./SectionProcess/SectionProcess";
+import ServicesPreview from "./ServicesPreview/ServicesPreview";
+import { divAvantagesContent } from "~/ressources/content/home/divAvantagesContent";
+import ProjectPreview from "./ProjectPreview/ProjectPreview";
 import styles from './Home.module.scss'
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <section className={styles.hero} aria-labelledby="home-title">
-        <Heading id="home-title" level={1}>
-          Developpement Web Sur Mesure
-        </Heading>
-        <p className={styles.text}>
-          Base Next.js en place pour la migration progressive. Le routing React existant est
-          conserve pendant cette etape.
-        </p>
-      </section>
-    </main>
+    <div className={styles.root}>
+      <Hero />
+      <ServicesPreview />
+      <SectionProcess process={divProcessContent} avantages={divAvantagesContent} />
+      <ProjectPreview />
+    </div>
   )
 }
