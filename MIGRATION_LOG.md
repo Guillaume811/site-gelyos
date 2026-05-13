@@ -489,3 +489,65 @@ Valider manuellement en navigateur l'ouverture/fermeture de modale (clic carte, 
 - La modale projet Next remonte en haut de page a l'ouverture.
 - Cause probable : comportement de scroll automatique lie a `router.push` / `router.replace`.
 - Correction prevue : utiliser `{ scroll: false }` ou revoir la logique d'ouverture une fois toutes les pages migrees.
+
+## 13-05-2026 — Migration page simple `/mentions-legales` vers Next (phase 8)
+
+### Decision structurante
+
+- [13-05-2026] [page-next] [migration de `/mentions-legales` en priorite] [page statique a faible logique et sans API/formulaire] [progression sure du plan page par page]
+
+### Objectif
+
+Migrer uniquement la prochaine page simple vers Next.js, en preservant URL, contenu, design et metadata.
+
+### Page migree
+
+- `MentionsLegales` (`/mentions-legales`)
+
+### Fichiers modifies
+
+- `MIGRATION_LOG.md`
+
+### Fichiers crees
+
+- `src/app/(site)/mentions-legales/page.tsx`
+- `src/_pages/MentionsLegales/MentionsLegales.tsx`
+- `src/_pages/MentionsLegales/MentionsLegales.module.scss`
+- `src/_pages/MentionsLegales/SectionBlock/SectionBlock.tsx`
+- `src/_pages/MentionsLegales/SectionBlock/SectionBlock.module.scss`
+
+### Sections migrees
+
+- `SectionBlock` (reutilisee pour chaque bloc legal)
+
+### Changements effectues
+
+- Selection de la page la plus simple restante: `MentionsLegales` (statique, sans logique metier complexe).
+- Creation de la route Next `src/app/(site)/mentions-legales/page.tsx` connectee au composant metier `src/_pages/MentionsLegales/MentionsLegales.tsx`.
+- Preservation du rendu via reprise des styles modules et de la structure de sections.
+- Preservation de l'action de preference cookies (bouton qui declenche `openCookieBanner`).
+- Migration des metadata de la page legacy (`title`, `description`, `canonical`, `robots`, `openGraph`).
+
+### Verifications effectuees
+
+- [ ] lint
+- [ ] typecheck
+- [ ] tests
+- [x] build
+- [x] verification manuelle
+
+### Resultat
+
+- `npm run build` : OK.
+- `npm run build:next` : OK.
+- Verification HTTP Next `/` : `200`.
+- Verification HTTP Next `/mentions-legales` : `200`.
+
+### Risques / points a surveiller
+
+- Dette UX modale deja documentee (scroll a l'ouverture) non traitee ici, conformement au scope.
+- Une verification HTTP intermediaire a d'abord retourne `404` sur `/mentions-legales` car un ancien process occupait le port `3100`; re-test propre apres nettoyage de port: `200`.
+
+### Prochaine etape recommandee
+
+Migrer ensuite la page statique suivante recommandee par le plan (`/services`) en conservant la meme approche route fine + composant metier dans `src/_pages`.

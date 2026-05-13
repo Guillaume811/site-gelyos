@@ -1,0 +1,13 @@
+.container {
+  padding: 4rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  overflow-x: clip;
+  contain: inline-size paint;
+
+  @media (max-width: 768px) {
+    padding: 4rem 1.5rem;
+  }
+}
+
