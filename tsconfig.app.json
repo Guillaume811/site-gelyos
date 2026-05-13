@@ -3,7 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["./src/*"],
-      "~pages/*": ["src/pages/*"],
+      "~pages/*": ["src/_legacy/pages/*"],
       "~components/*": ["src/components/*"],
       "~layout/*": ["src/app/layout/*"],
       "~styles/*": ["src/styles/*"],

@@ -42,6 +42,7 @@ Format :
 - [13-05-2026] [architecture] [pages métier dans src/_pages] [éviter la confusion avec le Pages Router src/pages] [composants de pages isolés du routing]
 - [13-05-2026] [workflow] [migration progressive] [réduire les risques de régression] [validation étape par étape]
 - [13-05-2026] [setup] [scripts Vite conservés + scripts Next.js dédiés] [éviter une régression build immédiate liée à src/pages] [coexistence temporaire des deux workflows]
+- [13-05-2026] [cohabitation] [ancien dossier src/pages déplacé vers src/_legacy/pages] [empêcher Next d'activer le Pages Router sur le code legacy] [build:next compilable sans supprimer l'ancien routing React]
 
 ---
 
@@ -184,6 +185,52 @@ Base Next.js ajoutée et vérifications Vite passantes (`lint`, `type-check`, `b
 ### Prochaine étape recommandée
 
 Traiter explicitement la stratégie de cohabitation avec `src/pages` pour rendre `build:next` exploitable, puis migrer la Home complète dans `src/_pages/Home`.
+
+## 13-05-2026 — Sécurisation cohabitation Vite / Next.js
+
+### Objectif
+
+Empêcher Next.js d'interpréter l'ancien dossier `src/pages` (legacy React/Vite) comme Pages Router, tout en conservant le fonctionnement Vite actuel.
+
+### Fichiers modifiés
+
+- `vite.config.ts`
+- `next.config.ts`
+- `tsconfig.app.json`
+- `tsconfig.json`
+- `MIGRATION_LOG.md`
+
+### Fichiers déplacés
+
+- `src/pages/**` -> `src/_legacy/pages/**`
+
+### Changements effectués
+
+- Déplacement du dossier legacy `src/pages` vers `src/_legacy/pages`.
+- Conservation de l'API d'import existante (`~pages/...`) via mise à jour des alias vers `src/_legacy/pages`.
+- Aucun changement de design, aucune migration de nouvelle page, aucun retrait de l'ancien routing React.
+
+### Vérifications effectuées
+
+- [ ] lint
+- [ ] typecheck
+- [ ] tests
+- [x] build
+- [x] vérification manuelle
+
+### Résultat
+
+- `npm run build` (Vite) : OK.
+- `npm run build:next` : OK.
+
+### Risques / points à surveiller
+
+- Le code legacy reste non migré et doit être traité page par page vers `src/_pages` / `src/app/(site)`.
+- Les références documentaires historiques à `src/pages` dans les fichiers de migration sont désormais obsolètes et devront être actualisées au fil des étapes.
+
+### Prochaine étape recommandée
+
+Migrer la Home réelle (ancienne `~pages/Home/Home`) vers `src/_pages/Home` en conservant le rendu, puis brancher `src/app/(site)/page.tsx` sur cette version migrée.
 
 ---
 
