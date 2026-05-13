@@ -613,3 +613,75 @@ Migrer uniquement la page `/services` vers Next.js en preservant URL, contenu, d
 ### Prochaine etape recommandee
 
 Migrer ensuite la page `/portfolio` vers App Router en reutilisant la logique modale Next deja migree.
+
+## 13-05-2026 — Migration page `/portfolio` vers Next (phase 10)
+
+### Decision structurante
+
+- [13-05-2026] [page-next] [migration de `/portfolio` avec reutilisation du provider modale Next existant] [eviter une double logique modale et garder le comportement] [route Next compilee sans toucher au legacy Vite]
+
+### Objectif
+
+Migrer uniquement la page `/portfolio` vers Next.js en conservant URL, contenu, design, responsive, accessibilite et logique modale existante.
+
+### Page migree
+
+- `Portfolio` (`/portfolio`)
+
+### Fichiers modifies
+
+- `MIGRATION_LOG.md`
+
+### Fichiers crees
+
+- `src/app/(site)/portfolio/page.tsx`
+- `src/_pages/Portfolio/Portfolio.tsx`
+- `src/_pages/Portfolio/ProjectGrid/ProjectGrid.tsx`
+- `src/_pages/Portfolio/ProjectGrid/ProjectGrid.module.scss`
+- `src/_pages/Portfolio/ProjectGrid/ProjectCardNext.tsx`
+
+### Sections migrees
+
+- `ProjectGrid`
+
+### Composants modale/projets reutilises
+
+- `ModalProjectProviderNext` (deja monte dans `src/app/(site)/Providers.tsx`)
+- `useModalProject` (contexte modal partage)
+- `CardProjectContent` (structure de carte projet partagee)
+- `CardProject.module.scss` (skin portfolio partage)
+
+### Changements effectues
+
+- Analyse de la page legacy `src/_legacy/pages/Portfolio/Portfolio.tsx` et de ses dependances.
+- Creation de la route Next `src/app/(site)/portfolio/page.tsx` avec metadata migrees.
+- Migration du composant metier `src/_pages/Portfolio/Portfolio.tsx` avec conservation du tri des projets.
+- Creation d'une section dediee `ProjectGrid` pour afficher la grille des projets.
+- Creation d'une carte Next `ProjectCardNext` qui ouvre la modale via `useModalProject` et conserve l'URL fallback `?project=<slug>`.
+- Aucune duplication de provider modale; le provider Next existant est reutilise.
+- `src/_pages/Portfolio/Portfolio.module.scss` non cree car non necessaire pour le rendu legacy actuel.
+
+### Verifications effectuees
+
+- [ ] lint
+- [ ] typecheck
+- [ ] tests
+- [x] build
+- [x] verification manuelle
+
+### Resultat
+
+- `npm run build` : OK.
+- `npm run build:next` : OK.
+- Verification HTTP Next `/` : `200`.
+- Verification HTTP Next `/portfolio` : `200`.
+- Verification HTTP Next `/portfolio?project=jaqen` : `200`.
+
+### Risques / points a surveiller
+
+- Dette UX modale deja documentee (scroll a l'ouverture) non traitee ici, conformement au scope.
+- Warning Vite non bloquant sur taille de chunk (`> 500 kB`) toujours present.
+
+### Prochaine etape recommandee
+
+Migrer ensuite la page `/contact` en conservant la logique formulaire/API existante et en preparant la transition SEO finale.
