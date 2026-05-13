@@ -41,6 +41,7 @@ Format :
 - [13-05-2026] [architecture] [routing dans src/app/(site)] [séparer routing, layout et metadata] [routes Next.js centralisées]
 - [13-05-2026] [architecture] [pages métier dans src/_pages] [éviter la confusion avec le Pages Router src/pages] [composants de pages isolés du routing]
 - [13-05-2026] [workflow] [migration progressive] [réduire les risques de régression] [validation étape par étape]
+- [13-05-2026] [setup] [scripts Vite conservés + scripts Next.js dédiés] [éviter une régression build immédiate liée à src/pages] [coexistence temporaire des deux workflows]
 
 ---
 
@@ -129,6 +130,61 @@ Audit terminé sans modification de fichier source applicatif.
 
 Préparer la phase 2 (branche dédiée et état Git propre), puis initier la configuration minimale Next.js sans migrer de page.
 
+## 13-05-2026 — Setup minimal Next.js (phase 3)
+
+### Objectif
+
+Ajouter la base Next.js App Router dans le même repository, sans migrer toutes les pages et sans supprimer l'ancien code React.
+
+### Fichiers modifiés
+
+- `package.json`
+- `.gitignore`
+- `MIGRATION_LOG.md`
+
+### Fichiers créés
+
+- `next.config.ts`
+- `next-env.d.ts`
+- `src/app/layout.tsx`
+- `src/app/(site)/layout.tsx`
+- `src/app/(site)/page.tsx`
+- `src/_pages/Home/Home.tsx`
+- `src/_pages/Home/Home.module.scss`
+
+### Changements effectués
+
+- Ajout de `next` dans les dépendances.
+- Conservation des scripts Vite par défaut (`dev`, `build`, `preview`) pour préserver le flux existant.
+- Ajout de scripts Next.js dédiés (`dev:next`, `build:next`, `start:next`) pour lancer l'adoption progressive.
+- Création du routing cible minimal `src/app/(site)` avec page d'accueil connectée à `src/_pages/Home/Home.tsx`.
+- Ajout d'un root layout Next.js (`src/app/layout.tsx`) et d'un layout de groupe `(site)`.
+- Création d'une page Home minimale en SCSS Modules pour démarrer la migration sans refactor global.
+- Ajustement ESLint pour ignorer `.next` et désactiver une règle Vite incompatible sur `src/app/**`.
+- Ajout d'une configuration Next minimale (`next.config.ts`) pour alias imports et pré-injection Sass globale.
+
+### Vérifications effectuées
+
+- [x] lint
+- [x] typecheck
+- [ ] tests
+- [x] build
+- [x] vérification manuelle
+
+### Résultat
+
+Base Next.js ajoutée et vérifications Vite passantes (`lint`, `type-check`, `build`).
+
+### Risques / points à surveiller
+
+- Le dossier historique `src/pages` est interprétable par le Pages Router Next.js et peut provoquer des erreurs de build tant que la migration n'est pas encadrée route par route.
+- La page d'accueil Next créée est volontairement minimale : le rendu actuel Vite n'est pas encore reproduit à l'identique.
+- `npm run build:next` échoue encore à ce stade (cohabitation `src/pages` + contraintes SCSS/CSS Modules du code historique).
+
+### Prochaine étape recommandée
+
+Traiter explicitement la stratégie de cohabitation avec `src/pages` pour rendre `build:next` exploitable, puis migrer la Home complète dans `src/_pages/Home`.
+
 ---
 
 ## Points ouverts
@@ -141,4 +197,4 @@ Préparer la phase 2 (branche dédiée et état Git propre), puis initier la con
 - [x] Identifier les formulaires
 - [x] Identifier les dépendances critiques
 - [x] Identifier les éléments SEO existants
-- [ ] Valider la stratégie de migration avec la branche dédiée
+- [x] Valider la stratégie de migration avec la branche dédiée

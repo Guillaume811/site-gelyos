@@ -10,12 +10,16 @@
         "build": "tsc --noEmit && vite build",
         "type-check": "tsc --noEmit",
         "lint": "eslint .",
-        "preview": "vite preview"
+        "preview": "vite preview",
+        "dev:next": "next dev --webpack",
+        "build:next": "next build --webpack",
+        "start:next": "next start"
     },
     "dependencies": {
         "clsx": "^2.1.1",
         "framer-motion": "^12.23.15",
         "lucide-react": "^0.545.0",
+        "next": "^16.0.1",
         "react": "^19.1.1",
         "react-dom": "^19.1.1",
         "react-helmet-async": "^2.0.5",
