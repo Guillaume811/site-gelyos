@@ -2,9 +2,8 @@
 
 import { useEffect, type ReactNode } from 'react'
 import { usePathname } from 'next/navigation'
-import { MemoryRouter } from 'react-router-dom'
 import CookieBanner from '~/components/CookieBanner/CookieBanner'
-import { ModalProjectProvider } from '~/components/ModalProject/providers/ModalProjectProvider'
+import { ModalProjectProviderNext } from '~/components/ModalProject/providers/ModalProjectProviderNext'
 import { isAnalyticsEnabled } from '~/ressources/config/analytics'
 import styles from '~/app/layout/RootLayout.module.scss'
 import DesktopHeaderNext from './navigation/DesktopHeaderNext'
@@ -19,11 +18,11 @@ type SiteProvidersProps = {
 /* Component SiteProviders
  * Render logic:
  * - Uses Next-compatible public navigation components (header/nav/footer/cta).
- * - Keeps a temporary MemoryRouter only where legacy modal provider is still required.
+ * - Uses a Next-compatible modal provider without react-router-dom dependency.
  * - Preserves analytics page view behavior and scroll reset on pathname changes.
  *
  * View TSX:
- * - Renders global public shell and wraps page content with ModalProjectProvider.
+ * - Renders global public shell and wraps page content with ModalProjectProviderNext.
  */
 export default function SiteProviders({ children }: SiteProvidersProps) {
   const pathname = usePathname() ?? '/'
@@ -54,9 +53,7 @@ export default function SiteProviders({ children }: SiteProvidersProps) {
         <MobileHeaderNext />
         <DesktopHeaderNext />
         <main>
-          <MemoryRouter key={pathname} initialEntries={[pathname]}>
-            <ModalProjectProvider>{children}</ModalProjectProvider>
-          </MemoryRouter>
+          <ModalProjectProviderNext>{children}</ModalProjectProviderNext>
         </main>
         {pathname !== '/contact' && <CallToActionNext />}
         <FooterNext />

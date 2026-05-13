@@ -1,5 +1,5 @@
 import { motion, useTransform, type MotionValue } from "framer-motion";
-import CardService from "~components/CardService/CardService";
+import CardServiceNext from "./CardServiceNext";
 import type { ServiceCard } from "~/ressources/content/contentTypes";
 import styles from "./ServicesPreview.module.scss";
 
@@ -24,7 +24,7 @@ export default function ServicesPreviewItem({ index, activeIndex, data }: Props)
 
   return (
     <motion.div className={styles.cardWrapper} style={{ opacity, scale }}>
-      <CardService data={data} />
+      <CardServiceNext data={data} />
     </motion.div>
   );
 }

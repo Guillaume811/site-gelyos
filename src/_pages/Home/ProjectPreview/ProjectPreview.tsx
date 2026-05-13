@@ -5,7 +5,7 @@ import buttonStyles from '~/components/Buttons/Button.module.scss'
 import ReactMarkdown from 'react-markdown'
 import styles from './ProjectPreview.module.scss'
 import { projectPreviewContent } from '~/ressources/content/home/projectPreviewContent'
-import CardCarousel from '~/components/Carousel/CardCarousel/CardCarousel'
+import CardCarouselNext from '~/components/Carousel/CardCarousel/CardCarouselNext'
 import type { Project } from '~/ressources/content/portfolio/types'
 import { usePortfolioData } from '~/ressources/content/portfolio/usePortfolioData'
 
@@ -57,7 +57,7 @@ export default function ProjectPreview() {
 
       {!!allProjects.length && (
         <div className={styles.carousel} data-pp-count={allProjects.length}>
-          <CardCarousel projects={allProjects} ariaLabel="Derniers projets realises" />
+          <CardCarouselNext projects={allProjects} ariaLabel="Derniers projets realises" />
         </div>
       )}
 

@@ -424,3 +424,62 @@ Reduire la dependance a `react-router-dom` dans la navigation du layout public N
 ### Prochaine etape recommandee
 
 Migrer la logique du `ModalProjectProvider` vers des primitives Next (`useRouter`, `useSearchParams`) pour pouvoir retirer `MemoryRouter` du layout public Next.
+
+## 13-05-2026 — Migration logique modale vers primitives Next (phase 7)
+
+### Decision structurante
+
+- [13-05-2026] [modal-next] [provider modal Next dedie + suppression MemoryRouter du layout Next] [retirer la dependance react-router-dom du rendu Next public] [cohabitation maintenue: provider legacy conserve pour Vite]
+
+### Objectif
+
+Migrer la logique modale dependante de `react-router-dom` vers des primitives compatibles Next.js afin de retirer `MemoryRouter` du layout public Next.
+
+### Fichiers modifies
+
+- `src/app/(site)/Providers.tsx`
+- `src/_pages/Home/ProjectPreview/ProjectPreview.tsx`
+- `src/_pages/Home/ServicesPreview/ServicesPreviewItem.tsx`
+- `MIGRATION_LOG.md`
+
+### Fichiers crees
+
+- `src/components/ModalProject/providers/ModalProjectProviderNext.tsx`
+- `src/components/ModalProject/ModalProjectNext.tsx`
+- `src/components/Carousel/CardCarousel/CardCarouselNext.tsx`
+- `src/components/CardProject/home/CardProjectHomeNext.tsx`
+- `src/_pages/Home/ServicesPreview/CardServiceNext.tsx`
+
+### Changements effectues
+
+- Analyse des usages modale legacy: `useSearchParams`, `useNavigate`, `useLocation` dans `ModalProjectProvider`, et `ButtonLink` react-router dans les cartes/projets.
+- Creation de `ModalProjectProviderNext` base sur `useRouter` et `usePathname` (Next), avec synchro query `?project=` et ecoute `popstate`.
+- Creation de `ModalProjectNext` (pas de `ButtonLink` react-router, CTA externe via `<a>` style bouton).
+- Creation de composants Home Next dedies sans `react-router-dom` pour les points de declenchement modale (`CardProjectHomeNext`, `CardCarouselNext`, `CardServiceNext`).
+- Rebranchement de la Home Next sur ces composants dedies.
+- Suppression de `MemoryRouter` dans `src/app/(site)/Providers.tsx` et utilisation de `ModalProjectProviderNext`.
+- Provider legacy original conserve pour Vite (`ModalProjectProvider.tsx` non supprime).
+
+### Verifications effectuees
+
+- [ ] lint
+- [ ] typecheck
+- [ ] tests
+- [x] build
+- [x] verification manuelle
+
+### Resultat
+
+- `npm run build` : OK.
+- `npm run build:next` : OK.
+- Verification rapide de `/` cote Next : `STATUS=200`.
+- Verification smoke test URL modale `/?project=jaqen` : `STATUS=200`.
+
+### Risques / points a surveiller
+
+- Le comportement modale a ete verifie en smoke test build + reponse HTTP, pas en interaction navigateur complete (ouverture/fermeture/clavier) dans cette session CLI.
+- Le provider Next utilise `popstate` pour synchro URL; une verification manuelle UI est recommandee pour confirmer l'experience exacte back/forward.
+
+### Prochaine etape recommandee
+
+Valider manuellement en navigateur l'ouverture/fermeture de modale (clic carte, ESC, focus trap, back/forward), puis migrer la route `/portfolio` vers l'equivalent Next en reutilisant la meme logique modale Next.
