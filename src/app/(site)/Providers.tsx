@@ -2,26 +2,15 @@
 
 import { useEffect, type ReactNode } from 'react'
 import { usePathname } from 'next/navigation'
-import { MemoryRouter, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
-import RootLayout from '~/app/layout/RootLayout'
-
-type RouterPathSyncProps = {
-  target: string
-}
-
-function RouterPathSync({ target }: RouterPathSyncProps) {
-  const location = useLocation()
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    const current = `${location.pathname}${location.search}`
-    if (current !== target) {
-      navigate(target, { replace: true })
-    }
-  }, [location.pathname, location.search, navigate, target])
-
-  return null
-}
+import { MemoryRouter } from 'react-router-dom'
+import CookieBanner from '~/components/CookieBanner/CookieBanner'
+import { ModalProjectProvider } from '~/components/ModalProject/providers/ModalProjectProvider'
+import { isAnalyticsEnabled } from '~/ressources/config/analytics'
+import styles from '~/app/layout/RootLayout.module.scss'
+import DesktopHeaderNext from './navigation/DesktopHeaderNext'
+import MobileHeaderNext from './navigation/MobileHeaderNext'
+import CallToActionNext from './navigation/CallToActionNext'
+import FooterNext from './navigation/FooterNext'
 
 type SiteProvidersProps = {
   children: ReactNode
@@ -29,26 +18,50 @@ type SiteProvidersProps = {
 
 /* Component SiteProviders
  * Render logic:
- * - Reuses the existing public RootLayout from the legacy router.
- * - Provides a temporary MemoryRouter context required by legacy navigation and providers.
- * - Keeps router pathname in sync with Next.js pathname/search for progressive migration.
+ * - Uses Next-compatible public navigation components (header/nav/footer/cta).
+ * - Keeps a temporary MemoryRouter only where legacy modal provider is still required.
+ * - Preserves analytics page view behavior and scroll reset on pathname changes.
  *
  * View TSX:
- * - Mounts MemoryRouter and sync helper.
- * - Renders legacy RootLayout with an Outlet child mapped to Next.js page content.
+ * - Renders global public shell and wraps page content with ModalProjectProvider.
  */
 export default function SiteProviders({ children }: SiteProvidersProps) {
   const pathname = usePathname() ?? '/'
-  const target = pathname
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' as ScrollBehavior })
+  }, [pathname])
+
+  useEffect(() => {
+    if (!isAnalyticsEnabled()) return
+    if (typeof window === 'undefined') return
+
+    const gtag = window.gtag
+    if (typeof gtag !== 'function') return
+
+    gtag('event', 'page_view', {
+      page_path: `${pathname}${window.location.search}`,
+      page_location: window.location.href,
+      page_title: document.title,
+    })
+  }, [pathname])
 
   return (
-    <MemoryRouter initialEntries={[target]}>
-      <RouterPathSync target={target} />
-      <Routes>
-        <Route path="*" element={<RootLayout />}>
-          <Route path="*" element={<>{children}</>} />
-        </Route>
-      </Routes>
-    </MemoryRouter>
+    <>
+      <div className={styles.wrapper}>
+        <MobileHeaderNext />
+        <DesktopHeaderNext />
+        <main>
+          <MemoryRouter key={pathname} initialEntries={[pathname]}>
+            <ModalProjectProvider>{children}</ModalProjectProvider>
+          </MemoryRouter>
+        </main>
+        {pathname !== '/contact' && <CallToActionNext />}
+        <FooterNext />
+      </div>
+      <CookieBanner />
+    </>
   )
 }

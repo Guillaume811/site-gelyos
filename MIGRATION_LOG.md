@@ -370,3 +370,57 @@ Migrer uniquement le layout public vers `src/app/(site)/layout.tsx` pour commenc
 ### Prochaine etape recommandee
 
 Migrer les composants de navigation partages (`ButtonLink`, `MainNav`, `DesktopHeader`, `MobileHeader`, `Footer`, `CallToAction`) vers des primitives Next (`next/link`, `usePathname`) pour retirer progressivement `react-router-dom` du layout public.
+
+## 13-05-2026 — Navigation layout public: compatibilite Next progressive (phase 6)
+
+### Decision structurante
+
+- [13-05-2026] [navigation] [composants de navigation Next dedies dans src/app/(site)/navigation] [eviter de casser le layout legacy Vite partage] [liens du layout public Next passes a next/link sans supprimer react-router-dom global]
+
+### Objectif
+
+Reduire la dependance a `react-router-dom` dans la navigation du layout public Next, sans migrer d'autres pages ni supprimer le routing legacy.
+
+### Fichiers modifies
+
+- `src/app/(site)/Providers.tsx`
+- `MIGRATION_LOG.md`
+
+### Fichiers crees
+
+- `src/app/(site)/navigation/MainNavNext.tsx`
+- `src/app/(site)/navigation/DesktopHeaderNext.tsx`
+- `src/app/(site)/navigation/MobileHeaderNext.tsx`
+- `src/app/(site)/navigation/FooterNext.tsx`
+- `src/app/(site)/navigation/CallToActionNext.tsx`
+
+### Changements effectues
+
+- Analyse des usages `react-router-dom` dans `DesktopHeader`, `MobileHeader`, `MainNav`, `Footer`, `CallToAction`.
+- Creation de variantes Next dediees pour ces composants de navigation, en reemployant les styles existants.
+- Remplacement des liens de navigation du layout public Next par `next/link` (logo, menu principal, CTA header/footer, liens footer, menu mobile).
+- `Providers` Next ne reutilise plus `RootLayout` legacy pour la navigation.
+- `MemoryRouter` conserve temporairement uniquement pour le sous-arbre de contenu qui depend encore de `ModalProjectProvider`.
+
+### Verifications effectuees
+
+- [ ] lint
+- [ ] typecheck
+- [ ] tests
+- [x] build
+- [x] verification manuelle
+
+### Resultat
+
+- `npm run build` : OK.
+- `npm run build:next` : OK.
+- Verification rapide `/` cote Next : `STATUS=200`.
+
+### Risques / points a surveiller
+
+- `MemoryRouter` reste necessaire tant que `ModalProjectProvider` et ses usages restent bases sur `react-router-dom`.
+- Les composants legacy d'origine (`src/components/**`) conservent leurs usages `react-router-dom` pour le site Vite, ce qui est volontaire a ce stade.
+
+### Prochaine etape recommandee
+
+Migrer la logique du `ModalProjectProvider` vers des primitives Next (`useRouter`, `useSearchParams`) pour pouvoir retirer `MemoryRouter` du layout public Next.
