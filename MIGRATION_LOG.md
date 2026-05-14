@@ -860,3 +860,120 @@ Verifier les elements SEO globaux de la version Next migree et corriger uniqueme
 ### Prochaine etape recommandee
 
 Finaliser la verification manuelle SEO (balises rendues dans le HTML produit), puis preparer la phase de nettoyage legacy.
+
+## 13-05-2026 — Preparation nettoyage legacy (phase 13)
+
+### Decision structurante
+
+- [13-05-2026] [cleanup-plan] [plan de suppression par lots sans suppression immediate] [eviter toute regression entre workflows Vite et Next] [nettoyage progressif apres verification des usages]
+
+### Objectif
+
+Preparer un plan de nettoyage legacy post-migration Next.js, sans suppression risquee dans cette etape.
+
+### Fichiers modifies
+
+- `MIGRATION_LOG.md`
+
+### Commandes d'analyse executees
+
+- `git branch --show-current`
+- `git status --short`
+- `Get-Content package.json`
+- `Get-Content src/main.tsx`
+- `Get-Content src/app/router.tsx`
+- `Get-Content src/app/layout/RootLayout.tsx`
+- `Get-Content vite.config.ts`
+- `Get-Content next.config.ts`
+- `Get-Content tsconfig.json`
+- `Get-Content tsconfig.app.json`
+- `Get-Content src/ressources/routes.ts`
+- `Get-ChildItem -Recurse -File src/_legacy/pages`
+- `Get-ChildItem -Recurse -File scripts`
+- `rg -n "~pages/|_legacy/pages|createBrowserRouter|RouterProvider" src`
+- `rg -n "react-router-dom" src`
+- `rg -n "react-helmet-async|Seo|HelmetProvider" src`
+- `rg -n "PortfolioSection|HomeClientShell|Blog/Blog|Article.tsx" src`
+- `rg -n "dotenv" scripts src cloudflare`
+- `rg -n "getMainNavRoutes|getAllExceptMentions|routes" src/app src/components src/_pages`
+
+### Synthese d'usage
+
+- Le workflow Vite legacy est encore actif par defaut (`npm run dev`, `npm run build`, `npm run preview`) et depend de :
+  - `src/main.tsx` + `RouterProvider` + `HelmetProvider`
+  - `src/app/router.tsx`
+  - `src/app/layout/RootLayout.tsx`
+  - `src/_legacy/pages/**` via alias `~pages`
+  - `react-router-dom` et `react-helmet-async`
+- Le workflow Next utilise :
+  - `src/app/**`
+  - `src/_pages/**`
+  - navigation Next dediee dans `src/app/(site)/navigation/**`
+  - provider modal Next `ModalProjectProviderNext`
+
+### Candidats a suppression (plus tard)
+
+- **Lot A — Candidats deja non references (a verifier une derniere fois avant suppression)**
+  - `src/_legacy/pages/Article.tsx`
+  - `src/_legacy/pages/Blog/Blog.tsx`
+  - `src/_legacy/pages/Portfolio/PortfolioSection/PortfolioSection.tsx`
+  - `src/_legacy/pages/Portfolio/PortfolioSection/PortfolioSection.module.scss`
+  - `src/_pages/Home/HomeClientShell.tsx`
+
+- **Lot B — Apres bascule officielle en Next-only (arreter le runtime Vite legacy)**
+  - `src/main.tsx`
+  - `src/app/router.tsx`
+  - `src/app/layout/RootLayout.tsx`
+  - `src/app/layout/RootLayout.module.scss`
+  - `src/_legacy/pages/**` (pages legacy restantes)
+  - composants legacy React Router:
+    - `src/components/DesktopHeader/**`
+    - `src/components/MobileHeader/**`
+    - `src/components/MainNav/**`
+    - `src/components/Footer/**`
+    - `src/components/CallToAction/**`
+    - `src/components/Buttons/ButtonLink.tsx`
+    - `src/components/ScrollToTop/ScrollToTop.tsx`
+  - SEO legacy:
+    - `src/components/Seo/Seo.tsx`
+  - modal legacy:
+    - `src/components/ModalProject/providers/ModalProjectProvider.tsx`
+    - composants encore relies a cette version legacy
+
+- **Lot C — Apres retrait scripts/build Vite**
+  - `vite.config.ts`
+  - `index.html` (entry Vite)
+  - `scripts/generate-sitemap.ts` (si `src/app/sitemap.ts` devient unique source)
+  - `public/sitemap.xml` statique (si generation Next uniquement)
+
+### Fichiers a conserver temporairement
+
+- `src/ressources/routes.ts` (utilise par navigation legacy **et** navigation Next)
+- `src/services/contactApi.ts` et `src/services/recaptcha.ts` (utilises par le formulaire contact migre)
+- `public/robots.txt` (encore servi et coherent)
+- scripts et config Vite tant que les scripts par defaut restent Vite
+- `src/_legacy/pages/About/**` tant que `/a-propos` n'est pas migree cote Next
+
+### Dependances candidates a suppression future
+
+- Apres retrait Vite/legacy routing:
+  - `react-router-dom`
+  - `react-helmet-async`
+- Apres retrait workflow Vite:
+  - `vite`
+  - `@vitejs/plugin-react`
+  - `eslint-plugin-react-refresh` (apres adaptation `eslint.config.js`)
+- Apres retrait script sitemap legacy:
+  - `tsx`
+  - `dotenv`
+
+### Risques identifies
+
+- Suppression prematuree de fichiers legacy peut casser `npm run dev/build` (Vite reste le flux par defaut).
+- Deux sources sitemap coexistent (`public/sitemap.xml` et `src/app/sitemap.ts`) : nettoyage a synchroniser avec la strategie de deploiement.
+- `src/ressources/routes.ts` est partage entre legacy et Next : modification/suppression impacte les deux navigations.
+- Certains candidats "non references" doivent etre reverifies juste avant suppression (dernier grep + build).
+
+### Prochaine etape recommandee
+
+Executer un lot "suppression Lot A" uniquement (fichiers deja non references), puis relancer les verifications standards; ensuite planifier la bascule Next-only avant Lot B.
