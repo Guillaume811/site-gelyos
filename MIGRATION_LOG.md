@@ -1046,3 +1046,61 @@ Executer uniquement le Lot A du plan de nettoyage legacy en supprimant seulement
 ### Prochaine etape recommandee
 
 Verifier le retrait effectif de references mortes restantes (commentaires legacy), puis preparer un plan de bascule Next-only avant d'engager le Lot B.
+
+## 14-05-2026 — Nettoyage des references legacy commentees (phase 15)
+
+### Decision structurante
+
+- [14-05-2026] [cleanup-comments] [suppression des commentaires legacy morts lies a Blog] [reduire le bruit sans changer le runtime] [maintenance plus claire avant lot de suppression suivant]
+
+### Objectif
+
+Supprimer uniquement les references legacy commentees devenues inutiles, sans modifier la logique fonctionnelle.
+
+### Fichiers modifies
+
+- `src/app/router.tsx`
+- `src/ressources/routes.ts`
+- `MIGRATION_LOG.md`
+
+### Changements effectues
+
+- Suppression du commentaire d'import legacy Blog dans `src/app/router.tsx`.
+- Suppression du commentaire de route legacy Blog dans `src/app/router.tsx`.
+- Suppression de l'entree blog commentee dans `src/ressources/routes.ts`.
+- Aucun import actif retire, aucune route active modifiee.
+
+### Verification des references avant nettoyage
+
+- `rg -n "~pages/Blog/Blog|blog\\b|Article|src/pages|_legacy/pages" src`
+- `rg -n "\\/\\*|\\/\\/" src/app/router.tsx src/ressources/routes.ts src/app/layout/RootLayout.tsx`
+
+### Verifications effectuees
+
+- [ ] lint
+- [ ] typecheck
+- [ ] tests
+- [x] build
+- [x] verification manuelle
+
+### Commandes executees
+
+- `npm run build` (premiere tentative sandbox) -> echec `Error [TransformError]: spawn EPERM` pendant `npm run generate-sitemap`
+- `npm run build` (re-execution hors sandbox) -> OK
+- `npm run build:next` (premiere tentative sandbox) -> echec `Error: spawn EPERM` pendant `Running TypeScript`
+- `npm run build:next` (re-execution hors sandbox) -> OK
+
+### Resultat
+
+- Nettoyage des commentaires morts applique sans impact runtime attendu.
+- `npm run build` : OK (Vite) avec warning non bloquant de taille de chunk `> 500 kB`.
+- `npm run build:next` : OK (Next), routes statiques generees dont `/`, `/services`, `/portfolio`, `/contact`, `/mentions-legales`.
+
+### Risques / points a surveiller
+
+- Warning Vite non bloquant sur taille de chunk (`> 500 kB`) toujours present.
+- Dettes hors scope inchangées: scroll modale a l'ouverture, cle publique reCAPTCHA manquante en local.
+
+### Prochaine etape recommandee
+
+Continuer le nettoyage documentaire/commentaires legacy restants hors scope critique, puis preparer les preconditions de bascule Next-only avant Lot B.
