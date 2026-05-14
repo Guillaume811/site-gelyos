@@ -32,11 +32,10 @@ function loadRecaptcha(siteKey: string) {
 }
 
 export async function getRecaptchaToken(action: string) {
-  const siteKey =
-    import.meta.env?.VITE_RECAPTCHA_SITE_KEY ?? process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
+  const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
   if (!siteKey) {
     throw new Error(
-      'La cle publique reCAPTCHA est manquante (VITE_RECAPTCHA_SITE_KEY ou NEXT_PUBLIC_RECAPTCHA_SITE_KEY).',
+      'La cle publique reCAPTCHA est manquante. Ajoutez NEXT_PUBLIC_RECAPTCHA_SITE_KEY dans .env.local.',
     )
   }
 

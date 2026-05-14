@@ -1,5 +1,4 @@
-const GA_MEASUREMENT_ID =
-  import.meta.env?.VITE_GA_ID ?? process.env.NEXT_PUBLIC_GA_ID ?? 'G-VXTT8XHFGF'
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID ?? 'G-VXTT8XHFGF'
 
 export function isAnalyticsEnabled() {
   if (typeof window === 'undefined') return false

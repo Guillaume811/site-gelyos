@@ -2214,3 +2214,130 @@ Corriger uniquement la dette UX de scroll a l'ouverture de la modale projet cote
 ### Prochaine etape recommandee
 
 Effectuer une verification manuelle navigateur ciblee modale (scroll + back/forward), puis clore la dette UX si comportement confirme.
+
+## 14-05-2026 - Diagnostic et correction config locale reCAPTCHA (phase 27)
+
+### Decision structurante
+
+- [14-05-2026] [recaptcha-config] [prioriser `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` et clarifier le message d'erreur] [projet Next-only, variable Next attendue en local] [reduction des erreurs de configuration environnement]
+
+### Objectif
+
+Corriger uniquement la configuration locale de la cle publique reCAPTCHA cote Next.js (sans ajouter de cle reelle).
+
+### Cause probable
+
+- Le projet affichait une erreur de cle manquante car la variable attendue n'etait pas renseignee localement.
+- Le code utilisait encore le fallback legacy Vite en premiere position, ce qui rendait la source principale moins explicite en contexte Next-only.
+
+### Fichiers modifies
+
+- `.env.example`
+- `src/services/recaptcha.ts`
+- `MIGRATION_LOG.md`
+
+### Correction appliquee
+
+- `src/services/recaptcha.ts`:
+  - priorite de lecture basculee vers `process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY`;
+  - fallback legacy conserve (`VITE_RECAPTCHA_SITE_KEY`) pour compatibilite transitoire;
+  - message d'erreur precise: ajouter `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` dans `.env.local`.
+- `.env.example`:
+  - ajout de `NEXT_PUBLIC_RECAPTCHA_SITE_KEY=` (sans valeur).
+
+### Variable attendue cote Next
+
+- `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`
+
+### Statut `.env.local`
+
+- `.env.local` est ignore par Git (non tracke).
+- Aucune cle reelle ajoutee/affichee dans le code ou les logs.
+
+### Verifications effectuees
+
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK
+
+### Etapes manuelles restantes (developpeur)
+
+1. Ajouter dans `.env.local`:
+   - `NEXT_PUBLIC_RECAPTCHA_SITE_KEY=...`
+2. Redemarrer le serveur:
+   - `npm run dev`
+3. Tester la page contact:
+   - ouvrir `/contact`
+   - soumettre le formulaire (sans utiliser de cle factice)
+   - verifier disparition de l'erreur "cle publique reCAPTCHA manquante".
+
+### Dettes restantes (hors scope)
+
+- scroll modale a l'ouverture
+- refactor post-migration contenu + images
+
+## 14-05-2026 - Nettoyage variables d'environnement Next-only (phase 28)
+
+### Decision structurante
+
+- [14-05-2026] [env-next-only] [suppression des fallbacks `VITE_*` dans le code client Next] [projet stabilise en Next-only] [source de verite alignee sur `NEXT_PUBLIC_*`]
+
+### Objectif
+
+Nettoyer et documenter les variables d'environnement apres migration Next-only, sans exposer de valeur sensible.
+
+### Fichiers modifies
+
+- `.env.example`
+- `src/services/recaptcha.ts`
+- `src/services/contactApi.ts`
+- `src/ressources/config/analytics.ts`
+- `MIGRATION_LOG.md`
+
+### Changements effectues
+
+- `.env.example` mis a jour avec variables publiques Next utilisees:
+  - `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`
+  - `NEXT_PUBLIC_CONTACT_ENDPOINT`
+  - `NEXT_PUBLIC_GA_ID`
+- Ajout d'une section de documentation (sans valeurs) pour variables server-side Cloudflare/Brevo:
+  - `RECAPTCHA_SECRET`, `ALLOWED_ORIGINS`, `BREVO_API_KEY`, `BREVO_FROM_EMAIL`, `BREVO_FROM_NAME`, `BREVO_TO`, `BREVO_SUBJECT_PREFIX`
+- `recaptcha.ts`:
+  - retrait fallback `VITE_RECAPTCHA_SITE_KEY`
+  - lecture unique `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`
+  - message technique ajuste pour `.env.local`
+- `contactApi.ts`:
+  - retrait fallback `VITE_CONTACT_ENDPOINT`
+  - lecture unique `NEXT_PUBLIC_CONTACT_ENDPOINT`
+  - message technique ajuste
+- `analytics.ts`:
+  - retrait fallback `VITE_GA_ID`
+  - conservation `NEXT_PUBLIC_GA_ID` + fallback constant existant
+
+### Verifications effectuees
+
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK
+- `rg -n "VITE_" src` -> aucune occurrence active
+- `.env.local` confirme ignore par Git (`git check-ignore .env.local`)
+
+### Resultat
+
+- Variables publiques Next documentees et alignees avec les usages code.
+- Fallbacks `VITE_*` retires du code actif Next-only.
+- Aucune valeur sensible ajoutee ou affichee.
+
+### Action developpeur locale attendue
+
+- Verifier que `.env.local` contient bien (sans commit) :
+  - `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`
+  - `NEXT_PUBLIC_CONTACT_ENDPOINT`
+  - `NEXT_PUBLIC_GA_ID` (si souhait de surcharger la valeur par defaut)
+- Redemarrer `npm run dev` apres mise a jour des variables.
+
+### Dettes restantes (hors scope)
+
+- scroll modale a l'ouverture
+- cle publique reCAPTCHA manquante en local (si non renseignee)
+- refactor post-migration contenu + images
