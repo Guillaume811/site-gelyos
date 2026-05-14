@@ -1867,3 +1867,107 @@ Basculer `dev/build/start` vers Next.js tout en conservant des scripts Vite expl
 ### Prochaine etape recommandee
 
 Lancer le lot de suppression legacy suivant uniquement apres validation humaine du runbook (Lot B), maintenant que les scripts par defaut et la source sitemap Next sont stabilises.
+
+## 14-05-2026 - Execution Lot B nettoyage legacy (phase 23)
+
+### Decision structurante
+
+- [14-05-2026] [lot-b-cleanup] [suppression runtime/pages/components legacy non utilises par Next] [apres bascule scripts par defaut Next et verification imports] [base Next-only simplifiee sans toucher au Lot C]
+
+### Objectif
+
+Executer uniquement le Lot B: retirer le runtime/page legacy et les composants legacy confirmes inutiles cote Next, sans supprimer Vite ni les dependances legacy package.
+
+### Recherches/imports effectues
+
+- `rg -n "RootLayout|~/app/layout/RootLayout|RootLayout\.module\.scss" src`
+- `rg -n "~/components/DesktopHeader/DesktopHeader" src`
+- `rg -n "~/components/MobileHeader/MobileHeader" src`
+- `rg -n "~/components/MainNav/MainNav" src`
+- `rg -n "~/components/Footer/Footer" src`
+- `rg -n "~/components/CallToAction/CallToAction" src`
+- `rg -n "~/components/Seo/Seo" src`
+- `rg -n "~/components/ScrollToTop/ScrollToTop" src`
+- `rg -n "~/components/Buttons/ButtonLink|PrimaryButtonLink|SecondaryButtonLink" src`
+- `rg -n "components/ModalProject/providers/ModalProjectProvider|components/ModalProject/ModalProject" src`
+- `rg -n "components/CardService/CardService|components/GridProject/GridProject|components/CardProject/home/CardProjectHome|components/CardProject/portfolio/CardProject|components/Carousel/CardCarousel/CardCarousel" src`
+
+### Fichiers supprimes
+
+- Runtime legacy:
+  - `src/main.tsx`
+  - `src/app/router.tsx`
+  - `src/app/layout/RootLayout.tsx`
+  - `src/app/layout/RootLayout.module.scss`
+- Pages legacy:
+  - `src/_legacy/pages/**`
+- Composants legacy React Router/SEO/modal/nav:
+  - `src/components/DesktopHeader/**`
+  - `src/components/MobileHeader/**`
+  - `src/components/MainNav/**`
+  - `src/components/Footer/**`
+  - `src/components/CallToAction/**`
+  - `src/components/Seo/Seo.tsx`
+  - `src/components/ScrollToTop/ScrollToTop.tsx`
+  - `src/components/ModalProject/providers/ModalProjectProvider.tsx`
+  - `src/components/ModalProject/ModalProject.tsx`
+  - `src/components/Buttons/ButtonLink.tsx`
+- Composants legacy dependants de `ButtonLink` non utilises par Next:
+  - `src/components/CardService/CardService.tsx`
+  - `src/components/CardProject/home/CardProjectHome.tsx`
+  - `src/components/CardProject/portfolio/CardProject.tsx`
+  - `src/components/Carousel/CardCarousel/CardCarousel.tsx`
+  - `src/components/GridProject/GridProject.tsx`
+
+### Fichiers conserves (et pourquoi)
+
+- `src/components/Buttons/Button.module.scss` conserve: encore utilise par composants Next.
+- `src/components/CardService/CardService.module.scss` conserve: encore importe par `CardServiceNext`.
+- `src/components/CardProject/home/CardProjectHome.module.scss` conserve: encore importe par `CardProjectHomeNext`.
+- `src/components/CardProject/portfolio/CardProject.module.scss` conserve: encore importe par `ProjectCardNext`.
+- `src/components/Carousel/CardCarousel/CardCarousel.module.scss` conserve: encore importe par `CardCarouselNext`.
+- `src/components/ModalProject/providers/ModalProjectContext.ts` conserve: utilise par provider Next.
+- `src/components/ModalProject/providers/useModalProject.ts` conserve: utilise par composants Next.
+- `src/components/ModalProject/providers/ModalProjectProviderNext.tsx` conserve: provider modal actif cote Next.
+- Fallback Vite/outillage conserve hors Lot B: `vite.config.ts`, `index.html`, `src/vite-env.d.ts`, `tsconfig.node.json`, `scripts/generate-sitemap.ts`.
+
+### Fichiers modifies
+
+- `MIGRATION_LOG.md`
+
+### Verifications effectuees
+
+- [ ] lint
+- [ ] typecheck
+- [ ] tests
+- [x] build
+- [x] verification manuelle
+
+### Commandes executees
+
+- `npm run build` -> OK (Next)
+- Verification HTTP locale (`npm run start`):
+  - `/` -> `200`
+  - `/a-propos` -> `200`
+  - `/services` -> `200`
+  - `/portfolio` -> `200`
+  - `/contact` -> `200`
+  - `/mentions-legales` -> `200`
+  - `/sitemap.xml` -> `200`
+  - `/robots.txt` -> `200`
+- `npm run build:vite` non lance volontairement: runtime legacy retire dans ce lot, echec attendu non bloquant.
+
+### Resultat
+
+- Lot B execute sans toucher au Lot C ni aux dependances package.
+- Build Next valide apres suppression.
+- Routes publiques Next et endpoints SEO techniques verifies en `200`.
+
+### Risques / points a surveiller
+
+- Le fallback Vite est conserve au niveau scripts/outillage mais n'est plus valide fonctionnellement apres retrait du runtime legacy (attendu avant Lot C).
+- Dettes hors scope inchangées: scroll modale, reCAPTCHA/env, refactor contenu+images post-migration.
+
+### Prochaine etape recommandee
+
+Preparer l'execution controlee du Lot C (suppression outillage Vite + cleanup dependances) avec un gate de verification final Next-only.
