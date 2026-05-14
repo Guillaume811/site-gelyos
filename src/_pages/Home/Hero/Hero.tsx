@@ -1,4 +1,3 @@
-// src/pages/Home/Hero/Hero.tsx
 import Heading from '~/components/Heading/Heading'
 import Link from 'next/link'
 import buttonStyles from '~/components/Buttons/Button.module.scss'

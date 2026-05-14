@@ -1,4 +1,3 @@
-// src/pages/Home/Hero/Hero.tsx
 import Heading from '~/components/Heading/Heading'
 import { PrimaryButtonLink, SecondaryButtonLink } from '~/components/Buttons/ButtonLink'
 import styles from './Hero.module.scss'

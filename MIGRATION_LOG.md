@@ -1104,3 +1104,60 @@ Supprimer uniquement les references legacy commentees devenues inutiles, sans mo
 ### Prochaine etape recommandee
 
 Continuer le nettoyage documentaire/commentaires legacy restants hors scope critique, puis preparer les preconditions de bascule Next-only avant Lot B.
+
+## 14-05-2026 — Dernier micro-lot commentaires legacy morts (phase 16)
+
+### Decision structurante
+
+- [14-05-2026] [cleanup-comments] [suppression de commentaires d'anciens chemins `src/pages`] [retirer le bruit legacy restant sans toucher au comportement] [code plus lisible avant bascule Next-only]
+
+### Objectif
+
+Effectuer un dernier nettoyage leger des commentaires legacy morts, sans modifier la logique runtime.
+
+### Fichiers modifies
+
+- `src/_pages/Home/Hero/Hero.tsx`
+- `src/_legacy/pages/Home/Hero/Hero.tsx`
+- `src/_legacy/pages/Contact/Contact.tsx`
+- `MIGRATION_LOG.md`
+
+### Changements effectues
+
+- Suppression de commentaires obsoletes de chemin source `src/pages/...` dans deux composants `Hero`.
+- Suppression d'un commentaire obsolete "seront crees dans src/pages/..." dans `Contact` legacy.
+- Aucun changement sur routes actives, imports actifs, ou logique executable.
+
+### Verification des references avant nettoyage
+
+- `rg -n "^\\s*//.*(src/pages|~pages|Blog|Article|legacy|deprecated|obsolete)|/\\*.*(Blog|Article|legacy|src/pages)" src`
+- `rg -n "src/pages/" src`
+
+### Verifications effectuees
+
+- [ ] lint
+- [ ] typecheck
+- [ ] tests
+- [x] build
+- [x] verification manuelle
+
+### Commandes executees
+
+- `npm run build` -> OK
+- `npm run build:next` (premiere tentative sandbox) -> echec `Error: spawn EPERM` pendant `Running TypeScript`
+- `npm run build:next` (re-execution hors sandbox) -> OK
+
+### Resultat
+
+- Nettoyage applique sans impact runtime attendu.
+- `npm run build` : OK (Vite) avec warning non bloquant de taille de chunk `> 500 kB`.
+- `npm run build:next` : OK (Next), routes statiques generees dont `/`, `/services`, `/portfolio`, `/contact`, `/mentions-legales`.
+
+### Risques / points a surveiller
+
+- Warning Vite non bloquant sur taille de chunk (`> 500 kB`) toujours present.
+- Dettes hors scope inchangées: scroll modale a l'ouverture, cle publique reCAPTCHA manquante en local.
+
+### Prochaine etape recommandee
+
+Passer a une verification de pre-bascule Next-only (cartographie des entrees Vite encore obligatoires) avant toute action Lot B.
