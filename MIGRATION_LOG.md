@@ -1161,3 +1161,161 @@ Effectuer un dernier nettoyage leger des commentaires legacy morts, sans modifie
 ### Prochaine etape recommandee
 
 Passer a une verification de pre-bascule Next-only (cartographie des entrees Vite encore obligatoires) avant toute action Lot B.
+
+## 14-05-2026 — Verification pre-bascule Next-only (phase 17)
+
+### Decision structurante
+
+- [14-05-2026] [pre-switch-next-only] [cartographie complete avant Lot B, sans suppression] [eviter une suppression legacy prematuree] [plan de bascule sequence et reversible]
+
+### Objectif
+
+Verifier les preconditions de bascule Next-only avant execution du Lot B, sans modifier le code fonctionnel.
+
+### Fichiers analyses
+
+- `package.json`
+- `src/main.tsx`
+- `src/app/router.tsx`
+- `src/app/layout/RootLayout.tsx`
+- `vite.config.ts`
+- `index.html`
+- `src/vite-env.d.ts`
+- `tsconfig.node.json`
+- `next.config.ts`
+- `src/app/layout.tsx`
+- `src/app/(site)/layout.tsx`
+- `src/app/(site)/Providers.tsx`
+- `src/app/(site)/navigation/MainNavNext.tsx`
+- `src/app/(site)/navigation/DesktopHeaderNext.tsx`
+- `src/app/(site)/navigation/MobileHeaderNext.tsx`
+- `src/ressources/routes.ts`
+- `public/sitemap.xml`
+- `src/app/sitemap.ts`
+- `scripts/generate-sitemap.ts`
+- `public/robots.txt`
+
+### Commandes d'analyse executees
+
+- `git branch --show-current`
+- `git status --short`
+- `Get-Content package.json`
+- `Get-Content src/main.tsx`
+- `Get-Content src/app/router.tsx`
+- `Get-Content src/app/layout/RootLayout.tsx`
+- `Get-Content vite.config.ts`
+- `Get-Content index.html`
+- `Get-Content src/app/sitemap.ts`
+- `Get-Content scripts/generate-sitemap.ts`
+- `Get-Content public/sitemap.xml`
+- `Get-Content public/robots.txt`
+- `Get-Content next.config.ts`
+- `Get-Content src/app/layout.tsx`
+- `Get-Content src/vite-env.d.ts`
+- `Get-Content tsconfig.node.json`
+- `Get-Content 'src/app/(site)/layout.tsx'`
+- `Get-Content 'src/app/(site)/Providers.tsx'`
+- `Get-Content 'src/app/(site)/navigation/MainNavNext.tsx'`
+- `Get-Content 'src/app/(site)/navigation/DesktopHeaderNext.tsx'`
+- `Get-Content 'src/app/(site)/navigation/MobileHeaderNext.tsx'`
+- `Get-Content src/ressources/routes.ts`
+- `Get-ChildItem -Recurse -File 'src/app/(site)'`
+- `rg -n react-router-dom src`
+- `rg -n react-helmet-async src`
+- `rg -n HelmetProvider src`
+- `rg -n "\\bSeo\\b" src`
+- `rg -n next/link src`
+- `rg -n next/navigation src`
+- `rg -n "from 'next'" src`
+- `rg -n "import\\.meta\\.env|process\\.env\\.|NEXT_PUBLIC_|VITE_" src scripts`
+- `rg -n "vite|@vitejs/plugin-react|eslint-plugin-react-refresh|tsx|dotenv" package.json vite.config.ts eslint.config.js scripts src`
+- `rg -n remarkGfm|gfm src`
+
+### Entrees Vite encore presentes (necessaires au build Vite actuel)
+
+- Entree runtime Vite: `index.html` -> `<script type="module" src="/src/main.tsx"></script>`
+- Bootstrap Vite: `src/main.tsx` (RouterProvider + HelmetProvider + styles globaux)
+- Routing Vite legacy: `src/app/router.tsx`
+- Layout racine Vite legacy: `src/app/layout/RootLayout.tsx`
+- Config build/dev Vite: `vite.config.ts`
+- Scripts Vite dans `package.json`: `dev`, `build`, `preview`
+- Hook build Vite: `prebuild` -> `generate-sitemap` (script `tsx scripts/generate-sitemap.ts`)
+- Typage Vite: `src/vite-env.d.ts` + `tsconfig.node.json` (inclut `vite.config.ts`)
+
+### Ce qui reste necessaire tant que Vite doit continuer a builder
+
+- `react-router-dom` (imports actifs dans `src/main.tsx`, `src/app/router.tsx`, `src/app/layout/RootLayout.tsx` et composants legacy)
+- `react-helmet-async` (imports actifs dans `src/main.tsx` et `src/components/Seo/Seo.tsx`)
+- `vite`, `@vitejs/plugin-react` (scripts + config Vite actifs)
+- `eslint-plugin-react-refresh` (utilise dans `eslint.config.js` via `reactRefresh.configs.vite`)
+- `tsx` + `dotenv` (utilises par `generate-sitemap` / `scripts/generate-sitemap.ts`)
+
+### Dependances cote Next (usage detecte)
+
+- Requises (imports detectes cote routes/layout/providers/navigation Next):
+  - `next`, `react`, `react-dom`
+  - `clsx`, `framer-motion`, `react-markdown`, `remark-breaks`, `swiper`, `lucide-react`, `sass`, `zod`
+- Non detecte dans les imports analyses:
+  - `remark-gfm` (a reverifier au moment du nettoyage deps)
+
+### Fichiers/dependances supprimables apres decision Next-only (pas dans cette etape)
+
+- Candidats Lot B (apres validation bascule):
+  - `src/main.tsx`
+  - `src/app/router.tsx`
+  - `src/app/layout/RootLayout.tsx`
+  - `src/app/layout/RootLayout.module.scss`
+  - `src/_legacy/pages/**`
+  - composants legacy React Router (`src/components/*` versions non Next, `ButtonLink.tsx`, `ScrollToTop.tsx`, provider modal legacy, `Seo.tsx`)
+- Candidats deps apres retrait complet legacy runtime:
+  - `react-router-dom`
+  - `react-helmet-async`
+- Candidats Lot C (apres retrait scripts/build Vite):
+  - `vite.config.ts`, `index.html`, `src/vite-env.d.ts`, `tsconfig.node.json`
+  - scripts `dev`, `build`, `preview`, `generate-sitemap`, `prebuild` (a remplacer par equivalent Next)
+  - deps: `vite`, `@vitejs/plugin-react`, `tsx`, `dotenv`, `eslint-plugin-react-refresh` (apres adaptation ESLint)
+
+### Strategie sitemap (etat + recommandation)
+
+- Etat actuel:
+  - `public/sitemap.xml` est regenere par `scripts/generate-sitemap.ts` via `prebuild` Vite.
+  - `src/app/sitemap.ts` expose aussi un sitemap App Router Next.
+- Risque:
+  - Double source de verite sitemap pendant la cohabitation.
+- Recommandation pre-bascule:
+  1. Garder la cohabitation actuelle tant que Vite reste le workflow par defaut.
+  2. Au moment de bascule Next-only, choisir `src/app/sitemap.ts` comme source unique.
+  3. Retirer ensuite `generate-sitemap` + `prebuild` et figer la suppression de `public/sitemap.xml` statique si confirme non necessaire au deploiement Cloudflare.
+
+### Risques identifies avant Lot B
+
+- Route `/a-propos` non migree cote Next:
+  - absente de `src/app/(site)`;
+  - encore presente dans `src/ressources/routes.ts`;
+  - potentiellement exposee dans la navigation Next (menu principal/mobile) => risque de lien vers route non servie en Next-only.
+- Dependance forte a `src/ressources/routes.ts` partagee entre legacy et Next: changement non coordonne peut casser les deux parcours.
+- Suppression prematuree des artefacts Vite casserait le workflow par defaut tant que la bascule n'est pas actee.
+- Deux pipelines sitemap coexistent (fichier public + route metadata Next) jusqu'a decision explicite.
+
+### Verifications effectuees
+
+- [ ] lint
+- [ ] typecheck
+- [ ] tests
+- [ ] build (non lance volontairement: aucune modification fonctionnelle)
+- [x] verification manuelle
+
+### Resultat
+
+- Cartographie pre-bascule completee sans suppression ni modification fonctionnelle.
+- Preconditions bloquantes identifiees avant Lot B (notamment `/a-propos` et strategie sitemap unique).
+
+### Prochaine etape recommandee
+
+1. Decider explicitement la strategie `/a-propos` avant bascule Next-only:
+   - soit migrer `/a-propos` dans `src/app/(site)/a-propos/page.tsx`;
+   - soit retirer temporairement ce lien de la navigation Next avec decision produit validee.
+2. Valider le runbook de bascule:
+   - changer les scripts par defaut vers Next;
+   - figer la source sitemap unique Next;
+   - executer ensuite Lot B en un lot controle.
