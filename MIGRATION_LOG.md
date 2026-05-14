@@ -2090,3 +2090,73 @@ Finaliser le cleanup Next-only en retirant l'outillage Vite, les scripts associe
 ### Prochaine etape recommandee
 
 Executer une passe finale de qualite (lint + type-check + smoke manuel UI) puis preparer la PR de cloture migration Next-only.
+
+## 14-05-2026 - Passe finale qualite Next-only (phase 25)
+
+### Decision structurante
+
+- [14-05-2026] [quality-gate] [validation finale lint/type-check/build + scan reliquats + HTTP] [confirmer la stabilite post-migration Next-only] [pre-merge gate valide]
+- [14-05-2026] [next-env] [conserver la mise a jour auto `./.next/dev/types/routes.d.ts` -> `./.next/types/routes.d.ts`] [fichier genere automatiquement par Next apres build] [coherent et necessaire au cycle de types Next]
+
+### Objectif
+
+Executer une passe finale qualite sur le projet Next-only sans corriger les dettes hors scope.
+
+### Scripts disponibles detectes
+
+- `dev`
+- `build`
+- `start`
+- `type-check`
+- `lint`
+- `dev:next`
+- `build:next`
+- `start:next`
+
+### Verifications effectuees
+
+- [x] lint
+- [x] typecheck (`type-check`)
+- [ ] tests (non detectes)
+- [x] build
+- [x] verification manuelle HTTP
+
+### Commandes executees
+
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK
+- verification HTTP locale (`npm run start`) :
+  - `/` -> `200`
+  - `/a-propos` -> `200`
+  - `/services` -> `200`
+  - `/portfolio` -> `200`
+  - `/contact` -> `200`
+  - `/mentions-legales` -> `200`
+  - `/sitemap.xml` -> `200`
+  - `/robots.txt` -> `200`
+
+### Scan technique final
+
+- References restantes a `react-router-dom` : non detecte (imports actifs)
+- References restantes a `react-helmet-async` : non detecte (imports actifs)
+- References restantes a `vite` / `@vitejs/plugin-react` / `vite/client` : non detecte
+- Fichiers vides evidents (`src`, `scripts`, `public`) : non detecte
+- TODO/FIXME restants detectes :
+  - `src/ressources/content/contentTypes.ts` (TODO documentation interne, hors scope)
+
+### Resultat
+
+- Passe finale qualite validee (lint/type-check/build + routes HTTP principales).
+- Aucun probleme bloquant detecte.
+- Aucun correctif de code fonctionnel applique durant cette passe.
+
+### Problemes restants (hors scope)
+
+- scroll modale a l'ouverture
+- cle publique reCAPTCHA manquante en local
+- refactor post-migration contenu + images
+
+### Prochaine etape recommandee
+
+Lancer la revue humaine finale puis preparer le merge/PR de cloture de migration Next-only.
