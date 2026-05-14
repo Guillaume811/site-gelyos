@@ -1971,3 +1971,122 @@ Executer uniquement le Lot B: retirer le runtime/page legacy et les composants l
 ### Prochaine etape recommandee
 
 Preparer l'execution controlee du Lot C (suppression outillage Vite + cleanup dependances) avec un gate de verification final Next-only.
+
+## 14-05-2026 - Execution Lot C nettoyage Next-only (phase 24)
+
+### Decision structurante
+
+- [14-05-2026] [lot-c-cleanup] [suppression outillage Vite + scripts/dependances legacy devenus inutiles] [runtime legacy deja retire en Lot B et scripts par defaut deja sur Next] [projet aligne Next-only]
+
+### Objectif
+
+Finaliser le cleanup Next-only en retirant l'outillage Vite, les scripts associes et les dependances legacy non utilisees.
+
+### Recherches/imports effectues
+
+- `rg -n "react-router-dom" src scripts`
+- `rg -n "react-helmet-async" src scripts`
+- `rg -n "remark-gfm|remarkGfm" src scripts`
+- `rg -n "from 'react-router-dom'" src scripts`
+- `rg -n "from \"react-router-dom\"" src scripts`
+- `rg -n "from 'react-helmet-async'" src scripts`
+- `rg -n "from \"react-helmet-async\"" src scripts`
+- `rg -n "from 'vite'|from \"vite\"|@vitejs/plugin-react|vite/client|eslint-plugin-react-refresh" src scripts eslint.config.js tsconfig.json tsconfig.app.json next.config.ts`
+- `rg -n "generate-sitemap|dotenv|tsx" src scripts package.json`
+
+### Fichiers supprimes
+
+- `vite.config.ts`
+- `index.html`
+- `src/vite-env.d.ts`
+- `tsconfig.node.json`
+- `scripts/generate-sitemap.ts`
+
+### Fichiers modifies
+
+- `package.json`
+- `package-lock.json`
+- `eslint.config.js`
+- `tsconfig.json`
+- `tsconfig.app.json`
+- `next.config.ts`
+- `MIGRATION_LOG.md`
+
+### Scripts supprimes
+
+- `dev:vite`
+- `build:vite`
+- `preview:vite`
+- `generate-sitemap`
+
+### Dependances supprimees
+
+- runtime legacy:
+  - `react-router-dom`
+  - `react-helmet-async`
+- outillage Vite/legacy:
+  - `vite`
+  - `@vitejs/plugin-react`
+  - `eslint-plugin-react-refresh`
+  - `tsx`
+  - `dotenv`
+- markdown optionnel non utilise:
+  - `remark-gfm`
+
+### Dependances conservees (usage detecte)
+
+- `next`, `react`, `react-dom` (runtime Next)
+- `react-markdown`, `remark-breaks` (rendu contenu)
+- `clsx`, `framer-motion`, `lucide-react`, `swiper`, `zod`, `sass` (imports actifs)
+- outillage qualite/types: `eslint`, `typescript`, `typescript-eslint`, `@types/*`, `@eslint/js`, `eslint-plugin-react-hooks`, `globals`
+
+### Ajustements TypeScript/ESLint
+
+- `eslint.config.js`:
+  - suppression plugin `eslint-plugin-react-refresh`
+  - suppression extension `reactRefresh.configs.vite`
+  - suppression de la regle `react-refresh/only-export-components`
+- `tsconfig.json`:
+  - suppression reference `./tsconfig.node.json`
+  - suppression alias `~pages/*`
+- `tsconfig.app.json`:
+  - suppression alias `~pages/*`
+- `next.config.ts`:
+  - suppression alias webpack `~pages`
+
+### Verifications effectuees
+
+- [ ] lint
+- [ ] typecheck
+- [ ] tests
+- [x] build
+- [x] verification manuelle
+
+### Commandes executees
+
+- `npm install` -> OK (85 packages supprimes, 0 vulnerability)
+- `npm run build` -> OK (Next)
+- `npm run dev` non lance volontairement (non necessaire, build + start HTTP deja verifies)
+- Verification HTTP locale (`npm run start`) :
+  - `/` -> `200`
+  - `/a-propos` -> `200`
+  - `/services` -> `200`
+  - `/portfolio` -> `200`
+  - `/contact` -> `200`
+  - `/mentions-legales` -> `200`
+  - `/sitemap.xml` -> `200`
+  - `/robots.txt` -> `200`
+
+### Resultat
+
+- Lot C termine: outillage Vite retire, scripts/dependances legacy retires, projet nettoye pour un workflow Next-only.
+- Aucune importation active detectee de `react-router-dom`, `react-helmet-async` et outillage `vite`.
+
+### Risques / points a surveiller
+
+- Dettes hors scope inchangees: scroll modale, cle reCAPTCHA locale, refactor post-migration contenu+images.
+- Verification QA manuelle recommandee (navigation, modale, formulaire contact) avant merge final.
+
+### Prochaine etape recommandee
+
+Executer une passe finale de qualite (lint + type-check + smoke manuel UI) puis preparer la PR de cloture migration Next-only.
