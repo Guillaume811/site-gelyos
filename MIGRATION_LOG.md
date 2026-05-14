@@ -1413,3 +1413,185 @@ Migrer uniquement la page `/a-propos` vers Next.js en preservant URL, contenu, d
 ### Prochaine etape recommandee
 
 Valider le runbook de bascule Next-only (scripts par defaut, source sitemap unique), puis executer Lot B en lot controle.
+
+## 14-05-2026 — Runbook final pre-bascule Next-only (phase 19)
+
+### Decision structurante
+
+- [14-05-2026] [runbook-next-only] [runbook final de bascule prepare sans suppression immediate] [securiser Lot B/Lot C et eviter regression de prod] [execution pas-a-pas avec points de controle]
+
+### Objectif
+
+Documenter le runbook final de bascule Next-only, la strategie sitemap cible et les listes Lot B / Lot C / dependances, sans modifier le code fonctionnel ni les scripts.
+
+### Fichiers analyses
+
+- `package.json`
+- `vite.config.ts`
+- `next.config.ts`
+- `scripts/generate-sitemap.ts`
+- `public/sitemap.xml`
+- `src/app/sitemap.ts`
+- `src/main.tsx`
+- `src/app/router.tsx`
+- `src/app/layout/RootLayout.tsx`
+- `src/app/layout/RootLayout.module.scss`
+- `src/app/(site)/Providers.tsx`
+- `src/app/(site)/navigation/MainNavNext.tsx`
+- `src/app/(site)/navigation/DesktopHeaderNext.tsx`
+- `src/app/(site)/navigation/MobileHeaderNext.tsx`
+- `src/app/(site)/navigation/FooterNext.tsx`
+- `src/ressources/routes.ts`
+- `src/components/**` (dossiers legacy navigation/seo/modal)
+- `src/_legacy/pages/**`
+
+### Commandes d'analyse executees
+
+- `git branch --show-current`
+- `git status --short`
+- `Get-Content package.json`
+- `Get-Content vite.config.ts`
+- `Get-Content next.config.ts`
+- `Get-Content scripts/generate-sitemap.ts`
+- `Get-Content public/sitemap.xml`
+- `Get-Content src/app/sitemap.ts`
+- `rg -n "~pages/" src`
+- `rg -n "RootLayout\\.module\\.scss" src`
+- `rg -n "react-router-dom|react-helmet-async|~/components/Seo/Seo|RouterProvider|HelmetProvider" src`
+- `rg -n "RootLayout\\.module\\.scss|components/DesktopHeader/DesktopHeader\\.module\\.scss|components/MobileHeader/MobileHeader\\.module\\.scss|components/MainNav/MainNav\\.module\\.scss|components/Footer/Footer\\.module\\.scss|components/CallToAction/CallToAction\\.module\\.scss" src`
+- `Get-ChildItem -Recurse -File src/_legacy/pages`
+- `Get-ChildItem -Recurse -File src/components/DesktopHeader`
+- `Get-ChildItem -Recurse -File src/components/MobileHeader`
+- `Get-ChildItem -Recurse -File src/components/MainNav`
+- `Get-ChildItem -Recurse -File src/components/Footer`
+- `Get-ChildItem -Recurse -File src/components/CallToAction`
+- `Get-ChildItem -Recurse -File src/components/Buttons`
+- `Get-ChildItem -Recurse -File src/components/ScrollToTop`
+- `Get-ChildItem -Recurse -File src/components/ModalProject/providers`
+- `rg -n "ModalProjectContext|useModalProject|ModalProjectProviderNext|ModalProjectProvider" src`
+
+### Runbook de bascule Next-only propose
+
+1. **Gate pre-switch (validation avant changement scripts)**
+   - Confirmer que toutes les routes publiques Next cibles repondent en `200` (`/`, `/a-propos`, `/services`, `/portfolio`, `/contact`, `/mentions-legales`, `/sitemap.xml`).
+   - Confirmer que les dettes hors scope restent documentees et acceptees (scroll modale, cle reCAPTCHA locale).
+2. **Basculer scripts par defaut vers Next (changement planifie, non applique ici)**
+   - `dev` -> `next dev --webpack`
+   - `build` -> `next build --webpack`
+   - `preview` -> `next start`
+   - Conserver provisoirement des scripts legacy suffixes (`dev:vite`, `build:vite`, `preview:vite`) uniquement pour rollback court, puis retirer en Lot C.
+3. **Fixer la strategie sitemap en source unique**
+   - Garder `src/app/sitemap.ts` comme source canonique.
+   - Decoupler `prebuild` de `generate-sitemap` (script Vite legacy) apres bascule scripts.
+4. **Executer Lot B (apres scripts Next par defaut et smoke tests)**
+   - Supprimer runtime Vite legacy + pages/components legacy devenus inutiles (liste confirmee ci-dessous).
+   - Ne supprimer que ce qui n'est plus importe par le shell Next.
+5. **Executer Lot C (apres validation post-Lot B)**
+   - Retirer outillage Vite restant (config, scripts et dependances associees) + nettoyage sitemap legacy statique.
+6. **Verification finale post-bascule**
+   - `lint`, `type-check`, `build` (Next), verification HTTP des routes publiques et de `/sitemap.xml`.
+   - Verification manuelle navigation/menu, modale projet et formulaire contact.
+
+### Strategie sitemap finale recommandee
+
+- **Source unique cible:** `src/app/sitemap.ts`.
+- **A conserver en cible Next-only:**
+  - `src/app/sitemap.ts`
+  - `public/robots.txt` (si toujours coherent avec les routes finales)
+- **A supprimer plus tard (Lot C):**
+  - `scripts/generate-sitemap.ts`
+  - script `generate-sitemap` + hook `prebuild` dans `package.json`
+  - `public/sitemap.xml` statique (si confirme non necessaire pour le deploiement Cloudflare)
+
+### Lot B confirme (supprimable apres bascule scripts Next)
+
+- Entrees/runtime legacy:
+  - `src/main.tsx`
+  - `src/app/router.tsx`
+  - `src/app/layout/RootLayout.tsx`
+- Pages legacy:
+  - `src/_legacy/pages/**` (inclut `About`, `Contact`, `Home`, `MentionsLégales`, `NotFound`, `Portfolio`, `Services`)
+- Composants legacy React Router/SEO/modal:
+  - `src/components/DesktopHeader/DesktopHeader.tsx`
+  - `src/components/MobileHeader/MobileHeader.tsx`
+  - `src/components/MainNav/MainNav.tsx`
+  - `src/components/Footer/Footer.tsx`
+  - `src/components/CallToAction/CallToAction.tsx`
+  - `src/components/Buttons/ButtonLink.tsx`
+  - `src/components/ScrollToTop/ScrollToTop.tsx`
+  - `src/components/Seo/Seo.tsx`
+  - `src/components/ModalProject/providers/ModalProjectProvider.tsx`
+
+### Lot B conditionnel (a deplacer avant suppression)
+
+- `src/app/layout/RootLayout.module.scss` **non supprimable immediatement**
+  - raison: encore importe par `src/app/(site)/Providers.tsx`.
+  - action prealable: deplacer/dupliquer les classes necessaires vers un fichier style Next dedie (ex. `src/app/(site)/Providers.module.scss`) puis supprimer.
+- Fichiers SCSS des composants legacy de navigation **non supprimables immediatement**:
+  - `src/components/DesktopHeader/DesktopHeader.module.scss`
+  - `src/components/MobileHeader/MobileHeader.module.scss`
+  - `src/components/MainNav/MainNav.module.scss`
+  - `src/components/Footer/Footer.module.scss`
+  - `src/components/CallToAction/CallToAction.module.scss`
+  - raison: reutilises par les composants Next `*Next.tsx`.
+  - action prealable: basculer ces imports vers des styles dedies Next, puis supprimer.
+
+### Lot C confirme (apres retrait complet Vite)
+
+- Config/entry/tooling:
+  - `vite.config.ts`
+  - `index.html`
+  - `src/vite-env.d.ts`
+  - `tsconfig.node.json` (inclut uniquement `vite.config.ts`)
+- Scripts legacy a retirer de `package.json`:
+  - `dev`/`build`/`preview` versions Vite (apres remplacement)
+  - `generate-sitemap`
+  - `prebuild`
+- Assets sitemap legacy:
+  - `scripts/generate-sitemap.ts`
+  - `public/sitemap.xml` (si source unique `src/app/sitemap.ts` validee)
+
+### Dependances supprimables apres bascule
+
+- **Apres Lot B (runtime legacy retire):**
+  - `react-router-dom`
+  - `react-helmet-async`
+- **Apres Lot C (outillage Vite retire):**
+  - `vite`
+  - `@vitejs/plugin-react`
+  - `eslint-plugin-react-refresh` (apres adaptation `eslint.config.js`)
+  - `tsx`
+  - `dotenv`
+- **Candidat a confirmer avant suppression:**
+  - `remark-gfm` (usage non detecte dans le code analyse)
+
+### Dependances a conserver (usage detecte cote Next actuel)
+
+- `next`, `react`, `react-dom`
+- `clsx`, `framer-motion`, `lucide-react`
+- `react-markdown`, `remark-breaks`
+- `swiper`, `zod`, `sass`
+- outillage TypeScript/ESLint general (`typescript`, `typescript-eslint`, `eslint`, `@types/*`, `globals`, `@eslint/js`, `eslint-plugin-react-hooks`)
+
+### Risques identifies
+
+- Suppression anticipee de styles legacy reutilises par `*Next.tsx` (navigation/shell) => regression visuelle immediate.
+- Suppression anticipee de `RootLayout.module.scss` => cassure du layout Next public (`Providers.tsx`).
+- Bascule scripts sans stabiliser sitemap unique => incoherence SEO (double source ou source non alimentee).
+- Dette modale scroll + dette reCAPTCHA locale restent ouvertes (hors scope), a conserver visibles post-bascule.
+
+### Verifications effectuees
+
+- [ ] lint
+- [ ] typecheck
+- [ ] tests
+- [ ] build (non lance volontairement: aucune modification fonctionnelle)
+- [x] verification manuelle
+
+### Resultat
+
+- Runbook final de bascule Next-only documente avec sequence d'execution, strategie sitemap cible, listes Lot B/Lot C confirmees et dependances classees.
+
+### Prochaine etape recommandee
+
+Executer d'abord un mini-lot technique de decouplage styles legacy encore consommes par Next (`RootLayout.module.scss` + styles nav), puis appliquer le runbook (switch scripts -> Lot B -> Lot C) avec validations entre chaque lot.
