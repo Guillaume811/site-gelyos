@@ -977,3 +977,72 @@ Preparer un plan de nettoyage legacy post-migration Next.js, sans suppression ri
 ### Prochaine etape recommandee
 
 Executer un lot "suppression Lot A" uniquement (fichiers deja non references), puis relancer les verifications standards; ensuite planifier la bascule Next-only avant Lot B.
+
+## 13-05-2026 — Execution nettoyage legacy Lot A (phase 14)
+
+### Decision structurante
+
+- [13-05-2026] [cleanup-lot-a] [suppression uniquement des fichiers confirmes non references] [appliquer le plan sans toucher aux lots B/C] [reduction du legacy inutile avec risque limite]
+
+### Objectif
+
+Executer uniquement le Lot A du plan de nettoyage legacy en supprimant seulement les fichiers confirmes non references.
+
+### Fichiers modifies
+
+- `MIGRATION_LOG.md`
+
+### Fichiers supprimes
+
+- `src/_legacy/pages/Article.tsx`
+- `src/_legacy/pages/Blog/Blog.tsx`
+- `src/_legacy/pages/Portfolio/PortfolioSection/PortfolioSection.tsx`
+- `src/_legacy/pages/Portfolio/PortfolioSection/PortfolioSection.module.scss`
+- `src/_pages/Home/HomeClientShell.tsx`
+
+### Recherches/imports effectues avant suppression
+
+- `rg -n "_legacy/pages/Article" src` -> aucun resultat
+- `rg -n "Article" src/app src/components src/_legacy src/_pages` -> aucun resultat
+- `rg -n "_legacy/pages/Blog/Blog" src` -> aucun resultat
+- `rg -n "Blog" src` -> uniquement occurrences commentees dans `src/app/router.tsx` + declaration locale dans `Blog.tsx`
+- `rg -n "PortfolioSection" src` -> uniquement occurrences internes aux fichiers `PortfolioSection.*`
+- `Get-Content src/_legacy/pages/Portfolio/Portfolio.tsx` -> pas d'import `PortfolioSection`
+- `rg -n "HomeClientShell" src` -> uniquement declaration locale dans `src/_pages/Home/HomeClientShell.tsx`
+
+### Verification des contraintes
+
+- Aucun fichier hors Lot A supprime.
+- Lot B et Lot C non executes.
+- `src/main.tsx`, `src/app/router.tsx`, `src/app/layout/RootLayout.tsx`, `src/_legacy/pages/About/**` conserves.
+- `package.json` non modifie.
+
+### Verifications effectuees
+
+- [ ] lint
+- [ ] typecheck
+- [ ] tests
+- [x] build
+- [x] verification manuelle
+
+### Commandes executees
+
+- `npm run build` (premiere tentative sandbox) -> echec `Error: spawn EPERM` au chargement de `vite.config.ts`
+- `npm run build` (re-execution hors sandbox) -> OK
+- `npm run build:next` (premiere tentative sandbox) -> echec `Error: spawn EPERM` pendant l'etape `Running TypeScript`
+- `npm run build:next` (re-execution hors sandbox) -> OK
+
+### Resultat
+
+- Suppressions Lot A executees conformement au plan.
+- `npm run build` : OK (Vite). Warning non bloquant conserve: chunk `index-*.js` > 500 kB.
+- `npm run build:next` : OK (Next). Routes statiques generees: `/`, `/services`, `/portfolio`, `/contact`, `/mentions-legales`, `/sitemap.xml`.
+
+### Risques / points a surveiller
+
+- Les lignes commentees de `src/app/router.tsx` mentionnent encore `Blog` (pas d'impact runtime, mais nettoyage textuel possible plus tard).
+- Les dettes hors scope restent ouvertes : scroll modale a l'ouverture, cle publique reCAPTCHA manquante en local.
+
+### Prochaine etape recommandee
+
+Verifier le retrait effectif de references mortes restantes (commentaires legacy), puis preparer un plan de bascule Next-only avant d'engager le Lot B.
