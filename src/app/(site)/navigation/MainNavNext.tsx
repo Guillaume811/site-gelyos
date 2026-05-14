@@ -6,7 +6,7 @@ import clsx from 'clsx'
 import { motion } from 'framer-motion'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { getMainNavRoutes } from '~/ressources/routes'
-import styles from '~/components/MainNav/MainNav.module.scss'
+import styles from './MainNavNext.module.scss'
 
 type Props = {
   className?: string

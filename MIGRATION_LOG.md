@@ -1595,3 +1595,113 @@ Documenter le runbook final de bascule Next-only, la strategie sitemap cible et 
 ### Prochaine etape recommandee
 
 Executer d'abord un mini-lot technique de decouplage styles legacy encore consommes par Next (`RootLayout.module.scss` + styles nav), puis appliquer le runbook (switch scripts -> Lot B -> Lot C) avec validations entre chaque lot.
+
+## 14-05-2026 — Micro-lot decouplage styles Next vs legacy (phase 20)
+
+### Decision structurante
+
+- [14-05-2026] [style-decoupling] [decouplage des imports SCSS Next pointant vers styles legacy critiques] [preparer Lot B sans regression visuelle] [styles Next dedies crees sans suppression legacy]
+
+### Objectif
+
+Executer un micro-lot de decouplage des styles encore partages entre legacy React/Vite et composants Next, sans changer le rendu ni la logique runtime.
+
+### Composants Next decouples
+
+- `SiteProviders`
+- `DesktopHeaderNext`
+- `MobileHeaderNext`
+- `MainNavNext`
+- `FooterNext`
+- `CallToActionNext`
+
+### Fichiers crees
+
+- `src/app/(site)/Providers.module.scss`
+- `src/app/(site)/navigation/DesktopHeaderNext.module.scss`
+- `src/app/(site)/navigation/MobileHeaderNext.module.scss`
+- `src/app/(site)/navigation/MainNavNext.module.scss`
+- `src/app/(site)/navigation/FooterNext.module.scss`
+- `src/app/(site)/navigation/CallToActionNext.module.scss`
+
+### Fichiers modifies
+
+- `src/app/(site)/Providers.tsx`
+- `src/app/(site)/navigation/DesktopHeaderNext.tsx`
+- `src/app/(site)/navigation/MobileHeaderNext.tsx`
+- `src/app/(site)/navigation/MainNavNext.tsx`
+- `src/app/(site)/navigation/FooterNext.tsx`
+- `src/app/(site)/navigation/CallToActionNext.tsx`
+- `MIGRATION_LOG.md`
+
+### Imports styles modifies
+
+- `src/app/(site)/Providers.tsx`
+  - `~/app/layout/RootLayout.module.scss` -> `./Providers.module.scss`
+- `src/app/(site)/navigation/DesktopHeaderNext.tsx`
+  - `~/components/DesktopHeader/DesktopHeader.module.scss` -> `./DesktopHeaderNext.module.scss`
+- `src/app/(site)/navigation/MobileHeaderNext.tsx`
+  - `~/components/MobileHeader/MobileHeader.module.scss` -> `./MobileHeaderNext.module.scss`
+- `src/app/(site)/navigation/MainNavNext.tsx`
+  - `~/components/MainNav/MainNav.module.scss` -> `./MainNavNext.module.scss`
+- `src/app/(site)/navigation/FooterNext.tsx`
+  - `~/components/Footer/Footer.module.scss` -> `./FooterNext.module.scss`
+- `src/app/(site)/navigation/CallToActionNext.tsx`
+  - `~/components/CallToAction/CallToAction.module.scss` -> `./CallToActionNext.module.scss`
+
+### Changements effectues
+
+- Copie/adaptation des styles legacy necessaires vers des modules SCSS dedies dans l'arborescence Next.
+- Bascule des imports styles des composants Next cibles vers ces fichiers dedies.
+- Aucun changement de logique runtime, aucun changement de contenu, aucune suppression legacy.
+
+### Styles legacy encore consommes par Next (apres ce micro-lot)
+
+- Non detecte pour la liste prioritaire demandee (`RootLayout.module.scss`, `DesktopHeader`, `MobileHeader`, `MainNav`, `Footer`, `CallToAction`).
+- Reste volontairement partage hors scope de ce lot:
+  - `src/components/Buttons/Button.module.scss` (utilise par Next et legacy via composants bouton partages).
+
+### Commandes d'analyse executees
+
+- `git branch --show-current`
+- `git status --short`
+- `rg -n "import styles from '.*module\\.scss'" 'src/app/(site)'`
+- `Get-Content` sur composants Next cibles et SCSS legacy associes
+- `rg -n "~/app/layout/RootLayout\\.module\\.scss|~/components/DesktopHeader/DesktopHeader\\.module\\.scss|~/components/MobileHeader/MobileHeader\\.module\\.scss|~/components/MainNav/MainNav\\.module\\.scss|~/components/Footer/Footer\\.module\\.scss|~/components/CallToAction/CallToAction\\.module\\.scss" 'src/app/(site)'`
+
+### Verifications effectuees
+
+- [ ] lint
+- [ ] typecheck
+- [ ] tests
+- [x] build
+- [x] verification manuelle
+
+### Commandes executees
+
+- `npm run build` -> OK
+- `npm run build:next` (premiere tentative sandbox) -> echec `Error: spawn EPERM` pendant `Running TypeScript`
+- `npm run build:next` (re-execution hors sandbox) -> OK
+- Verification HTTP locale via script npm:
+  - lancement `npm run start:next`
+  - `GET /` -> `200`
+  - `GET /a-propos` -> `200`
+  - `GET /services` -> `200`
+  - `GET /portfolio` -> `200`
+  - `GET /contact` -> `200`
+
+### Resultat
+
+- Decouplage des styles prioritaires termine sans suppression legacy.
+- `npm run build` : OK (warning non bloquant chunk Vite > 500 kB conserve).
+- `npm run build:next` : OK apres relance hors sandbox.
+- Verification HTTP rapide des routes demandees: OK (`200`).
+
+### Risques / points a surveiller
+
+- Verification visuelle manuelle recommandee sur desktop/mobile pour confirmer l'absence de regression fine (spacing/transparence/backdrop/hover) apres copie des SCSS.
+- Dettes hors scope inchangées: scroll modale a l'ouverture, cle publique reCAPTCHA manquante en local.
+
+### Prochaine etape recommandee
+
+Lancer une passe de validation UI manuelle (desktop + mobile) ciblee navigation/layout, puis enchaîner sur l'execution controlee du runbook Next-only (switch scripts par defaut -> Lot B).

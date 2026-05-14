@@ -1,0 +1,31 @@
+.cta {
+  padding: 2rem 1rem;
+
+    .container {
+        max-width: 550px;
+        margin: 0 auto;
+        text-align: center;
+        border: 4px solid $color-primary;
+        border-radius: 30px;
+        @include box-shadow($color-primary);
+        padding: 1.5rem;
+
+        .title {
+            color: $color-secondary;
+            font-weight: 800;
+            margin: 0 0 .75rem;
+        }
+
+        .text {
+            color: $color-text;
+            line-height: 1.55;
+            margin: 0 0 1rem;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

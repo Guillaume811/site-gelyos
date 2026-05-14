@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import styles from '~/components/Footer/Footer.module.scss'
+import styles from './FooterNext.module.scss'
 import logoUrl from '~/assets/pictures/logo-long.webp'
 import { getMainNavRoutes } from '~/ressources/routes'
 import phoneIcon from '~/assets/icons/phone.webp'
