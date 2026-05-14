@@ -1780,3 +1780,13 @@ Corriger uniquement les images manquantes sur les pages migrees Next, sans chang
 ### Prochaine etape recommandee
 
 Executer une validation UI manuelle complete des pages migrees, puis poursuivre le runbook Next-only (Lot B) uniquement apres validation visuelle.
+
+### Point ouvert post-migration (14-05-2026) - Contenu et images
+
+- La correction transitoire via `getAssetSrc(...)` est conservee pour stabiliser la migration, mais le systeme de chargement d'images devra etre remplace par une approche plus native Next.js.
+- Le rendu de contenu base sur `react-markdown` devra etre reevalue.
+- Le futur systeme devra gerer texte + images de maniere coherente dans une meme logique de contenu.
+- Cette evolution est a traiter apres:
+  1. la bascule Next-only ;
+  2. la dette UX de scroll modale ;
+  3. la dette reCAPTCHA / configuration d'environnement.
