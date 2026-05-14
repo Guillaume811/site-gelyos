@@ -1790,3 +1790,80 @@ Executer une validation UI manuelle complete des pages migrees, puis poursuivre 
   1. la bascule Next-only ;
   2. la dette UX de scroll modale ;
   3. la dette reCAPTCHA / configuration d'environnement.
+
+## 14-05-2026 - Bascule scripts par defaut vers Next.js avec fallback Vite (phase 22)
+
+### Decision structurante
+
+- [14-05-2026] [scripts-next-only] [scripts par defaut bascules vers Next, fallback Vite conserve] [preparer la bascule Next-only sans couper le plan de repli] [workflow principal sur Next, verification legacy encore possible]
+- [14-05-2026] [sitemap] [source active unifiee sur `src/app/sitemap.ts`] [conflit detecte avec `public/sitemap.xml` qui prenait la priorite sur Next] [`/sitemap.xml` aligne sur la metadata route Next]
+
+### Objectif
+
+Basculer `dev/build/start` vers Next.js tout en conservant des scripts Vite explicites en fallback temporaire.
+
+### Fichiers modifies
+
+- `package.json`
+- `MIGRATION_LOG.md`
+
+### Fichiers supprimes
+
+- `public/sitemap.xml`
+
+### Changements effectues
+
+- Scripts par defaut bascules vers Next:
+  - `dev` -> `next dev --webpack`
+  - `build` -> `next build --webpack`
+  - `start` -> `next start`
+- Scripts fallback Vite explicites conserves:
+  - `dev:vite` -> `vite`
+  - `build:vite` -> `tsc --noEmit && vite build`
+  - `preview:vite` -> `vite preview`
+- Scripts Next existants conserves en alias de compatibilite:
+  - `dev:next` -> `npm run dev`
+  - `build:next` -> `npm run build`
+  - `start:next` -> `npm run start`
+- Suppression du hook `prebuild` legacy (generation sitemap statique automatique).
+- Suppression de `public/sitemap.xml` pour lever le conflit de precedence et activer la source sitemap Next `src/app/sitemap.ts`.
+
+### Verifications effectuees
+
+- [ ] lint
+- [ ] typecheck
+- [ ] tests
+- [x] build
+- [x] verification manuelle
+
+### Commandes executees
+
+- `npm run build` (Next par defaut) -> OK
+- `npm run build:vite` (premiere tentative sandbox) -> echec `Error: spawn EPERM` (esbuild)
+- `npm run build:vite` (re-execution hors sandbox) -> OK
+- Verification HTTP locale (`npm run start`) sur:
+  - `/` -> `200`
+  - `/a-propos` -> `200`
+  - `/services` -> `200`
+  - `/portfolio` -> `200`
+  - `/contact` -> `200`
+  - `/mentions-legales` -> `200`
+  - `/sitemap.xml` -> `200`
+  - `/robots.txt` -> `200`
+- Verification contenu `/sitemap.xml`:
+  - la reponse est desormais celle de la route Next (`https://gelyos.fr/` + `lastmod` ISO), confirmant l'usage de `src/app/sitemap.ts`.
+
+### Resultat
+
+- Bascule des scripts par defaut vers Next effective.
+- Fallback Vite toujours disponible et valide via `build:vite`.
+- Conflit sitemap resolu en faveur de la source Next cible.
+
+### Risques / points a surveiller
+
+- `build:vite` peut encore necessiter une execution hors sandbox sur cet environnement Windows (erreur `spawn EPERM`).
+- Les dettes hors scope restent inchangées: scroll modale, reCAPTCHA/env, refactor contenu+images post-migration.
+
+### Prochaine etape recommandee
+
+Lancer le lot de suppression legacy suivant uniquement apres validation humaine du runbook (Lot B), maintenant que les scripts par defaut et la source sitemap Next sont stabilises.

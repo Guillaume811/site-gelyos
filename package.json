@@ -4,16 +4,18 @@
     "version": "0.0.0",
     "type": "module",
     "scripts": {
-        "dev": "vite",
+        "dev": "next dev --webpack",
+        "dev:vite": "vite",
         "generate-sitemap": "tsx scripts/generate-sitemap.ts",
-        "prebuild": "npm run generate-sitemap",
-        "build": "tsc --noEmit && vite build",
+        "build": "next build --webpack",
+        "build:vite": "tsc --noEmit && vite build",
+        "start": "next start",
         "type-check": "tsc --noEmit",
         "lint": "eslint .",
-        "preview": "vite preview",
-        "dev:next": "next dev --webpack",
-        "build:next": "next build --webpack",
-        "start:next": "next start"
+        "preview:vite": "vite preview",
+        "dev:next": "npm run dev",
+        "build:next": "npm run build",
+        "start:next": "npm run start"
     },
     "dependencies": {
         "clsx": "^2.1.1",
