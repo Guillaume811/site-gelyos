@@ -53,7 +53,7 @@ export function ModalProjectProviderNext({ children }: Props) {
       const next = new URLSearchParams(window.location.search)
       next.set('project', nextSlug)
       const query = next.toString()
-      router.push(query ? `${pathname}?${query}` : pathname)
+      router.push(query ? `${pathname}?${query}` : pathname, { scroll: false })
       setSlug(nextSlug)
     },
     [pathname, router],
@@ -64,7 +64,7 @@ export function ModalProjectProviderNext({ children }: Props) {
     const next = new URLSearchParams(window.location.search)
     next.delete('project')
     const query = next.toString()
-    router.push(query ? `${pathname}?${query}` : pathname)
+    router.push(query ? `${pathname}?${query}` : pathname, { scroll: false })
     setSlug(null)
   }, [pathname, router])
 
@@ -148,4 +148,3 @@ export function ModalProjectProviderNext({ children }: Props) {
     </ModalProjectContext.Provider>
   )
 }
-

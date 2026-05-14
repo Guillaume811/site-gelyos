@@ -2160,3 +2160,57 @@ Executer une passe finale qualite sur le projet Next-only sans corriger les dett
 ### Prochaine etape recommandee
 
 Lancer la revue humaine finale puis preparer le merge/PR de cloture de migration Next-only.
+
+## 14-05-2026 - Correction dette scroll modale Next (phase 26)
+
+### Decision structurante
+
+- [14-05-2026] [modal-scroll] [ajout `scroll: false` sur les navigations query `project`] [eviter le scroll automatique en haut a l'ouverture/fermeture de modale] [URL `?project=` et historique navigateur conserves]
+
+### Objectif
+
+Corriger uniquement la dette UX de scroll a l'ouverture de la modale projet cote Next.
+
+### Cause identifiee
+
+- `ModalProjectProviderNext` utilisait `router.push(...)` sans option de scroll pour l'ouverture/fermeture de modale.
+- Le changement de query param `project` declenchait le comportement de scroll par defaut de Next.
+
+### Fichiers modifies
+
+- `src/components/ModalProject/providers/ModalProjectProviderNext.tsx`
+- `MIGRATION_LOG.md`
+
+### Correction appliquee
+
+- Dans `open(...)` : `router.push(..., { scroll: false })`
+- Dans `close(...)` : `router.push(..., { scroll: false })`
+- Aucun changement de design, contenu, ou logique metier hors modale.
+
+### Verifications effectuees
+
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK
+- verification HTTP:
+  - `/` -> `200`
+  - `/?project=jaqen` -> `200`
+  - `/portfolio?project=jaqen` -> `200`
+
+### Statut dette
+
+- Dette "scroll modale a l'ouverture" : **corrigee cote implementation**.
+- Verification manuelle navigateur restant a faire pour validation UX complete:
+  - ouvrir une modale depuis une position scroll basse et confirmer absence de remontée en haut ;
+  - fermer la modale et verifier la position ;
+  - tester precedent/suivant navigateur ;
+  - verifier ouverture directe via `/?project=<slug>`.
+
+### Dettes restantes (hors scope)
+
+- cle publique reCAPTCHA manquante en local
+- refactor post-migration contenu + images
+
+### Prochaine etape recommandee
+
+Effectuer une verification manuelle navigateur ciblee modale (scroll + back/forward), puis clore la dette UX si comportement confirme.
