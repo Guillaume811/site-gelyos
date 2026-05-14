@@ -23,7 +23,7 @@ if (!SITE_URL) {
   throw new Error('VITE_SITE_URL doit être défini pour générer le sitemap.')
 }
 
-const EXCLUDED_ROUTES: RouteItem['name'][] = ['mentionsLegales', 'aPropos']
+const EXCLUDED_ROUTES: RouteItem['name'][] = ['mentionsLegales']
 
 function normalizePath(p: string) {
   if (!p || p === '/') return '/'

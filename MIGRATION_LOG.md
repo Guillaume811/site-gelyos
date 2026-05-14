@@ -1319,3 +1319,97 @@ Verifier les preconditions de bascule Next-only avant execution du Lot B, sans m
    - changer les scripts par defaut vers Next;
    - figer la source sitemap unique Next;
    - executer ensuite Lot B en un lot controle.
+
+## 14-05-2026 — Migration page `/a-propos` vers Next (phase 18)
+
+### Decision structurante
+
+- [14-05-2026] [page-next] [migration de `/a-propos` avant bascule Next-only] [fermer le risque de lien nav Next vers route non servie] [precondition Lot B levee cote routing public]
+
+### Objectif
+
+Migrer uniquement la page `/a-propos` vers Next.js en preservant URL, contenu, design, responsive, accessibilite et metadata.
+
+### Page migree
+
+- `About` (`/a-propos`)
+
+### Fichiers crees
+
+- `src/app/(site)/a-propos/page.tsx`
+- `src/_pages/About/About.tsx`
+- `src/_pages/About/AboutSection/AboutSection.tsx`
+- `src/_pages/About/AboutSection/AboutSection.module.scss`
+
+### Fichiers modifies
+
+- `src/app/sitemap.ts`
+- `scripts/generate-sitemap.ts`
+- `public/sitemap.xml`
+- `MIGRATION_LOG.md`
+
+### Sections migrees
+
+- `AboutSection`
+
+### Metadata migrees
+
+- `title`, `description`, `canonical`, `openGraph` migres depuis la page legacy `About`.
+
+### Changements effectues
+
+- Creation de la route Next `src/app/(site)/a-propos/page.tsx` connectee au composant metier `src/_pages/About/About.tsx`.
+- Migration de la composition legacy de page:
+  - header via `HeaderSection`;
+  - rendu des sections `aboutPageContent.sections` avec alternance `reverse`.
+- Migration de la section `AboutSection` (markdown + image + TwoColumnSection) avec styles preservant le rendu legacy.
+- `src/_pages/About/About.module.scss` non cree (non necessaire: pas de styles locaux de page en legacy).
+- Reintegration de `/a-propos` dans la strategie sitemap actuelle de cohabitation:
+  - ajout de `/a-propos` dans `src/app/sitemap.ts`;
+  - retrait de `aPropos` de la liste d'exclusion de `scripts/generate-sitemap.ts`;
+  - regeneration de `public/sitemap.xml` via `npm run build`.
+
+### Navigation Next `/a-propos`
+
+- Le lien `/a-propos` reste present dans `src/ressources/routes.ts` et est consomme par la navigation Next (`MainNavNext` / `MobileHeaderNext`).
+- Verification HTTP effectuee: `/a-propos` repond bien en `200`.
+
+### Verifications effectuees
+
+- [ ] lint
+- [ ] typecheck
+- [ ] tests
+- [x] build
+- [x] verification manuelle
+
+### Commandes executees
+
+- `npm run build` -> OK
+- `npm run build:next` (premiere tentative sandbox) -> echec `Error: spawn EPERM` pendant `Running TypeScript`
+- `npm run build:next` (re-execution hors sandbox) -> OK
+- Tentative verification HTTP via `Start-Process npm run start:next -- -p 3100` -> echec (`Acces refuse` puis `Impossible de se connecter au serveur distant`)
+- Diagnostic `npm run start:next -- -p 3100` -> echec (`Invalid project directory provided ...\\3100`)
+- Verification HTTP locale (Next start + requetes):
+  - `/` -> `200`
+  - `/a-propos` -> `200`
+  - `/services` -> `200`
+  - `/portfolio` -> `200`
+  - `/contact` -> `200`
+  - `/mentions-legales` -> `200`
+  - `/sitemap.xml` -> `200`
+
+### Resultat
+
+- Migration `/a-propos` terminee sans suppression legacy.
+- `npm run build` : OK (Vite), warning non bloquant de taille de chunk `> 500 kB` conserve.
+- `npm run build:next` : OK (Next), route statique `/a-propos` generee.
+- Sitemap de cohabitation mis a jour avec `/a-propos`.
+
+### Risques / points a surveiller
+
+- Dettes hors scope inchangées: scroll modale a l'ouverture, cle publique reCAPTCHA manquante en local.
+- Double source sitemap toujours presente (fichier public + route metadata Next) tant que la bascule Next-only n'est pas actee.
+
+### Prochaine etape recommandee
+
+Valider le runbook de bascule Next-only (scripts par defaut, source sitemap unique), puis executer Lot B en lot controle.
