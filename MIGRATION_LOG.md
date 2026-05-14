@@ -2341,3 +2341,19 @@ Nettoyer et documenter les variables d'environnement apres migration Next-only, 
 - scroll modale a l'ouverture
 - cle publique reCAPTCHA manquante en local (si non renseignee)
 - refactor post-migration contenu + images
+
+## 14-05-2026 - Cloture dettes resolues (phase 29)
+
+### Statut dettes
+
+- Dette UX scroll modale a l'ouverture : **corrigee et testee**.
+- Dette reCAPTCHA/contact local : **corrigee et testee**.
+
+### Precision configuration contact/reCAPTCHA
+
+- La correction du flux contact en local necessitait une configuration correcte de `ALLOWED_ORIGINS` cote Cloudflare avec l'origine complete (exemple: `http://localhost:3000`).
+- La cle publique reCAPTCHA est desormais correctement lue en local via la configuration Next attendue.
+
+### Dette restante
+
+- refactor post-migration contenu + images
