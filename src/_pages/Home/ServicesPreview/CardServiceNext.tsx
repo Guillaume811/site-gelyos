@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown'
 import Heading from '~/components/Heading/Heading'
 import buttonStyles from '~/components/Buttons/Button.module.scss'
 import cardStyles from '~/components/CardService/CardService.module.scss'
+import { getAssetSrc } from '~/lib/getAssetSrc'
 import type { ServiceCard } from '~/ressources/content/contentTypes'
 
 interface Props {
@@ -19,7 +20,7 @@ export default function CardServiceNext({ data, className }: Props) {
     <div className={`${cardStyles.card} ${className ?? ''}`}>
       {icon && (
         <div className={cardStyles.icon} aria-hidden="true">
-          <img src={icon.src} alt={icon.alt} />
+          <img src={getAssetSrc(icon.src)} alt={icon.alt} />
         </div>
       )}
 
@@ -41,4 +42,3 @@ export default function CardServiceNext({ data, className }: Props) {
     </div>
   )
 }
-

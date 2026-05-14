@@ -1,5 +1,6 @@
 import styles from './CardProcess.module.scss';
 import Heading from '../Heading/Heading';
+import { getAssetSrc } from '~/lib/getAssetSrc';
 
 export type CardProcessProps = {
   card: {
@@ -17,7 +18,7 @@ export function CardProcess({ card, className }: CardProcessProps) {
   return (
     <article className={containerClass} data-card-id={card.id}>
       <div className={styles.icon}>
-        <img src={card.icon.src} alt={card.icon.alt} loading="lazy" />
+        <img src={getAssetSrc(card.icon.src)} alt={card.icon.alt} loading="lazy" />
       </div>
       <div className={styles.content}>
         <Heading level={3} className={styles.title}>{card.title}</Heading>

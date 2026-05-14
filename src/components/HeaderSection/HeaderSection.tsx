@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef } from "react"
 import clsx from "clsx"
 import Heading from "~/components/Heading/Heading"
+import { getAssetSrc } from "~/lib/getAssetSrc"
 import styles from "./HeaderSection.module.scss"
 import type { ImageContent } from "~/ressources/content/contentTypes"
 
@@ -55,7 +56,7 @@ export default function HeaderSection({ title, image, className }: Props) {
   return (
     <section className={clsx(styles.section, className)} aria-labelledby={titleId}>
       <div ref={backgroundRef} className={styles.background} aria-hidden="true">
-        <img src={image.src} alt="" className={styles.backgroundImage} loading="eager" />
+        <img src={getAssetSrc(image.src)} alt="" className={styles.backgroundImage} loading="eager" />
       </div>
 
       <div className={styles.content}>

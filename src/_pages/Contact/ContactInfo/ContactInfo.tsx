@@ -3,6 +3,7 @@ import Heading from "~/components/Heading/Heading";
 import { contactContent } from "~/ressources/content/contact/contactContent";
 import styles from "./ContactInfo.module.scss";
 import { Mail, Phone } from "lucide-react";
+import { getAssetSrc } from "~/lib/getAssetSrc";
 import linkedinIcon from '~/assets/icons/linkedin-contact.webp'
 import maltIcon from '~/assets/icons/malt.webp'
 
@@ -84,7 +85,7 @@ export default function ContactInfo({
           className={styles.socialLink}
           aria-label="Visiter mon profil LinkedIn (nouvel onglet)"
         >
-          <img src={linkedinIcon} alt="" className={styles.socialIconLinkedin} width={40} height={40}/>
+          <img src={getAssetSrc(linkedinIcon)} alt="" className={styles.socialIconLinkedin} width={40} height={40}/>
         </a>
 
         <a
@@ -94,7 +95,7 @@ export default function ContactInfo({
           className={styles.socialLink}
           aria-label="Visiter mon profil Malt (nouvel onglet)"
         >
-          <img src={maltIcon} alt="" className={styles.socialIconMalt} width={40} height={40}/>
+          <img src={getAssetSrc(maltIcon)} alt="" className={styles.socialIconMalt} width={40} height={40}/>
         </a>
       </div>
     </section>

@@ -11,6 +11,7 @@ import ReactMarkdown from 'react-markdown'
 import Accordion from '~/components/Accordion/Accordion'
 import Heading from '~/components/Heading/Heading'
 import TwoColumnSection from '~/components/TwoColumnSection/TwoColumnSection'
+import { getAssetSrc } from '~/lib/getAssetSrc'
 import type { ServiceSectionContent } from '~/ressources/content/contentTypes'
 import styles from './ServicesSection.module.scss'
 
@@ -42,7 +43,7 @@ export default function ServicesSection({
       }
       right={
         <div className={styles.right}>
-          <img src={image.src} alt={image.alt} className={styles.image} loading="lazy" />
+          <img src={getAssetSrc(image.src)} alt={image.alt} className={styles.image} loading="lazy" />
         </div>
       }
     />

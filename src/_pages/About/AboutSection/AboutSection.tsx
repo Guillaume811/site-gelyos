@@ -1,6 +1,7 @@
 import ReactMarkdown from 'react-markdown'
 import Heading from '~/components/Heading/Heading'
 import TwoColumnSection from '~/components/TwoColumnSection/TwoColumnSection'
+import { getAssetSrc } from '~/lib/getAssetSrc'
 import type { AboutSectionContent } from '~/ressources/content/contentTypes'
 import styles from './AboutSection.module.scss'
 
@@ -39,7 +40,7 @@ export default function AboutSection({
       }
       right={
         <div className={styles.right}>
-          <img src={image.src} alt={image.alt} className={styles.image} loading="lazy" />
+          <img src={getAssetSrc(image.src)} alt={image.alt} className={styles.image} loading="lazy" />
         </div>
       }
     />

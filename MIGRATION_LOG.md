@@ -1705,3 +1705,78 @@ Executer un micro-lot de decouplage des styles encore partages entre legacy Reac
 ### Prochaine etape recommandee
 
 Lancer une passe de validation UI manuelle (desktop + mobile) ciblee navigation/layout, puis enchaîner sur l'execution controlee du runbook Next-only (switch scripts par defaut -> Lot B).
+
+## 14-05-2026 - Correctif chargement images pages Next (phase 21)
+
+### Decision structurante
+
+- [14-05-2026] [images-next] [normalisation des `src` d'assets importes via helper `getAssetSrc`] [eviter `[object Object]` dans les balises `<img>` avec Next] [compatibilite conservee Vite + Next pendant cohabitation]
+
+### Objectif
+
+Corriger uniquement les images manquantes sur les pages migrees Next, sans changer le design ni le contenu.
+
+### Cause identifiee
+
+- Plusieurs composants de pages utilisaient des valeurs d'assets importes directement dans `src` (ou via `image.src`), alors que Next peut fournir un objet d'asset.
+- Effet constate cote HTML Next: `src="[object Object]"` sur certaines images de pages.
+
+### Fichiers crees
+
+- `src/lib/getAssetSrc.ts`
+
+### Fichiers modifies
+
+- `src/_pages/About/AboutSection/AboutSection.tsx`
+- `src/_pages/Services/ServicesSection/ServicesSection.tsx`
+- `src/_pages/Home/ServicesPreview/CardServiceNext.tsx`
+- `src/_pages/Contact/ContactInfo/ContactInfo.tsx`
+- `src/components/CardProcess/CardProcess.tsx`
+- `src/components/HeaderSection/HeaderSection.tsx`
+- `MIGRATION_LOG.md`
+
+### Changements effectues
+
+- Ajout d'un helper `getAssetSrc` pour normaliser les sources d'images (`string` ou objet asset) en URL exploitable par `<img src>`.
+- Application du helper uniquement sur les composants de pages migrees concernes.
+- Aucun changement de contenu, de design, de routing ou de logique metier.
+
+### Verifications effectuees
+
+- [ ] lint
+- [ ] typecheck
+- [ ] tests
+- [x] build
+- [x] verification manuelle
+
+### Commandes executees
+
+- `npm run build` -> OK
+- `npm run build:next` (premiere tentative sandbox) -> echec `Error: spawn EPERM` pendant `Running TypeScript`
+- `npm run build:next` (re-execution hors sandbox) -> OK
+- Verification HTTP locale (Next start):
+  - `GET /` -> `200`
+  - `GET /a-propos` -> `200`
+  - `GET /services` -> `200`
+  - `GET /portfolio` -> `200`
+  - `GET /contact` -> `200`
+- Verification HTML des routes migrees:
+  - avant correctif final: presence de `src="[object Object]"` detectee
+  - apres correctif final: plus aucune occurrence detectee
+- Verification des URLs images detectees dans le HTML:
+  - aucun echec HTTP detecte sur les `src` relatifs (`/_next/...` et `/pictures/...`)
+
+### Resultat
+
+- Chargement des images corrige sur les pages Next migrees ciblees.
+- Coexistence Vite/Next preservee.
+- Aucune image manquante detectee sur les routes verifiees.
+
+### Risques / points a surveiller
+
+- Verification visuelle manuelle recommandee (desktop/mobile) pour confirmer l'absence de regression fine sur toutes les sections imagees.
+- Dettes hors scope inchangees: scroll modale a l'ouverture, cle reCAPTCHA publique manquante en local.
+
+### Prochaine etape recommandee
+
+Executer une validation UI manuelle complete des pages migrees, puis poursuivre le runbook Next-only (Lot B) uniquement apres validation visuelle.
