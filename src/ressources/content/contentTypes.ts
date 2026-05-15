@@ -72,7 +72,7 @@ export interface AccordionItemContent {
 // ======== Home page content types ========
 //TODO: passer les 3 ? en obligatoire et changer le code dans le composant Hero + changer son nom
 export interface Content {
-    title: RichText
+    title: InlineContent
     text: RichText
     firstButton?: ButtonContent
     secondButton?: ButtonContent

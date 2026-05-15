@@ -1,8 +1,7 @@
 import { Fragment, type ReactNode } from "react"
 import { motion } from "framer-motion"
-import ReactMarkdown from "react-markdown"
-import remarkBreaks from "remark-breaks"
 import styles from "./AnimatedTitle.module.scss"
+import type { InlineContent } from "~/ressources/content/contentTypes"
 
 const container = {
   hidden: { opacity: 0 },
@@ -25,20 +24,36 @@ function renderChars(text: string) {
   ))
 }
 
-// Sécurise et split récursivement le contenu
-function splitAny(node?: ReactNode): ReactNode {
-  if (node == null) return null
-  if (typeof node === "string" || typeof node === "number") {
-    return renderChars(String(node))
-  }
-  if (Array.isArray(node)) {
-    return node.map((n, i) => <Fragment key={i}>{splitAny(n)}</Fragment>)
-  }
-  // Autres éléments (ex: déjà <strong> ou <em>) seront gérés par 'components'
-  return node
+function renderInlineContent(content: InlineContent): ReactNode {
+  return content.map((segment, index) => {
+    switch (segment.type) {
+      case "text":
+        return <Fragment key={`text-${index}`}>{renderChars(segment.text)}</Fragment>
+      case "strong":
+        return <strong key={`strong-${index}`}>{renderChars(segment.text)}</strong>
+      case "emphasis":
+        return <em key={`emphasis-${index}`}>{renderChars(segment.text)}</em>
+      case "accent":
+        return (
+          <span key={`accent-${index}`} data-inline="accent">
+            {renderChars(segment.text)}
+          </span>
+        )
+      case "link":
+        return (
+          <a key={`link-${index}`} href={segment.href}>
+            {renderChars(segment.text)}
+          </a>
+        )
+      case "lineBreak":
+        return <br key={`line-break-${index}`} />
+      default:
+        return null
+    }
+  })
 }
 
-export function AnimatedTitle({ text }: { text: string }) {
+export function AnimatedTitle({ text }: { text: InlineContent }) {
   return (
     <motion.span
       variants={container}
@@ -46,21 +61,7 @@ export function AnimatedTitle({ text }: { text: string }) {
       animate="visible"
       className={styles.animatedText}
     >
-      <ReactMarkdown
-        remarkPlugins={[remarkBreaks]}
-        components={{
-          // Évite d’insérer <p> dans un <h1> / <h2> : on rend juste le contenu splitté
-          p: ({ children }: { children?: ReactNode }) => <>{splitAny(children)}</>,
-          strong: ({ children }: { children?: ReactNode }) => <strong>{splitAny(children)}</strong>,
-          em: ({ children }: { children?: ReactNode }) => <em>{splitAny(children)}</em>,
-          a: ({ href, children }: { href?: string; children?: ReactNode }) => (
-            <a href={href}>{splitAny(children)}</a>
-          ),
-          br: () => <br />
-        }}
-      >
-        {text}
-      </ReactMarkdown>
+      {renderInlineContent(text)}
     </motion.span>
   )
 }

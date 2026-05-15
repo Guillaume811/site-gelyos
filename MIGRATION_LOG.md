@@ -3569,3 +3569,82 @@ Migrer uniquement `AccordionItem` et les contenus qu'il rend, afin de supprimer 
 ### Prochaine etape recommandee
 
 Migrer le composant markdown restant le plus prioritaire (`AnimatedTitle` ou cards Home), un composant a la fois, avec la meme approche inline.
+## 15-05-2026 - Migration `AnimatedTitle` vers `InlineContent` (phase 42)
+
+### Decision structurante
+
+- [15-05-2026] [animated-title-inline] [migration de `AnimatedTitle` vers renderer inline type] [supprimer markdown uniquement dans ce composant] [animation et styles conserves]
+
+### Objectif
+
+Migrer uniquement `AnimatedTitle` vers `InlineContent` afin de retirer son usage de `react-markdown`.
+
+### Usages `AnimatedTitle` identifies
+
+- `src/_pages/Home/Hero/Hero.tsx`
+
+### Contenus associes identifies
+
+- `src/ressources/content/home/hero.ts` (`heroContent.title`)
+
+### Syntaxes detectees dans le contenu migre
+
+- `**...**` (present)
+- retour ligne `\n` (present)
+- `*...*` (non detecte)
+- `[[...]]` (non detecte dans le titre)
+- `[texte](url)` (non detecte)
+
+### Fichiers modifies
+
+- `src/animations/AnimatedTitle/AnimatedTitle.tsx`
+- `src/ressources/content/home/hero.ts`
+- `src/ressources/content/contentTypes.ts`
+- `MIGRATION_LOG.md`
+
+### Champs migres vers `InlineContent`
+
+- `Content.title` (`contentTypes.ts`) : `RichText` -> `InlineContent`
+- `heroContent.title` (`home/hero.ts`) converti en segments:
+  - `text`
+  - `lineBreak`
+  - `strong`
+
+### Adaptation de `AnimatedTitle`
+
+- retrait des imports:
+  - `react-markdown`
+  - `remark-breaks`
+- ajout d'un renderer inline local base sur les segments `InlineContent`:
+  - `text` -> caracteres animes
+  - `strong` -> `<strong>` + caracteres animes
+  - `emphasis` -> `<em>` + caracteres animes
+  - `accent` -> `<span data-inline="accent">` + caracteres animes
+  - `link` -> `<a>` + caracteres animes
+  - `lineBreak` -> `<br />`
+- variantes Framer Motion, stagger et comportement d'animation conserves.
+
+### Verifications effectuees
+
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK
+- verification HTTP locale: non realisee dans ce lot (rendu visuel a valider manuellement)
+
+### Usages `react-markdown` restants dans le projet
+
+- `src/_pages/Home/ProjectPreview/ProjectPreview.tsx`
+- `src/_pages/Home/ServicesPreview/ServicesPreview.tsx`
+- `src/_pages/Home/ServicesPreview/CardServiceNext.tsx`
+
+### Risques / points a verifier manuellement
+
+- verifier visuellement `/`:
+  - rendu exact du titre hero
+  - style du segment fort (`Web Sur Mesure`)
+  - respect du retour ligne
+  - animation caractere par caractere identique (timing/perception)
+
+### Prochaine etape recommandee
+
+Migrer ensuite un seul composant restant utilisant `react-markdown` (recommande: `ServicesPreview`), en conservant la meme strategie `InlineContent` progressive.
