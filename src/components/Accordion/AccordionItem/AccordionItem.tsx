@@ -1,14 +1,81 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import ReactMarkdown from "react-markdown";
 import styles from "./AccordionItem.module.scss";
 import clsx from "clsx";
-import type { AccordionItemContent } from "~/ressources/content/contentTypes";
+import type { AccordionItemContent, InlineContent } from "~/ressources/content/contentTypes";
 
 interface Props {
   item: AccordionItemContent;
   isOpen: boolean;
   onToggle: () => void;
+}
+
+function splitIntoParagraphs(content: InlineContent): InlineContent[] {
+  const paragraphs: InlineContent[] = [];
+  let current: InlineContent = [];
+  let consecutiveBreaks = 0;
+
+  content.forEach((segment) => {
+    if (segment.type === "lineBreak") {
+      consecutiveBreaks += 1;
+
+      if (consecutiveBreaks >= 2) {
+        if (current.length > 0) {
+          paragraphs.push(current);
+          current = [];
+        }
+        consecutiveBreaks = 0;
+      } else {
+        current.push({ type: "lineBreak" });
+      }
+
+      return;
+    }
+
+    consecutiveBreaks = 0;
+    current.push(segment);
+  });
+
+  if (current.length > 0) {
+    paragraphs.push(current);
+  }
+
+  return paragraphs.length > 0 ? paragraphs : [content];
+}
+
+function renderInlineContent(content: InlineContent) {
+  const paragraphs = splitIntoParagraphs(content);
+
+  return paragraphs.map((paragraph, paragraphIndex) => (
+    <p key={`paragraph-${paragraphIndex}`}>
+      {paragraph.map((segment, segmentIndex) => {
+        switch (segment.type) {
+          case "text":
+            return <span key={`text-${paragraphIndex}-${segmentIndex}`}>{segment.text}</span>;
+          case "strong":
+            return <strong key={`strong-${paragraphIndex}-${segmentIndex}`}>{segment.text}</strong>;
+          case "emphasis":
+            return <em key={`emphasis-${paragraphIndex}-${segmentIndex}`}>{segment.text}</em>;
+          case "accent":
+            return (
+              <span key={`accent-${paragraphIndex}-${segmentIndex}`} data-inline="accent">
+                {segment.text}
+              </span>
+            );
+          case "link":
+            return (
+              <a key={`link-${paragraphIndex}-${segmentIndex}`} href={segment.href}>
+                {segment.text}
+              </a>
+            );
+          case "lineBreak":
+            return <br key={`line-break-${paragraphIndex}-${segmentIndex}`} />;
+          default:
+            return null;
+        }
+      })}
+    </p>
+  ));
 }
 
 export default function AccordionItem({ item, isOpen, onToggle }: Props) {
@@ -45,7 +112,7 @@ export default function AccordionItem({ item, isOpen, onToggle }: Props) {
             transition={{ duration: 0.4, ease: "easeInOut" }}
           >
             <div className={styles.inner}>
-              <ReactMarkdown>{item.description}</ReactMarkdown>
+              {renderInlineContent(item.description)}
             </div>
           </motion.div>
         )}

@@ -17,19 +17,39 @@ export const applicationProjects: Project[] = [
       {
         id: 'technologies',
         title: 'Technologies utilisées',
-        description: 'Application développée en Java avec Android Studio',
+        description: [{ type: 'text', text: 'Application développée en Java avec Android Studio' }],
       },
       {
         id: 'features',
         title: 'Fonctionnalités clés',
-        description:
-          'Génération de compétitions sous forme de championnats, coupes ou tournois\n\nSaisie des joueurs ou des équipes\n\nEnregistrement des scores des matches\n\nCalcul automatique des points (victoire, defaite, match nul)\n\nClassement mis à jour instantanément\n\nSuivi de la compétition en temps réel par les joueurs',
+        description: [
+          { type: 'text', text: 'Génération de compétitions sous forme de championnats, coupes ou tournois' },
+          { type: 'lineBreak' },
+          { type: 'lineBreak' },
+          { type: 'text', text: 'Saisie des joueurs ou des équipes' },
+          { type: 'lineBreak' },
+          { type: 'lineBreak' },
+          { type: 'text', text: 'Enregistrement des scores des matches' },
+          { type: 'lineBreak' },
+          { type: 'lineBreak' },
+          { type: 'text', text: 'Calcul automatique des points (victoire, defaite, match nul)' },
+          { type: 'lineBreak' },
+          { type: 'lineBreak' },
+          { type: 'text', text: 'Classement mis à jour instantanément' },
+          { type: 'lineBreak' },
+          { type: 'lineBreak' },
+          { type: 'text', text: 'Suivi de la compétition en temps réel par les joueurs' },
+        ],
       },
       {
         id: 'defis',
         title: 'Défis',
-        description:
-          "Projet de fin de formation réalisé en autodidacte, conçu pour mettre en pratique la programmation orientée objet en Java dans une application Android concrète.",
+        description: [
+          {
+            type: 'text',
+            text: "Projet de fin de formation réalisé en autodidacte, conçu pour mettre en pratique la programmation orientée objet en Java dans une application Android concrète.",
+          },
+        ],
       },
     ],
     url: '',

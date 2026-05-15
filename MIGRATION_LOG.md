@@ -3480,4 +3480,92 @@ Migrer uniquement `SectionBlock` et le contenu legal qu'il rend pour supprimer s
 
 ### Prochaine etape recommandee
 
-Migrer ensuite un seul renderer markdown restant (recommande: `AccordionItem`) avec la meme approche inline, en gardant les autres composants hors scope.
+Migrer ensuite un seul renderer markdown restant (recommande: `AccordionItem`) avec la meme approche inline, en gardant les autres composants hors scope.## 15-05-2026 - Migration `AccordionItem` + contenus associes vers `InlineContent` (phase 41)
+
+### Decision structurante
+
+- [15-05-2026] [accordion-inline] [migration de `AccordionItem` et des descriptions d'accordeon vers `InlineContent`] [retirer markdown uniquement dans ce composant] [cohabitation maintenue pour les autres composants encore en markdown]
+
+### Objectif
+
+Migrer uniquement `AccordionItem` et les contenus qu'il rend, afin de supprimer son usage de `react-markdown`.
+
+### Fichiers modifies
+
+- `src/components/Accordion/AccordionItem/AccordionItem.tsx`
+- `src/ressources/content/contentTypes.ts`
+- `src/ressources/content/services/devWeb.ts`
+- `src/ressources/content/services/devApp.ts`
+- `src/ressources/content/services/maintenance.ts`
+- `src/ressources/content/services/seo.ts`
+- `src/ressources/content/portfolio/data/applications.ts`
+- `src/ressources/content/portfolio/data/ecommerce.ts`
+- `MIGRATION_LOG.md`
+
+### Usages `AccordionItem` identifies
+
+- `src/_pages/Services/ServicesSection/ServicesSection.tsx` (accordeons des sections services)
+- `src/components/ModalProject/ModalProjectNext.tsx` (accordeons dans la modale portfolio)
+
+### Champs migres vers `InlineContent`
+
+- `AccordionItemContent.description` (`contentTypes.ts`) : `RichText` -> `InlineContent`
+- descriptions migrees:
+  - `ServiceAccordionItems[].description` dans:
+    - `devWeb.ts`
+    - `devApp.ts`
+    - `maintenance.ts`
+    - `seo.ts`
+  - `project.accordionItems[].description` dans:
+    - `portfolio/data/applications.ts`
+    - `portfolio/data/ecommerce.ts`
+
+### Conversion des syntaxes markdown/pseudo-markdown
+
+- `texte normal` -> segment `text`
+- paragraphes listes en texte (ancien `\n\n`) -> segments `lineBreak` (cas portfolio)
+- syntaxes non detectees dans ces champs:
+  - `**...**`
+  - `*...*`
+  - `[[...]]`
+  - `[texte](url)`
+
+### Adaptation de `AccordionItem`
+
+- retrait de l'import `react-markdown` (plus utilise dans ce composant)
+- ajout d'un renderer inline local:
+  - `text` -> `<span>`
+  - `strong` -> `<strong>`
+  - `emphasis` -> `<em>`
+  - `accent` -> `<span data-inline="accent">`
+  - `link` -> `<a href="...">`
+  - `lineBreak` -> `<br />`
+- comportement d'ouverture/fermeture conserve (aucun changement sur la logique d'animation et de toggle)
+
+### Verifications effectuees
+
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK
+- verification HTTP locale: non finalisee (commande de verification precedente bloquee/interrompue)
+
+### Usages `react-markdown` restants dans le projet
+
+- `src/_pages/Home/ProjectPreview/ProjectPreview.tsx`
+- `src/_pages/Home/ServicesPreview/ServicesPreview.tsx`
+- `src/_pages/Home/ServicesPreview/CardServiceNext.tsx`
+- `src/animations/AnimatedTitle/AnimatedTitle.tsx`
+
+### Risques / points a verifier manuellement
+
+- verifier visuellement `/services`:
+  - rendu des textes d'accordeon
+  - retours ligne/espacements
+  - ouverture/fermeture clavier + souris
+- verifier visuellement `/portfolio` (modale projet):
+  - rendu des descriptions d'accordeon
+  - retours ligne des items "Fonctionnalites cles"
+
+### Prochaine etape recommandee
+
+Migrer le composant markdown restant le plus prioritaire (`AnimatedTitle` ou cards Home), un composant a la fois, avec la meme approche inline.

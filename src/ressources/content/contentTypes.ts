@@ -66,7 +66,7 @@ export interface IntroContent {
 export interface AccordionItemContent {
     id: RichText
     title: RichText
-    description: RichText
+    description: InlineContent
 }
 
 // ======== Home page content types ========

@@ -17,27 +17,37 @@ export const seo: ServiceSectionContent = {
         {
             id: 'audit',
             title: 'Audit SEO complet',
-            description: `Nous analysons votre site sous tous les angles : technique, contenus, maillage interne, backlinks, vitesse. Cet audit identifie les points forts et les axes d'amélioration.`
+            description: [
+                { type: 'text', text: `Nous analysons votre site sous tous les angles : technique, contenus, maillage interne, backlinks, vitesse. Cet audit identifie les points forts et les axes d'amélioration.` }
+            ]
         },
         {
             id: 'technique',
             title: 'Optimisation technique',
-            description: `Nous intervienons sur la structure du site : balises HTML, plan de site, indexation, vitesse de chargement et comptatibilité mobile. Chaque détail compte pour plaire à Google.`
+            description: [
+                { type: 'text', text: `Nous intervienons sur la structure du site : balises HTML, plan de site, indexation, vitesse de chargement et comptatibilité mobile. Chaque détail compte pour plaire à Google.` }
+            ]
         },
         {
             id: 'contenu',
             title: 'Optimisation des contenus',
-            description: `Nous retravaillons les textes et les balises pour intégrer les bons mots-clés, améliorer la lisibilité et capter l'attention des visiteurs. Le but est de plaire autant aux utilisateurs qu'aux moteurs de recherche.`
+            description: [
+                { type: 'text', text: `Nous retravaillons les textes et les balises pour intégrer les bons mots-clés, améliorer la lisibilité et capter l'attention des visiteurs. Le but est de plaire autant aux utilisateurs qu'aux moteurs de recherche.` }
+            ]
         },
         {
             id: 'suivi',
             title: 'Suivi & reporting',
-            description: `Vous recevez un suivi clair des performances : évolution du trafic, positions sur Google, conversions. Les actions sont ajustées en fonction des résultats.`
+            description: [
+                { type: 'text', text: `Vous recevez un suivi clair des performances : évolution du trafic, positions sur Google, conversions. Les actions sont ajustées en fonction des résultats.` }
+            ]
         },
         {
             id: 'strategie',
             title: 'Conseil stratégique',
-            description: `Nous vous accompagnons sur la durée pour garder une longueur d'avance : stratégie de contenus, acquisition de backlinks, bonne pratiques SEO.`
+            description: [
+                { type: 'text', text: `Nous vous accompagnons sur la durée pour garder une longueur d'avance : stratégie de contenus, acquisition de backlinks, bonne pratiques SEO.` }
+            ]
         }
     ]
 }

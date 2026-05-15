@@ -19,27 +19,37 @@ export const devApp: ServiceSectionContent = {
         {
             id: 'analyse',
             title: 'Analyse fonctionnelle',
-            description: `Nous définissons ensemble les fonctionnalités nécessaires, les utilisateurs ciblés et les objectifs de l'application. Cette étape garantit que l'outil réponde exactement à vos besoins.`
+            description: [
+                { type: 'text', text: `Nous définissons ensemble les fonctionnalités nécessaires, les utilisateurs ciblés et les objectifs de l'application. Cette étape garantit que l'outil réponde exactement à vos besoins.` }
+            ]
         },
         {
             id: 'conception',
             title: 'Conception technique',
-            description: `Nous choisissons les technologies les plus adaptées à votre projet (framework, base de données, hébergement). Une architecture solide assure performance, sécurité et évolutivité.`
+            description: [
+                { type: 'text', text: `Nous choisissons les technologies les plus adaptées à votre projet (framework, base de données, hébergement). Une architecture solide assure performance, sécurité et évolutivité.` }
+            ]
         },
         {
             id: 'developpement',
             title: 'Développement & Intégration',
-            description: `Du front-end au back-end, nous développons une application performante et intuitive. L'interface utilisateur est fluide et moderne, tandis que le back-end garantit stabilité et rapidité.`
+            description: [
+                { type: 'text', text: `Du front-end au back-end, nous développons une application performante et intuitive. L'interface utilisateur est fluide et moderne, tandis que le back-end garantit stabilité et rapidité.` }
+            ]
         },
         {
             id: 'test',
             title: 'Tests & Sécurité',
-            description: `Chaque fonctionnalité est testée rigoureusement : compatibilité, sécurité des données, performance en charge. L'objectif : une application fiable et sécurisée.`
+            description: [
+                { type: 'text', text: `Chaque fonctionnalité est testée rigoureusement : compatibilité, sécurité des données, performance en charge. L'objectif : une application fiable et sécurisée.` }
+            ]
         },
         {
             id: 'evolution',
             title: 'Évolutions',
-            description: `Une application n'est jamais figée : je propose un suivi continu pour ajouter de nouvelles fonctionnalités et répondre à vos futurs besoins.`
+            description: [
+                { type: 'text', text: `Une application n'est jamais figée : je propose un suivi continu pour ajouter de nouvelles fonctionnalités et répondre à vos futurs besoins.` }
+            ]
         }
     ]
 }

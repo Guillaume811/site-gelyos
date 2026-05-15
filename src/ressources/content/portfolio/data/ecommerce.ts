@@ -17,18 +17,25 @@ export const ecommerceProjects: Project[] = [
       {
         id: 'technologies',
         title: 'Technologies utilisées',
-        description: 'Site développé avec WordPress et WooCommerce.',
+        description: [{ type: 'text', text: 'Site développé avec WordPress et WooCommerce.' }],
       },
       {
         id: 'features',
         title: 'Fonctionnalités clés',
-        description:
-          'Boutique en ligne dédiée aux créations de la petit emi\n\nMise en avant des bougies naturelles, des bijoux en bois et des objets gravés au laser\n\nContenus pensés pour refléter un univers artisanal, éthique et plein de douceur',
+        description: [
+          { type: 'text', text: 'Boutique en ligne dédiée aux créations de la petit emi' },
+          { type: 'lineBreak' },
+          { type: 'lineBreak' },
+          { type: 'text', text: 'Mise en avant des bougies naturelles, des bijoux en bois et des objets gravés au laser' },
+          { type: 'lineBreak' },
+          { type: 'lineBreak' },
+          { type: 'text', text: 'Contenus pensés pour refléter un univers artisanal, éthique et plein de douceur' },
+        ],
       },
       {
         id: 'result',
         title: 'Résultats',
-        description: 'Site livré dans les temps, Client satisfait',
+        description: [{ type: 'text', text: 'Site livré dans les temps, Client satisfait' }],
       },
     ],
     url: 'https://la-petite-emi.fr/',

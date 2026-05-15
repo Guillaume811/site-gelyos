@@ -19,27 +19,37 @@ export const maintenance: ServiceSectionContent = {
         {
             id: 'mises-a-jour',
             title: 'Mises à jour régulières',
-            description: `Nous installons les dernières mises à jour de sécurité et de comptabilité pour protéger votre site contre les failles et garantir sa stabilité.`
+            description: [
+                { type: 'text', text: `Nous installons les dernières mises à jour de sécurité et de comptabilité pour protéger votre site contre les failles et garantir sa stabilité.` }
+            ]
         },
         {
             id: 'surveillance',
             title: 'Surveillance & monitoring',
-            description: `Nous mettons en place un suivi continu pour anticiper les problèmes (pannes, lenteurs, attaques). Vous avez l'assurance d'un site toujours opérationnel.`
+            description: [
+                { type: 'text', text: `Nous mettons en place un suivi continu pour anticiper les problèmes (pannes, lenteurs, attaques). Vous avez l'assurance d'un site toujours opérationnel.` }
+            ]
         },
         {
             id: 'sauvegardes',
             title: 'Sauvegardes & restauration',
-            description: `Des sauvegardes régulières sont effectuées pour protéger vos données. En cas de problème, votre site peut être restauré rapidement.`
+            description: [
+                { type: 'text', text: `Des sauvegardes régulières sont effectuées pour protéger vos données. En cas de problème, votre site peut être restauré rapidement.` }
+            ]
         },
         {
             id: 'corrections',
             title: 'Corrections rapides',
-            description: `En cas de bug ou de panne, Nous intervenons rapidement pour corriger le problème et limiter l'impact sur votre activité.`
+            description: [
+                { type: 'text', text: `En cas de bug ou de panne, Nous intervenons rapidement pour corriger le problème et limiter l'impact sur votre activité.` }
+            ]
         },
         {
             id: 'ameliorations',
             title: 'Améliorations continues',
-            description: `Nous accompagnons vos besoins d'évolution : ajout de nouvelles fonctionnalités, refonte partielles, optimisation des performances.`
+            description: [
+                { type: 'text', text: `Nous accompagnons vos besoins d'évolution : ajout de nouvelles fonctionnalités, refonte partielles, optimisation des performances.` }
+            ]
         }
     ]
 }
