@@ -138,7 +138,7 @@ export interface ServicePageContent {
 export interface AboutSectionContent {
     id: RichText
     title: RichText
-    description: RichText
+    description: InlineContent
     image: ImageContent
 }
 

@@ -3307,3 +3307,89 @@ Migrer uniquement `ServicesSection` et les contenus services associes rendus par
 ### Prochaine etape recommandee
 
 Migrer ensuite `AboutSection` ou `AccordionItem` (un seul composant a la fois) pour poursuivre la suppression progressive des usages markdown restants.
+## 15-05-2026 - Migration `AboutSection` vers `InlineContent` (phase 39)
+
+### Decision structurante
+
+- [15-05-2026] [about-section-inline] [migration du renderer `AboutSection` et des champs `description` about vers `InlineContent`] [retirer markdown uniquement dans ce composant] [autres renderers markdown conserves]
+
+### Objectif
+
+Migrer uniquement `AboutSection` et les contenus `/a-propos` qu'il rend, afin de supprimer son usage local de `react-markdown`.
+
+### Fichiers modifies
+
+- `src/_pages/About/AboutSection/AboutSection.tsx`
+- `src/ressources/content/contentTypes.ts`
+- `src/ressources/content/about/parcours.ts`
+- `src/ressources/content/about/expertise.ts`
+- `src/ressources/content/about/technologies.ts`
+- `MIGRATION_LOG.md`
+
+### Champs migres vers `InlineContent`
+
+- `AboutSectionContent.description` (`contentTypes.ts`) : `RichText` -> `InlineContent`
+- Champs contenus migres:
+  - `parcours.description`
+  - `expertise.description`
+  - `technologies.description`
+
+### Syntaxes markdown remplacees
+
+- `**...**` -> segments `strong`
+- retours ligne markdown (double espace + newline) -> segments `lineBreak`
+- texte normal -> segments `text`
+- syntaxes non detectees dans ces champs:
+  - `*...*`
+  - `[[...]]`
+  - `[texte](url)`
+
+### Adaptation du composant
+
+- `AboutSection.tsx`:
+  - retrait de l'import `react-markdown`.
+  - ajout d'un micro-renderer inline local (`InlineContent` -> balises HTML):
+    - `text` -> `<span>`
+    - `strong` -> `<strong>`
+    - `emphasis` -> `<em>`
+    - `accent` -> `<span data-inline="accent">`
+    - `link` -> `<a href="...">`
+    - `lineBreak` -> `<br />`
+- `remark-breaks` n'etait pas utilise dans `AboutSection` (aucun retrait necessaire).
+
+### Scope respecte
+
+- Aucun changement sur:
+  - `SectionBlock`
+  - `AnimatedTitle`
+  - cards Home
+  - `AccordionItem`
+- Aucune modification package/dependances.
+
+### Verifications effectuees
+
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK
+- verification HTTP locale:
+  - `/a-propos` -> `200`
+
+### Usages `react-markdown` restants dans le projet
+
+- `src/animations/AnimatedTitle/AnimatedTitle.tsx`
+- `src/components/Accordion/AccordionItem/AccordionItem.tsx`
+- `src/_pages/MentionsLegales/SectionBlock/SectionBlock.tsx`
+- `src/_pages/Home/ProjectPreview/ProjectPreview.tsx`
+- `src/_pages/Home/ServicesPreview/ServicesPreview.tsx`
+- `src/_pages/Home/ServicesPreview/CardServiceNext.tsx`
+
+### Risques / points a verifier manuellement
+
+- verifier visuellement `/a-propos`:
+  - rendu des segments `strong`
+  - retours ligne dans chaque bloc de description
+  - espacements verticaux et non-regression responsive.
+
+### Prochaine etape recommandee
+
+Migrer ensuite un seul renderer markdown restant (recommande: `AccordionItem` ou `SectionBlock`) avec la meme strategie inline segmentee, sans etendre le scope au reste des pages.

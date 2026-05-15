@@ -1,13 +1,45 @@
-import ReactMarkdown from 'react-markdown'
 import Heading from '~/components/Heading/Heading'
 import TwoColumnSection from '~/components/TwoColumnSection/TwoColumnSection'
 import { getAssetSrc } from '~/lib/getAssetSrc'
-import type { AboutSectionContent } from '~/ressources/content/contentTypes'
+import type { AboutSectionContent, InlineContent } from '~/ressources/content/contentTypes'
 import styles from './AboutSection.module.scss'
 
 interface Props extends AboutSectionContent {
   reverse?: boolean
   className?: string
+}
+
+function renderInlineContent(content: InlineContent) {
+  return (
+    <p>
+      {content.map((segment, index) => {
+        switch (segment.type) {
+          case 'text':
+            return <span key={`text-${index}`}>{segment.text}</span>
+          case 'strong':
+            return <strong key={`strong-${index}`}>{segment.text}</strong>
+          case 'emphasis':
+            return <em key={`emphasis-${index}`}>{segment.text}</em>
+          case 'accent':
+            return (
+              <span key={`accent-${index}`} data-inline="accent">
+                {segment.text}
+              </span>
+            )
+          case 'link':
+            return (
+              <a key={`link-${index}`} href={segment.href}>
+                {segment.text}
+              </a>
+            )
+          case 'lineBreak':
+            return <br key={`line-break-${index}`} />
+          default:
+            return null
+        }
+      })}
+    </p>
+  )
 }
 
 /* Component AboutSection
@@ -33,9 +65,7 @@ export default function AboutSection({
       left={
         <div className={styles.left}>
           <Heading level={2}>{title}</Heading>
-          <div className={styles.text}>
-            <ReactMarkdown>{description}</ReactMarkdown>
-          </div>
+          <div className={styles.text}>{renderInlineContent(description)}</div>
         </div>
       }
       right={
