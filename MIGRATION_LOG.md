@@ -2868,3 +2868,66 @@ Corriger la regression visuelle apparue sur `/services` apres la migration test 
 ### Prochaine etape recommandee
 
 Valider humainement la proposition d'une interface inline typee minimale (ex. segments/styles) avant toute nouvelle tentative de migration de `PageIntro` hors `react-markdown`.
+## 15-05-2026 - Definition interface inline typee minimale (phase 34)
+
+### Decision structurante
+
+- [15-05-2026] [inline-content-types] [ajout d'une interface inline typee minimale dans `contentTypes.ts`] [preparer le remplacement progressif markdown/pseudo-markdown sans casser l'existant] [cohabitation `string` legacy + segments types]
+
+### Objectif
+
+Definir officiellement une interface inline typee minimale pour remplacer progressivement Markdown/pseudo-Markdown, sans migrer les contenus ni les renderers dans cette etape.
+
+### Fichiers modifies
+
+- `src/ressources/content/contentTypes.ts`
+- `MIGRATION_LOG.md`
+
+### Interface ajoutee
+
+- Segments inline minimaux:
+  - `InlineTextSegment` (`type: 'text'`)
+  - `InlineStrongSegment` (`type: 'strong'`)
+  - `InlineEmphasisSegment` (`type: 'emphasis'`)
+  - `InlineAccentSegment` (`type: 'accent'`)
+  - `InlineLinkSegment` (`type: 'link'`, `href`)
+  - `InlineLineBreakSegment` (`type: 'lineBreak'`)
+- Union:
+  - `InlineContentSegment`
+  - `InlineContent = InlineContentSegment[]`
+- Type de transition progressive:
+  - `ProgressiveRichText = RichText | InlineContent`
+
+### Correspondance anciens marqueurs -> nouveaux types
+
+- `texte simple` -> `InlineTextSegment`
+- `**texte**` -> `InlineStrongSegment`
+- `*texte*` -> `InlineEmphasisSegment`
+- `[[texte]]` -> `InlineAccentSegment`
+- `[texte](url)` -> `InlineLinkSegment`
+- retours ligne markdown / separateurs de ligne -> `InlineLineBreakSegment`
+
+### Raison des noms choisis
+
+- Prefixe `Inline` pour distinguer clairement cette couche des types de page existants (`ServicePageContent`, `AboutPageContent`, etc.).
+- Suffixe `Segment` pour exprimer une structure lineaire simple (petits blocs ordonnes), sans architecture complexe.
+- `Emphasis` conserve la semantique qui remplace l'usage courant de `*...*` (notamment GELYOS en font titre).
+- `Accent` reserve un canal explicite pour l'ancien pseudo-marqueur `[[...]]`.
+- `ProgressiveRichText` explicite la cohabitation temporaire entre `string` legacy et nouveau format type.
+
+### Scope respecte
+
+- Aucun contenu migre dans cette phase.
+- Aucun composant de rendu modifie.
+- `PageIntro` non modifie.
+- `react-markdown`, `remark-breaks`, `getAssetSrc` conserves.
+
+### Verifications effectuees
+
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK
+
+### Prochaine etape recommandee
+
+Introduire un micro-renderer cible pour `PageIntro` (opt-in sur `/services` uniquement) qui accepte `ProgressiveRichText`, puis migrer un seul contenu pilote en segments inline sans toucher les autres pages.

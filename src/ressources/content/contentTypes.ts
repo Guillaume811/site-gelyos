@@ -3,6 +3,47 @@ import type { RoutePath } from '~/ressources/routes'
 // ======== Common content types ========
 export type RichText = string
 
+export interface InlineTextSegment {
+    type: 'text'
+    text: string
+}
+
+export interface InlineStrongSegment {
+    type: 'strong'
+    text: string
+}
+
+export interface InlineEmphasisSegment {
+    type: 'emphasis'
+    text: string
+}
+
+export interface InlineAccentSegment {
+    type: 'accent'
+    text: string
+}
+
+export interface InlineLinkSegment {
+    type: 'link'
+    text: string
+    href: string
+}
+
+export interface InlineLineBreakSegment {
+    type: 'lineBreak'
+}
+
+export type InlineContentSegment =
+    | InlineTextSegment
+    | InlineStrongSegment
+    | InlineEmphasisSegment
+    | InlineAccentSegment
+    | InlineLinkSegment
+    | InlineLineBreakSegment
+
+export type InlineContent = InlineContentSegment[]
+export type ProgressiveRichText = RichText | InlineContent
+
 export interface ImageContent {
     src: string
     alt: string
