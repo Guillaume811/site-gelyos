@@ -4093,3 +4093,34 @@ Verifier l'usage reel de `portfolioContent.sections` et des types associes avant
 - Si validation de suppression: retirer en lot dedie `portfolioContent.sections` + types associes, puis relancer lint/type-check/build.
 - Si conservation produit: conserver tel quel et marquer explicitement comme "reserve futur" dans la documentation.
 - [15-05-2026] [portfolio-sections] [portfolioContent.sections conserve volontairement] [contenu reserve pour une evolution future de la page portfolio] [ne plus traiter comme suppression prioritaire]
+## 15-05-2026 - Nettoyage documentation README post Next-only (phase 51)
+
+### Objectif
+
+Nettoyer `README.md` pour retirer les restes du template Vite et aligner la documentation sur le workflow Next-only.
+
+### Fichiers modifies
+
+- `README.md`
+- `MIGRATION_LOG.md`
+
+### Changements effectues
+
+- suppression des references obsoletes au template `React + TypeScript + Vite`.
+- suppression des instructions ESLint template non pertinentes pour le projet actuel.
+- ajout d'une presentation concise du projet en Next.js App Router.
+- mise a jour des commandes utiles:
+  - `npm install`
+  - `npm run dev`
+  - `npm run lint`
+  - `npm run type-check`
+  - `npm run build`
+  - `npm run start`
+- ajout des variables d'environnement publiques attendues (sans valeurs):
+  - `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`
+  - `NEXT_PUBLIC_CONTACT_ENDPOINT`
+  - `NEXT_PUBLIC_GA_ID`
+
+### Verifications
+
+- aucune commande de build/lint/typecheck relancee (modifications documentation uniquement).
