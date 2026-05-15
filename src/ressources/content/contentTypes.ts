@@ -60,7 +60,7 @@ export interface PageHeaderContent {
 }
 
 export interface IntroContent {
-    text: ProgressiveRichText
+    text: InlineContent
 }
 
 export interface AccordionItemContent {

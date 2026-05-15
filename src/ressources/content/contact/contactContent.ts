@@ -9,7 +9,15 @@ export const contactContent: ContactPageContent = {
             alt: '' }
     },
     intro: {
-        text: `Vous avez un projet de **site internet sur mesure**, d'**application** ou besoin d'une **optimisation SEO** ? Remplissez ce formulaire ou contactez-nous directement par e-mail ou téléphone : nous vous répondrons sous 24h.`
+        text: [
+            { type: 'text', text: 'Vous avez un projet de ' },
+            { type: 'strong', text: 'site internet sur mesure' },
+            { type: 'text', text: ", d'" },
+            { type: 'strong', text: 'application' },
+            { type: 'text', text: "' ou besoin d'une " },
+            { type: 'strong', text: 'optimisation SEO' },
+            { type: 'text', text: ' ? Remplissez ce formulaire ou contactez-nous directement par e-mail ou téléphone : nous vous répondrons sous 24h.' }
+        ]
     },
     title: 'Discutons ensemble',
     email: {

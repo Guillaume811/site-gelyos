@@ -3025,3 +3025,90 @@ Ajouter un micro-renderer inline type uniquement pour `PageIntro` quand le conte
 ### Prochaine etape recommandee
 
 Migrer ensuite un second contenu `PageIntro` (contact ou portfolio) vers `InlineContent`, puis preparer la sortie progressive de `react-markdown` pour `PageIntro` seulement une fois ses trois usages convertis.
+## 15-05-2026 - Migration `PageIntro` completee (`/portfolio` + `/contact`) (phase 36)
+
+### Decision structurante
+
+- [15-05-2026] [pageintro-inline-complete] [migration des 2 derniers contenus intro vers `InlineContent` + retrait fallback markdown dans `PageIntro`] [les 3 usages PageIntro sont maintenant inline types] [react-markdown conserve ailleurs dans le projet]
+
+### Objectif
+
+Migrer les 2 derniers contenus `PageIntro` (`/portfolio`, `/contact`) vers `InlineContent` et supprimer le fallback `react-markdown` uniquement dans `PageIntro`.
+
+### Fichiers modifies
+
+- `src/ressources/content/portfolio/portfolioContent.ts`
+- `src/ressources/content/contact/contactContent.ts`
+- `src/components/PageIntro/PageIntro.tsx`
+- `src/ressources/content/contentTypes.ts`
+- `MIGRATION_LOG.md`
+
+### Contenus migres
+
+- `portfolioContent.intro.text` -> `InlineContent`
+  - conversion `**...**` -> segments `strong`
+  - texte normal -> segments `text`
+- `contactContent.intro.text` -> `InlineContent`
+  - conversion `**...**` -> segments `strong`
+  - texte normal -> segments `text`
+
+### Contenus non migres (volontaire)
+
+- `services` deja migre precedemment (`introServices.text`)
+- non migres dans ce lot:
+  - `ServicesSection`
+  - `AboutSection`
+  - `SectionBlock`
+  - `CallToActionNext`
+  - `AnimatedTitle`
+
+### `PageIntro` (renderer)
+
+- fallback `react-markdown` **retire** de `PageIntro`.
+- `PageIntro` rend maintenant uniquement `InlineContent`.
+- rendu semantique confirme:
+  - `strong` -> `<strong>`
+  - `emphasis` -> `<em>`
+
+### Typage
+
+- `IntroContent.text` passe en `InlineContent` (au lieu de `ProgressiveRichText`) car les 3 usages `PageIntro` sont maintenant migres.
+- `ProgressiveRichText` reste defini dans `contentTypes.ts` pour les migrations futures hors `PageIntro`.
+
+### Comportement legacy conserve
+
+- `react-markdown` est conserve dans le projet pour les autres composants non migres.
+
+### Verifications effectuees
+
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK
+- verification HTTP locale:
+  - `/services` -> `200`
+  - `/portfolio` -> `200`
+  - `/contact` -> `200`
+
+### Usages `react-markdown` restants dans le projet
+
+- `src/_pages/Services/ServicesSection/ServicesSection.tsx`
+- `src/_pages/About/AboutSection/AboutSection.tsx`
+- `src/components/Accordion/AccordionItem/AccordionItem.tsx`
+- `src/_pages/Home/ServicesPreview/ServicesPreview.tsx`
+- `src/_pages/Home/ServicesPreview/CardServiceNext.tsx`
+- `src/_pages/Home/ProjectPreview/ProjectPreview.tsx`
+- `src/_pages/MentionsLegales/SectionBlock/SectionBlock.tsx`
+- `src/app/(site)/navigation/CallToActionNext.tsx`
+- `src/animations/AnimatedTitle/AnimatedTitle.tsx`
+
+### Risques / points a verifier manuellement
+
+- verifier le rendu visuel des segments `strong` sur:
+  - `/services`
+  - `/portfolio`
+  - `/contact`
+- verifier que `GELYOS` conserve bien sa font specifique dans `/services` (segment `emphasis` -> `<em>` style existant).
+
+### Prochaine etape recommandee
+
+Demarrer la migration inline du composant suivant le plus simple hors `PageIntro` (recommande: `CallToActionNext`), en conservant le meme schema incremental segment par segment.

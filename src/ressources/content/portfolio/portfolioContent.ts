@@ -11,7 +11,17 @@ export const portfolioContent: PortfolioPageContent = {
     },
 
     intro: {
-        text: `Découvrez une sélection de nos projets de développement web sur mesure : **sites vitrines**, **boutiques e-commerce personnalisées**, **applications web** et missions en tant que **développeur web freelance**. Chaque réalisation reflète une approche unique, pensée pour répondre aux besoins réels de nos clients.`
+        text: [
+            { type: 'text', text: 'Découvrez une sélection de nos projets de développement web sur mesure : ' },
+            { type: 'strong', text: 'sites vitrines' },
+            { type: 'text', text: ', ' },
+            { type: 'strong', text: 'boutiques e-commerce personnalisées' },
+            { type: 'text', text: ', ' },
+            { type: 'strong', text: 'applications web' },
+            { type: 'text', text: ' et missions en tant que ' },
+            { type: 'strong', text: 'développeur web freelance' },
+            { type: 'text', text: '. Chaque réalisation reflète une approche unique, pensée pour répondre aux besoins réels de nos clients.' }
+        ]
     },
 
     sections: {

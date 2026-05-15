@@ -1,13 +1,8 @@
-import ReactMarkdown from "react-markdown";
-import type { InlineContent, ProgressiveRichText } from "~/ressources/content/contentTypes";
+import type { InlineContent } from "~/ressources/content/contentTypes";
 import styles from "./PageIntro.module.scss";
 
 interface Props {
-  text: ProgressiveRichText;
-}
-
-function isInlineContent(value: ProgressiveRichText): value is InlineContent {
-  return Array.isArray(value);
+  text: InlineContent;
 }
 
 function renderInlineContent(content: InlineContent) {
@@ -46,9 +41,7 @@ function renderInlineContent(content: InlineContent) {
 export default function PageIntro({ text }: Props) {
   return (
     <div className={styles.intro}>
-      <div className={styles.content}>
-        {isInlineContent(text) ? renderInlineContent(text) : <ReactMarkdown>{text}</ReactMarkdown>}
-      </div>
+      <div className={styles.content}>{renderInlineContent(text)}</div>
     </div>
   );
 }
