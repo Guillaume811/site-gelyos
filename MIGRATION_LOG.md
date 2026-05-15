@@ -3648,3 +3648,76 @@ Migrer uniquement `AnimatedTitle` vers `InlineContent` afin de retirer son usage
 ### Prochaine etape recommandee
 
 Migrer ensuite un seul composant restant utilisant `react-markdown` (recommande: `ServicesPreview`), en conservant la meme strategie `InlineContent` progressive.
+## 15-05-2026 - Migration `ServicesPreview` + `CardServiceNext` vers `InlineContent` (phase 43)
+
+### Decision structurante
+
+- [15-05-2026] [services-preview-inline] [migration des renderers Home services vers `InlineContent`] [retirer markdown uniquement sur `ServicesPreview` et `CardServiceNext`] [composant `ProjectPreview` conserve en markdown]
+
+### Objectif
+
+Migrer uniquement `ServicesPreview` et `CardServiceNext` vers `InlineContent`, afin de supprimer leurs usages locaux de `react-markdown`.
+
+### Fichiers modifies
+
+- `src/_pages/Home/ServicesPreview/ServicesPreview.tsx`
+- `src/_pages/Home/ServicesPreview/CardServiceNext.tsx`
+- `src/ressources/content/home/servicesPreview.ts`
+- `src/ressources/content/contentTypes.ts`
+- `MIGRATION_LOG.md`
+
+### Contenus Home services migres
+
+- fichier: `src/ressources/content/home/servicesPreview.ts`
+- champs migres:
+  - `servicesPreviewContent.text`
+  - `servicesPreviewContent.cards[].description`
+
+### Champs migres vers `InlineContent`
+
+- `ServicesPreview.text` (`contentTypes.ts`) : `RichText` -> `InlineContent`
+- `ServiceCard.description` (`contentTypes.ts`) : `RichText` -> `InlineContent`
+
+### Syntaxes markdown/pseudo-markdown remplacees
+
+- `**...**` -> segments `strong`
+- texte normal -> segments `text`
+- syntaxes non detectees dans ce contenu:
+  - `*...*`
+  - `[[...]]`
+  - `[texte](url)`
+  - retours ligne markdown utiles (non presents)
+
+### Adaptation des composants
+
+- `ServicesPreview.tsx`:
+  - retrait import `react-markdown`
+  - ajout renderer inline local (`InlineContent` -> `span/strong/em/emphasis/accent/link/br`)
+- `CardServiceNext.tsx`:
+  - retrait import `react-markdown`
+  - ajout renderer inline local (`InlineContent` -> `span/strong/em/emphasis/accent/link/br`)
+- `remark-breaks` n'etait pas importe dans ces 2 composants.
+
+### Verifications effectuees
+
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK
+- route `/`:
+  - verification HTTP non realisee dans ce lot (a verifier manuellement)
+
+### Usages `react-markdown` restants dans le projet
+
+- `src/_pages/Home/ProjectPreview/ProjectPreview.tsx`
+
+### Risques / points a verifier manuellement
+
+- verifier visuellement `/`:
+  - bloc intro ServicesPreview (segments `strong`)
+  - descriptions des 4 cartes (`CardServiceNext`)
+  - absence de regression d'espacement/retours ligne
+  - comportement sticky/scroll de la section Home services
+
+### Prochaine etape recommandee
+
+Migrer ensuite uniquement `ProjectPreview` vers `InlineContent`, puis retirer `react-markdown`/`remark-breaks` du projet une fois tous les usages supprimes.

@@ -83,13 +83,13 @@ export interface ServiceCard {
     id: RichText
     icon: ImageContent
     title: RichText
-    description: RichText
+    description: InlineContent
     secondButton: ButtonContent
 }
 
 export interface ServicesPreview {
     title: RichText
-    text: RichText
+    text: InlineContent
     firstButton: ButtonContent
     cards: ServiceCard[]
 }

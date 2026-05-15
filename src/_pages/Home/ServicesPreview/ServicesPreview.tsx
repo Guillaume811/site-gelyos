@@ -4,11 +4,44 @@ import Link from "next/link";
 import Heading from "~/components/Heading/Heading";
 import buttonStyles from "~/components/Buttons/Button.module.scss";
 import { servicesPreviewContent } from "~/ressources/content/home/servicesPreview";
+import type { InlineContent } from "~/ressources/content/contentTypes";
 import styles from "./ServicesPreview.module.scss";
 import ServicesPreviewItem from "./ServicesPreviewItem";
-import ReactMarkdown from "react-markdown";
 
 type CSSVars = React.CSSProperties & { ["--cards-count"]?: number };
+
+function renderInlineContent(content: InlineContent) {
+  return (
+    <p>
+      {content.map((segment, index) => {
+        switch (segment.type) {
+          case "text":
+            return <span key={`text-${index}`}>{segment.text}</span>;
+          case "strong":
+            return <strong key={`strong-${index}`}>{segment.text}</strong>;
+          case "emphasis":
+            return <em key={`emphasis-${index}`}>{segment.text}</em>;
+          case "accent":
+            return (
+              <span key={`accent-${index}`} data-inline="accent">
+                {segment.text}
+              </span>
+            );
+          case "link":
+            return (
+              <a key={`link-${index}`} href={segment.href}>
+                {segment.text}
+              </a>
+            );
+          case "lineBreak":
+            return <br key={`line-break-${index}`} />;
+          default:
+            return null;
+        }
+      })}
+    </p>
+  );
+}
 
 export default function ServicesPreview() {
   const { title, text, firstButton, cards } = servicesPreviewContent;
@@ -91,11 +124,7 @@ export default function ServicesPreview() {
             {title}
           </Heading>
 
-          <div>
-            <ReactMarkdown>
-              {text}
-            </ReactMarkdown>
-          </div>
+          <div>{renderInlineContent(text)}</div>
           
           <Link
             href={firstButton.to as string}
