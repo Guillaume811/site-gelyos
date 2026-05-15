@@ -3999,3 +3999,50 @@ Reevaluer puis supprimer uniquement `src/ressources/content/portfolio/schema.ts`
 ### Prochaine etape recommandee
 
 Traiter le lot suivant uniquement apres validation humaine: reevaluer la suppression de `zod` (Lot B etape 2) a partir de l'etat sans `portfolio/schema.ts`.
+## 15-05-2026 - Nettoyage final Lot B etape 2 : suppression dependance `zod` (phase 49)
+
+### Objectif
+
+Reevaluer puis supprimer `zod` uniquement si aucun usage actif n'existe encore dans le projet.
+
+### Recherches effectuees
+
+- `rg --line-number "zod" src`
+- `rg --line-number "zod" scripts`
+- `rg --line-number "zod" next.config.ts tsconfig.json tsconfig.app.json eslint.config.js package.json package-lock.json`
+- `rg --line-number "zod" . --glob "!node_modules/**"`
+- verification tests: `NO_TESTS_DIR`
+
+### Resultat des recherches
+
+- usage actif dans `src` : non detecte.
+- usage actif dans `scripts` : non detecte.
+- usage actif dans configs : non detecte.
+- occurrences restantes avant suppression : documentation (`MIGRATION_PLAN.md`, `MIGRATION_LOG.md`) + manifests npm.
+
+### Decision
+
+- `zod` confirme inutilise en runtime/build actuel -> suppression executee dans `package.json`.
+
+### Fichiers modifies
+
+- `package.json`
+- `package-lock.json`
+- `MIGRATION_LOG.md`
+
+### Contraintes respectees
+
+- aucune autre dependance supprimee.
+- aucun autre fichier source ou contenu modifie.
+- aucun composant/route touche.
+
+### Verifications effectuees
+
+- `npm install` -> OK (`removed 1 package`, `0 vulnerabilities`)
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK
+
+### Prochaine etape recommandee
+
+Passer au Lot C uniquement apres validation humaine (elements contenu/doc incertains identifies dans l'audit final), sans suppression automatique hors scope.
