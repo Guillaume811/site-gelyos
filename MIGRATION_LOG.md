@@ -4046,3 +4046,50 @@ Reevaluer puis supprimer `zod` uniquement si aucun usage actif n'existe encore d
 ### Prochaine etape recommandee
 
 Passer au Lot C uniquement apres validation humaine (elements contenu/doc incertains identifies dans l'audit final), sans suppression automatique hors scope.
+## 15-05-2026 - Audit cible `portfolioContent.sections` avant suppression (phase 50)
+
+### Objectif
+
+Verifier l'usage reel de `portfolioContent.sections` et des types associes avant toute decision de suppression.
+
+### Recherches effectuees
+
+- `rg --line-number "portfolioContent" src`
+- `rg --line-number "sections" src/_pages/Portfolio src/_pages/Home src/components`
+- lecture de:
+  - `src/ressources/content/portfolio/portfolioContent.ts`
+  - `src/_pages/Portfolio/Portfolio.tsx`
+  - `src/ressources/content/contentTypes.ts`
+
+### Usages actifs trouves
+
+- `portfolioContent` est importe dans `src/_pages/Portfolio/Portfolio.tsx`.
+- champs utilises explicitement dans la page: `header` et `intro` uniquement.
+- `portfolioContent.sections` : aucun usage actif detecte dans les composants/pages actuels.
+
+### Fichiers / types concernes
+
+- contenu:
+  - `src/ressources/content/portfolio/portfolioContent.ts` (`sections.vitrine/ecommerce/application/freelance`)
+- types:
+  - `PortfolioSectionIntro`
+  - `PortfolionSectionContent`
+  - `PortfolioPageContent.sections`
+
+### Qualification
+
+- contenu reellement inutilise a date (runtime):
+  - `portfolioContent.sections` (non rendu actuellement).
+- contenu possiblement conserve volontairement pour usage futur:
+  - descriptions de sections portfolio (copy marketing potentielle pour future UI).
+- type potentiellement supprimable (techniquement):
+  - `PortfolioSectionIntro`, `PortfolionSectionContent` et le champ `PortfolioPageContent.sections`.
+- type a conserver par prudence produit:
+  - les memes types tant que la decision UX/produit n'est pas validee.
+
+### Recommandation
+
+- **Demander validation humaine** avant suppression (produit/UX).
+- Si validation de suppression: retirer en lot dedie `portfolioContent.sections` + types associes, puis relancer lint/type-check/build.
+- Si conservation produit: conserver tel quel et marquer explicitement comme "reserve futur" dans la documentation.
+- [15-05-2026] [portfolio-sections] [portfolioContent.sections conserve volontairement] [contenu reserve pour une evolution future de la page portfolio] [ne plus traiter comme suppression prioritaire]
