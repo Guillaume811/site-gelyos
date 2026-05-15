@@ -2357,3 +2357,376 @@ Nettoyer et documenter les variables d'environnement apres migration Next-only, 
 ### Dette restante
 
 - refactor post-migration contenu + images
+
+## 15-05-2026 - Audit interface contenu avant remplacement markdown (phase 30)
+
+### Decision structurante
+
+- [15-05-2026] [content-interface-audit] [audit complet sans modification fonctionnelle] [preparer le remplacement de `react-markdown`, `**` et `[[ ]]` sans nouvelle convention] [plan de migration cible documente]
+
+### Objectif
+
+Auditer l'interface de contenu existante pour preparer le remplacement progressif de `react-markdown`, des syntaxes `** **` et `[[ ]]`, sans supprimer les mecanismes actuels a ce stade.
+
+### Fichiers modifies
+
+- `MIGRATION_LOG.md`
+
+### Fichiers de types/interfaces analyses
+
+- `src/ressources/content/contentTypes.ts`
+- `src/ressources/content/portfolio/types.ts`
+- `src/ressources/content/portfolio/schema.ts`
+- `src/ressources/content/ctaContent/ctaContent.ts`
+- `src/ressources/content/about/index.ts`
+- `src/ressources/content/services/index.ts`
+- `src/ressources/content/portfolio/portfolioContent.ts`
+- `src/ressources/content/contact/contactContent.ts`
+- `src/ressources/content/mention/mentionContent.ts`
+
+### Interface de contenu existante identifiee (source de verite actuelle)
+
+- Interface principale detectee: contenu type par domaine/page dans `src/ressources/content/contentTypes.ts`.
+- Modele texte detecte: `RichText = string` (texte brut, sans AST typographique structure dans l'interface actuelle).
+- Modele image detecte: `ImageContent { src: string; alt: string }`.
+- Interfaces pages detectees:
+  - `ServicePageContent`, `AboutPageContent`, `PortfolioPageContent`, `ContactPageContent`, `MentionPageContent`.
+- Interface inline specifique pour mots/groupes stylises (hors markdown/pseudo-markdown): `Non detecte`.
+
+### Representation actuelle des paragraphes et styles inline
+
+- Paragraphes: stockes majoritairement sous forme de chaines `string` (`RichText`).
+- Stylage inline gras: encode dans les chaines via syntaxe markdown `**...**`.
+- Surlignage hero: encode via tokens custom `[[...]]` (parse cote rendu).
+- Convention structuree alternative (sans markdown/pseudo-markdown) deja active pour le texte riche: `Non detecte`.
+
+### Lien contenu -> images (etat actuel)
+
+- Cas 1: assets importes dans les fichiers de contenu (`~/assets/...`) puis stockes dans `image.src` / `icon.src`.
+- Cas 2: chemins publics string (`/pictures/...`) dans les donnees portfolio (`src/ressources/content/portfolio/data/*.ts`).
+- Resolution runtime cote composants: helper `getAssetSrc(...)` dans `src/lib/getAssetSrc.ts` (string direct ou objet avec `.src`).
+
+### Usages actifs detectes
+
+- `react-markdown` (imports actifs):
+  - `src/animations/AnimatedTitle/AnimatedTitle.tsx`
+  - `src/components/PageIntro/PageIntro.tsx`
+  - `src/components/Accordion/AccordionItem/AccordionItem.tsx`
+  - `src/_pages/About/AboutSection/AboutSection.tsx`
+  - `src/_pages/Services/ServicesSection/ServicesSection.tsx`
+  - `src/_pages/Home/ServicesPreview/ServicesPreview.tsx`
+  - `src/_pages/Home/ServicesPreview/CardServiceNext.tsx`
+  - `src/_pages/Home/ProjectPreview/ProjectPreview.tsx`
+  - `src/_pages/MentionsLegales/SectionBlock/SectionBlock.tsx`
+  - `src/app/(site)/navigation/CallToActionNext.tsx`
+
+- `remark-breaks` (imports actifs):
+  - `src/animations/AnimatedTitle/AnimatedTitle.tsx`
+  - `src/_pages/MentionsLegales/SectionBlock/SectionBlock.tsx`
+  - `src/app/(site)/navigation/CallToActionNext.tsx`
+
+- `getAssetSrc` (definition + usages actifs):
+  - `src/lib/getAssetSrc.ts`
+  - `src/components/HeaderSection/HeaderSection.tsx`
+  - `src/components/CardProcess/CardProcess.tsx`
+  - `src/_pages/About/AboutSection/AboutSection.tsx`
+  - `src/_pages/Services/ServicesSection/ServicesSection.tsx`
+  - `src/_pages/Home/ServicesPreview/CardServiceNext.tsx`
+  - `src/_pages/Contact/ContactInfo/ContactInfo.tsx`
+
+- Syntaxe `[[` / `]]` (usages actifs):
+  - contenu: `src/ressources/content/home/hero.ts`
+  - parsing: `src/animations/TypewriterText/TypewriterText.tsx`
+
+- Syntaxe `**` (usages actifs contenu):
+  - detectee dans plusieurs fichiers de `src/ressources/content/**`:
+    - `home/hero.ts`, `home/servicesPreview.ts`, `home/projectPreviewContent.ts`
+    - `about/parcours.ts`, `about/expertise.ts`, `about/technologies.ts`
+    - `services/headerIntro.ts`, `services/devWeb.ts`, `services/devApp.ts`, `services/maintenance.ts`, `services/seo.ts`
+    - `portfolio/portfolioContent.ts`
+    - `contact/contactContent.ts`
+    - `ctaContent/ctaContent.ts`
+
+### Composants de rendu concernes
+
+- Rendu markdown general:
+  - `PageIntro`
+  - `AboutSection`
+  - `ServicesSection`
+  - `AccordionItem`
+  - `ServicesPreview` / `CardServiceNext`
+  - `ProjectPreview`
+  - `SectionBlock` (mentions)
+  - `CallToActionNext`
+- Rendu markdown anime:
+  - `AnimatedTitle`
+- Rendu pseudo-markdown `[[...]]`:
+  - `TypewriterText`
+- Rendu image couple au contenu:
+  - `HeaderSection`, `AboutSection`, `ServicesSection`, `CardProcess`, `CardServiceNext`, `ContactInfo`
+
+### Pages/sections concernees
+
+- Home:
+  - `Hero` (titre markdown + texte `[[...]]`)
+  - `ServicesPreview`
+  - `ProjectPreview`
+- About:
+  - `AboutSection` (3 sections de contenu)
+- Services:
+  - `PageIntro`
+  - `ServicesSection`
+  - `AccordionItem`
+- Portfolio:
+  - `PageIntro`
+- Contact:
+  - `PageIntro`
+- Mentions legales:
+  - `SectionBlock`
+- Navigation/layout:
+  - `CallToActionNext`
+
+### Plan de migration propose (markdown/pseudo-markdown -> interface existante)
+
+1. Etablir une matrice champ-par-champ des `RichText` actuellement rendus via `react-markdown` ou `[[...]]` (sans changer le schema pour l'instant).
+2. Prioriser les rendus les plus simples (paragraphes avec `**` seulement, sans liens complexes) pour retrait progressif de `react-markdown`.
+3. Remplacer, composant par composant, le rendu markdown par un rendu base sur l'interface de contenu existante deja en place (pas de nouvelle convention globale dans ce lot).
+4. Migrer en dernier les cas specifiques:
+   - `AnimatedTitle` (markdown anime),
+   - `SectionBlock` (line breaks via `remark-breaks`),
+   - `TypewriterText` (`[[...]]`).
+5. Garder `getAssetSrc` en place pendant la migration de texte, puis traiter le refactor contenu+images dans la dette dediee post-migration.
+6. Supprimer `react-markdown` / `remark-breaks` uniquement apres disparition complete des imports actifs.
+
+### Premiere section/page test recommandee
+
+- Recommandation: `src/components/PageIntro/PageIntro.tsx` sur la page `/services`.
+- Raison: composant isole, utilise sur plusieurs pages, structure simple (un bloc de texte), impact limite et reversible.
+
+### Commandes d'analyse executees (sans build)
+
+- `git branch --show-current; git status --short`
+- `rg -n "react-markdown" src`
+- `rg -n "remark-breaks" src`
+- `rg -n "getAssetSrc" src`
+- `rg -n "\[\[|\]\]" src`
+- `rg -n "\*\*" src`
+- `rg -l "\*\*" src/ressources/content`
+- lectures ciblees (`Get-Content -Raw`) des types, contenus et composants de rendu concernes.
+
+### Resultat
+
+- Audit termine sans modification de code fonctionnel.
+- Zone de migration et ordre de traitement clarifies pour la suppression progressive de markdown/pseudo-markdown.
+
+### Risques / points a surveiller
+
+- Retirer `react-markdown` trop tot peut casser les contenus `**`, liens markdown et retours ligne.
+- Le token `[[...]]` est couple a `TypewriterText`; un remplacement non planifie peut casser l'effet Hero.
+- Le couplage image `assets importes` + `getAssetSrc` reste une contrainte a traiter dans la dette post-migration contenu/images.
+
+### Prochaine etape recommandee
+
+Executer un micro-lot de POC sur `PageIntro` (`/services`) pour valider le remplacement de rendu sans markdown, puis etendre composant par composant selon la priorisation ci-dessus.
+## 15-05-2026 - Audit complet des syntaxes Markdown / pseudo-Markdown (phase 31)
+
+### Decision structurante
+
+- [15-05-2026] [markdown-audit-global] [cartographie complete des syntaxes et renderers actifs] [preparer la suppression definitive de `react-markdown`/`remark-breaks` sans nouvelle convention] [plan de migration incremental base sur l'interface de contenu existante]
+
+### Objectif
+
+Auditer tous les signes, syntaxes et usages Markdown/pseudo-Markdown actifs dans le projet pour preparer leur remplacement par l'interface de contenu existante.
+
+### Fichiers modifies
+
+- `MIGRATION_LOG.md`
+
+### Commandes d'analyse executees
+
+- `git branch --show-current; git status --short`
+- `rg -n "react-markdown" src`
+- `rg -n "remark-breaks" src`
+- `rg -n "getAssetSrc" src`
+- `rg -n "\[\[|\]\]" src`
+- `rg -n "\*\*[^*]+\*\*" src/ressources/content`
+- `rg -n "\[[^\]]+\]\([^\)]+\)" src/ressources/content`
+- `rg -n "!\[[^\]]*\]\([^\)]+\)" src` (aucun match)
+- `rg -n "(?m)^\s{0,3}#{1,6}\s" src/ressources/content src/_pages src/components src/app` (aucun match)
+- `rg -n "(?m)^\s{0,3}>\s" src/ressources/content src/_pages src/components src/app` (aucun match)
+- `rg -n "(?m)^\s{0,3}(---|\*\*\*|___)\s*$" src/ressources/content src/_pages src/components src/app` (aucun match)
+- `rg -n "(?m)^\s{0,3}(?:-|\*|\d+\.)\s+" src/ressources/content`
+- `rg -n "\\n\\n|\\n" src/ressources/content`
+- `rg -n "\\x60" src/ressources/content`
+- `rg -n "<[a-zA-Z][^>]*>" src/ressources/content`
+- lectures ciblees (`Get-Content -Raw`) des composants/pages de rendu et des fichiers de contenu concernes.
+
+### Usages actifs des renderers / helpers
+
+#### `react-markdown` (actif)
+
+- `src/animations/AnimatedTitle/AnimatedTitle.tsx`
+- `src/components/PageIntro/PageIntro.tsx`
+- `src/components/Accordion/AccordionItem/AccordionItem.tsx`
+- `src/_pages/About/AboutSection/AboutSection.tsx`
+- `src/_pages/Services/ServicesSection/ServicesSection.tsx`
+- `src/_pages/Home/ServicesPreview/ServicesPreview.tsx`
+- `src/_pages/Home/ServicesPreview/CardServiceNext.tsx`
+- `src/_pages/Home/ProjectPreview/ProjectPreview.tsx`
+- `src/_pages/MentionsLegales/SectionBlock/SectionBlock.tsx`
+- `src/app/(site)/navigation/CallToActionNext.tsx`
+
+#### `remark-breaks` (actif)
+
+- `src/animations/AnimatedTitle/AnimatedTitle.tsx`
+- `src/_pages/MentionsLegales/SectionBlock/SectionBlock.tsx`
+- `src/app/(site)/navigation/CallToActionNext.tsx`
+
+#### `getAssetSrc` (actif)
+
+- Definition: `src/lib/getAssetSrc.ts`
+- Usages:
+  - `src/components/HeaderSection/HeaderSection.tsx`
+  - `src/components/CardProcess/CardProcess.tsx`
+  - `src/_pages/About/AboutSection/AboutSection.tsx`
+  - `src/_pages/Services/ServicesSection/ServicesSection.tsx`
+  - `src/_pages/Home/ServicesPreview/CardServiceNext.tsx`
+  - `src/_pages/Contact/ContactInfo/ContactInfo.tsx`
+
+### Audit des syntaxes detectees (contenu editorial)
+
+#### Markdown reel
+
+- `src/ressources/content/home/hero.ts`
+  - syntaxes: `**...**`, `\n` (titre multiline)
+  - type contenu: hero title
+  - rendu probable: `Hero` -> `AnimatedTitle` (`react-markdown` + `remark-breaks`)
+  - risque: **eleve**
+
+- `src/ressources/content/home/servicesPreview.ts`
+  - syntaxes: `**...**`
+  - type contenu: intro + cards services
+  - rendu probable: `ServicesPreview`, `CardServiceNext` (`react-markdown`)
+  - risque: **eleve**
+
+- `src/ressources/content/home/projectPreviewContent.ts`
+  - syntaxes: `**...**`
+  - type contenu: texte intro projets
+  - rendu probable: `ProjectPreview` (`react-markdown`)
+  - risque: **moyen**
+
+- `src/ressources/content/services/headerIntro.ts`
+  - syntaxes: `**...**`, `*...*` (italique)
+  - type contenu: intro services
+  - rendu probable: `PageIntro` (`react-markdown`)
+  - risque: **eleve**
+
+- `src/ressources/content/services/devWeb.ts`, `devApp.ts`, `maintenance.ts`, `seo.ts`
+  - syntaxes: `**...**`
+  - type contenu: description sections services
+  - rendu probable: `ServicesSection` (`react-markdown`)
+  - risque: **eleve**
+
+- `src/ressources/content/about/parcours.ts`, `expertise.ts`, `technologies.ts`
+  - syntaxes: `**...**`, texte multilignes
+  - type contenu: sections a-propos
+  - rendu probable: `AboutSection` (`react-markdown`)
+  - risque: **eleve**
+
+- `src/ressources/content/portfolio/portfolioContent.ts`
+  - syntaxes: `**...**`
+  - type contenu: intro + descriptions des categories
+  - rendu probable: `PageIntro` (`react-markdown`)
+  - risque: **moyen**
+
+- `src/ressources/content/contact/contactContent.ts`
+  - syntaxes: `**...**`
+  - type contenu: intro contact
+  - rendu probable: `PageIntro` (`react-markdown`)
+  - risque: **moyen**
+
+- `src/ressources/content/mention/mentionContent.ts`
+  - syntaxes: liens markdown `[label](url)` (mailto/tel/http/https), multilignes
+  - type contenu: paragraphes legaux
+  - rendu probable: `SectionBlock` (`react-markdown` + `remark-breaks`)
+  - risque: **eleve**
+
+- `src/ressources/content/ctaContent/ctaContent.ts`
+  - syntaxes: `**...**`, `\n`
+  - type contenu: bloc CTA cross-page
+  - rendu probable: `CallToActionNext` (`react-markdown` + `remark-breaks`)
+  - risque: **eleve**
+
+#### Pseudo-Markdown custom
+
+- `src/ressources/content/home/hero.ts`
+  - syntaxes: `[[...]]`
+  - type contenu: texte hero typewriter
+  - rendu probable: `TypewriterText` (parser custom TOKEN_START/TOKEN_END)
+  - risque: **eleve**
+
+#### Texte ressemblant a du Markdown (a qualifier)
+
+- `src/ressources/content/portfolio/data/applications.ts`
+- `src/ressources/content/portfolio/data/ecommerce.ts`
+  - syntaxes detectees: `\n\n` (separateurs de paragraphes/lignes)
+  - type contenu: description modale + accordion portfolio
+  - rendu probable:
+    - `ModalProjectNext` (description en `<p>` avec `white-space: pre-line`)
+    - `AccordionItem` (description via `react-markdown`)
+  - classification: **texte structure par sauts de ligne**, pas de balises markdown explicites (`**`, `[]()`, `#`, etc.)
+  - risque: **moyen**
+
+### Syntaxes recherchees mais non detectees (usages actifs)
+
+- Titres markdown `#`, `##`, `###` dans contenus applicatifs: `Non detecte`.
+- Listes markdown explicites `- item`, `* item`, `1. item` dans contenus editoriaux: `Non detecte`.
+- Images markdown `![alt](url)`: `Non detecte`.
+- Citations markdown `> ...` dans contenus applicatifs: `Non detecte`.
+- Separateurs markdown `---`, `***`, `___` dans contenus applicatifs: `Non detecte`.
+- Blocs de code markdown ``` dans `src`: `Non detecte`.
+
+### Distinction par categorie
+
+#### 1) Usages dans le contenu editorial (a migrer)
+
+- Tous les fichiers listes dans "Markdown reel", "Pseudo-Markdown custom" et "Texte ressemblant a du Markdown".
+
+#### 2) Usages dans les composants de rendu (a migrer)
+
+- Tous les composants listant `react-markdown`/`remark-breaks` dans cette entree.
+- `TypewriterText` pour `[[...]]`.
+
+#### 3) Usages dans documentation/commentaires (a ne pas migrer comme contenu)
+
+- `src/ressources/content/ctaContent/ctaContent.ts` (commentaire de documentation interne: exemples markdown)
+- Commentaires bloc `/* ... */` dans composants/pages (syntaxes `*` detectees par regex listes)
+- Fichiers `.md` (MIGRATION/AGENTS/CODE_REVIEW): hors contenu runtime.
+
+#### 4) Faux positifs identifies (a exclure)
+
+- `src/ressources/content/mention/mentionContent.ts`: regex `.replace(/^\s*\n/, ...)` detectee lors scan italique -> ce n'est pas du markdown editorial.
+- `src/ressources/content/portfolio/schema.ts`: backticks dans messages Zod (ex: `` `id` ``) -> message technique, pas contenu rendu markdown.
+- `src/ressources/content/ctaContent/ctaContent.ts`: motif `<...>` detecte dans commentaire TypeScript (generic `Partial<Record<...>>`) -> pas HTML injecte en contenu.
+- detections `*` issues de commentaires JSDoc/blocks dans `src/components/**`, `src/_pages/**`, `src/app/**` -> pas listes markdown editoriales.
+
+### Plan de migration propose (sans nouvelle convention)
+
+1. Etablir un inventaire "champ contenu -> composant renderer" comme reference de migration (home/services/about/portfolio/contact/mentions/cta).
+2. Remplacer en premier les zones simples `PageIntro` (contact/services/portfolio) ou le markdown est limite a `**...**`.
+3. Migrer ensuite `ServicesSection` + `AboutSection` + `CardServiceNext` (fort volume de `**...**`).
+4. Traiter les contenus legaux et CTA (`SectionBlock`, `CallToActionNext`) en conservant liens et retours ligne sans `react-markdown`.
+5. Isoler la migration du pseudo-markdown `[[...]]` dans `TypewriterText` apres stabilisation des blocs precedents.
+6. Harmoniser les textes portfolio `\n\n` (modal + accordion) avec l'interface existante sans introduire de nouvelle syntaxe.
+7. Supprimer `react-markdown` / `remark-breaks` uniquement apres disparition complete des imports actifs et verification manuelle des pages.
+
+### Premiere section/page test recommandee
+
+- **Test recommande:** `PageIntro` sur `/services` (`src/components/PageIntro/PageIntro.tsx` + `src/ressources/content/services/headerIntro.ts`).
+- **Pourquoi:** surface faible, syntaxes connues (`**`, `*`), impact visuel limite, composant reutilise (gain de validation transverse).
+
+### Resultat
+
+- Audit global termine.
+- Aucun fichier source fonctionnel modifie.
+- Aucun build lance (conforme a la consigne).
