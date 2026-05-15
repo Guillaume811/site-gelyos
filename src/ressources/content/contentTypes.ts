@@ -113,7 +113,7 @@ export interface DivAvantages {
 
 export interface ProjectPreview {
     title: RichText
-    text: RichText
+    text: InlineContent
     firstButton: ButtonContent
 }
 

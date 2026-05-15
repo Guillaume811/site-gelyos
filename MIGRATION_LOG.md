@@ -3721,3 +3721,72 @@ Migrer uniquement `ServicesPreview` et `CardServiceNext` vers `InlineContent`, a
 ### Prochaine etape recommandee
 
 Migrer ensuite uniquement `ProjectPreview` vers `InlineContent`, puis retirer `react-markdown`/`remark-breaks` du projet une fois tous les usages supprimes.
+## 15-05-2026 - Migration `ProjectPreview` vers `InlineContent` (phase 44)
+
+### Decision structurante
+
+- [15-05-2026] [project-preview-inline] [migration de `ProjectPreview` vers renderer inline type] [retirer le dernier usage actif de markdown dans le code source] [aucune suppression de dependances dans ce lot]
+
+### Objectif
+
+Migrer uniquement `ProjectPreview` vers `InlineContent` afin de supprimer son usage de `react-markdown`.
+
+### Fichiers modifies
+
+- `src/_pages/Home/ProjectPreview/ProjectPreview.tsx`
+- `src/ressources/content/home/projectPreviewContent.ts`
+- `src/ressources/content/contentTypes.ts`
+- `MIGRATION_LOG.md`
+
+### Contenus associes migres
+
+- fichier: `src/ressources/content/home/projectPreviewContent.ts`
+- champ migre:
+  - `projectPreviewContent.text`
+
+### Champs migres vers `InlineContent`
+
+- `ProjectPreview.text` (`contentTypes.ts`) : `RichText` -> `InlineContent`
+
+### Syntaxes markdown/pseudo-markdown remplacees
+
+- `**...**` -> segments `strong`
+- texte normal -> segments `text`
+- syntaxes non detectees dans ce contenu:
+  - `*...*`
+  - `[[...]]`
+  - `[texte](url)`
+  - retours ligne markdown utiles (non presents)
+
+### Adaptation du composant
+
+- `ProjectPreview.tsx`:
+  - retrait import `react-markdown`
+  - ajout renderer inline local (`InlineContent` -> `span/strong/em/accent/link/br`)
+- `remark-breaks` n'etait pas importe dans `ProjectPreview`.
+
+### Verifications effectuees
+
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK
+- route `/`:
+  - verification via build Next (route statique generee)
+  - verification HTTP interactive non realisee dans ce lot
+
+### Usages restants
+
+- `react-markdown` : aucun usage actif detecte dans `src`.
+- `remark-breaks` : aucun usage actif detecte dans `src`.
+
+### Risques / points a verifier manuellement
+
+- verifier visuellement `/`:
+  - rendu du texte ProjectPreview
+  - style des segments `strong`
+  - espacements du paragraphe
+  - non-regression du carousel juste en dessous
+
+### Prochaine etape recommandee
+
+Faire un lot dedie de nettoyage dependances pour retirer `react-markdown` et `remark-breaks` du projet (package + lock + verification build), maintenant qu'il n'y a plus d'import actif.
