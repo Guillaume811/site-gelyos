@@ -188,7 +188,7 @@ export interface ContactPageContent {
 
 export interface ParagrapheInfo {
     title: RichText
-    description: RichText
+    description: InlineContent
     secondButton?: ButtonContent
 }
 
