@@ -3790,3 +3790,45 @@ Migrer uniquement `ProjectPreview` vers `InlineContent` afin de supprimer son us
 ### Prochaine etape recommandee
 
 Faire un lot dedie de nettoyage dependances pour retirer `react-markdown` et `remark-breaks` du projet (package + lock + verification build), maintenant qu'il n'y a plus d'import actif.
+## 15-05-2026 - Suppression definitive `react-markdown` + `remark-breaks` (phase 45)
+
+### Decision structurante
+
+- [15-05-2026] [deps-cleanup] [retrait de `react-markdown` et `remark-breaks` des dependances] [plus aucun import actif detecte dans `src`] [lockfile mis a jour via `npm install`]
+
+### Objectif
+
+Supprimer definitivement `react-markdown` et `remark-breaks` du projet apres migration complete des composants vers `InlineContent`.
+
+### Fichiers modifies
+
+- `package.json`
+- `package-lock.json`
+- `MIGRATION_LOG.md`
+
+### Verification des usages avant suppression
+
+- `rg --line-number "react-markdown|remark-breaks" src` -> aucun resultat (aucun usage actif dans `src`).
+
+### Changements effectues
+
+- suppression de `react-markdown` dans `dependencies` (`package.json`).
+- suppression de `remark-breaks` dans `dependencies` (`package.json`).
+- mise a jour du lockfile via `npm install`.
+
+### Verifications effectuees
+
+- `npm install` -> OK (83 packages supprimes, 0 vulnerability)
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK
+- `rg --line-number "react-markdown|remark-breaks" src` -> aucun usage actif.
+
+### Risques / points a surveiller
+
+- aucun risque fonctionnel detecte via lint/typecheck/build.
+- verification visuelle manuelle standard recommandee sur `/` apres nettoyage des dependances.
+
+### Prochaine etape recommandee
+
+Passer au lot suivant de nettoyage final (dependances legacy restantes et audit post-cleanup), ou preparer la branche pour revue/merge.
