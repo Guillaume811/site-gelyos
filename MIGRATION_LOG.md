@@ -4124,3 +4124,197 @@ Nettoyer `README.md` pour retirer les restes du template Vite et aligner la docu
 ### Verifications
 
 - aucune commande de build/lint/typecheck relancee (modifications documentation uniquement).
+## 15-05-2026 - Audit compatibilite deploiement Cloudflare post Next-only (phase 52)
+
+### Objectif
+
+Evaluer la compatibilite Cloudflare apres migration Next-only, sans modification du code.
+
+### Fichiers analyses
+
+- `package.json`
+- `next.config.ts`
+- `src/app/**` (routes App Router)
+- `src/services/contactApi.ts`
+- `src/services/recaptcha.ts`
+- `public/robots.txt`
+
+### Fichiers Cloudflare detectes/absents
+
+- absents:
+  - `wrangler.toml`
+  - `wrangler.json`
+  - `wrangler.jsonc`
+  - `_headers`
+  - `_redirects`
+  - `public/_headers`
+  - `public/_redirects`
+
+### Verifications techniques Next (export statique)
+
+- scripts actuels:
+  - `build` -> `next build --webpack`
+  - `start` -> `next start`
+- aucune route API Next detectee (`app/api` absent, aucun `route.ts` detecte).
+- aucun middleware detecte (`middleware.ts` absent).
+- aucun server action (`use server`) detecte.
+- aucun usage serveur detecte de `cookies()` / `headers()` / `draftMode()`.
+- routes app detectees: pages statiques + `sitemap.ts`.
+- build precedent deja observe avec routes statiques (`?`) sur toutes les routes principales.
+
+### Compatibilite Cloudflare probable
+
+- **Export statique Next (`output: 'export'` + dossier `out`)**: probable et prioritaire, compte tenu de l'absence de features serveur Next.
+- **Workers/OpenNext**: option possible mais non necessaire a ce stade (complexite superieure pour un site actuellement statique).
+
+### Parametres Cloudflare probablement a ajuster
+
+- si projet Cloudflare encore en mode Vite:
+  - `build command` a passer de workflow Vite vers Next (selon strategie retenue).
+  - `output directory` a aligner:
+    - `out` si export statique
+    - ou sortie runtime adaptee Workers/OpenNext si strategie SSR.
+
+### Variables d'environnement publiques a prevoir cote Cloudflare
+
+- `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`
+- `NEXT_PUBLIC_CONTACT_ENDPOINT`
+- `NEXT_PUBLIC_GA_ID`
+
+### Risques avant merge
+
+- risque principal non-code: configuration Cloudflare encore calee sur ancien pipeline Vite (`dist`).
+- en strategie export statique, il faudra valider que la generation `sitemap.xml` et `robots.txt` reste bien servie apres adaptation de la config de build/deploiement.
+- en strategie Workers/OpenNext, risque de complexite et de maintenance inutilement eleves pour un site actuellement statique.
+
+### Recommandation
+
+- prioriser **Cloudflare Pages statique** (export `out`) pour la mise en production immediate.
+- basculer vers Workers/OpenNext uniquement si des besoins SSR/server-side Next apparaissent ensuite.
+## 15-05-2026 - Preparation export statique Next pour Cloudflare Pages (phase 53)
+
+### Objectif
+
+Configurer et valider l'export statique Next.js pour une cible Cloudflare Pages (sans OpenNext/Workers).
+
+### Fichiers modifies
+
+- `next.config.ts`
+- `src/app/sitemap.ts`
+- `README.md`
+- `MIGRATION_LOG.md`
+
+### Changements effectues
+
+- `next.config.ts`:
+  - ajout `output: 'export'`.
+- correction compatibilite export pour `sitemap.xml`:
+  - ajout `export const dynamic = 'force-static'` dans `src/app/sitemap.ts`.
+- `README.md`:
+  - ajout section Cloudflare Pages statique:
+    - build command: `npm run build`
+    - output directory: `out`.
+
+### Verification export statique
+
+- Build initial apres `output: 'export'`: echec
+  - erreur: route `/sitemap.xml` non configuree pour export statique.
+- Build apres correctif `sitemap.ts`: OK.
+- dossier `out`: genere.
+
+### Routes exportees verifiees dans `out`
+
+- `out/index.html`
+- `out/a-propos.html`
+- `out/services.html`
+- `out/portfolio.html`
+- `out/contact.html`
+- `out/mentions-legales.html`
+
+### SEO fichiers exportes
+
+- `out/sitemap.xml` : present
+- `out/robots.txt` : present
+
+### Verifications effectuees
+
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK
+
+### Recommandation Cloudflare Pages
+
+- Build command: `npm run build`
+- Output directory: `out`
+- Variables publiques a definir:
+  - `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`
+  - `NEXT_PUBLIC_CONTACT_ENDPOINT`
+  - `NEXT_PUBLIC_GA_ID`
+
+### Risques restants avant merge
+
+- L'export genere des fichiers de route `*.html` (ex: `a-propos.html`) et non `a-propos/index.html`.
+- Valider dans Cloudflare Pages le comportement URL "pretty" (`/a-propos`, `/services`, etc.) avant merge/production.
+## 15-05-2026 - URLs propres export statique Cloudflare (`trailingSlash`) (phase 54)
+
+### Objectif
+
+Securiser l'export statique Next pour Cloudflare Pages avec des routes en dossiers `index.html`.
+
+### Fichiers modifies
+
+- `next.config.ts`
+- `README.md`
+- `MIGRATION_LOG.md`
+
+### Configuration ajoutee
+
+- `next.config.ts`:
+  - `trailingSlash: true`
+  - (`output: 'export'` etait deja en place)
+
+### Structure `out` avant/apres
+
+- avant:
+  - `out/a-propos.html`
+  - `out/services.html`
+  - `out/portfolio.html`
+  - `out/contact.html`
+  - `out/mentions-legales.html`
+- apres:
+  - `out/a-propos/index.html`
+  - `out/services/index.html`
+  - `out/portfolio/index.html`
+  - `out/contact/index.html`
+  - `out/mentions-legales/index.html`
+  - `out/index.html` (accueil)
+
+### SEO export
+
+- `out/sitemap.xml` : present
+- `out/robots.txt` : present
+
+### Verification des liens internes
+
+- echantillon verifie dans `out/index.html`:
+  - liens internes generes avec slash final (`/services/`, `/a-propos/`, `/portfolio/`, `/contact/`, `/mentions-legales/`).
+
+### Verifications effectuees
+
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK
+- verification locale export statique (serveur): non realisee
+  - `python` indisponible sur l'environnement (`python --version` en echec).
+
+### Recommandation Cloudflare Pages
+
+- Build command: `npm run build`
+- Output directory: `out`
+- URLs propres: compatibles avec structure dossier `index.html` generee par `trailingSlash: true`.
+
+### Risques restants avant merge
+
+- valider une fois en preview Cloudflare Pages:
+  - resolution des URLs sans extension (`/services`, `/portfolio`, etc.)
+  - serving de `sitemap.xml` et `robots.txt`.

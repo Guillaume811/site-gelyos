@@ -1,6 +1,6 @@
 # site-gelyos
 
-Site vitrine Next.js (App Router) pour la présentation des services Gelyos.
+Site vitrine Next.js (App Router) pour la presentation des services Gelyos.
 
 ## Stack
 
@@ -25,9 +25,17 @@ npm run build
 npm run start
 ```
 
+## Deploiement Cloudflare Pages (statique)
+
+Le projet est configure pour un export statique Next.js via `output: 'export'`.
+La configuration active aussi `trailingSlash: true` pour generer des routes sous forme de dossiers (`/route/index.html`) et faciliter les URLs propres sur Cloudflare Pages.
+
+- Build command : `npm run build`
+- Output directory : `out`
+
 ## Variables d'environnement publiques
 
-Créer un fichier `.env.local` à la racine avec les variables suivantes (sans valeur committée) :
+Creer un fichier `.env.local` a la racine avec les variables suivantes (sans valeur committee) :
 
 ```bash
 NEXT_PUBLIC_RECAPTCHA_SITE_KEY=
