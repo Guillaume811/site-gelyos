@@ -3957,3 +3957,45 @@ Lot A termine sans impact fonctionnel detecte.
 ### Prochaine etape recommandee
 
 Traiter le Lot B uniquement apres validation humaine: reevaluer `src/ressources/content/portfolio/schema.ts` et la dependance `zod`.
+## 15-05-2026 - Nettoyage final Lot B etape 1 : suppression `portfolio/schema.ts` (phase 48)
+
+### Objectif
+
+Reevaluer puis supprimer uniquement `src/ressources/content/portfolio/schema.ts` s'il est confirme inutilise.
+
+### Recherches effectuees
+
+- `rg --line-number "projectArraySchema|projectSchema|categorySchema|formatZodError|portfolio/schema|ressources/content/portfolio/schema" src scripts package.json package-lock.json next.config.ts tsconfig.json tsconfig.app.json eslint.config.js MIGRATION_PLAN.md MIGRATION_LOG.md README.md`
+- verification presence fichier: `Test-Path src/ressources/content/portfolio/schema.ts`
+
+### Resultat des recherches
+
+- usages actifs dans `src` / scripts / configs : non detectes.
+- occurrences detectees :
+  - definitions internes dans `src/ressources/content/portfolio/schema.ts`
+  - references documentaires dans `MIGRATION_PLAN.md` et `MIGRATION_LOG.md`.
+
+### Decision
+
+- fichier confirme non utilise en runtime actuel -> suppression executee.
+
+### Fichiers modifies
+
+- `src/ressources/content/portfolio/schema.ts` (supprime)
+- `MIGRATION_LOG.md`
+
+### Contraintes respectees
+
+- `zod` conserve (non supprime dans ce lot).
+- aucun changement dans `package.json` / `package-lock.json`.
+- aucun autre fichier source supprime.
+
+### Verifications effectuees
+
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK
+
+### Prochaine etape recommandee
+
+Traiter le lot suivant uniquement apres validation humaine: reevaluer la suppression de `zod` (Lot B etape 2) a partir de l'etat sans `portfolio/schema.ts`.
