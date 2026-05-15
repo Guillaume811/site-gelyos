@@ -4,8 +4,11 @@ import pictureSeo from '~/assets/pictures/serviceSeo.webp'
 export const seo: ServiceSectionContent = {
     id: 'seo',
     title: 'Optimisation SEO et référencement naturel',
-    text: `Un site performant doit aussi être visible.
-    Nous assurons l'**optimisation SEO** de votre site pour améliorer son classement sur Google : technique, contenu et expérience utilisateur. L'objectif : plus de trafic qualité et donc plus de clients.`,
+    text: [
+        { type: 'text', text: "Un site performant doit aussi être visible. Nous assurons l'" },
+        { type: 'strong', text: "optimisation SEO" },
+        { type: 'text', text: " de votre site pour améliorer son classement sur Google : technique, contenu et expérience utilisateur. L'objectif : plus de trafic qualité et donc plus de clients." },
+    ],
     image: {
         src: pictureSeo,
         alt: 'Illustration de SEO avec des éléments de graphique.'

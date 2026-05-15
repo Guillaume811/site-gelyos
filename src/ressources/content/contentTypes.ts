@@ -123,7 +123,7 @@ export interface ProjectPreview {
 export interface ServiceSectionContent {
     id: RichText
     title: RichText
-    text: RichText
+    text: InlineContent
     image: ImageContent
     ServiceAccordionItems: AccordionItemContent[]
 }

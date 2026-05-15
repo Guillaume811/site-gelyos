@@ -4,8 +4,13 @@ import pictureMaintenance from '~/assets/pictures/maintenance.webp'
 export const maintenance: ServiceSectionContent = {
     id: 'maintenance',
     title: 'Maintenance & support technique',
-    text: `Un site doit rester **sécurisé, performant et à jour**.
-    Nous assurons la **maintenance de sites internet** pour garantir leur bon fonctionnement au quotidien et accompagner vos évolutions futures.`,
+    text: [
+        { type: 'text', text: "Un site doit rester " },
+        { type: 'strong', text: "sécurisé, performant et à jour" },
+        { type: 'text', text: ". Nous assurons la " },
+        { type: 'strong', text: "maintenance de sites internet" },
+        { type: 'text', text: " pour garantir leur bon fonctionnement au quotidien et accompagner vos évolutions futures." },
+    ],
     image: {
         src: pictureMaintenance,
         alt: `Illustration de maintenance d'un site web`

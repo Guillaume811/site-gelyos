@@ -4,8 +4,17 @@ import pictureDevWeb from '~/assets/pictures/devWeb.webp'
 export const devWeb: ServiceSectionContent = {
     id: 'dev-web',
     title: 'Création de sites internet sur mesure',
-    text: `Un **site internet sur mesure** est l'outil idéal pour développer votre présence en ligne.
-    Que ce soit pour un **site vitrine** destiné à présenter vos services, une **site e-commerce** pour vendre vos produits ou un **site institutionnel**, je conçois des solutions uniques qui reflètent votre marque et atteignent vos objectifs.`,
+    text: [
+        { type: 'text', text: "Un " },
+        { type: 'strong', text: "site internet sur mesure" },
+        { type: 'text', text: " est l'outil idéal pour développer votre présence en ligne. Que ce soit pour un " },
+        { type: 'strong', text: "site vitrine" },
+        { type: 'text', text: " destiné à présenter vos services, une " },
+        { type: 'strong', text: "site e-commerce" },
+        { type: 'text', text: " pour vendre vos produits ou un " },
+        { type: 'strong', text: "site institutionnel" },
+        { type: 'text', text: ", je conçois des solutions uniques qui reflètent votre marque et atteignent vos objectifs." },
+    ],
     image: {
         src: pictureDevWeb,
         alt: 'Illustration de design UI/UX avec éléments d’interface.'

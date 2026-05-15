@@ -3207,3 +3207,103 @@ Migrer uniquement `CallToActionNext` et son contenu associe vers `InlineContent`
 ### Prochaine etape recommandee
 
 Migrer le composant markdown suivant le plus simple (recommande: `ServicesSection` ou `AboutSection`) en reutilisant la meme logique inline segmentee, sans toucher les autres zones en parallelle.
+## 15-05-2026 - Migration `ServicesSection` vers `InlineContent` (phase 38)
+
+### Decision structurante
+
+- [15-05-2026] [services-section-inline] [migration du renderer `ServicesSection` et des champs `text` services vers `InlineContent`] [retirer markdown uniquement dans ce composant] [accordions et autres renderers markdown conserves]
+
+### Objectif
+
+Migrer uniquement `ServicesSection` et les contenus services associes rendus par ce composant, afin de supprimer son usage local de `react-markdown`.
+
+### Fichiers modifies
+
+- `src/_pages/Services/ServicesSection/ServicesSection.tsx`
+- `src/ressources/content/contentTypes.ts`
+- `src/ressources/content/services/devWeb.ts`
+- `src/ressources/content/services/devApp.ts`
+- `src/ressources/content/services/maintenance.ts`
+- `src/ressources/content/services/seo.ts`
+- `MIGRATION_LOG.md`
+
+### Champs migres vers `InlineContent`
+
+- `ServiceSectionContent.text` (`contentTypes.ts`) : `RichText` -> `InlineContent`
+- Champs contenus migres:
+  - `devWeb.text`
+  - `devApp.text`
+  - `maintenance.text`
+  - `seo.text`
+
+### Contenus services migres
+
+- fichiers:
+  - `src/ressources/content/services/devWeb.ts`
+  - `src/ressources/content/services/devApp.ts`
+  - `src/ressources/content/services/maintenance.ts`
+  - `src/ressources/content/services/seo.ts`
+- seuls les champs `text` rendus par `ServicesSection` ont ete modifies.
+- `ServiceAccordionItems` non migres (hors scope, encore rendus par `AccordionItem`).
+
+### Syntaxes markdown remplacees
+
+- `**...**` -> segments `strong`
+- texte normal -> segments `text`
+- syntaxes non detectees dans ces champs:
+  - `*...*`
+  - `[[...]]`
+  - `[texte](url)`
+- retours ligne: transformes en continuite textuelle pour conserver le rendu paragraphe unique de `ServicesSection`.
+
+### Adaptation du composant
+
+- `ServicesSection.tsx`:
+  - retrait import `react-markdown`.
+  - ajout d'un micro-renderer inline local (`InlineContent` -> balises HTML).
+  - rendu semantique:
+    - `strong` -> `<strong>`
+    - `emphasis` -> `<em>`
+    - `accent` -> `<span data-inline="accent">`
+    - `link` -> `<a href="...">`
+    - `lineBreak` -> `<br />`
+- `remark-breaks` non utilise auparavant dans ce composant (rien a retirer).
+
+### Scope respecte
+
+- Aucun changement sur:
+  - `AboutSection`
+  - `SectionBlock`
+  - `AnimatedTitle`
+  - cards Home
+  - `AccordionItem`
+- Aucune modification package/dependances.
+
+### Verifications effectuees
+
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK
+- verification HTTP locale:
+  - `/services` -> `200`
+
+### Usages `react-markdown` restants dans le projet
+
+- `src/components/Accordion/AccordionItem/AccordionItem.tsx`
+- `src/_pages/About/AboutSection/AboutSection.tsx`
+- `src/animations/AnimatedTitle/AnimatedTitle.tsx`
+- `src/_pages/Home/ServicesPreview/ServicesPreview.tsx`
+- `src/_pages/Home/ServicesPreview/CardServiceNext.tsx`
+- `src/_pages/Home/ProjectPreview/ProjectPreview.tsx`
+- `src/_pages/MentionsLegales/SectionBlock/SectionBlock.tsx`
+
+### Risques / points a verifier manuellement
+
+- verifier visuellement `/services`:
+  - rendu exact des segments `strong` (poids/ton graphique)
+  - espacements et retours ligne dans les textes des 4 sections
+  - absence de regression responsive dans les colonnes.
+
+### Prochaine etape recommandee
+
+Migrer ensuite `AboutSection` ou `AccordionItem` (un seul composant a la fois) pour poursuivre la suppression progressive des usages markdown restants.

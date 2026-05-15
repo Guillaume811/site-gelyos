@@ -4,8 +4,13 @@ import pictureDevApp from '~/assets/pictures/devApp.webp'
 export const devApp: ServiceSectionContent = {
     id: 'dev-app',
     title: `Développement d'Application personnalisées`,
-    text: `Les **applications web et mobiles sur mesure** permettent de créer des outils adaptés à vos besoins spécifiques : gestion interne, plateforme métier, SaaS ou solution innovente.
-    Nous développons des **applications performantes et évolutives**, pensée pour simplifier vos processus et apporter une réelle valeur à votre entreprise.`,
+    text: [
+        { type: 'text', text: "Les " },
+        { type: 'strong', text: "applications web et mobiles sur mesure" },
+        { type: 'text', text: " permettent de créer des outils adaptés à vos besoins spécifiques : gestion interne, plateforme métier, SaaS ou solution innovente. Nous développons des " },
+        { type: 'strong', text: "applications performantes et évolutives" },
+        { type: 'text', text: ", pensée pour simplifier vos processus et apporter une réelle valeur à votre entreprise." },
+    ],
     image: {
         src: pictureDevApp,
         alt: 'Illustration de développement d’application.'
