@@ -42,7 +42,6 @@ export type InlineContentSegment =
     | InlineLineBreakSegment
 
 export type InlineContent = InlineContentSegment[]
-export type ProgressiveRichText = RichText | InlineContent
 
 export interface ImageContent {
     src: string

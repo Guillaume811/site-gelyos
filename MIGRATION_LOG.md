@@ -3922,3 +3922,38 @@ Identifier les derniers elements potentiellement inutiles apres migration Next-o
 - `portfolio/schema.ts` peut etre garde volontairement pour validation contenu future hors runtime.
 - `portfolioContent.sections` peut etre reserve a une future section UI (actuellement non exploitee).
 - suppression de `zod` depend directement de la decision sur `portfolio/schema.ts`.
+## 15-05-2026 - Nettoyage final Lot A : suppression `ProgressiveRichText` (phase 47)
+
+### Objectif
+
+Executer uniquement le Lot A du cleanup final en supprimant le type de transition inutilise `ProgressiveRichText`.
+
+### Verification des occurrences
+
+- commande: `rg --line-number "ProgressiveRichText" src`
+- resultat: une seule occurrence, la definition dans `src/ressources/content/contentTypes.ts`.
+
+### Fichiers modifies
+
+- `src/ressources/content/contentTypes.ts`
+- `MIGRATION_LOG.md`
+
+### Changements effectues
+
+- suppression de la definition:
+  - `export type ProgressiveRichText = RichText | InlineContent`
+- aucun autre type modifie (`RichText` et `InlineContent` conserves).
+
+### Verifications effectuees
+
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK
+
+### Resultat
+
+Lot A termine sans impact fonctionnel detecte.
+
+### Prochaine etape recommandee
+
+Traiter le Lot B uniquement apres validation humaine: reevaluer `src/ressources/content/portfolio/schema.ts` et la dependance `zod`.
