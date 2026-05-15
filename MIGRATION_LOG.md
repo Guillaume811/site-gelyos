@@ -3112,3 +3112,98 @@ Migrer les 2 derniers contenus `PageIntro` (`/portfolio`, `/contact`) vers `Inli
 ### Prochaine etape recommandee
 
 Demarrer la migration inline du composant suivant le plus simple hors `PageIntro` (recommande: `CallToActionNext`), en conservant le meme schema incremental segment par segment.
+## 15-05-2026 - Migration `CallToActionNext` vers `InlineContent` (phase 37)
+
+### Decision structurante
+
+- [15-05-2026] [cta-inline-migration] [migration du contenu CTA et du renderer `CallToActionNext` vers `InlineContent`] [retirer markdown uniquement sur ce composant] [cohabitation maintenue pour autres composants encore en markdown]
+
+### Objectif
+
+Migrer uniquement `CallToActionNext` et son contenu associe vers `InlineContent`, afin de supprimer son usage local de `react-markdown` / `remark-breaks`.
+
+### Fichiers modifies
+
+- `src/app/(site)/navigation/CallToActionNext.tsx`
+- `src/ressources/content/ctaContent/ctaContent.ts`
+- `MIGRATION_LOG.md`
+
+### Contenu CTA migre
+
+- Fichier: `src/ressources/content/ctaContent/ctaContent.ts`
+- Conversion de `text` vers `InlineContent` pour les entrees:
+  - `home`
+  - `services`
+  - `aPropos`
+  - `portfolio`
+
+### Syntaxes markdown remplacees
+
+- `**...**` -> segments `strong`
+- retour ligne `\n` (home) -> segment `lineBreak`
+- texte normal -> segments `text`
+- syntaxes detectees mais absentes dans ce contenu:
+  - `*...*` -> aucun usage
+  - `[[...]]` -> aucun usage
+  - `[...](...)` -> aucun usage
+
+### Adaptation `CallToActionNext`
+
+- retrait des imports:
+  - `react-markdown`
+  - `remark-breaks`
+- ajout d'un micro-renderer inline local (mapping segments -> balises):
+  - `text` -> `<span>`
+  - `strong` -> `<strong>`
+  - `emphasis` -> `<em>`
+  - `accent` -> `<span data-inline="accent">`
+  - `link` -> `<a href="...">`
+  - `lineBreak` -> `<br />`
+- structure visuelle conservee:
+  - wrapper `<div className={styles.text}>`
+  - rendu en `<p>` avec meme bloc CSS.
+
+### Scope respecte
+
+- Aucun autre composant migre.
+- Aucune migration de `ServicesSection`, `AboutSection`, `SectionBlock`, `AnimatedTitle`, cards Home.
+- `react-markdown` et `remark-breaks` conserves au niveau projet.
+
+### Verifications effectuees
+
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK
+- verification HTTP locale:
+  - `/` -> `200`
+  - `/a-propos` -> `200`
+  - `/services` -> `200`
+  - `/portfolio` -> `200`
+  - `/contact` -> `200`
+
+### Usages `react-markdown` restants dans le projet
+
+- `src/animations/AnimatedTitle/AnimatedTitle.tsx`
+- `src/_pages/Services/ServicesSection/ServicesSection.tsx`
+- `src/_pages/About/AboutSection/AboutSection.tsx`
+- `src/components/Accordion/AccordionItem/AccordionItem.tsx`
+- `src/_pages/Home/ServicesPreview/ServicesPreview.tsx`
+- `src/_pages/Home/ServicesPreview/CardServiceNext.tsx`
+- `src/_pages/Home/ProjectPreview/ProjectPreview.tsx`
+- `src/_pages/MentionsLegales/SectionBlock/SectionBlock.tsx`
+
+### Risques / points a verifier manuellement
+
+- verifier le rendu visuel exact du texte CTA sur:
+  - `/`
+  - `/a-propos`
+  - `/services`
+  - `/portfolio`
+- verifier en particulier:
+  - rendu des segments `strong` (semantique `<strong>`)
+  - retour ligne sur le CTA home (segment `lineBreak`)
+  - espacement vertical du bloc texte CTA.
+
+### Prochaine etape recommandee
+
+Migrer le composant markdown suivant le plus simple (recommande: `ServicesSection` ou `AboutSection`) en reutilisant la meme logique inline segmentee, sans toucher les autres zones en parallelle.
