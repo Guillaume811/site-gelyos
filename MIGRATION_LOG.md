@@ -2730,3 +2730,141 @@ Auditer tous les signes, syntaxes et usages Markdown/pseudo-Markdown actifs dans
 - Audit global termine.
 - Aucun fichier source fonctionnel modifie.
 - Aucun build lance (conforme a la consigne).
+## 15-05-2026 - Migration test PageIntro Markdown -> interface existante (phase 32)
+
+### Decision structurante
+
+- [15-05-2026] [pageintro-migration-test] [mode de rendu `plain` ajoute dans `PageIntro` avec compatibilite markdown conservee] [migrer `/services` sans casser `/portfolio` et `/contact`] [micro-lot valide pour migration progressive]
+
+### Objectif
+
+Realiser un premier test de migration sur `PageIntro` en remplacant le markdown du contenu `/services`, tout en preservant les autres usages de `PageIntro`.
+
+### Usages `PageIntro` identifies avant modification
+
+- `src/_pages/Services/Services.tsx` -> `introServices.text` (`src/ressources/content/services/headerIntro.ts`)
+- `src/_pages/Portfolio/Portfolio.tsx` -> `portfolioContent.intro.text` (`src/ressources/content/portfolio/portfolioContent.ts`)
+- `src/_pages/Contact/Contact.tsx` -> `contactContent.intro.text` (`src/ressources/content/contact/contactContent.ts`)
+
+### Perimetre applique
+
+- Migration active uniquement pour `/services`.
+- Compatibilite legacy conservee pour `/portfolio` et `/contact` (markdown inchange).
+- Types globaux conserves (`IntroContent.text: RichText = string`).
+
+### Fichiers modifies
+
+- `src/components/PageIntro/PageIntro.tsx`
+- `src/_pages/Services/Services.tsx`
+- `src/ressources/content/services/headerIntro.ts`
+- `MIGRATION_LOG.md`
+
+### Changements effectues
+
+- `PageIntro`:
+  - ajout d'une prop optionnelle `mode?: "markdown" | "plain"` (defaut `markdown` pour retro-compatibilite)
+  - ajout d'un rendu `plain` sans `react-markdown`, avec conservation des retours ligne (`\n`) via `<br />`.
+- `Services.tsx`:
+  - activation du mode migre: `<PageIntro text={intro.text} mode="plain" />`.
+- `headerIntro.ts`:
+  - suppression des syntaxes markdown dans `introServices.text` (`**...**`, `*...*`) sans changer le texte lexical.
+
+### Interface existante utilisee
+
+- `IntroContent` + `RichText` (`string`) dans `src/ressources/content/contentTypes.ts`.
+- Aucun nouveau type/interface introduit.
+
+### Syntaxes remplacees (scope test)
+
+- Fichier: `src/ressources/content/services/headerIntro.ts`
+- Remplacements:
+  - gras markdown `**...**` -> texte brut
+  - italique markdown `*...*` -> texte brut
+
+### Verifications effectuees
+
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK
+  - routes generees incluant `/services`, `/portfolio`, `/contact`.
+
+### Resultat
+
+- Migration test `PageIntro` effectuee sur `/services`.
+- `/portfolio` et `/contact` restent compatibles via mode markdown par defaut.
+- Aucun blocage lint/type/build.
+
+### Risques / points a surveiller
+
+- Le mode `plain` retire le rendu typographique markdown (gras/italique) sur `/services` pour le bloc `PageIntro`.
+- Verification visuelle manuelle recommandee sur:
+  - `/services` (line-breaks et hierarchie visuelle du texte intro)
+  - `/portfolio` et `/contact` (absence de regression via mode markdown legacy).
+
+### Prochaine etape recommandee
+
+Migrer ensuite `PageIntro` de `/contact` ou `/portfolio` en reprenant la meme strategie micro-lot, puis supprimer la branche legacy markdown de `PageIntro` une fois tous ses contenus intro convertis.
+## 15-05-2026 - Correction migration test PageIntro /services (phase 33)
+
+### Decision structurante
+
+- [15-05-2026] [pageintro-style-fix] [retour temporaire au rendu markdown pour `/services`] [la font speciale de GELYOS depend de `<em>` + style CSS existant] [regression visuelle corrigee sans inventer de nouvelle interface inline]
+
+### Objectif
+
+Corriger la regression visuelle apparue sur `/services` apres la migration test `mode="plain"` de `PageIntro`, tout en gardant le scope limite et sans inventer de nouvelle convention de contenu.
+
+### Cause de la perte de style
+
+- Avant migration test: `introServices.text` contenait `*GELYOS*`.
+- `PageIntro` rendait ce marqueur via `react-markdown` en balise `<em>`.
+- `PageIntro.module.scss` applique `font-family: $font-title` sur `em`.
+- Apres passage en `mode="plain"`: plus de parsing markdown, donc plus de `<em>` -> perte de la font specifique.
+
+### Verification de l'interface existante
+
+- Interface contenu actuelle detectee pour l'intro: `IntroContent.text` (`RichText = string`).
+- Aucune interface inline typee existante detectee pour representer nativement des spans styles (emphase/gras/brand word) sans marqueurs markdown.
+- Conclusion: impossibilite de finaliser la migration `PageIntro` hors markdown sans introduire une nouvelle interface (hors scope demande).
+
+### Correction appliquee (minimale)
+
+- Rebranchement `/services` sur le rendu markdown existant de `PageIntro`.
+- Restauration des marqueurs markdown de `introServices.text` (`**...**`, `*GELYOS*`).
+- Suppression du chemin `mode="plain"` introduit au test pour eviter une nouvelle perte de styles.
+
+### Fichiers modifies
+
+- `src/components/PageIntro/PageIntro.tsx`
+- `src/_pages/Services/Services.tsx`
+- `src/ressources/content/services/headerIntro.ts`
+- `MIGRATION_LOG.md`
+
+### Verifications effectuees
+
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK
+
+### Rendu attendu `/services`
+
+- `GELYOS` retrouve sa font particuliere (via `*GELYOS*` -> `<em>` -> style `PageIntro.module.scss`).
+- Les autres mots stylises de l'intro services (marques en `**...**`) restent rendus comme avant.
+- Verification visuelle navigateur: a confirmer manuellement.
+
+### Usages `react-markdown` restants
+
+- `src/components/PageIntro/PageIntro.tsx`
+- `src/_pages/Services/ServicesSection/ServicesSection.tsx`
+- `src/_pages/About/AboutSection/AboutSection.tsx`
+- `src/components/Accordion/AccordionItem/AccordionItem.tsx`
+- `src/_pages/Home/ServicesPreview/ServicesPreview.tsx`
+- `src/_pages/Home/ServicesPreview/CardServiceNext.tsx`
+- `src/_pages/Home/ProjectPreview/ProjectPreview.tsx`
+- `src/_pages/MentionsLegales/SectionBlock/SectionBlock.tsx`
+- `src/app/(site)/navigation/CallToActionNext.tsx`
+- `src/animations/AnimatedTitle/AnimatedTitle.tsx`
+
+### Prochaine etape recommandee
+
+Valider humainement la proposition d'une interface inline typee minimale (ex. segments/styles) avant toute nouvelle tentative de migration de `PageIntro` hors `react-markdown`.

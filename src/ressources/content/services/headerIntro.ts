@@ -1,4 +1,4 @@
-import type { IntroContent, PageHeaderContent } from "~/ressources/content/contentTypes";
+﻿import type { IntroContent, PageHeaderContent } from "~/ressources/content/contentTypes";
 import pictureHeaderService from '~/assets/pictures/header-service.webp'
 
 export const headerServices: PageHeaderContent = {
