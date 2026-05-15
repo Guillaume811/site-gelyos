@@ -1,15 +1,53 @@
 import ReactMarkdown from "react-markdown";
+import type { InlineContent, ProgressiveRichText } from "~/ressources/content/contentTypes";
 import styles from "./PageIntro.module.scss";
 
 interface Props {
-  text: string;
+  text: ProgressiveRichText;
+}
+
+function isInlineContent(value: ProgressiveRichText): value is InlineContent {
+  return Array.isArray(value);
+}
+
+function renderInlineContent(content: InlineContent) {
+  return (
+    <p>
+      {content.map((segment, index) => {
+        switch (segment.type) {
+          case "text":
+            return <span key={`text-${index}`}>{segment.text}</span>;
+          case "strong":
+            return <strong key={`strong-${index}`}>{segment.text}</strong>;
+          case "emphasis":
+            return <em key={`emphasis-${index}`}>{segment.text}</em>;
+          case "accent":
+            return (
+              <span key={`accent-${index}`} data-inline="accent">
+                {segment.text}
+              </span>
+            );
+          case "link":
+            return (
+              <a key={`link-${index}`} href={segment.href}>
+                {segment.text}
+              </a>
+            );
+          case "lineBreak":
+            return <br key={`line-break-${index}`} />;
+          default:
+            return null;
+        }
+      })}
+    </p>
+  );
 }
 
 export default function PageIntro({ text }: Props) {
   return (
     <div className={styles.intro}>
       <div className={styles.content}>
-        <ReactMarkdown>{text}</ReactMarkdown>
+        {isInlineContent(text) ? renderInlineContent(text) : <ReactMarkdown>{text}</ReactMarkdown>}
       </div>
     </div>
   );

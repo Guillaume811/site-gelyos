@@ -11,6 +11,19 @@ export const headerServices: PageHeaderContent = {
 }
 
 export const introServices: IntroContent = {
-    text: `En tant que **développeur web sur mesure**, *GELYOS* vous propose des solutions digitales adaptées aux besoins des entreprises, startups et indépendants.
-    De la **création de sites internet personnalisés** à la **conception d'applications web**, en passant par **l'optimisation SEO** et la **maintenance**, chaque service est conçu pour garantir performance, sécurité et visibilité.`
+    text: [
+        { type: 'text', text: 'En tant que ' },
+        { type: 'strong', text: 'développeur web sur mesure' },
+        { type: 'text', text: ', ' },
+        { type: 'emphasis', text: 'GELYOS' },
+        { type: 'text', text: ' vous propose des solutions digitales adaptées aux besoins des entreprises, startups et indépendants. De la ' },
+        { type: 'strong', text: 'création de sites internet personnalisés' },
+        { type: 'text', text: ' à la ' },
+        { type: 'strong', text: "conception d'applications web" },
+        { type: 'text', text: ', en passant par ' },
+        { type: 'strong', text: "l'optimisation SEO" },
+        { type: 'text', text: ' et la ' },
+        { type: 'strong', text: 'maintenance' },
+        { type: 'text', text: ', chaque service est conçu pour garantir performance, sécurité et visibilité.' }
+    ]
 }

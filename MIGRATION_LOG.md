@@ -2931,3 +2931,97 @@ Definir officiellement une interface inline typee minimale pour remplacer progre
 ### Prochaine etape recommandee
 
 Introduire un micro-renderer cible pour `PageIntro` (opt-in sur `/services` uniquement) qui accepte `ProgressiveRichText`, puis migrer un seul contenu pilote en segments inline sans toucher les autres pages.
+## 15-05-2026 - Micro-renderer opt-in PageIntro + migration `introServices` (phase 35)
+
+### Decision structurante
+
+- [15-05-2026] [pageintro-inline-poc] [PageIntro accepte `ProgressiveRichText` avec fallback markdown legacy] [activer la nouvelle interface inline sans casser `/portfolio` et `/contact`] [migration pilote limitee a `introServices`]
+
+### Objectif
+
+Ajouter un micro-renderer inline type uniquement pour `PageIntro` quand le contenu est au format `InlineContent`, tout en conservant `react-markdown` pour les contenus string legacy.
+
+### Fichiers modifies
+
+- `src/ressources/content/contentTypes.ts`
+- `src/components/PageIntro/PageIntro.tsx`
+- `src/ressources/content/services/headerIntro.ts`
+- `MIGRATION_LOG.md`
+
+### Interface utilisee
+
+- `ProgressiveRichText = RichText | InlineContent`
+- Segments utilises dans ce lot:
+  - `text`
+  - `strong`
+  - `emphasis`
+
+### Changements effectues
+
+- `contentTypes.ts`:
+  - `IntroContent.text` migre de `RichText` vers `ProgressiveRichText` (cohabitation string + inline type).
+- `PageIntro.tsx`:
+  - prop `text` passe en `ProgressiveRichText`.
+  - ajout d'un type-guard `isInlineContent`.
+  - ajout du renderer inline (segments -> balises HTML):
+    - `text` -> `<span>`
+    - `strong` -> `<strong>`
+    - `emphasis` -> `<em>`
+    - `accent` -> `<span data-inline="accent">`
+    - `link` -> `<a href="...">`
+    - `lineBreak` -> `<br />`
+  - fallback conserve: si `text` est string, rendu inchange via `react-markdown`.
+- `services/headerIntro.ts`:
+  - migration de `introServices.text` vers `InlineContent`.
+  - remplacement des marqueurs:
+    - `**...**` -> segments `strong`
+    - `*GELYOS*` -> segment `emphasis`
+    - texte normal -> segments `text`
+
+### Contenu migre
+
+- `introServices.text` uniquement (`src/ressources/content/services/headerIntro.ts`).
+
+### Contenus non migres
+
+- `src/ressources/content/portfolio/portfolioContent.ts` (string markdown conserve)
+- `src/ressources/content/contact/contactContent.ts` (string markdown conserve)
+
+### Comportement legacy conserve
+
+- `/portfolio` et `/contact` continuent d'utiliser le mode legacy string + `react-markdown` dans `PageIntro`.
+- Aucun autre composant/page migre dans ce lot.
+
+### Verifications effectuees
+
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK
+- verification HTTP locale (smoke):
+  - `/services` -> `200`
+  - `/portfolio` -> `200`
+  - `/contact` -> `200`
+
+### Usages `react-markdown` restants
+
+- `src/components/PageIntro/PageIntro.tsx` (fallback legacy string)
+- `src/_pages/Services/ServicesSection/ServicesSection.tsx`
+- `src/_pages/About/AboutSection/AboutSection.tsx`
+- `src/components/Accordion/AccordionItem/AccordionItem.tsx`
+- `src/_pages/Home/ServicesPreview/ServicesPreview.tsx`
+- `src/_pages/Home/ServicesPreview/CardServiceNext.tsx`
+- `src/_pages/Home/ProjectPreview/ProjectPreview.tsx`
+- `src/_pages/MentionsLegales/SectionBlock/SectionBlock.tsx`
+- `src/app/(site)/navigation/CallToActionNext.tsx`
+- `src/animations/AnimatedTitle/AnimatedTitle.tsx`
+
+### Risques / points a surveiller
+
+- Verification visuelle manuelle a faire sur `/services`:
+  - `GELYOS` doit conserver la font appliquee au `<em>`.
+  - les segments `strong` doivent conserver le rendu attendu des anciens `**...**`.
+- Verification visuelle manuelle de non-regression sur `/portfolio` et `/contact` (fallback markdown legacy).
+
+### Prochaine etape recommandee
+
+Migrer ensuite un second contenu `PageIntro` (contact ou portfolio) vers `InlineContent`, puis preparer la sortie progressive de `react-markdown` pour `PageIntro` seulement une fois ses trois usages convertis.
