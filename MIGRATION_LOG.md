@@ -3832,3 +3832,93 @@ Supprimer definitivement `react-markdown` et `remark-breaks` du projet apres mig
 ### Prochaine etape recommandee
 
 Passer au lot suivant de nettoyage final (dependances legacy restantes et audit post-cleanup), ou preparer la branche pour revue/merge.
+## 15-05-2026 - Audit final nettoyage post Next-only (phase 46)
+
+### Objectif
+
+Identifier les derniers elements potentiellement inutiles apres migration Next-only et suppression de markdown, sans modifier le code fonctionnel.
+
+### Commandes d'analyse executees
+
+- `git branch --show-current`
+- `git status --short`
+- `Get-Content package.json`
+- `rg --line-number "react-markdown|remark-breaks|react-router-dom|react-helmet-async|VITE_|import.meta.env|_legacy|vite" src package.json package-lock.json next.config.ts`
+- `rg --line-number "clsx|framer-motion|lucide-react|swiper|zod" src`
+- `rg --line-number "getAssetSrc|markdownLikeToInlineContent|ProgressiveRichText|RichText" src`
+- `Get-ChildItem -Path src -Recurse -File | Where-Object { $_.Length -eq 0 }`
+- `rg --line-number "\*\*[^*]+\*\*|\*[^*]+\*|\[\[[^\]]+\]\]|\[[^\]]+\]\([^)]+\)|!\[[^\]]*\]\([^)]+\)" src/ressources/content`
+- `Test-Path src/_legacy`
+- `Test-Path scripts`
+- `rg --line-number "projectArraySchema|projectSchema|categorySchema|formatZodError" src`
+- `rg --line-number '"react-markdown"|"remark-breaks"' package-lock.json`
+
+### Resultat dependances (package.json / lock)
+
+- `react-markdown` : supprime, aucune occurrence dans `package-lock.json`.
+- `remark-breaks` : supprime, aucune occurrence dans `package-lock.json`.
+- Dependances runtime confirmees utilisees : `clsx`, `framer-motion`, `lucide-react`, `swiper`.
+- Dependance potentiellement inutilisee : `zod` (usage detecte uniquement dans `src/ressources/content/portfolio/schema.ts`, fichier non reference ailleurs).
+
+### Imports morts evidents
+
+- Aucun import mort evident detecte dans `src` (lint/typecheck precedemment passants).
+
+### Fichiers potentiellement supprimables maintenant (sous validation humaine)
+
+- `src/ressources/content/portfolio/schema.ts`
+  - raison: aucun import actif detecte pour `projectSchema`, `projectArraySchema`, `formatZodError`.
+- dossier `scripts/` vide
+  - raison: repertoire present mais aucun fichier.
+
+### Helpers / types potentiellement supprimables ou a rationaliser
+
+- `ProgressiveRichText` (`src/ressources/content/contentTypes.ts`)
+  - statut: potentiellement supprimable (plus aucune occurrence hors definition detectee).
+- `markdownLikeToInlineContent` (`src/ressources/content/mention/mentionContent.ts`)
+  - statut: a conserver pour l'instant (utilise activement pour parser des chaines legales avec liens markdown).
+- `getAssetSrc` (`src/lib/getAssetSrc.ts`)
+  - statut: a conserver (imports actifs multiples dans pages/composants Next).
+
+### References legacy restantes
+
+- Dans `src` (code actif):
+  - pas de reference active a `react-router-dom`, `react-helmet-async`, `react-markdown`, `remark-breaks`, `VITE_`, `_legacy`.
+  - une occurrence de `react-router-dom` dans un commentaire (`src/app/(site)/Providers.tsx`) uniquement.
+- Dans la documentation (`MIGRATION_PLAN.md`, `MIGRATION_LOG.md`, `README.md`):
+  - references historiques a Vite / React Router / Helmet / `_legacy` encore presentes (normal pour historique de migration).
+
+### Syntaxes markdown / pseudo-markdown restantes dans les contenus
+
+- Actives dans contenu editorial:
+  - `[[...]]` : present dans `src/ressources/content/home/hero.ts` (utilise par `TypewriterText` pour highlighting).
+  - `[texte](url)` : present dans `src/ressources/content/mention/mentionContent.ts` (converti via `markdownLikeToInlineContent`).
+  - `**...**` : present dans `src/ressources/content/portfolio/portfolioContent.ts` (`sections.*.description`).
+- Non detecte dans contenus scannes:
+  - `![alt](url)`.
+
+### Faux positifs identifies
+
+- Plusieurs occurrences detectees par recherche brute `vite` dans `src` sont des mots francais (`evite`, `visibilite`, `site`) et non des references a Vite.
+- Occurrences `*...*` dans `portfolio/schema.ts` sont des commentaires/documentation, pas du contenu editorial a migrer.
+- Occurrences nombreuses de references legacy dans `MIGRATION_LOG.md` et `MIGRATION_PLAN.md` sont historiques/documentaires.
+
+### Elements a conserver
+
+- `getAssetSrc` (encore necessaire au rendu image actuel).
+- `markdownLikeToInlineContent` (necessaire pour les mentions legales tant que les blocs restent saisis en chaines markdown-like).
+- `RichText` (encore massivement utilise dans les types de contenu).
+- `portfolioContent.sections` (donnees non referencees actuellement, mais suppression a valider produit/UX avant retrait).
+
+### Recommandations nettoyage par lots (sans execution dans ce lot)
+
+1. **Lot A (sur)** : suppression de `ProgressiveRichText` si aucune reintroduction prevue.
+2. **Lot B (sur validation)** : retirer `src/ressources/content/portfolio/schema.ts` + verifier si `zod` devient supprimable.
+3. **Lot C (contenu)** : decider si `portfolioContent.sections` est obsolete; supprimer champ + type associe seulement apres validation produit.
+4. **Lot D (documentation)** : mettre a jour `README.md` pour supprimer references Vite template restantes.
+
+### Incertitudes a valider humainement
+
+- `portfolio/schema.ts` peut etre garde volontairement pour validation contenu future hors runtime.
+- `portfolioContent.sections` peut etre reserve a une future section UI (actuellement non exploitee).
+- suppression de `zod` depend directement de la decision sur `portfolio/schema.ts`.
