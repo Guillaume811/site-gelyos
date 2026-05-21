@@ -2,8 +2,8 @@
 
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination, A11y } from 'swiper/modules'
-import type { Project } from '~/ressources/content/portfolio/types'
-import CardProjectHomeNext from '~/components/CardProject/home/CardProjectHomeNext'
+import type { Project } from '@/ressources/content/portfolio/types'
+import CardProjectHomeNext from '@/components/CardProject/home/CardProjectHomeNext'
 import styles from './CardCarousel.module.scss'
 import '../../../styles/swiper.css'
 

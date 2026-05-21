@@ -1,54 +1,54 @@
-import type { ServiceSectionContent } from "~/ressources/content/contentTypes";
-import pictureDevApp from '~/assets/pictures/devApp.webp'
+import type { ServiceSectionContent } from "@/ressources/content/contentTypes";
+import pictureDevApp from '@/assets/pictures/devApp.webp'
 
 export const devApp: ServiceSectionContent = {
     id: 'dev-app',
-    title: `Développement d'Application personnalisées`,
+    title: `DÃƒÂ©veloppement d'Application personnalisÃƒÂ©es`,
     text: [
         { type: 'text', text: "Les " },
         { type: 'strong', text: "applications web et mobiles sur mesure" },
-        { type: 'text', text: " permettent de créer des outils adaptés à vos besoins spécifiques : gestion interne, plateforme métier, SaaS ou solution innovente. Nous développons des " },
-        { type: 'strong', text: "applications performantes et évolutives" },
-        { type: 'text', text: ", pensée pour simplifier vos processus et apporter une réelle valeur à votre entreprise." },
+        { type: 'text', text: " permettent de crÃƒÂ©er des outils adaptÃƒÂ©s ÃƒÂ  vos besoins spÃƒÂ©cifiques : gestion interne, plateforme mÃƒÂ©tier, SaaS ou solution innovente. Nous dÃƒÂ©veloppons des " },
+        { type: 'strong', text: "applications performantes et ÃƒÂ©volutives" },
+        { type: 'text', text: ", pensÃƒÂ©e pour simplifier vos processus et apporter une rÃƒÂ©elle valeur ÃƒÂ  votre entreprise." },
     ],
     image: {
         src: pictureDevApp,
-        alt: 'Illustration de développement d’application.'
+        alt: 'Illustration de dÃƒÂ©veloppement dÃ¢â‚¬â„¢application.'
     },
     ServiceAccordionItems: [
         {
             id: 'analyse',
             title: 'Analyse fonctionnelle',
             description: [
-                { type: 'text', text: `Nous définissons ensemble les fonctionnalités nécessaires, les utilisateurs ciblés et les objectifs de l'application. Cette étape garantit que l'outil réponde exactement à vos besoins.` }
+                { type: 'text', text: `Nous dÃƒÂ©finissons ensemble les fonctionnalitÃƒÂ©s nÃƒÂ©cessaires, les utilisateurs ciblÃƒÂ©s et les objectifs de l'application. Cette ÃƒÂ©tape garantit que l'outil rÃƒÂ©ponde exactement ÃƒÂ  vos besoins.` }
             ]
         },
         {
             id: 'conception',
             title: 'Conception technique',
             description: [
-                { type: 'text', text: `Nous choisissons les technologies les plus adaptées à votre projet (framework, base de données, hébergement). Une architecture solide assure performance, sécurité et évolutivité.` }
+                { type: 'text', text: `Nous choisissons les technologies les plus adaptÃƒÂ©es ÃƒÂ  votre projet (framework, base de donnÃƒÂ©es, hÃƒÂ©bergement). Une architecture solide assure performance, sÃƒÂ©curitÃƒÂ© et ÃƒÂ©volutivitÃƒÂ©.` }
             ]
         },
         {
             id: 'developpement',
-            title: 'Développement & Intégration',
+            title: 'DÃƒÂ©veloppement & IntÃƒÂ©gration',
             description: [
-                { type: 'text', text: `Du front-end au back-end, nous développons une application performante et intuitive. L'interface utilisateur est fluide et moderne, tandis que le back-end garantit stabilité et rapidité.` }
+                { type: 'text', text: `Du front-end au back-end, nous dÃƒÂ©veloppons une application performante et intuitive. L'interface utilisateur est fluide et moderne, tandis que le back-end garantit stabilitÃƒÂ© et rapiditÃƒÂ©.` }
             ]
         },
         {
             id: 'test',
-            title: 'Tests & Sécurité',
+            title: 'Tests & SÃƒÂ©curitÃƒÂ©',
             description: [
-                { type: 'text', text: `Chaque fonctionnalité est testée rigoureusement : compatibilité, sécurité des données, performance en charge. L'objectif : une application fiable et sécurisée.` }
+                { type: 'text', text: `Chaque fonctionnalitÃƒÂ© est testÃƒÂ©e rigoureusement : compatibilitÃƒÂ©, sÃƒÂ©curitÃƒÂ© des donnÃƒÂ©es, performance en charge. L'objectif : une application fiable et sÃƒÂ©curisÃƒÂ©e.` }
             ]
         },
         {
             id: 'evolution',
-            title: 'Évolutions',
+            title: 'Ãƒâ€°volutions',
             description: [
-                { type: 'text', text: `Une application n'est jamais figée : je propose un suivi continu pour ajouter de nouvelles fonctionnalités et répondre à vos futurs besoins.` }
+                { type: 'text', text: `Une application n'est jamais figÃƒÂ©e : je propose un suivi continu pour ajouter de nouvelles fonctionnalitÃƒÂ©s et rÃƒÂ©pondre ÃƒÂ  vos futurs besoins.` }
             ]
         }
     ]

@@ -3,8 +3,8 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import clsx from 'clsx'
-import logo from '~/assets/pictures/logo-long.webp'
-import buttonStyles from '~/components/Buttons/Button.module.scss'
+import logo from '@/assets/pictures/logo-long.webp'
+import buttonStyles from '@/components/Buttons/Button.module.scss'
 import styles from './DesktopHeaderNext.module.scss'
 import MainNavNext from './MainNavNext'
 
@@ -19,8 +19,8 @@ export default function DesktopHeaderNext() {
   }, [])
 
   return (
-    <header className={clsx(styles.header, scrolled && styles.scrolled)} role="banner" aria-label="En-tête du site">
-      <Link href="/" className={styles.brand} aria-label="Aller à l’accueil">
+    <header className={clsx(styles.header, scrolled && styles.scrolled)} role="banner" aria-label="En-tÃƒÂªte du site">
+      <Link href="/" className={styles.brand} aria-label="Aller ÃƒÂ  lÃ¢â‚¬â„¢accueil">
         <img src={logo.src} alt="Logo GELYOS" className={styles.logo} />
       </Link>
 

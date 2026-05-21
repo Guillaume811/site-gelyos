@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import clsx from 'clsx'
 import styles from './CookieBanner.module.scss'
-import GA_MEASUREMENT_ID from '~/ressources/config/analytics'
+import GA_MEASUREMENT_ID from '@/ressources/config/analytics'
 import { OPEN_EVENT } from './cookieBannerControls'
 
 const CONSENT_KEY = 'cookie-consent'
@@ -60,9 +60,9 @@ export default function CookieBanner() {
   if (!visible) return null
 
   return (
-    <div className={clsx(styles.banner, closing && styles.closing)} role="dialog" aria-live="polite" aria-label="Bannière de consentement aux cookies">
+    <div className={clsx(styles.banner, closing && styles.closing)} role="dialog" aria-live="polite" aria-label="BanniÃ¨re de consentement aux cookies">
       <div className={styles.text}>
-        Nous utilisons des cookies pour mesurer l'audience et améliorer votre expérience. Vous pouvez accepter ou refuser l'utilisation des cookies analytiques.
+        Nous utilisons des cookies pour mesurer l'audience et amÃ©liorer votre expÃ©rience. Vous pouvez accepter ou refuser l'utilisation des cookies analytiques.
         <a href="/mentions-legales#cookie" rel="noreferrer">
           En savoir plus
         </a>

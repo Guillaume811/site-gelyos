@@ -1,11 +1,11 @@
 import type { ReactElement } from "react";
-import Heading from "~/components/Heading/Heading";
-import { contactContent } from "~/ressources/content/contact/contactContent";
+import Heading from "@/components/Heading/Heading";
+import { contactContent } from "@/ressources/content/contact/contactContent";
 import styles from "./ContactInfo.module.scss";
 import { Mail, Phone } from "lucide-react";
-import { getAssetSrc } from "~/lib/getAssetSrc";
-import linkedinIcon from '~/assets/icons/linkedin-contact.webp'
-import maltIcon from '~/assets/icons/malt.webp'
+import { getAssetSrc } from "@/lib/getAssetSrc";
+import linkedinIcon from '@/assets/icons/linkedin-contact.webp'
+import maltIcon from '@/assets/icons/malt.webp'
 
 type ContactInfoProps = {
   id?: string;
@@ -45,7 +45,7 @@ export default function ContactInfo({
             <a
               href={`mailto:${emailAddress}`}
               className={styles.infoLink}
-              aria-label={`Envoyer un e-mail à ${emailAddress}`}
+              aria-label={`Envoyer un e-mail ÃƒÂ  ${emailAddress}`}
             >
               Envoyer nous un E-mail
             </a>
@@ -77,7 +77,7 @@ export default function ContactInfo({
 
       <p className={styles.paragraph}>{text}</p>
 
-      <div className={styles.socialRow} role="group" aria-label="Réseaux">
+      <div className={styles.socialRow} role="group" aria-label="RÃƒÂ©seaux">
         <a
           href={linkedinUrl}
           target="_blank"

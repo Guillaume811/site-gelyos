@@ -1,4 +1,4 @@
-import type { AboutPageContent } from "~/ressources/content/contentTypes";
+import type { AboutPageContent } from "@/ressources/content/contentTypes";
 import { headerAbout } from "./headerAbout";
 import { parcours } from "./parcours";
 import { expertise } from "./expertise";

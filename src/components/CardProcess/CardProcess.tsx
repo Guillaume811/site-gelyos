@@ -1,6 +1,6 @@
 import styles from './CardProcess.module.scss';
 import Heading from '../Heading/Heading';
-import { getAssetSrc } from '~/lib/getAssetSrc';
+import { getAssetSrc } from '@/lib/getAssetSrc';
 
 export type CardProcessProps = {
   card: {

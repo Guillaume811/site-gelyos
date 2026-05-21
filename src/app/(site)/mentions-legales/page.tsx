@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
-import MentionsLegales from '~/_pages/MentionsLegales/MentionsLegales'
+import MentionsLegales from '@/_pages/MentionsLegales/MentionsLegales'
 
 export const metadata: Metadata = {
-  title: 'Mentions légales | GELYOS',
+  title: 'Mentions lÃ©gales | GELYOS',
   description:
-    'Informations légales, hébergement, propriété intellectuelle et politique de confidentialité du site GELYOS.',
+    'Informations lÃ©gales, hÃ©bergement, propriÃ©tÃ© intellectuelle et politique de confidentialitÃ© du site GELYOS.',
   alternates: {
     canonical: '/mentions-legales',
   },
@@ -13,9 +13,9 @@ export const metadata: Metadata = {
     follow: true,
   },
   openGraph: {
-    title: 'Mentions légales | GELYOS',
+    title: 'Mentions lÃ©gales | GELYOS',
     description:
-      'Informations légales, hébergement, propriété intellectuelle et politique de confidentialité du site GELYOS.',
+      'Informations lÃ©gales, hÃ©bergement, propriÃ©tÃ© intellectuelle et politique de confidentialitÃ© du site GELYOS.',
     url: '/mentions-legales',
     images: ['/android-chrome-512x512.png'],
   },

@@ -1,4 +1,4 @@
-import type { Project } from '~/ressources/content/portfolio/types'
+import type { Project } from '@/ressources/content/portfolio/types'
 import ProjectCardNext from './ProjectCardNext'
 import styles from './ProjectGrid.module.scss'
 

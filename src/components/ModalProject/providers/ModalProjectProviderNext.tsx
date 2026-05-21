@@ -10,8 +10,8 @@ import {
 } from 'react'
 import { createPortal } from 'react-dom'
 import { usePathname, useRouter } from 'next/navigation'
-import type { Project } from '~/ressources/content/portfolio/types'
-import { usePortfolioData } from '~ressources/content/portfolio/usePortfolioData'
+import type { Project } from '@/ressources/content/portfolio/types'
+import { usePortfolioData } from '@/ressources/content/portfolio/usePortfolioData'
 import { ModalProjectContext } from './ModalProjectContext'
 import ModalProjectNext from '../ModalProjectNext'
 

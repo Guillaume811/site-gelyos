@@ -1,11 +1,11 @@
 'use client'
 
 import Link from 'next/link'
-import Heading from '~/components/Heading/Heading'
-import buttonStyles from '~/components/Buttons/Button.module.scss'
-import cardStyles from '~/components/CardService/CardService.module.scss'
-import { getAssetSrc } from '~/lib/getAssetSrc'
-import type { InlineContent, ServiceCard } from '~/ressources/content/contentTypes'
+import Heading from '@/components/Heading/Heading'
+import buttonStyles from '@/components/Buttons/Button.module.scss'
+import cardStyles from '@/components/CardService/CardService.module.scss'
+import { getAssetSrc } from '@/lib/getAssetSrc'
+import type { InlineContent, ServiceCard } from '@/ressources/content/contentTypes'
 
 interface Props {
   data: ServiceCard
@@ -64,7 +64,7 @@ export default function CardServiceNext({ data, className }: Props) {
 
       <Link
         href={secondButton.to as string}
-        aria-label={`${secondButton.label} — ${title}`}
+        aria-label={`${secondButton.label} â€” ${title}`}
         className={`${buttonStyles.btn} ${buttonStyles.secondary} ${cardStyles.button}`}
       >
         {secondButton.label}

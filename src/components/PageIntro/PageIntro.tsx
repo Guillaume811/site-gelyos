@@ -1,4 +1,4 @@
-import type { InlineContent } from "~/ressources/content/contentTypes";
+import type { InlineContent } from "@/ressources/content/contentTypes";
 import styles from "./PageIntro.module.scss";
 
 interface Props {

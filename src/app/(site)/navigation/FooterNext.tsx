@@ -2,12 +2,12 @@
 
 import Link from 'next/link'
 import styles from './FooterNext.module.scss'
-import logoUrl from '~/assets/pictures/logo-long.webp'
-import { getMainNavRoutes } from '~/ressources/routes'
-import phoneIcon from '~/assets/icons/phone.webp'
-import mailIcon from '~/assets/icons/mail.webp'
-import linkedinIcon from '~/assets/icons/linkedin.webp'
-import maltIcon from '~/assets/icons/iconMalt.webp'
+import logoUrl from '@/assets/pictures/logo-long.webp'
+import { getMainNavRoutes } from '@/ressources/routes'
+import phoneIcon from '@/assets/icons/phone.webp'
+import mailIcon from '@/assets/icons/mail.webp'
+import linkedinIcon from '@/assets/icons/linkedin.webp'
+import maltIcon from '@/assets/icons/iconMalt.webp'
 
 export default function FooterNext() {
   const navRoutes = getMainNavRoutes()
@@ -33,11 +33,11 @@ export default function FooterNext() {
           </ul>
 
           <div className={styles.legal}>
-            <Link href="/mentions-legales">Mentions légales</Link>
-            <Link href="/mentions-legales#confidential">Confidentialité</Link>
+            <Link href="/mentions-legales">Mentions lÃ©gales</Link>
+            <Link href="/mentions-legales#confidential">ConfidentialitÃ©</Link>
           </div>
 
-          <p className={styles.copyright}>Copyright © {currentYear} GELYOS</p>
+          <p className={styles.copyright}>Copyright Â© {currentYear} GELYOS</p>
         </div>
 
         <div className={styles.right}>

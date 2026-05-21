@@ -1,13 +1,13 @@
 import { useMemo } from 'react'
 import Link from 'next/link'
-import Heading from '~/components/Heading/Heading'
-import buttonStyles from '~/components/Buttons/Button.module.scss'
+import Heading from '@/components/Heading/Heading'
+import buttonStyles from '@/components/Buttons/Button.module.scss'
 import styles from './ProjectPreview.module.scss'
-import { projectPreviewContent } from '~/ressources/content/home/projectPreviewContent'
-import CardCarouselNext from '~/components/Carousel/CardCarousel/CardCarouselNext'
-import type { Project } from '~/ressources/content/portfolio/types'
-import type { InlineContent } from '~/ressources/content/contentTypes'
-import { usePortfolioData } from '~/ressources/content/portfolio/usePortfolioData'
+import { projectPreviewContent } from '@/ressources/content/home/projectPreviewContent'
+import CardCarouselNext from '@/components/Carousel/CardCarousel/CardCarouselNext'
+import type { Project } from '@/ressources/content/portfolio/types'
+import type { InlineContent } from '@/ressources/content/contentTypes'
+import { usePortfolioData } from '@/ressources/content/portfolio/usePortfolioData'
 
 function sortByLatest(a: Project, b: Project) {
   const ao = typeof a.order === 'number' ? a.order : Number.NEGATIVE_INFINITY

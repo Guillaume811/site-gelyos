@@ -1,5 +1,5 @@
-﻿import type { Metadata } from 'next'
-import Home from '~/_pages/Home/Home'
+import type { Metadata } from 'next'
+import Home from '@/_pages/Home/Home'
 
 export const metadata: Metadata = {
   title: 'GELYOS | Développement web sur mesure',

@@ -1,12 +1,12 @@
 'use client'
 
 import type { MouseEvent } from 'react'
-import type { Project } from '~/ressources/content/portfolio/types'
+import type { Project } from '@/ressources/content/portfolio/types'
 import clsx from 'clsx'
-import buttonStyles from '~/components/Buttons/Button.module.scss'
-import CardProjectContent from '~/components/CardProject/CardProjectContent'
-import { useModalProject } from '~/components/ModalProject/providers/useModalProject'
-import cardStyles from '~/components/CardProject/portfolio/CardProject.module.scss'
+import buttonStyles from '@/components/Buttons/Button.module.scss'
+import CardProjectContent from '@/components/CardProject/CardProjectContent'
+import { useModalProject } from '@/components/ModalProject/providers/useModalProject'
+import cardStyles from '@/components/CardProject/portfolio/CardProject.module.scss'
 
 type Props = {
   project: Project
@@ -49,7 +49,7 @@ export default function ProjectCardNext({
             onClick={handleOpenProjectModal}
             aria-haspopup="dialog"
           >
-            Découvrir
+            DÃ©couvrir
           </a>
         }
       />

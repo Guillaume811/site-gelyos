@@ -2,12 +2,12 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import Heading from '~/components/Heading/Heading'
+import Heading from '@/components/Heading/Heading'
 import styles from './CallToActionNext.module.scss'
-import buttonStyles from '~/components/Buttons/Button.module.scss'
-import { ctaContent } from '~/ressources/content/ctaContent/ctaContent'
-import type { InlineContent } from '~/ressources/content/contentTypes'
-import { routes } from '~/ressources/routes'
+import buttonStyles from '@/components/Buttons/Button.module.scss'
+import { ctaContent } from '@/ressources/content/ctaContent/ctaContent'
+import type { InlineContent } from '@/ressources/content/contentTypes'
+import { routes } from '@/ressources/routes'
 
 function renderInlineContent(content: InlineContent) {
   return (

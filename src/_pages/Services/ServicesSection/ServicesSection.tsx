@@ -7,11 +7,11 @@
  * - Uses shared TwoColumnSection to preserve existing responsive structure.
  * - Keeps semantic heading and lazy-loaded image for each service section.
  */
-import Accordion from '~/components/Accordion/Accordion'
-import Heading from '~/components/Heading/Heading'
-import TwoColumnSection from '~/components/TwoColumnSection/TwoColumnSection'
-import { getAssetSrc } from '~/lib/getAssetSrc'
-import type { InlineContent, ServiceSectionContent } from '~/ressources/content/contentTypes'
+import Accordion from '@/components/Accordion/Accordion'
+import Heading from '@/components/Heading/Heading'
+import TwoColumnSection from '@/components/TwoColumnSection/TwoColumnSection'
+import { getAssetSrc } from '@/lib/getAssetSrc'
+import type { InlineContent, ServiceSectionContent } from '@/ressources/content/contentTypes'
 import styles from './ServicesSection.module.scss'
 
 interface Props extends ServiceSectionContent {

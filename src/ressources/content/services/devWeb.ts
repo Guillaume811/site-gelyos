@@ -1,58 +1,58 @@
-import type { ServiceSectionContent } from "~/ressources/content/contentTypes";
-import pictureDevWeb from '~/assets/pictures/devWeb.webp'
+import type { ServiceSectionContent } from "@/ressources/content/contentTypes";
+import pictureDevWeb from '@/assets/pictures/devWeb.webp'
 
 export const devWeb: ServiceSectionContent = {
     id: 'dev-web',
-    title: 'Création de sites internet sur mesure',
+    title: 'CrÃƒÂ©ation de sites internet sur mesure',
     text: [
         { type: 'text', text: "Un " },
         { type: 'strong', text: "site internet sur mesure" },
-        { type: 'text', text: " est l'outil idéal pour développer votre présence en ligne. Que ce soit pour un " },
+        { type: 'text', text: " est l'outil idÃƒÂ©al pour dÃƒÂ©velopper votre prÃƒÂ©sence en ligne. Que ce soit pour un " },
         { type: 'strong', text: "site vitrine" },
-        { type: 'text', text: " destiné à présenter vos services, une " },
+        { type: 'text', text: " destinÃƒÂ© ÃƒÂ  prÃƒÂ©senter vos services, une " },
         { type: 'strong', text: "site e-commerce" },
         { type: 'text', text: " pour vendre vos produits ou un " },
         { type: 'strong', text: "site institutionnel" },
-        { type: 'text', text: ", je conçois des solutions uniques qui reflètent votre marque et atteignent vos objectifs." },
+        { type: 'text', text: ", je conÃƒÂ§ois des solutions uniques qui reflÃƒÂ¨tent votre marque et atteignent vos objectifs." },
     ],
     image: {
         src: pictureDevWeb,
-        alt: 'Illustration de design UI/UX avec éléments d’interface.'
+        alt: 'Illustration de design UI/UX avec ÃƒÂ©lÃƒÂ©ments dÃ¢â‚¬â„¢interface.'
     },
     ServiceAccordionItems: [
         {
             id: 'cahier-charges',
-            title: 'Rédaction du cahier des charges',
+            title: 'RÃƒÂ©daction du cahier des charges',
             description: [
-                { type: 'text', text: 'Ensemble, nous définissons précisément vos besoins, vos objectifs et votre public cible. Le cahier des charges sert de feuille de route pour éviter les imprévus et garantir que le site corresponde parfaitement à vos attentes.' }
+                { type: 'text', text: 'Ensemble, nous dÃƒÂ©finissons prÃƒÂ©cisÃƒÂ©ment vos besoins, vos objectifs et votre public cible. Le cahier des charges sert de feuille de route pour ÃƒÂ©viter les imprÃƒÂ©vus et garantir que le site corresponde parfaitement ÃƒÂ  vos attentes.' }
             ]
         },
         {
             id: 'design',
-            title: 'Élaboration des maquettes (UI/UX)',
+            title: 'Ãƒâ€°laboration des maquettes (UI/UX)',
             description: [
-                { type: 'text', text: `Avant toute ligne de code, nous créons des maquettes ergonomiques et esthétiques. L'objectif est de proposer une expérience utilisateur fluide et intuitive, tout en respectant votre identité visuelle.` }
+                { type: 'text', text: `Avant toute ligne de code, nous crÃƒÂ©ons des maquettes ergonomiques et esthÃƒÂ©tiques. L'objectif est de proposer une expÃƒÂ©rience utilisateur fluide et intuitive, tout en respectant votre identitÃƒÂ© visuelle.` }
             ]
         },
         {
             id: 'seo',
             title:'Optimisation SEO / LLMO',
             description: [
-                { type: 'text', text: `Dès la conception, le site est pensé pour Google : structure claire, balise optimisées, vitesse de chargement et contenus adaptés aux mots-clés. Cela permet d'améliorer votre visibilité dès la mise en ligne.` }
+                { type: 'text', text: `DÃƒÂ¨s la conception, le site est pensÃƒÂ© pour Google : structure claire, balise optimisÃƒÂ©es, vitesse de chargement et contenus adaptÃƒÂ©s aux mots-clÃƒÂ©s. Cela permet d'amÃƒÂ©liorer votre visibilitÃƒÂ© dÃƒÂ¨s la mise en ligne.` }
             ]
         },
         {
             id: 'developpement',
-            title: 'Développement Web & Mobile',
+            title: 'DÃƒÂ©veloppement Web & Mobile',
             description: [
-                { type: 'text', text: `Nous développons un site robuste, rapide et responsive, qui s'adapte à tous les écrans (ordinateurs, tablettes, mobiles). Le code est propre, sécurisé et évolutif, afin de pouvoir ajouter de nouvelles fonctionnalités si nécessaire.` }
+                { type: 'text', text: `Nous dÃƒÂ©veloppons un site robuste, rapide et responsive, qui s'adapte ÃƒÂ  tous les ÃƒÂ©crans (ordinateurs, tablettes, mobiles). Le code est propre, sÃƒÂ©curisÃƒÂ© et ÃƒÂ©volutif, afin de pouvoir ajouter de nouvelles fonctionnalitÃƒÂ©s si nÃƒÂ©cessaire.` }
             ]
         },
         {
             id: 'maintenance',
-            title: 'Maintenance & Évolutions',
+            title: 'Maintenance & Ãƒâ€°volutions',
             description: [
-                { type: 'text', text: `Après la mise en ligne, nous restons disponible pour assurer la sécurité, corriger d'éventuels bugs et accompagner vos évolutions futures. Votre site reste performant et à jour dans le temps.` }
+                { type: 'text', text: `AprÃƒÂ¨s la mise en ligne, nous restons disponible pour assurer la sÃƒÂ©curitÃƒÂ©, corriger d'ÃƒÂ©ventuels bugs et accompagner vos ÃƒÂ©volutions futures. Votre site reste performant et ÃƒÂ  jour dans le temps.` }
             ]
         }
     ]

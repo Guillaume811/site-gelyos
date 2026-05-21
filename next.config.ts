@@ -10,13 +10,7 @@ const nextConfig: NextConfig = {
   webpack: (config) => {
     config.resolve.alias = {
       ...(config.resolve.alias ?? {}),
-      '~': path.resolve(__dirname, 'src'),
-      '~components': path.resolve(__dirname, 'src/components'),
-      '~layout': path.resolve(__dirname, 'src/app/layout'),
-      '~styles': path.resolve(__dirname, 'src/styles'),
-      '~assets': path.resolve(__dirname, 'src/assets'),
-      '~ressources': path.resolve(__dirname, 'src/ressources'),
-      '~animations': path.resolve(__dirname, 'src/animations'),
+      '@': path.resolve(__dirname, 'src'),
     }
     return config
   },

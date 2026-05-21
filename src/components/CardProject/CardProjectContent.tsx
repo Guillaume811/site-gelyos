@@ -1,4 +1,4 @@
-import type { Project } from "~/ressources/content/portfolio/types";
+import type { Project } from "@/ressources/content/portfolio/types";
 import type { ReactNode } from "react";
 import { memo } from "react";
 import clsx from "clsx";
@@ -30,7 +30,7 @@ function CardProjectContentBase({
 
   return (
     <article className={clsx(className)} aria-labelledby={headingId} data-part="root">
-      {/* Média */}
+      {/* MÃ©dia */}
       <div data-part="media">
         <img src={image} alt={title} data-part="img" loading="lazy" decoding="async" />
       </div>

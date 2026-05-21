@@ -1,17 +1,17 @@
 import type { Metadata } from 'next'
-import About from '~/_pages/About/About'
+import About from '@/_pages/About/About'
 
 export const metadata: Metadata = {
-  title: 'À propos de GELYOS | Studio de développement web',
+  title: 'Ã€ propos de GELYOS | Studio de dÃ©veloppement web',
   description:
-    'Découvrez GELYOS, notre approche projet et notre méthode pour concevoir des expériences web performantes et orientées conversion.',
+    'DÃ©couvrez GELYOS, notre approche projet et notre mÃ©thode pour concevoir des expÃ©riences web performantes et orientÃ©es conversion.',
   alternates: {
     canonical: '/a-propos',
   },
   openGraph: {
-    title: 'À propos de GELYOS | Studio de développement web',
+    title: 'Ã€ propos de GELYOS | Studio de dÃ©veloppement web',
     description:
-      'Découvrez GELYOS, notre approche projet et notre méthode pour concevoir des expériences web performantes et orientées conversion.',
+      'DÃ©couvrez GELYOS, notre approche projet et notre mÃ©thode pour concevoir des expÃ©riences web performantes et orientÃ©es conversion.',
     url: '/a-propos',
     images: ['/android-chrome-512x512.png'],
   },

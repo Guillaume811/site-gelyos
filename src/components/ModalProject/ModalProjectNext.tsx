@@ -2,12 +2,12 @@
 
 import { AnimatePresence, motion } from 'framer-motion'
 import { X } from 'lucide-react'
-import type { Project, ProjectCarouselImage } from '~/ressources/content/portfolio/types'
-import Accordion from '~/components/Accordion/Accordion'
-import Heading from '~/components/Heading/Heading'
-import PictureCarousel from '~/components/Carousel/PictureCarousel/PictureCarousel'
-import type { PictureItem } from '~/components/Carousel/PictureCarousel/PictureCarousel'
-import buttonStyles from '~/components/Buttons/Button.module.scss'
+import type { Project, ProjectCarouselImage } from '@/ressources/content/portfolio/types'
+import Accordion from '@/components/Accordion/Accordion'
+import Heading from '@/components/Heading/Heading'
+import PictureCarousel from '@/components/Carousel/PictureCarousel/PictureCarousel'
+import type { PictureItem } from '@/components/Carousel/PictureCarousel/PictureCarousel'
+import buttonStyles from '@/components/Buttons/Button.module.scss'
 import styles from './ModalProject.module.scss'
 
 type ModalProjectProps = {
@@ -80,7 +80,7 @@ export default function ModalProjectNext({ project, isOpen, onClose }: ModalProj
               </div>
 
               <div className={styles.right}>
-                <div className={styles.scrollArea} role="region" aria-label="Détails du projet">
+                <div className={styles.scrollArea} role="region" aria-label="DÃ©tails du projet">
                   {project.image && (
                     <img
                       src={project.image}

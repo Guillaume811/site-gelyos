@@ -1,7 +1,7 @@
 import { Fragment, type ReactNode } from "react"
 import { motion } from "framer-motion"
 import styles from "./AnimatedTitle.module.scss"
-import type { InlineContent } from "~/ressources/content/contentTypes"
+import type { InlineContent } from "@/ressources/content/contentTypes"
 
 const container = {
   hidden: { opacity: 0 },

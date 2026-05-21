@@ -1,24 +1,24 @@
-import type { AboutSectionContent } from "~/ressources/content/contentTypes";
-import pictureExpertise from '~/assets/pictures/expertise.webp'
+import type { AboutSectionContent } from "@/ressources/content/contentTypes";
+import pictureExpertise from '@/assets/pictures/expertise.webp'
 
 export const expertise: AboutSectionContent = {
     id: 'expertise',
-    title: 'Notre expertise à votre service',
+    title: 'Notre expertise ÃƒÂ  votre service',
     description: [
-        { type: 'strong', text: 'Création de sites vitrines sur mesure' },
-        { type: 'text', text: ' pour mettre en valeur votre activité.' },
+        { type: 'strong', text: 'CrÃƒÂ©ation de sites vitrines sur mesure' },
+        { type: 'text', text: ' pour mettre en valeur votre activitÃƒÂ©.' },
         { type: 'lineBreak' },
-        { type: 'strong', text: 'Site e-commerce personnalisés' },
+        { type: 'strong', text: 'Site e-commerce personnalisÃƒÂ©s' },
         { type: 'text', text: ' pour booster vos ventes en ligne.' },
         { type: 'lineBreak' },
-        { type: 'strong', text: 'Applications évolutives' },
-        { type: 'text', text: ' adaptées à vos besoins métiers.' },
+        { type: 'strong', text: 'Applications ÃƒÂ©volutives' },
+        { type: 'text', text: ' adaptÃƒÂ©es ÃƒÂ  vos besoins mÃƒÂ©tiers.' },
         { type: 'lineBreak' },
         { type: 'strong', text: 'Optimisation SEO' },
-        { type: 'text', text: ' pour améliorer votre visibilité sur Google.' },
+        { type: 'text', text: ' pour amÃƒÂ©liorer votre visibilitÃƒÂ© sur Google.' },
     ],
     image: {
         src: pictureExpertise,
-        alt: `Image d'un expert consultant des données.`
+        alt: `Image d'un expert consultant des donnÃƒÂ©es.`
     }
 }

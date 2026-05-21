@@ -1,10 +1,10 @@
 'use client'
 
 import type { ReactElement } from 'react'
-import HeaderSection from '~/components/HeaderSection/HeaderSection'
-import PageIntro from '~/components/PageIntro/PageIntro'
-import TwoColumnSection from '~/components/TwoColumnSection/TwoColumnSection'
-import { contactContent } from '~/ressources/content/contact/contactContent'
+import HeaderSection from '@/components/HeaderSection/HeaderSection'
+import PageIntro from '@/components/PageIntro/PageIntro'
+import TwoColumnSection from '@/components/TwoColumnSection/TwoColumnSection'
+import { contactContent } from '@/ressources/content/contact/contactContent'
 import ContactForm from './ContactForm/ContactForm'
 import ContactInfo from './ContactInfo/ContactInfo'
 

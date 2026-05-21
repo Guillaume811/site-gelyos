@@ -1,4 +1,4 @@
-﻿/* Component Home
+/* Component Home
  * Render logic:
  * - Composes the existing homepage sections without changing legacy UI behavior.
  * - Keeps client runtime because child sections rely on hooks/animations.
@@ -8,11 +8,11 @@
  */
 'use client'
 
-import { divProcessContent } from "~/ressources/content/home/divProcessContent";
+import { divProcessContent } from "@/ressources/content/home/divProcessContent";
 import Hero from "./Hero/Hero";
 import { SectionProcess } from "./SectionProcess/SectionProcess";
 import ServicesPreview from "./ServicesPreview/ServicesPreview";
-import { divAvantagesContent } from "~/ressources/content/home/divAvantagesContent";
+import { divAvantagesContent } from "@/ressources/content/home/divAvantagesContent";
 import ProjectPreview from "./ProjectPreview/ProjectPreview";
 import styles from './Home.module.scss'
 

@@ -4,12 +4,12 @@ import { useMemo, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion, type Variants } from 'framer-motion'
-import { getAllExceptMentions, type RouteItem } from '~/ressources/routes'
+import { getAllExceptMentions, type RouteItem } from '@/ressources/routes'
 import clsx from 'clsx'
 import styles from './MobileHeaderNext.module.scss'
-import logo from '~/assets/pictures/logo-long.webp'
-import linkedinIcon from '~/assets/icons/linkedin-contact.webp'
-import maltIcon from '~/assets/icons/malt.webp'
+import logo from '@/assets/pictures/logo-long.webp'
+import linkedinIcon from '@/assets/icons/linkedin-contact.webp'
+import maltIcon from '@/assets/icons/malt.webp'
 
 function isPathActive(pathname: string, routePath: string) {
   if (routePath === '/') return pathname === '/'
@@ -40,11 +40,11 @@ export default function MobileHeaderNext() {
     <header
       className={styles.header}
       role="banner"
-      aria-label="En-tête du site"
+      aria-label="En-tÃƒÂªte du site"
       data-open={isOpen ? 'true' : 'false'}
     >
       <div className={styles.container}>
-        <Link href="/" className={styles.brand} aria-label="Aller à l’accueil">
+        <Link href="/" className={styles.brand} aria-label="Aller ÃƒÂ  lÃ¢â‚¬â„¢accueil">
           <span className={styles.logoWrap}>
             <img src={logo.src} alt="Logo GELYOS" className={styles.logo} />
           </span>
@@ -65,7 +65,7 @@ export default function MobileHeaderNext() {
           <Link
             href="/contact"
             className={clsx(styles.iconBtn, styles.mailBtn)}
-            aria-label="Aller à la page Contact"
+            aria-label="Aller ÃƒÂ  la page Contact"
             title="Contact"
           >
             <svg viewBox="0 0 24 24" className={styles.icon} aria-hidden="true">
@@ -134,7 +134,7 @@ export default function MobileHeaderNext() {
         </motion.ul>
 
         <div className={styles.panelFooter}>
-          <div className={styles.socialBox} role="group" aria-label="Réseaux sociaux">
+          <div className={styles.socialBox} role="group" aria-label="RÃƒÂ©seaux sociaux">
             <a
               href="https://www.linkedin.com/in/guillaume-huguet/"
               target="_blank"

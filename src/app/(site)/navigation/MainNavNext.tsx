@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 import { motion } from 'framer-motion'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { getMainNavRoutes } from '~/ressources/routes'
+import { getMainNavRoutes } from '@/ressources/routes'
 import styles from './MainNavNext.module.scss'
 
 type Props = {

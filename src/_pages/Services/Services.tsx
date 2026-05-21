@@ -9,9 +9,9 @@
  */
 'use client'
 
-import HeaderSection from '~/components/HeaderSection/HeaderSection'
-import PageIntro from '~/components/PageIntro/PageIntro'
-import { servicesPageContent } from '~/ressources/content/services'
+import HeaderSection from '@/components/HeaderSection/HeaderSection'
+import PageIntro from '@/components/PageIntro/PageIntro'
+import { servicesPageContent } from '@/ressources/content/services'
 import ServicesSection from './ServicesSection/ServicesSection'
 
 export default function Services() {

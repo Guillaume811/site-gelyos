@@ -1,7 +1,7 @@
 import styles from './DivProcess.module.scss';
-import type { DivProcess as DivProcessContent, ProcessCard as ProcessCardContent } from '~/ressources/content/contentTypes';
-import { CardProcess } from '~/components/CardProcess/CardProcess';
-import Heading from '~/components/Heading/Heading';
+import type { DivProcess as DivProcessContent, ProcessCard as ProcessCardContent } from '@/ressources/content/contentTypes';
+import { CardProcess } from '@/components/CardProcess/CardProcess';
+import Heading from '@/components/Heading/Heading';
 
 export type DivProcessProps = {
   data: DivProcessContent;

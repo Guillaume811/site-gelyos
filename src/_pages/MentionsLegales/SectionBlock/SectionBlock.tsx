@@ -1,7 +1,7 @@
 'use client'
 
-import Heading from '~/components/Heading/Heading'
-import type { InlineContent } from '~/ressources/content/contentTypes'
+import Heading from '@/components/Heading/Heading'
+import type { InlineContent } from '@/ressources/content/contentTypes'
 import styles from './SectionBlock.module.scss'
 
 type SectionBlockProps = {
@@ -94,7 +94,7 @@ export default function SectionBlock({
         {renderInlineContent(description)}
         {withCookieButton && (
           <button type="button" className={styles.cookieButton} onClick={onOpenCookiePreferences}>
-            Modifier mes préférences cookies
+            Modifier mes prÃ©fÃ©rences cookies
           </button>
         )}
       </div>

@@ -1,7 +1,7 @@
-import Heading from '~/components/Heading/Heading'
-import TwoColumnSection from '~/components/TwoColumnSection/TwoColumnSection'
-import { getAssetSrc } from '~/lib/getAssetSrc'
-import type { AboutSectionContent, InlineContent } from '~/ressources/content/contentTypes'
+import Heading from '@/components/Heading/Heading'
+import TwoColumnSection from '@/components/TwoColumnSection/TwoColumnSection'
+import { getAssetSrc } from '@/lib/getAssetSrc'
+import type { AboutSectionContent, InlineContent } from '@/ressources/content/contentTypes'
 import styles from './AboutSection.module.scss'
 
 interface Props extends AboutSectionContent {

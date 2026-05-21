@@ -1,17 +1,17 @@
 import type { Metadata } from 'next'
-import Services from '~/_pages/Services/Services'
+import Services from '@/_pages/Services/Services'
 
 export const metadata: Metadata = {
-  title: 'Services GELYOS | Développement, maintenance et SEO',
+  title: 'Services GELYOS | DÃ©veloppement, maintenance et SEO',
   description:
-    'Création de sites vitrines, e-commerce, applications web, maintenance et optimisation SEO pour faire croître votre activité.',
+    'CrÃ©ation de sites vitrines, e-commerce, applications web, maintenance et optimisation SEO pour faire croÃ®tre votre activitÃ©.',
   alternates: {
     canonical: '/services',
   },
   openGraph: {
-    title: 'Services GELYOS | Développement, maintenance et SEO',
+    title: 'Services GELYOS | DÃ©veloppement, maintenance et SEO',
     description:
-      'Création de sites vitrines, e-commerce, applications web, maintenance et optimisation SEO pour faire croître votre activité.',
+      'CrÃ©ation de sites vitrines, e-commerce, applications web, maintenance et optimisation SEO pour faire croÃ®tre votre activitÃ©.',
     url: '/services',
     images: ['/android-chrome-512x512.png'],
   },

@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import type { Project } from "~/ressources/content/portfolio/types";
+import type { Project } from "@/ressources/content/portfolio/types";
 
 export type ModalProjectContext = {
   open: (slug: string) => void;

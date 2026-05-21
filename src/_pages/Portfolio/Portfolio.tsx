@@ -2,11 +2,11 @@
 
 import { useMemo } from 'react'
 import GridProject from './ProjectGrid/ProjectGrid'
-import HeaderSection from '~/components/HeaderSection/HeaderSection'
-import PageIntro from '~/components/PageIntro/PageIntro'
-import { portfolioContent } from '~/ressources/content/portfolio/portfolioContent'
-import { usePortfolioData } from '~/ressources/content/portfolio/usePortfolioData'
-import type { Project } from '~/ressources/content/portfolio/types'
+import HeaderSection from '@/components/HeaderSection/HeaderSection'
+import PageIntro from '@/components/PageIntro/PageIntro'
+import { portfolioContent } from '@/ressources/content/portfolio/portfolioContent'
+import { usePortfolioData } from '@/ressources/content/portfolio/usePortfolioData'
+import type { Project } from '@/ressources/content/portfolio/types'
 
 /* Component Portfolio
  * Render logic:
@@ -56,7 +56,7 @@ export default function Portfolio() {
         <p role="alert">
           Une erreur est survenue.{' '}
           <button type="button" onClick={reload}>
-            Réessayer
+            RÃ©essayer
           </button>
         </p>
       )}

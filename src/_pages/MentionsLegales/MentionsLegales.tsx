@@ -1,8 +1,8 @@
 'use client'
 
-import HeaderSection from '~/components/HeaderSection/HeaderSection'
-import { openCookieBanner } from '~/components/CookieBanner/cookieBannerControls'
-import { mentionContent } from '~/ressources/content/mention/mentionContent'
+import HeaderSection from '@/components/HeaderSection/HeaderSection'
+import { openCookieBanner } from '@/components/CookieBanner/cookieBannerControls'
+import { mentionContent } from '@/ressources/content/mention/mentionContent'
 import SectionBlock from './SectionBlock/SectionBlock'
 import styles from './MentionsLegales.module.scss'
 

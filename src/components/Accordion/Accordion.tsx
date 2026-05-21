@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./Accordion.module.scss";
 import AccordionItem from "./AccordionItem/AccordionItem";
-import type { AccordionItemContent } from "~/ressources/content/contentTypes";
+import type { AccordionItemContent } from "@/ressources/content/contentTypes";
 
 interface AccordionProps {
   items: AccordionItemContent[];

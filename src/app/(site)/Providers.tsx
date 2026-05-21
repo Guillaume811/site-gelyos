@@ -2,9 +2,9 @@
 
 import { useEffect, type ReactNode } from 'react'
 import { usePathname } from 'next/navigation'
-import CookieBanner from '~/components/CookieBanner/CookieBanner'
-import { ModalProjectProviderNext } from '~/components/ModalProject/providers/ModalProjectProviderNext'
-import { isAnalyticsEnabled } from '~/ressources/config/analytics'
+import CookieBanner from '@/components/CookieBanner/CookieBanner'
+import { ModalProjectProviderNext } from '@/components/ModalProject/providers/ModalProjectProviderNext'
+import { isAnalyticsEnabled } from '@/ressources/config/analytics'
 import styles from './Providers.module.scss'
 import DesktopHeaderNext from './navigation/DesktopHeaderNext'
 import MobileHeaderNext from './navigation/MobileHeaderNext'

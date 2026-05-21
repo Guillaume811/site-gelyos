@@ -1,7 +1,7 @@
 'use client'
 
-import HeaderSection from '~/components/HeaderSection/HeaderSection'
-import { aboutPageContent } from '~/ressources/content/about'
+import HeaderSection from '@/components/HeaderSection/HeaderSection'
+import { aboutPageContent } from '@/ressources/content/about'
 import AboutSection from './AboutSection/AboutSection'
 
 /* Component About

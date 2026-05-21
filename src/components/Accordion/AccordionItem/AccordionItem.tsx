@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import styles from "./AccordionItem.module.scss";
 import clsx from "clsx";
-import type { AccordionItemContent, InlineContent } from "~/ressources/content/contentTypes";
+import type { AccordionItemContent, InlineContent } from "@/ressources/content/contentTypes";
 
 interface Props {
   item: AccordionItemContent;
