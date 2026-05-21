@@ -4422,3 +4422,36 @@ Supprimer les erreurs VS Code/TypeScript "Impossible de localiser le module ...w
 ### Prochaine etape recommandee
 
 - Redemarrer le serveur TypeScript dans VS Code pour purger le cache diagnostics (`TypeScript: Restart TS Server`).
+
+## 21-05-2026 - Correction encodage textes FR (phase 57)
+
+### Objectif
+
+Corriger uniquement les chaînes de texte corrompues (mojibake) sans modifier la logique, le design, les imports ni la structure des contenus.
+
+### Méthode
+
+- scan ciblé des séquences corrompues dans `src` : `Ã`, `Â`, `â€™`, `â€œ`, `â€`, `?`.
+- correction ciblée des chaînes concernées dans les fichiers TS/TSX de contenus/pages/composants.
+- conservation stricte du sens des textes français.
+
+### Résultat
+
+- correction des chaînes mal encodées sur les pages et contenus (home, services, portfolio, contact, a-propos, mentions légales, navigation, formulaire).
+- suppression des séquences évidentes de corruption dans `src` pour les motifs recherchés.
+
+### Vérifications effectuées
+
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK
+
+### Exemples de corrections
+
+- `DÃƒÂ©couvrez une sÃƒÂ©lection...` -> `Découvrez une sélection...`
+- `Aller Ãƒï¿½  la page Contact` -> `Aller à la page Contact`
+- `Politique de ConfidentialitÃƒÂ©` -> `Politique de Confidentialité`
+
+### Point de vigilance
+
+- une vérification visuelle manuelle est recommandée sur `/`, `/services`, `/portfolio`, `/contact`, `/mentions-legales` pour valider les chaînes longues multi-lignes.

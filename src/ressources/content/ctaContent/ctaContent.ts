@@ -23,38 +23,38 @@ type CtaContentEntry = {
 export const ctaContent: Partial<Record<RouteName, CtaContentEntry>> = {
 
     home: {
-        title: "Votre site est-il vraiment optimisÃƒÂ© ?",
+        title: "Votre site est-il vraiment optimisé ?",
         text: [
-            { type: 'text', text: "BÃƒÂ©nÃƒÂ©ficiez d'un " },
+            { type: 'text', text: "Bénéficiez d'un " },
             { type: 'strong', text: 'audit gratuit de votre site internet' },
-            { type: 'text', text: " pour identifier ses points forts et ses axes d'amÃƒÂ©lioration." },
+            { type: 'text', text: " pour identifier ses points forts et ses axes d'amélioration." },
             { type: 'lineBreak' },
-            { type: 'text', text: 'Je vous fournis une analyse claire et des recommandations personnalisÃƒÂ©es pour booster votre visibilitÃƒÂ© en ligne.' },
+            { type: 'text', text: 'Je vous fournis une analyse claire et des recommandations personnalisées pour booster votre visibilité en ligne.' },
         ],
         button: "Recevoir mon audit offert"
     },
 
     services: {
-        title: "Vous avez un projet de site internet sur mesure, d'application web personnalisÃƒÂ©e ou besoin d'une optimisation SEO ?",
+        title: "Vous avez un projet de site internet sur mesure, d'application web personnalisée ou besoin d'une optimisation SEO ?",
         text: [
-            { type: 'text', text: "Parlons de votre prjet dÃƒÂ¨s aujourd'hui et recevez un devis gratuit." },
+            { type: 'text', text: "Parlons de votre prjet dès aujourd'hui et recevez un devis gratuit." },
         ],
         button: "Recevoir mon devis offert"
     },
 
     aPropos: {
-        title: "Vous cherchez un partenaire fiable et passionnÃƒÂ© pour votre projet digital ?",
+        title: "Vous cherchez un partenaire fiable et passionné pour votre projet digital ?",
         text: [
-            { type: 'strong', text: "Parlons de votre projet dÃƒÂ¨s aujourd'hui" },
+            { type: 'strong', text: "Parlons de votre projet dès aujourd'hui" },
             { type: 'text', text: ' et construisons ensemble une solution sur mesure.' },
         ],
         button: "Contactez-moi"
     },
 
     portfolio: {
-        title: "Vous souhaitez un projet similaire ou discuter de la crÃƒÂ©ation de votre site internet sur mesure ?",
+        title: "Vous souhaitez un projet similaire ou discuter de la création de votre site internet sur mesure ?",
         text: [
-            { type: 'text', text: "Contactez-moi dÃƒÂ¨s aujourd'hui pour obtenir un devis gratuit et donner vie ÃƒÂ  vos idÃƒÂ©es digitales." },
+            { type: 'text', text: "Contactez-moi dès aujourd'hui pour obtenir un devis gratuit et donner vie ? vos idées digitales." },
         ],
         button: "Recevoir mon devis offert"
     }

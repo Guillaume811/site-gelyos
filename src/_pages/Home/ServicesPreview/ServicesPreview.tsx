@@ -50,7 +50,7 @@ export default function ServicesPreview() {
   const viewportRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
 
-  // 0 -> dÃƒÂ©but de la section, 1 -> fin
+  // 0 -> début de la section, 1 -> fin
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"],
@@ -74,8 +74,8 @@ export default function ServicesPreview() {
     const measure = () => {
       const viewportH = viewportEl.getBoundingClientRect().height;
 
-      // ---- RATIO DE DÃƒâ€°PART (rÃƒÂ©glable) ----
-      // ex. 0.12 = la 1ÃƒÂ¨re card commence ~12% plus bas que le centre
+      // ---- RATIO DE DÉPART (réglable) ----
+      // ex. 0.12 = la 1ère card commence ~12% plus bas que le centre
       const startRatio = 0;
 
       if (first) {
@@ -84,7 +84,7 @@ export default function ServicesPreview() {
         // offset de centrage parfait (sans biais)
         const center = (viewportH - firstH) / 2;
 
-        // on applique un biais proportionnel ÃƒÂ  la hauteur du viewport
+        // on applique un biais proportionnel à la hauteur du viewport
         const biased = center + viewportH * startRatio;
 
         setStartOffsetPx(biased);
@@ -107,7 +107,7 @@ export default function ServicesPreview() {
     return () => ro.disconnect();
   }, [cards.length]);
 
-  // translation de la pile : offset de dÃƒÂ©part (ratio) - progression * pas
+  // translation de la pile : offset de départ (ratio) - progression * pas
   const listY = useTransform(activeIndex, (v) => startOffsetPx - v * (stepPx || 0));
 
   return (
@@ -118,7 +118,7 @@ export default function ServicesPreview() {
       style={{ "--cards-count": count } as CSSVars}
     >
       <div className={styles.stickyContainer}>
-        {/* Colonne gauche (centrÃƒÂ©e verticalement via flex sur stickyContainer) */}
+        {/* Colonne gauche (centrée verticalement via flex sur stickyContainer) */}
         <div className={styles.left}>
           <Heading id="services-heading" level={2}>
             {title}

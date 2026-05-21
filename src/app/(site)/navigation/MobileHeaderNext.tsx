@@ -40,11 +40,11 @@ export default function MobileHeaderNext() {
     <header
       className={styles.header}
       role="banner"
-      aria-label="En-tÃƒÂªte du site"
+      aria-label="En-tête du site"
       data-open={isOpen ? 'true' : 'false'}
     >
       <div className={styles.container}>
-        <Link href="/" className={styles.brand} aria-label="Aller ÃƒÂ  lÃ¢â‚¬â„¢accueil">
+        <Link href="/" className={styles.brand} aria-label="Aller ? l’accueil">
           <span className={styles.logoWrap}>
             <img src={logo.src} alt="Logo GELYOS" className={styles.logo} />
           </span>
@@ -65,7 +65,7 @@ export default function MobileHeaderNext() {
           <Link
             href="/contact"
             className={clsx(styles.iconBtn, styles.mailBtn)}
-            aria-label="Aller ÃƒÂ  la page Contact"
+            aria-label="Aller à la page Contact"
             title="Contact"
           >
             <svg viewBox="0 0 24 24" className={styles.icon} aria-hidden="true">
@@ -134,7 +134,7 @@ export default function MobileHeaderNext() {
         </motion.ul>
 
         <div className={styles.panelFooter}>
-          <div className={styles.socialBox} role="group" aria-label="RÃƒÂ©seaux sociaux">
+          <div className={styles.socialBox} role="group" aria-label="Réseaux sociaux">
             <a
               href="https://www.linkedin.com/in/guillaume-huguet/"
               target="_blank"

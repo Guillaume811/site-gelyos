@@ -94,7 +94,7 @@ export default function SectionBlock({
         {renderInlineContent(description)}
         {withCookieButton && (
           <button type="button" className={styles.cookieButton} onClick={onOpenCookiePreferences}>
-            Modifier mes prÃ©fÃ©rences cookies
+            Modifier mes préférences cookies
           </button>
         )}
       </div>

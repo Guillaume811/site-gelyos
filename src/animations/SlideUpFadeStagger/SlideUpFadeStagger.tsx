@@ -25,7 +25,7 @@ export function SlideUpFadeStagger({
   duration = 0.5,
   ease = "easeOut",
 }: Props) {
-  // 👇 container utilise custom = delay
+  // ðŸ‘‡ container utilise custom = delay
   const container: Variants = {
     hidden: { opacity: 0, y: 24 },
     visible: (customDelay: number = 0) => ({

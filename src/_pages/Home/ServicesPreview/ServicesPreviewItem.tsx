@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function ServicesPreviewItem({ index, activeIndex, data }: Props) {
-  // mise en avant de la carte "centrÃ©e" (delta ~ 0)
+  // mise en avant de la carte "centrée" (delta ~ 0)
   const opacity = useTransform(activeIndex, (v) => {
     const delta = Math.abs(v - index);
     // active ~1, voisines ~0.6 (tu ajusteras ensuite)

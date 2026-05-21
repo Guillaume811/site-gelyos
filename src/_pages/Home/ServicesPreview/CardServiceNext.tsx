@@ -64,7 +64,7 @@ export default function CardServiceNext({ data, className }: Props) {
 
       <Link
         href={secondButton.to as string}
-        aria-label={`${secondButton.label} â€” ${title}`}
+        aria-label={`${secondButton.label} — ${title}`}
         className={`${buttonStyles.btn} ${buttonStyles.secondary} ${cardStyles.button}`}
       >
         {secondButton.label}

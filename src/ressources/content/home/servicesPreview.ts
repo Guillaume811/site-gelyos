@@ -5,70 +5,70 @@ import iconMaintenance from '@/assets/icons/iconMaintenance.webp'
 import iconSeo from '@/assets/icons/iconSeo.webp'
 
 export const servicesPreviewContent: ServicesPreview = {
-    title: 'Service de dÃƒÂ©veloppement web sur mesure',
+    title: 'Service de développement web sur mesure',
     text: [
         { type: 'text', text: 'GELYOS vous accompagne dans la ' },
-        { type: 'strong', text: 'crÃƒÂ©ation de sites internet sur mesure' },
+        { type: 'strong', text: 'création de sites internet sur mesure' },
         { type: 'text', text: ', la ' },
         { type: 'strong', text: 'refonte de projets existant' },
         { type: 'text', text: ', ainsi que dans l\'' },
         { type: 'strong', text: 'optimisation SEO' },
         { type: 'text', text: ' et la ' },
         { type: 'strong', text: 'maintenance technique' },
-        { type: 'text', text: ' pour garantir performance et visibilitÃƒÂ©.' },
+        { type: 'text', text: ' pour garantir performance et visibilité.' },
     ],
     firstButton: {
-        label: 'Trouver la solution adaptÃƒÂ©e ÃƒÂ  mon projet',
+        label: 'Trouver la solution adapt?e ? mon projet',
         to: '/services',
     },
     cards: [
         {
            id: 'web',
-           icon: { src: iconWeb, alt: 'IcÃƒÂ´ne dÃƒÂ©veloppement web' },
-           title: 'CrÃƒÂ©ation et refonte de sites internet sur mesure - Lancez votre projet dÃƒÂ¨s aujourd\'hui',
+           icon: { src: iconWeb, alt: 'Icône développement web' },
+           title: 'Création et refonte de sites internet sur mesure - Lancez votre projet dès aujourd\'hui',
            description: [
                { type: 'text', text: 'Du ' },
                { type: 'strong', text: 'site vitrine sur mesure' },
                { type: 'text', text: ' au ' },
-               { type: 'strong', text: 'site e-commerce personnalisÃƒÂ©' },
-               { type: 'text', text: ', nous vous dÃƒÂ©veloppons des solutions uniques, modernes et ÃƒÂ©volutives, adaptÃƒÂ©es ÃƒÂ  vos objectifs et ÃƒÂ  votre image de marque.' },
+               { type: 'strong', text: 'site e-commerce personnalisé' },
+               { type: 'text', text: ', nous vous développons des solutions uniques, modernes et évolutives, adaptées ? vos objectifs et ? votre image de marque.' },
            ],
-           secondButton: { label: 'DÃƒÂ©couvrir', to: '/services' }
+           secondButton: { label: 'Découvrir', to: '/services' }
         },
         {
            id: 'app',
-           icon: { src: iconApp, alt: 'IcÃƒÂ´ne de smartphone' },
-           title: 'Application web personnalisÃƒÂ©es - Transformez vos idÃƒÂ©es en rÃƒÂ©alitÃƒÂ©',
+           icon: { src: iconApp, alt: 'Icône de smartphone' },
+           title: 'Application web personnalisées - Transformez vos idées en réalité',
            description: [
                { type: 'text', text: 'Nous vous concevons des ' },
                { type: 'strong', text: 'applications web sur mesure' },
-               { type: 'text', text: ' performantes et sÃƒÂ©curisÃƒÂ©es, pensÃƒÂ©es pour rÃƒÂ©pondre ÃƒÂ  vos besoins spÃƒÂ©cifiques et amÃƒÂ©liorer vos processus mÃƒÂ©tiers.' },
+               { type: 'text', text: ' performantes et sécurisées, pensées pour répondre ? vos besoins spécifiques et améliorer vos processus métiers.' },
            ],
-           secondButton: { label: 'DÃƒÂ©couvrir', to: '/services' }
+           secondButton: { label: 'Découvrir', to: '/services' }
         },
         {
            id: 'maintenance',
-           icon: { src: iconMaintenance, alt: 'IcÃƒÂ´ne de maintenance' },
-           title: 'Maintenance et support technique - Assurez sÃƒÂ©curitÃƒÂ© et performance',
+           icon: { src: iconMaintenance, alt: 'Icône de maintenance' },
+           title: 'Maintenance et support technique - Assurez sécurité et performance',
            description: [
-               { type: 'text', text: 'Un site doit rester rapide, sÃƒÂ©curisÃƒÂ© et ÃƒÂ  jour. Nous vous proposons la ' },
+               { type: 'text', text: 'Un site doit rester rapide, sécurisé et ? jour. Nous vous proposons la ' },
                { type: 'strong', text: 'maintenance de site internet' },
                { type: 'text', text: ' et un ' },
                { type: 'strong', text: 'support technique continu' },
-               { type: 'text', text: ' pour assurer la fiabilitÃƒÂ© et l\'ÃƒÂ©volution de vos projets web.' },
+               { type: 'text', text: ' pour assurer la fiabilité et l\'évolution de vos projets web.' },
            ],
-           secondButton: { label: 'DÃƒÂ©couvrir', to: '/services' }
+           secondButton: { label: 'Découvrir', to: '/services' }
         },
         {
            id: 'seo',
-           icon: { src: iconSeo, alt: 'IcÃƒÂ´ne SEO' },
-           title: 'Optimisation SEO - Attirez plus de clients grÃƒÂ¢ce ÃƒÂ  Google',
+           icon: { src: iconSeo, alt: 'Icône SEO' },
+           title: 'Optimisation SEO - Attirez plus de clients gr?ce ? Google',
            description: [
-               { type: 'text', text: 'AmÃƒÂ©liorez votre visibilitÃƒÂ© grÃƒÂ¢ce ÃƒÂ  une ' },
+               { type: 'text', text: 'Améliorez votre visibilité grâce ? une ' },
                { type: 'strong', text: 'optimisation SEO' },
-               { type: 'text', text: ' complÃƒÂ¨te : structure technique, vitesse, contenus optimisÃƒÂ©s et suivi des performances pour attirer plus de clients.' },
+               { type: 'text', text: ' complète : structure technique, vitesse, contenus optimisés et suivi des performances pour attirer plus de clients.' },
            ],
-           secondButton: { label: 'DÃƒÂ©couvrir', to: '/services' }
+           secondButton: { label: 'Découvrir', to: '/services' }
         }
     ]
 

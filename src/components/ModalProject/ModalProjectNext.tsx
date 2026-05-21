@@ -80,7 +80,7 @@ export default function ModalProjectNext({ project, isOpen, onClose }: ModalProj
               </div>
 
               <div className={styles.right}>
-                <div className={styles.scrollArea} role="region" aria-label="DÃ©tails du projet">
+                <div className={styles.scrollArea} role="region" aria-label="Détails du projet">
                   {project.image && (
                     <img
                       src={project.image}

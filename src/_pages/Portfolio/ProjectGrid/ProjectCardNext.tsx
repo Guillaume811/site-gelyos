@@ -49,7 +49,7 @@ export default function ProjectCardNext({
             onClick={handleOpenProjectModal}
             aria-haspopup="dialog"
           >
-            DÃ©couvrir
+            Découvrir
           </a>
         }
       />

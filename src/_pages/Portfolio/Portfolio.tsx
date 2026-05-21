@@ -56,7 +56,7 @@ export default function Portfolio() {
         <p role="alert">
           Une erreur est survenue.{' '}
           <button type="button" onClick={reload}>
-            RÃ©essayer
+            Réessayer
           </button>
         </p>
       )}

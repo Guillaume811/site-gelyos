@@ -45,7 +45,7 @@ export default function ContactInfo({
             <a
               href={`mailto:${emailAddress}`}
               className={styles.infoLink}
-              aria-label={`Envoyer un e-mail ÃƒÂ  ${emailAddress}`}
+              aria-label={`Envoyer un e-mail à ${emailAddress}`}
             >
               Envoyer nous un E-mail
             </a>
@@ -77,7 +77,7 @@ export default function ContactInfo({
 
       <p className={styles.paragraph}>{text}</p>
 
-      <div className={styles.socialRow} role="group" aria-label="RÃƒÂ©seaux">
+      <div className={styles.socialRow} role="group" aria-label="Réseaux">
         <a
           href={linkedinUrl}
           target="_blank"

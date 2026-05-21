@@ -6,52 +6,52 @@ import iconTest from '@/assets/icons/iconTest.webp'
 import iconSuivi from '@/assets/icons/iconSuivi.webp'
 
 export const divProcessContent: DivProcess = {
-    title: 'Un process clair pour un site web sur mesure rÃƒÂ©ussi',
+    title: 'Un process clair pour un site web sur mesure réussi',
     cards: [
         {
             id: 'analyse',
             icon: {
                 src: iconAnalyse,
-                alt: 'IcÃƒÂ´ne d\'analyse'
+                alt: 'Icône d\'analyse'
             },
             title: 'Analyse et cadrage',
-            description: 'ComprÃƒÂ©hension de vos besoins et objectifs.'
+            description: 'Compréhension de vos besoins et objectifs.'
         },
         {
             id: 'conception',
             icon: {
                 src: iconConception,
-                alt: 'IcÃƒÂ´ne de conception'
+                alt: 'Icône de conception'
             },
             title: 'Conception',
-            description: 'Structure et design adaptÃƒÂ©s ÃƒÂ  votre marque.'
+            description: 'Structure et design adapt?s ? votre marque.'
         },
         {
             id: 'developpement',
             icon: {
                 src: iconDev,
-                alt: 'IcÃƒÂ´ne de dÃƒÂ©veloppement'
+                alt: 'Icône de développement'
             },
-            title: 'DÃƒÂ©veloppement',
-            description: 'Un code robuste et ÃƒÂ©volutif'
+            title: 'Développement',
+            description: 'Un code robuste et évolutif'
         },
         {
             id: 'test',
             icon: {
                 src: iconTest,
-                alt: 'IcÃƒÂ´ne de test'
+                alt: 'Icône de test'
             },
             title: 'Tests et mise en ligne',
-            description: 'Validation qualitÃƒÂ© et dÃƒÂ©ploiement.'
+            description: 'Validation qualité et déploiement.'
         },
         {
             id: 'suivi',
             icon: {
                 src: iconSuivi,
-                alt: 'IcÃƒÂ´ne de suivi'
+                alt: 'Icône de suivi'
             },
             title: 'Suivi et maintenance',
-            description: 'Accompagnement et ÃƒÂ©volutions dans le temps.'
+            description: 'Accompagnement et évolutions dans le temps.'
         }
     ]
 }

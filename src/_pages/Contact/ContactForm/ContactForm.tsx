@@ -36,18 +36,18 @@ type ContactFormProps = {
 
 const DEFAULT_LABELS: Required<ContactFormProps>["labels"] = {
   firstName: "Nom",
-  lastName: "PrÃƒÂ©nom",
+  lastName: "Prénom",
   email: "E-mail",
-  phone: "TÃƒÂ©lÃƒÂ©phone",
+  phone: "Téléphone",
   needTitle: "De quoi avez-vous besoin",
   needs: {
     audit: "Audit site",
-    dev: "DÃƒÂ©veloppement web / Application",
+    dev: "Développement web / Application",
     maintenance: "Maintenance",
     seo: "SEO",
   },
   message: "Votre message",
-  rgpd: "JÃ¢â‚¬â„¢accepte que mes informations soient collectÃƒÂ©es et utilisÃƒÂ©es conformÃƒÂ©ment ÃƒÂ  la politique de confidentialitÃƒÂ©.",
+  rgpd: "J?accepte que mes informations soient collectées et utilisées conformément ? la politique de confidentialité.",
   submit: "Envoyer",
 };
 
@@ -88,11 +88,11 @@ export default function ContactForm({
   function validate(current: ContactFormData) {
     const nextErrors: Partial<Record<keyof ContactFormData, string>> = {};
     if (current.firstName.trim().length < 2) nextErrors.firstName = "Nom trop court.";
-    if (current.lastName.trim().length < 2) nextErrors.lastName = "PrÃƒÂ©nom trop court.";
+    if (current.lastName.trim().length < 2) nextErrors.lastName = "Prénom trop court.";
     if (!isEmailValid(current.email)) nextErrors.email = "Adresse e-mail invalide.";
-    if (!isPhoneValid(current.phone ?? "")) nextErrors.phone = "NumÃƒÂ©ro invalide.";
-    if (current.message.trim().length < 20) nextErrors.message = "Message trop court (20 caractÃƒÂ¨res min).";
-    if (!current.rgpd) nextErrors.rgpd = "Veuillez accepter le traitement des donnÃƒÂ©es.";
+    if (!isPhoneValid(current.phone ?? "")) nextErrors.phone = "Numéro invalide.";
+    if (current.message.trim().length < 20) nextErrors.message = "Message trop court (20 caractères min).";
+    if (!current.rgpd) nextErrors.rgpd = "Veuillez accepter le traitement des données.";
     return nextErrors;
   }
 
@@ -119,7 +119,7 @@ export default function ContactForm({
         await submitContactRequest(data, token);
       }
       setStatus("success");
-      // Reset simple (on garde le besoin sÃƒÂ©lectionnÃƒÂ©)
+      // Reset simple (on garde le besoin sélectionné)
       setData((prev) => ({ ...prev, firstName: "", lastName: "", email: "", phone: "", message: "", rgpd: false }));
       const successEl = document.getElementById(`${formId}-success`);
       successEl?.focus();
@@ -152,7 +152,7 @@ export default function ContactForm({
           role="status"
           tabIndex={-1}
         >
-          Votre message a bien ÃƒÂ©tÃƒÂ© envoyÃƒÂ©.
+          Votre message a bien été envoyé.
         </div>
       )}
 
@@ -315,7 +315,7 @@ export default function ContactForm({
         </button>
       </div>
 
-      <p className={styles.note}>{textUnderForm} <a href="/mentions-legales#confidential">Politique de ConfidentialitÃƒÂ©</a></p>
+      <p className={styles.note}>{textUnderForm} <a href="/mentions-legales#confidential">Politique de Confidentialité</a></p>
     </form>
   );
 }

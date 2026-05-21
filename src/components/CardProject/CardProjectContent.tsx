@@ -30,7 +30,7 @@ function CardProjectContentBase({
 
   return (
     <article className={clsx(className)} aria-labelledby={headingId} data-part="root">
-      {/* MÃ©dia */}
+      {/* Média */}
       <div data-part="media">
         <img src={image} alt={title} data-part="img" loading="lazy" decoding="async" />
       </div>

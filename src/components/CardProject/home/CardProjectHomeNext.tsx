@@ -40,7 +40,7 @@ export default function CardProjectHomeNext({
             onClick={handleOpenProjectModal}
             aria-haspopup="dialog"
           >
-            DÃ©couvrir
+            Découvrir
           </a>
         }
       />

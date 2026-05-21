@@ -19,8 +19,8 @@ export default function DesktopHeaderNext() {
   }, [])
 
   return (
-    <header className={clsx(styles.header, scrolled && styles.scrolled)} role="banner" aria-label="En-tÃƒÂªte du site">
-      <Link href="/" className={styles.brand} aria-label="Aller ÃƒÂ  lÃ¢â‚¬â„¢accueil">
+    <header className={clsx(styles.header, scrolled && styles.scrolled)} role="banner" aria-label="En-tête du site">
+      <Link href="/" className={styles.brand} aria-label="Aller ? l’accueil">
         <img src={logo.src} alt="Logo GELYOS" className={styles.logo} />
       </Link>
 

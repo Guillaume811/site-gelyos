@@ -5,43 +5,43 @@ import iconAccompagnement from '@/assets/icons/iconAccompagnement.webp'
 import iconFiabilite from '@/assets/icons/iconFiabilite.webp'
 
 export const divAvantagesContent: DivAvantages = {
-    title: 'Les avantages d\'un process personnalisÃƒÂ©',
+    title: 'Les avantages d\'un process personnalisé',
     cards: [
         {
             id: 'personnalisation',
             icon: {
                 src: iconPersonnalise,
-                alt: 'IcÃƒÂ´ne de personnalisation'
+                alt: 'Icône de personnalisation'
             },
-            title: 'Un site internet 100% personnalisÃƒÂ© :',
-            description: 'pas de template, chaque projet reflÃƒÂ¨te votre identitÃƒÂ©.'
+            title: 'Un site internet 100% personnalisé :',
+            description: 'pas de template, chaque projet reflète votre identité.'
         },
         {
             id: 'performance',
             icon: {
                 src: iconPerformance,
-                alt: 'IcÃƒÂ´ne de performance'
+                alt: 'Icône de performance'
             },
-            title: 'Performance et visibilitÃƒÂ© :',
-            description: 'SEO intÃƒÂ©grÃƒÂ©es, code optimisÃƒÂ©, rapide et pensÃƒÂ© pour Google.'
+            title: 'Performance et visibilité :',
+            description: 'SEO intégrées, code optimisé, rapide et pensé pour Google.'
         },
         {
             id: 'accompagnement',
             icon: {
                 src: iconAccompagnement,
-                alt: 'IcÃƒÂ´ne d\'accompagnement'
+                alt: 'Icône d\'accompagnement'
             },
-            title: 'Un accompagnement humain et rÃƒÂ©actif :',
-            description: 'un interlocuteur unique ÃƒÂ  chaque ÃƒÂ©tape.'
+            title: 'Un accompagnement humain et réactif :',
+            description: 'un interlocuteur unique ? chaque ?tape.'
         },
         {
             id: 'fiabilite',
             icon: {
                 src: iconFiabilite,
-                alt: 'IcÃƒÂ´ne de fiabilitÃƒÂ©'
+                alt: 'Icône de fiabilité'
             },
-            title: 'FiabilitÃƒÂ© et ÃƒÂ©volutivitÃƒÂ© :',
-            description: 'un dÃƒÂ©veloppement web sur mesure pensÃƒÂ© pour durer.'
+            title: 'Fiabilité et évolutivité :',
+            description: 'un développement web sur mesure pensé pour durer.'
         }
     ]
 }

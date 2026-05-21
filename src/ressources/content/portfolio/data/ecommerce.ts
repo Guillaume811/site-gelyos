@@ -9,33 +9,33 @@ export const ecommerceProjects: Project[] = [
     client: 'La Petite Emi',
     title: 'Boutique en ligne de bougies, bijoux et impression lasers',
     shortDescription:
-      "Boutique en ligne rÃ©alisÃ©e avec Wordpress et WooComerce pour la petite Emi, crÃ©atrice indÃ©pendante de bougies, bijoux et object gravÃ©s au laser, autour d'un univers artisanal, Ã©thique et plein de douceurs.",
+      "Boutique en ligne réalisée avec Wordpress et WooComerce pour la petite Emi, créatrice indépendante de bougies, bijoux et object gravés au laser, autour d'un univers artisanal, éthique et plein de douceurs.",
     category: 'ecommerce',
     description:
-      "Ce projet est une boutique en ligne rÃ©alisÃ©e pour la petite Emi, une crÃ©atrice indÃ©pendante qui conÃ§oit des bougies, des bijoux et des impressions laser.\n\nL'objectif du site est de prÃ©senter ses crÃ©ations artisanales et de mettre en avant son univers : des piÃ¨ces fabriquÃ©es Ã  la main, Ã©thiques et pleines de douceur. On y retrouve des bougies naturelles, des bijoux en bois et des objets gravÃ©s sur-mesure, pensÃ©s comme des cadeaux uniques.\n\nLa boutique repose sur Wordpress et Woocommerce, afin de pouvoir gÃ©rer facilement les produits et organiser les diffÃ©rentes catÃ©gories de crÃ©ations.",
+      "Ce projet est une boutique en ligne réalisée pour la petite Emi, une créatrice indépendante qui conçoit des bougies, des bijoux et des impressions laser.\n\nL'objectif du site est de présenter ses créations artisanales et de mettre en avant son univers : des pièces fabriquées ? la main, éthiques et pleines de douceur. On y retrouve des bougies naturelles, des bijoux en bois et des objets gravés sur-mesure, pensés comme des cadeaux uniques.\n\nLa boutique repose sur Wordpress et Woocommerce, afin de pouvoir gérer facilement les produits et organiser les différentes catégories de créations.",
     accordionItems: [
       {
         id: 'technologies',
-        title: 'Technologies utilisÃ©es',
-        description: [{ type: 'text', text: 'Site dÃ©veloppÃ© avec WordPress et WooCommerce.' }],
+        title: 'Technologies utilisées',
+        description: [{ type: 'text', text: 'Site développé avec WordPress et WooCommerce.' }],
       },
       {
         id: 'features',
-        title: 'FonctionnalitÃ©s clÃ©s',
+        title: 'Fonctionnalités clés',
         description: [
-          { type: 'text', text: 'Boutique en ligne dÃ©diÃ©e aux crÃ©ations de la petit emi' },
+          { type: 'text', text: 'Boutique en ligne dédiée aux créations de la petit emi' },
           { type: 'lineBreak' },
           { type: 'lineBreak' },
-          { type: 'text', text: 'Mise en avant des bougies naturelles, des bijoux en bois et des objets gravÃ©s au laser' },
+          { type: 'text', text: 'Mise en avant des bougies naturelles, des bijoux en bois et des objets gravés au laser' },
           { type: 'lineBreak' },
           { type: 'lineBreak' },
-          { type: 'text', text: 'Contenus pensÃ©s pour reflÃ©ter un univers artisanal, Ã©thique et plein de douceur' },
+          { type: 'text', text: 'Contenus pensés pour refléter un univers artisanal, éthique et plein de douceur' },
         ],
       },
       {
         id: 'result',
-        title: 'RÃ©sultats',
-        description: [{ type: 'text', text: 'Site livrÃ© dans les temps, Client satisfait' }],
+        title: 'Résultats',
+        description: [{ type: 'text', text: 'Site livré dans les temps, Client satisfait' }],
       },
     ],
     url: 'https://la-petite-emi.fr/',

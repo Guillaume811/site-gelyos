@@ -6,10 +6,10 @@ export const maintenance: ServiceSectionContent = {
     title: 'Maintenance & support technique',
     text: [
         { type: 'text', text: "Un site doit rester " },
-        { type: 'strong', text: "sÃƒÂ©curisÃƒÂ©, performant et ÃƒÂ  jour" },
+        { type: 'strong', text: "sécurisé, performant et ? jour" },
         { type: 'text', text: ". Nous assurons la " },
         { type: 'strong', text: "maintenance de sites internet" },
-        { type: 'text', text: " pour garantir leur bon fonctionnement au quotidien et accompagner vos ÃƒÂ©volutions futures." },
+        { type: 'text', text: " pour garantir leur bon fonctionnement au quotidien et accompagner vos évolutions futures." },
     ],
     image: {
         src: pictureMaintenance,
@@ -18,37 +18,37 @@ export const maintenance: ServiceSectionContent = {
     ServiceAccordionItems: [
         {
             id: 'mises-a-jour',
-            title: 'Mises ÃƒÂ  jour rÃƒÂ©guliÃƒÂ¨res',
+            title: 'Mises ? jour régulières',
             description: [
-                { type: 'text', text: `Nous installons les derniÃƒÂ¨res mises ÃƒÂ  jour de sÃƒÂ©curitÃƒÂ© et de comptabilitÃƒÂ© pour protÃƒÂ©ger votre site contre les failles et garantir sa stabilitÃƒÂ©.` }
+                { type: 'text', text: `Nous installons les dernières mises ? jour de sécurité et de comptabilité pour protéger votre site contre les failles et garantir sa stabilité.` }
             ]
         },
         {
             id: 'surveillance',
             title: 'Surveillance & monitoring',
             description: [
-                { type: 'text', text: `Nous mettons en place un suivi continu pour anticiper les problÃƒÂ¨mes (pannes, lenteurs, attaques). Vous avez l'assurance d'un site toujours opÃƒÂ©rationnel.` }
+                { type: 'text', text: `Nous mettons en place un suivi continu pour anticiper les problèmes (pannes, lenteurs, attaques). Vous avez l'assurance d'un site toujours opérationnel.` }
             ]
         },
         {
             id: 'sauvegardes',
             title: 'Sauvegardes & restauration',
             description: [
-                { type: 'text', text: `Des sauvegardes rÃƒÂ©guliÃƒÂ¨res sont effectuÃƒÂ©es pour protÃƒÂ©ger vos donnÃƒÂ©es. En cas de problÃƒÂ¨me, votre site peut ÃƒÂªtre restaurÃƒÂ© rapidement.` }
+                { type: 'text', text: `Des sauvegardes régulières sont effectuées pour protéger vos données. En cas de problème, votre site peut être restauré rapidement.` }
             ]
         },
         {
             id: 'corrections',
             title: 'Corrections rapides',
             description: [
-                { type: 'text', text: `En cas de bug ou de panne, Nous intervenons rapidement pour corriger le problÃƒÂ¨me et limiter l'impact sur votre activitÃƒÂ©.` }
+                { type: 'text', text: `En cas de bug ou de panne, Nous intervenons rapidement pour corriger le problème et limiter l'impact sur votre activité.` }
             ]
         },
         {
             id: 'ameliorations',
-            title: 'AmÃƒÂ©liorations continues',
+            title: 'Améliorations continues',
             description: [
-                { type: 'text', text: `Nous accompagnons vos besoins d'ÃƒÂ©volution : ajout de nouvelles fonctionnalitÃƒÂ©s, refonte partielles, optimisation des performances.` }
+                { type: 'text', text: `Nous accompagnons vos besoins d'évolution : ajout de nouvelles fonctionnalités, refonte partielles, optimisation des performances.` }
             ]
         }
     ]

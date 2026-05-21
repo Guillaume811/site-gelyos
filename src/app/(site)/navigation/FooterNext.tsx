@@ -33,11 +33,11 @@ export default function FooterNext() {
           </ul>
 
           <div className={styles.legal}>
-            <Link href="/mentions-legales">Mentions lÃ©gales</Link>
-            <Link href="/mentions-legales#confidential">ConfidentialitÃ©</Link>
+            <Link href="/mentions-legales">Mentions légales</Link>
+            <Link href="/mentions-legales#confidential">Confidentialité</Link>
           </div>
 
-          <p className={styles.copyright}>Copyright Â© {currentYear} GELYOS</p>
+          <p className={styles.copyright}>Copyright © {currentYear} GELYOS</p>
         </div>
 
         <div className={styles.right}>

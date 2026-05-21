@@ -5,9 +5,9 @@ export const technologies: AboutSectionContent = {
     id: 'technologies',
     title: 'Technologies & Outils',
     description: [
-        { type: 'text', text: 'Pour chaque projet, nous choisissons les outils et langages les plus adaptÃƒÂ©s ÃƒÂ  vos besoins.' },
+        { type: 'text', text: 'Pour chaque projet, nous choisissons les outils et langages les plus adapt?s ? vos besoins.' },
         { type: 'lineBreak' },
-        { type: 'text', text: 'Nous utilisons des technologies modernes et ÃƒÂ©prouvÃƒÂ©es comme ' },
+        { type: 'text', text: 'Nous utilisons des technologies modernes et éprouvées comme ' },
         { type: 'strong', text: 'HTML5' },
         { type: 'text', text: ', ' },
         { type: 'strong', text: 'CSS3' },
@@ -23,14 +23,14 @@ export const technologies: AboutSectionContent = {
         { type: 'lineBreak' },
         { type: 'text', text: 'Nous restons ouvert : si une ' },
         { type: 'strong', text: 'nouvelle technologie' },
-        { type: 'text', text: " est pertinente pour votre projet, nous l'intÃƒÂ¨grons aprÃƒÂ¨s l'avoir testÃƒÂ©e et validÃƒÂ©e." },
+        { type: 'text', text: " est pertinente pour votre projet, nous l'intègrons après l'avoir testée et validée." },
         { type: 'lineBreak' },
         { type: 'text', text: 'Notre approche : un ' },
-        { type: 'strong', text: 'code propre, ÃƒÂ©volutif et performant' },
-        { type: 'text', text: ', pour garantir la pÃƒÂ©rennitÃƒÂ© de vos projets web.' },
+        { type: 'strong', text: 'code propre, évolutif et performant' },
+        { type: 'text', text: ', pour garantir la pérennité de vos projets web.' },
     ],
     image: {
         src: pictureTechno,
-        alt: 'Illustration reprÃƒÂ©sentant diffÃƒÂ©rentes technologies web.'
+        alt: 'Illustration représentant différentes technologies web.'
     }
 }
