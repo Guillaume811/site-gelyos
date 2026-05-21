@@ -1,14 +1,10 @@
 import styles from './CardProcess.module.scss';
 import Heading from '../Heading/Heading';
 import { getAssetSrc } from '@/lib/getAssetSrc';
+import type { ProcessCard as ProcessCardContent } from '@/ressources/content/contentTypes';
 
 export type CardProcessProps = {
-  card: {
-    id: string;
-    icon: { src: string; alt: string };
-    title: string;
-    description: string;
-  };
+  card: ProcessCardContent;
   className?: string;
 };
 

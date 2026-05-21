@@ -4362,3 +4362,63 @@ Remplacer l alias `~` par l alias `@` dans les imports actifs du projet Next-onl
 ### Prochaine etape recommandee
 
 - lancer un redemarrage TS Server dans VS Code pour reindexer les aliases et diagnostics.
+
+## 21-05-2026 - Correction TS/VS Code imports images `@/*.webp` (phase 56)
+
+### Objectif
+
+Supprimer les erreurs VS Code/TypeScript "Impossible de localiser le module ...webp" apres passage a l alias `@`.
+
+### Cause corrigee
+
+- `next-env.d.ts` n etait pas pris en compte par la configuration TS qui verifie effectivement le code applicatif.
+- le script `type-check` (`tsc --noEmit`) ne validait pas reellement `src` via `tsconfig.app.json`.
+
+### Fichiers modifies
+
+- `tsconfig.app.json`
+- `tsconfig.json`
+- `package.json`
+- `next.config.ts`
+- `src/services/contactApi.ts`
+- `src/ressources/content/contentTypes.ts`
+- `src/components/CardProcess/CardProcess.tsx`
+- `MIGRATION_LOG.md`
+
+### Changements effectues
+
+- `tsconfig.app.json`:
+  - `include` mis a jour pour inclure `next-env.d.ts` et `src`.
+  - suppression de `types: ["./src/types/global"]` pour laisser TypeScript charger correctement les types standards/React/Next.
+- `tsconfig.json`:
+  - inclusion de `next-env.d.ts`.
+  - Next a ensuite complete automatiquement le fichier pendant `next build` (includes `.next/types` + plugin `next` + options obligatoires).
+- `package.json`:
+  - `type-check` passe de `tsc --noEmit` a `tsc -p tsconfig.app.json --noEmit`.
+- `next.config.ts`:
+  - ajout `typescript.tsconfigPath = 'tsconfig.app.json'` pour aligner la verification Next avec la config app.
+- correction mineure detectee pendant la vraie verification TS:
+  - `src/services/contactApi.ts`: import type corrige vers `@/_pages/...`.
+- alignement typage images Next:
+  - `ImageContent.src` passe a `string | StaticImageData` dans `contentTypes.ts`.
+  - `CardProcess` tape sur `ProcessCard` pour accepter ce type sans cast.
+
+### Declaration `*.webp`
+
+- **Non ajoutee**.
+- Raison: l inclusion correcte de `next-env.d.ts` suffit pour typer les imports d images Next, sans declaration globale custom.
+
+### Verifications effectuees
+
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK
+
+### Resultat
+
+- Les imports `@/assets/...webp` sont acceptes par TypeScript.
+- La verification TS est maintenant reelle et alignee entre CLI et Next build.
+
+### Prochaine etape recommandee
+
+- Redemarrer le serveur TypeScript dans VS Code pour purger le cache diagnostics (`TypeScript: Restart TS Server`).

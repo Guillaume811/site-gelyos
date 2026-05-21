@@ -1,4 +1,5 @@
 import type { RoutePath } from '@/ressources/routes'
+import type { StaticImageData } from 'next/image'
 
 // ======== Common content types ========
 export type RichText = string
@@ -44,7 +45,7 @@ export type InlineContentSegment =
 export type InlineContent = InlineContentSegment[]
 
 export interface ImageContent {
-    src: string
+    src: string | StaticImageData
     alt: string
 }
 

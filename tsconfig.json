@@ -5,7 +5,9 @@
       "@/*": ["./src/*"]
     }
   },
-  "files": [],
+  "include": [
+    "next-env.d.ts"
+  ],
   "references": [
     { "path": "./tsconfig.app.json" }
   ]
