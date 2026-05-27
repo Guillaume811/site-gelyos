@@ -20,7 +20,7 @@ export default function DesktopHeaderNext() {
 
   return (
     <header className={clsx(styles.header, scrolled && styles.scrolled)} role="banner" aria-label="En-tête du site">
-      <Link href="/" className={styles.brand} aria-label="Aller ? l’accueil">
+      <Link href="/" className={styles.brand} aria-label="Aller à l’accueil">
         <img src={logo.src} alt="Logo GELYOS" className={styles.logo} />
       </Link>
 

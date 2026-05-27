@@ -12,7 +12,7 @@ export const ecommerceProjects: Project[] = [
       "Boutique en ligne réalisée avec Wordpress et WooComerce pour la petite Emi, créatrice indépendante de bougies, bijoux et object gravés au laser, autour d'un univers artisanal, éthique et plein de douceurs.",
     category: 'ecommerce',
     description:
-      "Ce projet est une boutique en ligne réalisée pour la petite Emi, une créatrice indépendante qui conçoit des bougies, des bijoux et des impressions laser.\n\nL'objectif du site est de présenter ses créations artisanales et de mettre en avant son univers : des pièces fabriquées ? la main, éthiques et pleines de douceur. On y retrouve des bougies naturelles, des bijoux en bois et des objets gravés sur-mesure, pensés comme des cadeaux uniques.\n\nLa boutique repose sur Wordpress et Woocommerce, afin de pouvoir gérer facilement les produits et organiser les différentes catégories de créations.",
+      "Ce projet est une boutique en ligne réalisée pour la petite Emi, une créatrice indépendante qui conçoit des bougies, des bijoux et des impressions laser.\n\nL'objectif du site est de présenter ses créations artisanales et de mettre en avant son univers : des pièces fabriquées à la main, éthiques et pleines de douceur. On y retrouve des bougies naturelles, des bijoux en bois et des objets gravés sur-mesure, pensés comme des cadeaux uniques.\n\nLa boutique repose sur Wordpress et Woocommerce, afin de pouvoir gérer facilement les produits et organiser les différentes catégories de créations.",
     accordionItems: [
       {
         id: 'technologies',

@@ -12,7 +12,7 @@ export const applicationProjects: Project[] = [
       "Application Android développée en autodidacte pour apprendre la programmation orienté object en Java. Elle permet de créer des compétitions (championnats, coupes, tournois), d'entrer les scores et de suivre le classement en temps réel.",
     category: 'application',
     description:
-      "Cette application Android est le projet que j'ai réalisé ? la fin de ma formation en autodidacte, avec pour objectif d'apprendre et de mettre en pratique la programation orientée objet en Java.\n\nElle permet de générer différents types de compétitions : championnats, coupes ou tournois. L'utilisateur choisit le format, saisit le nom des joueurs ou des équipes, puis renseigne les scores des matches.\n\nL'application se charge ensuite de calculer automatiquement les points en cas de victoire, de defaite ou de match nul et met ? jour le classement instantanément. Cela permet aux joueurs de suivre l'évolution de la compétition en temps réel.\n\nL'application est publiée sur le Play Store et disponible uniquement sur Android.",
+      "Cette application Android est le projet que j'ai réalisé à la fin de ma formation en autodidacte, avec pour objectif d'apprendre et de mettre en pratique la programation orientée objet en Java.\n\nElle permet de générer différents types de compétitions : championnats, coupes ou tournois. L'utilisateur choisit le format, saisit le nom des joueurs ou des équipes, puis renseigne les scores des matches.\n\nL'application se charge ensuite de calculer automatiquement les points en cas de victoire, de defaite ou de match nul et met à jour le classement instantanément. Cela permet aux joueurs de suivre l'évolution de la compétition en temps réel.\n\nL'application est publiée sur le Play Store et disponible uniquement sur Android.",
     accordionItems: [
       {
         id: 'technologies',
@@ -35,7 +35,7 @@ export const applicationProjects: Project[] = [
           { type: 'text', text: 'Calcul automatique des points (victoire, defaite, match nul)' },
           { type: 'lineBreak' },
           { type: 'lineBreak' },
-          { type: 'text', text: 'Classement mis ï¿½  jour instantan?ment' },
+          { type: 'text', text: 'Classement mis à jour instantanément' },
           { type: 'lineBreak' },
           { type: 'lineBreak' },
           { type: 'text', text: 'Suivi de la compétition en temps réel par les joueurs' },

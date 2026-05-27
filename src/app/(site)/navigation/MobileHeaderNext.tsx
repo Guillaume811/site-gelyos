@@ -44,7 +44,7 @@ export default function MobileHeaderNext() {
       data-open={isOpen ? 'true' : 'false'}
     >
       <div className={styles.container}>
-        <Link href="/" className={styles.brand} aria-label="Aller ? l’accueil">
+        <Link href="/" className={styles.brand} aria-label="Aller à l’accueil">
           <span className={styles.logoWrap}>
             <img src={logo.src} alt="Logo GELYOS" className={styles.logo} />
           </span>

@@ -32,7 +32,7 @@ export const divAvantagesContent: DivAvantages = {
                 alt: 'Icône d\'accompagnement'
             },
             title: 'Un accompagnement humain et réactif :',
-            description: 'un interlocuteur unique ? chaque ?tape.'
+            description: 'un interlocuteur unique à chaque étape.'
         },
         {
             id: 'fiabilite',

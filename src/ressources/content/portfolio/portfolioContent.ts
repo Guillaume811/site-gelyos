@@ -28,7 +28,7 @@ export const portfolioContent: PortfolioPageContent = {
 
         vitrine: {
             title: 'Sites Vitrines',
-            description: `Création de **sites vitrines sur mesure** pour valoriser l'image de marque, mettre en avant les services et générer de nouveaux contacts. Design moderne, responsive et optimisé SEO pour offrir ? chaque entreprise une présence en ligne professionnelle.` 
+            description: `Création de **sites vitrines sur mesure** pour valoriser l'image de marque, mettre en avant les services et générer de nouveaux contacts. Design moderne, responsive et optimisé SEO pour offrir à chaque entreprise une présence en ligne professionnelle.` 
         },
 
         ecommerce: {
@@ -43,7 +43,7 @@ export const portfolioContent: PortfolioPageContent = {
 
         freelance: {
             title: 'Missions Freelance',
-            description: `En tant que **développeur web freelance**, j'interviens sur des missions variées : intégration de nouvelles fonctionnalités, optimisation de sites existants, renfort technique ou accompagnement ponctuel. Une collaboration flexible, adaptée ? vos besoins.`
+            description: `En tant que **développeur web freelance**, j'interviens sur des missions variées : intégration de nouvelles fonctionnalités, optimisation de sites existants, renfort technique ou accompagnement ponctuel. Une collaboration flexible, adaptée à vos besoins.`
         }
     }
 }

@@ -25,7 +25,7 @@ export const seo: ServiceSectionContent = {
             id: 'technique',
             title: 'Optimisation technique',
             description: [
-                { type: 'text', text: `Nous intervienons sur la structure du site : balises HTML, plan de site, indexation, vitesse de chargement et comptatibilité mobile. Chaque détail compte pour plaire ? Google.` }
+                { type: 'text', text: `Nous intervienons sur la structure du site : balises HTML, plan de site, indexation, vitesse de chargement et comptatibilité mobile. Chaque détail compte pour plaire à Google.` }
             ]
         },
         {

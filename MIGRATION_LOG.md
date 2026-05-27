@@ -4714,3 +4714,98 @@ Rendre `npm run build` compatible avec un environnement local offline sans insta
 
 - build static export OK sans installer `sharp`.
 - aucune dependance npm ajoutee.
+## 27-05-2026 - Revue complete encodage restant (phase 66)
+
+### Objectif
+
+Corriger uniquement les erreurs d encodage restantes dans les textes UI et contenus apres migration Next-only.
+
+### Audit realise
+
+- scan global des sequences mojibake sur fichiers utiles (`src`, `public`, `README.md`):
+  - `Ã`, `Â`, `â€™`, `â€œ`, `â€`, `â€“`, `â€”`, `â€¦`, `ï¿½`, `?`
+- scan cible des `?` en contexte texte pour distinguer erreurs d encodage vs usages normaux TypeScript/URL/ternaires.
+
+### Fichiers modifies
+
+- `src/app/(site)/navigation/DesktopHeaderNext.tsx`
+- `src/app/(site)/navigation/MobileHeaderNext.tsx`
+- `src/animations/TypewriterText/TypewriterText.tsx`
+- `src/ressources/content/services/seo.ts`
+- `src/ressources/content/services/maintenance.ts`
+- `src/ressources/content/services/headerIntro.ts`
+- `src/ressources/content/services/devWeb.ts`
+- `src/ressources/content/services/devApp.ts`
+- `src/ressources/content/home/servicesPreview.ts`
+- `src/ressources/content/home/divProcessContent.ts`
+- `src/ressources/content/home/divAvantagesContent.ts`
+- `src/ressources/content/portfolio/portfolioContent.ts`
+- `src/ressources/content/ctaContent/ctaContent.ts`
+- `src/ressources/content/contact/contactContent.ts`
+- `src/ressources/content/about/expertise.ts`
+- `src/ressources/content/about/technologies.ts`
+- `src/ressources/content/about/parcours.ts`
+- `src/ressources/content/portfolio/data/applications.ts`
+- `src/ressources/content/portfolio/data/ecommerce.ts`
+- `src/ressources/content/mention/mentionContent.ts`
+- `MIGRATION_LOG.md`
+
+### Changements effectues
+
+- remplacement cible des `?` manifestement utilises a la place de caracteres francais (`a`, `e`) dans les textes rendus.
+- correction d une sequence corrompue restante (`ï¿½`) dans le contenu portfolio applications.
+- aucun changement de logique applicative, de design, de routes, d imports ou de structure.
+
+### Verification post-correction
+
+- scan sequences mojibake: aucune occurrence restante detectee sur les fichiers utiles.
+- les `?` restants sont des usages normaux (types optionnels, ternaires, query params, titres interrogatifs legitimes).
+## 27-05-2026 - Stabilisation type-check sans dependance .next (phase 67)
+
+### Objectif
+
+Rendre `npm run type-check` stable meme quand les types generes dans `.next` sont absents.
+
+### Cause identifiee
+
+- `tsconfig.app.json` incluait `.next/types/**/*.ts` et `.next/dev/types/**/*.ts`.
+- ces includes introduisaient des erreurs TS6053 quand les fichiers generes n existaient pas encore.
+
+### Fichiers modifies
+
+- `tsconfig.app.json`
+- `tsconfig.json`
+- `next-env.d.ts` (restaure a l etat Git precedent)
+- `MIGRATION_LOG.md`
+
+### Changement effectue
+
+- retrait des includes `.next/...` de `tsconfig.app.json`.
+- retrait des includes `.next/...` et `next-env.d.ts` de `tsconfig.json` racine pour eviter une dependance editor aux fichiers generes.
+- conservation de l alias `@/*` vers `./src/*`.
+- aucune reintroduction de `baseUrl`, `references` ou alias `~`.
+
+### Verification
+
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK
+## 27-05-2026 - Ajustement final TS6053 et comportement auto Next (phase 68)
+
+### Constat
+
+- `next build` (Next 16) re-ajoute automatiquement les includes `.next/types/**/*.ts` et `.next/dev/types/**/*.ts` dans le fichier TypeScript utilise (`tsconfig.app.json` via `typescript.tsconfigPath`).
+- ces includes provoquent a nouveau TS6053 quand les fichiers `.next/types/app/...` ne sont pas presents au moment du `type-check`.
+
+### Decision appliquee
+
+- conserver `tsconfig.app.json` avec `include: ["src"]` pour rendre `npm run type-check` independant des fichiers generes `.next`.
+- conserver `incremental: false` dans `tsconfig.app.json` pour eviter les effets de cache de type-check.
+- conserver `tsconfig.json` racine cible VS Code sur `src/**/*.ts` + `src/**/*.tsx`.
+- restaurer `next-env.d.ts` a l etat Git precedent.
+
+### Verification finale
+
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK (avec message d auto-reconfiguration Next, puis reapplication du include stable)

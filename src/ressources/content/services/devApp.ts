@@ -7,9 +7,9 @@ export const devApp: ServiceSectionContent = {
     text: [
         { type: 'text', text: "Les " },
         { type: 'strong', text: "applications web et mobiles sur mesure" },
-        { type: 'text', text: " permettent de créer des outils adaptés ? vos besoins spécifiques : gestion interne, plateforme métier, SaaS ou solution innovente. Nous développons des " },
+        { type: 'text', text: " permettent de créer des outils adaptés à vos besoins spécifiques : gestion interne, plateforme métier, SaaS ou solution innovente. Nous développons des " },
         { type: 'strong', text: "applications performantes et évolutives" },
-        { type: 'text', text: ", pensée pour simplifier vos processus et apporter une réelle valeur ? votre entreprise." },
+        { type: 'text', text: ", pensée pour simplifier vos processus et apporter une réelle valeur à votre entreprise." },
     ],
     image: {
         src: pictureDevApp,
@@ -20,14 +20,14 @@ export const devApp: ServiceSectionContent = {
             id: 'analyse',
             title: 'Analyse fonctionnelle',
             description: [
-                { type: 'text', text: `Nous définissons ensemble les fonctionnalités nécessaires, les utilisateurs ciblés et les objectifs de l'application. Cette étape garantit que l'outil réponde exactement ? vos besoins.` }
+                { type: 'text', text: `Nous définissons ensemble les fonctionnalités nécessaires, les utilisateurs ciblés et les objectifs de l'application. Cette étape garantit que l'outil réponde exactement à vos besoins.` }
             ]
         },
         {
             id: 'conception',
             title: 'Conception technique',
             description: [
-                { type: 'text', text: `Nous choisissons les technologies les plus adaptées ? votre projet (framework, base de données, hébergement). Une architecture solide assure performance, sécurité et évolutivité.` }
+                { type: 'text', text: `Nous choisissons les technologies les plus adaptées à votre projet (framework, base de données, hébergement). Une architecture solide assure performance, sécurité et évolutivité.` }
             ]
         },
         {
@@ -48,7 +48,7 @@ export const devApp: ServiceSectionContent = {
             id: 'evolution',
             title: 'Évolutions',
             description: [
-                { type: 'text', text: `Une application n'est jamais figée : je propose un suivi continu pour ajouter de nouvelles fonctionnalités et répondre ? vos futurs besoins.` }
+                { type: 'text', text: `Une application n'est jamais figée : je propose un suivi continu pour ajouter de nouvelles fonctionnalités et répondre à vos futurs besoins.` }
             ]
         }
     ]

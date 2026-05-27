@@ -9,7 +9,7 @@ export const parcours: AboutSectionContent = {
         { type: 'strong', text: 'développeur web sur mesure' },
         { type: 'text', text: ', passionné par la crétion de solutions digitales uniques et performantes.' },
         { type: 'lineBreak' },
-        { type: 'text', text: 'Mon objectif : transformer vos idées en projets concrets, efficaces et adaptés ? vos besoins.' },
+        { type: 'text', text: 'Mon objectif : transformer vos idées en projets concrets, efficaces et adaptés à vos besoins.' },
         { type: 'lineBreak' },
         { type: 'text', text: "Avec plusieurs années d'espérience en " },
         { type: 'strong', text: 'développement web personnalisé' },
@@ -21,7 +21,7 @@ export const parcours: AboutSectionContent = {
         { type: 'strong', text: 'performance' },
         { type: 'text', text: ' et ' },
         { type: 'strong', text: 'visibilité SEO' },
-        { type: 'text', text: ', tout en restant accessibles et simples ? g?rer pour mes clients.' },
+        { type: 'text', text: ', tout en restant accessibles et simples à gérer pour mes clients.' },
     ],
     image: {
         src: pictureParcours,

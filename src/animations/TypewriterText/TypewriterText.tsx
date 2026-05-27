@@ -3,7 +3,7 @@ import clsx from "clsx"
 import styles from "./Typewriter.module.scss"
 
 type Props = {
-  text: string              // texte brut ? animer
+  text: string              // texte brut à animer
   speed?: number            // ms par caractère (ex: 30)
   startDelay?: number       // ms avant de commencer (optionnel)
   className?: string

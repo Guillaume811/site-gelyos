@@ -54,7 +54,7 @@ export const ctaContent: Partial<Record<RouteName, CtaContentEntry>> = {
     portfolio: {
         title: "Vous souhaitez un projet similaire ou discuter de la création de votre site internet sur mesure ?",
         text: [
-            { type: 'text', text: "Contactez-moi dès aujourd'hui pour obtenir un devis gratuit et donner vie ? vos idées digitales." },
+            { type: 'text', text: "Contactez-moi dès aujourd'hui pour obtenir un devis gratuit et donner vie à vos idées digitales." },
         ],
         button: "Recevoir mon devis offert"
     }

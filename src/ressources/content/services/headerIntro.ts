@@ -18,7 +18,7 @@ export const introServices: IntroContent = {
         { type: 'emphasis', text: 'GELYOS' },
         { type: 'text', text: ' vous propose des solutions digitales adaptées aux besoins des entreprises, startups et indépendants. De la ' },
         { type: 'strong', text: 'création de sites internet personnalisés' },
-        { type: 'text', text: ' ? la ' },
+        { type: 'text', text: ' à la ' },
         { type: 'strong', text: "conception d'applications web" },
         { type: 'text', text: ', en passant par ' },
         { type: 'strong', text: "l'optimisation SEO" },

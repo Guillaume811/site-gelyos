@@ -18,7 +18,7 @@ export const servicesPreviewContent: ServicesPreview = {
         { type: 'text', text: ' pour garantir performance et visibilité.' },
     ],
     firstButton: {
-        label: 'Trouver la solution adapt?e ? mon projet',
+        label: 'Trouver la solution adaptée à mon projet',
         to: '/services',
     },
     cards: [
@@ -31,7 +31,7 @@ export const servicesPreviewContent: ServicesPreview = {
                { type: 'strong', text: 'site vitrine sur mesure' },
                { type: 'text', text: ' au ' },
                { type: 'strong', text: 'site e-commerce personnalisé' },
-               { type: 'text', text: ', nous vous développons des solutions uniques, modernes et évolutives, adaptées ? vos objectifs et ? votre image de marque.' },
+               { type: 'text', text: ', nous vous développons des solutions uniques, modernes et évolutives, adaptées à vos objectifs et à votre image de marque.' },
            ],
            secondButton: { label: 'Découvrir', to: '/services' }
         },
@@ -42,7 +42,7 @@ export const servicesPreviewContent: ServicesPreview = {
            description: [
                { type: 'text', text: 'Nous vous concevons des ' },
                { type: 'strong', text: 'applications web sur mesure' },
-               { type: 'text', text: ' performantes et sécurisées, pensées pour répondre ? vos besoins spécifiques et améliorer vos processus métiers.' },
+               { type: 'text', text: ' performantes et sécurisées, pensées pour répondre à vos besoins spécifiques et améliorer vos processus métiers.' },
            ],
            secondButton: { label: 'Découvrir', to: '/services' }
         },
@@ -51,7 +51,7 @@ export const servicesPreviewContent: ServicesPreview = {
            icon: { src: iconMaintenance, alt: 'Icône de maintenance' },
            title: 'Maintenance et support technique - Assurez sécurité et performance',
            description: [
-               { type: 'text', text: 'Un site doit rester rapide, sécurisé et ? jour. Nous vous proposons la ' },
+               { type: 'text', text: 'Un site doit rester rapide, sécurisé et à jour. Nous vous proposons la ' },
                { type: 'strong', text: 'maintenance de site internet' },
                { type: 'text', text: ' et un ' },
                { type: 'strong', text: 'support technique continu' },
@@ -62,9 +62,9 @@ export const servicesPreviewContent: ServicesPreview = {
         {
            id: 'seo',
            icon: { src: iconSeo, alt: 'Icône SEO' },
-           title: 'Optimisation SEO - Attirez plus de clients gr?ce ? Google',
+           title: 'Optimisation SEO - Attirez plus de clients grâce à Google',
            description: [
-               { type: 'text', text: 'Améliorez votre visibilité grâce ? une ' },
+               { type: 'text', text: 'Améliorez votre visibilité grâce à une ' },
                { type: 'strong', text: 'optimisation SEO' },
                { type: 'text', text: ' complète : structure technique, vitesse, contenus optimisés et suivi des performances pour attirer plus de clients.' },
            ],

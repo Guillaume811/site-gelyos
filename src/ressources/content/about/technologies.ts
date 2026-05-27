@@ -5,7 +5,7 @@ export const technologies: AboutSectionContent = {
     id: 'technologies',
     title: 'Technologies & Outils',
     description: [
-        { type: 'text', text: 'Pour chaque projet, nous choisissons les outils et langages les plus adapt?s ? vos besoins.' },
+        { type: 'text', text: 'Pour chaque projet, nous choisissons les outils et langages les plus adaptés à vos besoins.' },
         { type: 'lineBreak' },
         { type: 'text', text: 'Nous utilisons des technologies modernes et éprouvées comme ' },
         { type: 'strong', text: 'HTML5' },

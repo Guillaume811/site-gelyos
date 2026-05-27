@@ -9,7 +9,7 @@ export const devWeb: ServiceSectionContent = {
         { type: 'strong', text: "site internet sur mesure" },
         { type: 'text', text: " est l'outil idéal pour développer votre présence en ligne. Que ce soit pour un " },
         { type: 'strong', text: "site vitrine" },
-        { type: 'text', text: " destiné ? présenter vos services, une " },
+        { type: 'text', text: " destiné à présenter vos services, une " },
         { type: 'strong', text: "site e-commerce" },
         { type: 'text', text: " pour vendre vos produits ou un " },
         { type: 'strong', text: "site institutionnel" },
@@ -24,7 +24,7 @@ export const devWeb: ServiceSectionContent = {
             id: 'cahier-charges',
             title: 'Rédaction du cahier des charges',
             description: [
-                { type: 'text', text: 'Ensemble, nous définissons précisément vos besoins, vos objectifs et votre public cible. Le cahier des charges sert de feuille de route pour éviter les imprévus et garantir que le site corresponde parfaitement ? vos attentes.' }
+                { type: 'text', text: 'Ensemble, nous définissons précisément vos besoins, vos objectifs et votre public cible. Le cahier des charges sert de feuille de route pour éviter les imprévus et garantir que le site corresponde parfaitement à vos attentes.' }
             ]
         },
         {
@@ -45,14 +45,14 @@ export const devWeb: ServiceSectionContent = {
             id: 'developpement',
             title: 'Développement Web & Mobile',
             description: [
-                { type: 'text', text: `Nous développons un site robuste, rapide et responsive, qui s'adapte ? tous les écrans (ordinateurs, tablettes, mobiles). Le code est propre, sécurisé et évolutif, afin de pouvoir ajouter de nouvelles fonctionnalités si nécessaire.` }
+                { type: 'text', text: `Nous développons un site robuste, rapide et responsive, qui s'adapte à tous les écrans (ordinateurs, tablettes, mobiles). Le code est propre, sécurisé et évolutif, afin de pouvoir ajouter de nouvelles fonctionnalités si nécessaire.` }
             ]
         },
         {
             id: 'maintenance',
             title: 'Maintenance & Évolutions',
             description: [
-                { type: 'text', text: `Après la mise en ligne, nous restons disponible pour assurer la sécurité, corriger d'éventuels bugs et accompagner vos évolutions futures. Votre site reste performant et ? jour dans le temps.` }
+                { type: 'text', text: `Après la mise en ligne, nous restons disponible pour assurer la sécurité, corriger d'éventuels bugs et accompagner vos évolutions futures. Votre site reste performant et à jour dans le temps.` }
             ]
         }
     ]

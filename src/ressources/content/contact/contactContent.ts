@@ -28,6 +28,6 @@ export const contactContent: ContactPageContent = {
         title: 'Par Téléphone',
         description: `Disponible du lundi au vendredi de 9h à 18h.`
     },
-    text: `Nous sommes toujours disponible pour échanger et répondre ? vos questions.`,
-    textForm: `Nous utiliserons les informations que vous nous fournissez uniquement pour r?pondre ? votre demande. Pour plus d'informations, consultez notre`
+    text: `Nous sommes toujours disponible pour échanger et répondre à vos questions.`,
+    textForm: `Nous utiliserons les informations que vous nous fournissez uniquement pour répondre à votre demande. Pour plus d'informations, consultez notre`
 };

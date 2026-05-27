@@ -12,7 +12,7 @@ export const expertise: AboutSectionContent = {
         { type: 'text', text: ' pour booster vos ventes en ligne.' },
         { type: 'lineBreak' },
         { type: 'strong', text: 'Applications évolutives' },
-        { type: 'text', text: ' adaptées ? vos besoins métiers.' },
+        { type: 'text', text: ' adaptées à vos besoins métiers.' },
         { type: 'lineBreak' },
         { type: 'strong', text: 'Optimisation SEO' },
         { type: 'text', text: ' pour améliorer votre visibilité sur Google.' },

@@ -76,7 +76,7 @@ Cette représentation ou reproduction, par quelque procédé que ce soit, consti
     responsabilite: {
         title: '5. Responsabilité',
         description: markdownLikeToInlineContent(`
-L’éditeur s’efforce de fournir des informations aussi précises que possible. Toutefois, il ne pourra être tenu responsable des omissions, des inexactitudes ou des carences dans la mise ? jour de ces informations, qu'elles soient de son fait ou du fait des tiers partenaires.  
+L’éditeur s’efforce de fournir des informations aussi précises que possible. Toutefois, il ne pourra être tenu responsable des omissions, des inexactitudes ou des carences dans la mise à jour de ces informations, qu'elles soient de son fait ou du fait des tiers partenaires.  
 Le site peut contenir des liens hypertextes vers d’autres sites. GELYOS ne peut être tenu responsable des contenus de ces sites externes.  
 L’utilisateur du site reconnaît disposer des compétences nécessaires pour accéder et utiliser ce site et avoir vérifié que la configuration informatique utilisée ne contient aucun virus et qu’elle est en parfait état de fonctionnement.
 `)
@@ -84,7 +84,7 @@ L’utilisateur du site reconnaît disposer des compétences nécessaires pour a
     cookies: {
         title: '6. Gestion des cookies',
         description: markdownLikeToInlineContent(`
-Le site utilise des cookies ? des fins de mesure d’audience via Google Analytics.  
+Le site utilise des cookies à des fins de mesure d’audience via Google Analytics.  
 
 Types de cookies utilisés :  
 
@@ -93,7 +93,7 @@ permettent de collecter des informations anonymes sur la navigation afin d’am�
 
 Gestion des cookies :  
 Lors de votre première visite, un bandeau vous informe de la présence de ces cookies et vous permet d’accepter ou de refuser leur utilisation.  
-Vous pouvez ? tout moment modifier vos préférences de cookies en cliquant sur le bouton de gestion des cookies présent en bas de page (ou selon l’emplacement défini sur le site).  
+Vous pouvez à tout moment modifier vos préférences de cookies en cliquant sur le bouton de gestion des cookies présent en bas de page (ou selon l’emplacement défini sur le site).  
 Pour en savoir plus sur la gestion des cookies par Google Analytics, consultez la page : [policies.google.com](https://policies.google.com/technologies/cookies?hl=fr)
 `),
         secondButton: {
@@ -117,16 +117,16 @@ Fondement légal :
 Le traitement repose sur le consentement de l’utilisateur (article 6.1.a du RGPD).  
 
 Durée de conservation :  
-Les données sont conservées pendant une durée maximale de 3 ans ? compter du dernier contact.  
+Les données sont conservées pendant une durée maximale de 3 ans à compter du dernier contact.  
 
 Destinataires des données :  
-Les données collectées sont destinées exclusivement ? GELYOS et ne sont en aucun cas cédées ou vendues ? des tiers. 
+Les données collectées sont destinées exclusivement à GELYOS et ne sont en aucun cas cédées ou vendues à des tiers. 
 
 Données de navigation :  
-Les données de navigation sont collectées de manière anonymisée via Google Analytics et utilisées uniquement ? des fins statistiques. 
+Les données de navigation sont collectées de manière anonymisée via Google Analytics et utilisées uniquement à des fins statistiques. 
 
 Droits des utilisateurs :  
-Conformément au RGPD et ? la loi Informatique et Libertés, vous disposez des droits suivants :  
+Conformément au RGPD et à la loi Informatique et Libertés, vous disposez des droits suivants :  
 Droit d’accès, de rectification, de suppression et de portabilité de vos données  
 Droit de limitation et d’opposition au traitement de vos données  
 Droit de retirer votre consentement à tout moment  
@@ -139,7 +139,7 @@ En cas de non-réponse satisfaisante, vous avez la possibilité de déposer une 
     loi: {
         title: '8. Loi applicable',
         description: markdownLikeToInlineContent(`
-Le présent site est régi par la loi française. En cas de litige, et ? défaut de résolution amiable, les tribunaux français seront seuls compétents.
+Le présent site est régi par la loi française. En cas de litige, et à défaut de résolution amiable, les tribunaux français seront seuls compétents.
 `)
     }
 }

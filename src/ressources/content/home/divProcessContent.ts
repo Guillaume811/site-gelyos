@@ -24,7 +24,7 @@ export const divProcessContent: DivProcess = {
                 alt: 'Icône de conception'
             },
             title: 'Conception',
-            description: 'Structure et design adapt?s ? votre marque.'
+            description: 'Structure et design adaptés à votre marque.'
         },
         {
             id: 'developpement',

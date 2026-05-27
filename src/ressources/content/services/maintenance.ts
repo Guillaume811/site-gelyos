@@ -6,7 +6,7 @@ export const maintenance: ServiceSectionContent = {
     title: 'Maintenance & support technique',
     text: [
         { type: 'text', text: "Un site doit rester " },
-        { type: 'strong', text: "sécurisé, performant et ? jour" },
+        { type: 'strong', text: "sécurisé, performant et à jour" },
         { type: 'text', text: ". Nous assurons la " },
         { type: 'strong', text: "maintenance de sites internet" },
         { type: 'text', text: " pour garantir leur bon fonctionnement au quotidien et accompagner vos évolutions futures." },
@@ -18,9 +18,9 @@ export const maintenance: ServiceSectionContent = {
     ServiceAccordionItems: [
         {
             id: 'mises-a-jour',
-            title: 'Mises ? jour régulières',
+            title: 'Mises à jour régulières',
             description: [
-                { type: 'text', text: `Nous installons les dernières mises ? jour de sécurité et de comptabilité pour protéger votre site contre les failles et garantir sa stabilité.` }
+                { type: 'text', text: `Nous installons les dernières mises à jour de sécurité et de comptabilité pour protéger votre site contre les failles et garantir sa stabilité.` }
             ]
         },
         {
