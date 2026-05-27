@@ -47,7 +47,7 @@ const DEFAULT_LABELS: Required<ContactFormProps>["labels"] = {
     seo: "SEO",
   },
   message: "Votre message",
-  rgpd: "J?accepte que mes informations soient collectées et utilisées conformément ? la politique de confidentialité.",
+  rgpd: "J'accepte que mes informations soient collectées et utilisées conformément à la politique de confidentialité.",
   submit: "Envoyer",
 };
 

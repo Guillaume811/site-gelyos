@@ -4574,3 +4574,34 @@ Retirer le dossier `out/` de l index Git sans supprimer les fichiers locaux.
 - les fichiers `out/` sont retires de l index (suppressions stagees)
 - le dossier local `out/` est conserve (`Test-Path out` -> `True`)
 - verification `git status --short out`: uniquement des `D` (retrait index), pas de suppression physique locale
+## 27-05-2026 - Correction texte RGPD formulaire contact (phase 62)
+
+### Objectif
+
+Corriger uniquement la chaine anormale affichee dans la case RGPD du formulaire contact.
+
+### Cause identifiee
+
+- libelle RGPD corrompu dans `src/_pages/Contact/ContactForm/ContactForm.tsx`:
+  - `J?accepte ... conformement ? ...`
+
+### Fichiers modifies
+
+- `src/_pages/Contact/ContactForm/ContactForm.tsx`
+- `MIGRATION_LOG.md`
+
+### Changement effectue
+
+- remplacement du libelle RGPD par un texte francais correct:
+  - `J'accepte que mes informations soient collectees et utilisees conformement a la politique de confidentialite.`
+
+### Verifications effectuees
+
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK
+
+### Resultat
+
+- les caracteres `?` inattendus ne sont plus presents dans le libelle RGPD.
+- aucune logique formulaire/reCAPTCHA modifiee.
