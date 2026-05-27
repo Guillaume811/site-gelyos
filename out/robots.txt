@@ -1,8 +1,0 @@
-User-agent: *
-Allow: /
-
-# Empêche l'indexation des pages purement légales ou d'erreur
-Disallow: /mentions-legales
-Disallow: /404
-
-Sitemap: https://gelyos.fr/sitemap.xml

@@ -4524,3 +4524,53 @@ Corriger uniquement l avertissement TypeScript sur `baseUrl` deprecie, sans chan
 
 - L avertissement de depreciation `baseUrl` n est plus attendu dans les tsconfig modifies.
 - Les imports `@/...` restent valides avec la configuration actuelle.
+## 27-05-2026 - Exclusion Git du dossier out (phase 60)
+
+### Decision structurante
+
+- [27-05-2026] [git-ignore-out] [ajout de `out/` dans `.gitignore`] [eviter le versionnement des artefacts Next static export] [historique Git nettoye pour les prochains builds]
+
+### Objectif
+
+Verifier le suivi Git du dossier `out/` et aligner le projet sur la pratique attendue (artefacts build non versionnes).
+
+### Fichiers modifies
+
+- `.gitignore`
+- `MIGRATION_LOG.md`
+
+### Changements effectues
+
+- ajout de `out/` dans `.gitignore`.
+- verification: des fichiers `out/` etaient deja suivis par Git avant ce changement.
+- aucune suppression physique du dossier local `out/`.
+
+### Commande recommandee (non executee)
+
+- `git rm -r --cached out`
+
+### Resultat
+
+- `out/` est maintenant ignore pour les nouveaux fichiers non suivis.
+- les fichiers `out/` deja suivis necessitent la commande ci-dessus pour etre retires de l index Git.
+## 27-05-2026 - Retrait de `out/` du suivi Git (phase 61)
+
+### Objectif
+
+Retirer le dossier `out/` de l index Git sans supprimer les fichiers locaux.
+
+### Preconditions verifiees
+
+- branche courante: `nextjs-migration`
+- `out/` present dans `.gitignore`
+- `out/` encore tracke avant action
+
+### Commande executee
+
+- `git rm -r --cached out`
+
+### Resultat
+
+- les fichiers `out/` sont retires de l index (suppressions stagees)
+- le dossier local `out/` est conserve (`Test-Path out` -> `True`)
+- verification `git status --short out`: uniquement des `D` (retrait index), pas de suppression physique locale
