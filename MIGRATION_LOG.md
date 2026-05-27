@@ -4605,3 +4605,42 @@ Corriger uniquement la chaine anormale affichee dans la case RGPD du formulaire 
 
 - les caracteres `?` inattendus ne sont plus presents dans le libelle RGPD.
 - aucune logique formulaire/reCAPTCHA modifiee.
+## 27-05-2026 - Alignement tsconfig racine pour resolution VS Code des alias (phase 63)
+
+### Objectif
+
+Corriger uniquement la configuration TypeScript racine pour que VS Code resolve correctement les imports `@/...` dans `src`.
+
+### Cause identifiee
+
+- `tsconfig.json` racine n incluait pas les fichiers `src`, ce qui pouvait faire analyser certains fichiers hors du projet TypeScript applicatif.
+
+### Fichiers modifies
+
+- `tsconfig.json`
+- `MIGRATION_LOG.md`
+
+### Changement effectue
+
+- `tsconfig.json` etend maintenant `tsconfig.app.json`.
+- conservation de l alias `@/* -> ./src/*` dans `tsconfig.json`.
+- ajout des includes racine pour l editeur:
+  - `next-env.d.ts`
+  - `.next/types/**/*.ts`
+  - `.next/dev/types/**/*.ts`
+  - `src/**/*.ts`
+  - `src/**/*.tsx`
+- aucun retour de `references`, aucun retour de `baseUrl`, aucun alias `~` reintroduit.
+
+### Verifications effectuees
+
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK
+- `npx tsc -p tsconfig.json --noEmit` -> OK
+
+### Resultat
+
+- La config racine couvre les fichiers applicatifs pour VS Code.
+- Les imports `@/services/recaptcha` et `@/services/contactApi` restent resolus par TypeScript.
+- TS6306/TS6310 non reproduites.
