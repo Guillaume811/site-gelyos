@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   output: 'export',
   trailingSlash: true,
+  images: {
+    unoptimized: true,
+    disableStaticImages: true,
+  },
   typescript: {
     tsconfigPath: 'tsconfig.app.json',
   },
@@ -15,6 +19,16 @@ const nextConfig: NextConfig = {
       ...(config.resolve.alias ?? {}),
       '@': path.resolve(__dirname, 'src'),
     }
+    config.module.rules.push({
+      test: /\.(png|jpe?g|gif|webp|avif)$/i,
+      issuer: /\.[jt]sx?$/,
+      type: 'javascript/auto',
+      use: [
+        {
+          loader: path.resolve(__dirname, 'webpack/loaders/static-image-data-loader.cjs'),
+        },
+      ],
+    })
     return config
   },
   sassOptions: {

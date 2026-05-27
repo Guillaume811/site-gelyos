@@ -4644,3 +4644,73 @@ Corriger uniquement la configuration TypeScript racine pour que VS Code resolve 
 - La config racine couvre les fichiers applicatifs pour VS Code.
 - Les imports `@/services/recaptcha` et `@/services/contactApi` restent resolus par TypeScript.
 - TS6306/TS6310 non reproduites.
+## 27-05-2026 - Build static export sans dependance sharp (phase 64)
+
+### Objectif
+
+Corriger l echec `next build` en environnement offline sans installer `sharp`, tout en conservant le mode static export Cloudflare Pages.
+
+### Cause identifiee
+
+- build KO avec erreur `Module sharp not found` pendant la generation image (`next/image`) sur export statique.
+
+### Fichiers modifies
+
+- `next.config.ts`
+- `MIGRATION_LOG.md`
+
+### Changement effectue
+
+- ajout de la configuration Next:
+  - `images: { unoptimized: true }`
+- `output: 'export'` conserve.
+- aucun changement de dependance npm.
+
+### Verifications effectuees
+
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK
+
+### Resultat
+
+- le build static export passe sans dependre de `sharp`.
+## 27-05-2026 - Stabilisation build export sans sharp en offline (phase 65)
+
+### Objectif
+
+Rendre `npm run build` compatible avec un environnement local offline sans installation de `sharp`, en conservant `output: "export"`.
+
+### Cause identifiee
+
+- `next/image` en import statique d images genere des metadonnees (blur) qui requierent `sharp`.
+- `sharp` indisponible localement (cache npm offline).
+
+### Fichiers modifies
+
+- `next.config.ts`
+- `src/types/images.d.ts`
+- `src/types/global.d.ts`
+- `webpack/loaders/static-image-data-loader.cjs`
+- `MIGRATION_LOG.md`
+
+### Changement effectue
+
+- `next.config.ts`:
+  - `images.unoptimized: true`
+  - `images.disableStaticImages: true`
+  - regle webpack images TS/TSX avec loader local `webpack/loaders/static-image-data-loader.cjs`
+- ajout d un loader local qui emet les assets images et exporte un objet compatible (`src`, `width`, `height`) sans dependre de `sharp`.
+- ajout des declarations TypeScript modules images dans `src/types/images.d.ts`.
+- retrait des declarations images de `src/types/global.d.ts` (centralisation types images).
+
+### Verifications effectuees
+
+- `npm run lint` -> OK
+- `npm run type-check` -> OK
+- `npm run build` -> OK
+
+### Resultat
+
+- build static export OK sans installer `sharp`.
+- aucune dependance npm ajoutee.
