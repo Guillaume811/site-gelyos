@@ -12,6 +12,15 @@ Ne jamais inventer une information absente du projet.
 
 ---
 
+## Statut documentaire post-migration
+
+- `AGENTS.md` est le document de règles actif.
+- `CODE_REVIEW.md` est une checklist active pour les revues.
+- Les documents dans `docs/migration/` sont archivés à titre historique.
+- Les documents archivés ne pilotent plus le développement courant sauf demande explicite.
+
+---
+
 ## 0) Identification du projet
 
 - Nom du projet : `site-gelyos`
@@ -21,7 +30,7 @@ Ne jamais inventer une information absente du projet.
 - Environnements : `local`, `production`
 - URL de production : `https://gelyos.fr/`
 - Hébergeur / plateforme de déploiement : `Cloudflare`
-- Branche de migration recommandée : `nextjs-migration`
+- Branche active recommandée : `main`
 
 ---
 
@@ -150,7 +159,7 @@ Ne jamais inventer une information absente du projet.
 
 ## 6) Migration React vers Next.js
 
-La migration React vers Next.js doit être progressive et réalisée dans le même repository.
+La migration React vers Next.js est terminée. Cette section ne s'applique que si une nouvelle migration est explicitement demandée.
 
 ### 6.1 Règles de migration
 
@@ -161,8 +170,8 @@ La migration React vers Next.js doit être progressive et réalisée dans le mê
 - Ne pas modifier le design pendant la migration sauf demande explicite.
 - Migrer page par page ou composant par composant.
 - Ne pas supprimer l'ancien code tant que l'équivalent Next.js n'est pas validé.
-- Lire `MIGRATION_PLAN.md` avant toute tâche liée à la migration.
-- Mettre à jour `MIGRATION_LOG.md` après chaque étape significative.
+- Les anciens documents de migration sont archivés dans `docs/migration/`.
+- Ne les utiliser comme consigne active que sur demande explicite.
 - Après chaque étape, lancer les vérifications disponibles :
   - lint ;
   - typecheck ;
@@ -233,7 +242,7 @@ Créer du nouveau uniquement si l'existant ne couvre pas proprement le besoin.
 
 ### 8.1 Arborescence cible recommandée
 
-Adapter à l'existant si le projet a déjà une convention claire, mais privilégier cette organisation pendant la migration.
+Adapter à l'existant si le projet a déjà une convention claire, mais privilégier cette organisation dans le projet courant.
 
 #### Routing Next.js
 
@@ -329,7 +338,7 @@ Adapter à l'existant si le projet a déjà une convention claire, mais privilé
 - Éviter de recréer localement des variantes si une primitive partagée existe.
 - Avant de créer une structure UI locale, vérifier s'il existe déjà un composant partagé équivalent ou proche.
 - Ne pas recréer localement des styles de heading si `Heading` existe.
-- Ne pas introduire un nouveau système visuel pendant la migration.
+- Ne pas introduire un nouveau système visuel sans demande explicite.
 - Ne pas modifier l'identité visuelle sans demande explicite.
 
 ---
@@ -447,7 +456,7 @@ Ne pas en ajouter sur les composants ultra simples ou les helpers évidents.
 
 ## 15) Journal des décisions
 
-Ajouter une ligne à chaque décision structurante dans `MIGRATION_LOG.md` ou dans le fichier de décision dédié si le projet en possède un.
+Ajouter une ligne à chaque décision structurante dans le support actif demandé (PR, ticket, fichier de décision dédié). Les journaux de migration sont archivés dans `docs/migration/`.
 
 Format recommandé :
 
