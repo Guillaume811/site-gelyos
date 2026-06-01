@@ -1,37 +1,149 @@
 .container {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.78fr) minmax(520px, 1.42fr);
+  grid-template-areas:
+    'left right'
+    'button right';
+  align-items: start;
+  column-gap: 3rem;
+  row-gap: 1.25rem;
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
 
+  .left {
+    grid-area: left;
     display: grid;
-    gap: 5rem;
+    gap: 0.65rem;
+    text-align: left;
+    justify-items: start;
+  }
+
+  .subtitle,
+  .title,
+  .description {
+    margin: 0;
+    text-align: left;
+  }
+
+  .description {
+    color: $color-text;
+    max-width: 56ch;
+  }
+
+  .buttonWrap {
+    grid-area: button;
+    justify-self: start;
     width: 100%;
+  }
 
-    @media (max-width: 768px) {
-      gap: 1.5rem;
-    }
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: none;
+    text-decoration: none;
+    text-align: center;
+  }
 
-    .grid {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 3rem;
-        margin: 0;
-        padding: 1rem;
-        list-style: none;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scroll-snap-type: x mandatory;
+  .grid {
+    grid-area: right;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 
   .cell {
-    max-width: 250px!important;
-    border: 2px solid $color-primary;
-    border-radius: 20px;
-    @include box-shadow($color-primary);
-
+    margin: 0;
   }
 
-  .avantageCard {
-    /* Variante visuelle propre aux avantages (carte “tuile”) */
-    /* ex: supprimer la pseudo-ligne verticale, ajouter une ombre subtile */
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  .card {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 0.85rem;
+    align-items: center;
+    padding: 1rem;
+    height: 100%;
+    border-style: solid;
+    border-color: $color-primary;
+    border-width: 0;
+  }
+
+  .cell:nth-child(odd) .card {
+    border-right-width: 1px;
+  }
+
+  .card {
+    border-left-width: 1px;
+  }
+
+  .cell:nth-child(1) .card,
+  .cell:nth-child(2) .card {
+    border-bottom-width: 1px;
+  }
+
+  .cell:nth-child(3) .card,
+  .cell:nth-child(4) .card {
+    border-top-width: 1px;
+  }
+
+  .icon {
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icon img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .content {
+    display: grid;
+    gap: 0.35rem;
+    text-align: left;
+  }
+
+  .cardTitle,
+  .cardDescription {
+    margin: 0;
+    text-align: left;
+  }
+
+  .cardDescription {
+    color: $color-text;
+  }
+
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'left'
+      'right'
+      'button';
+    row-gap: 2rem;
+    column-gap: 0;
+
+    .grid {
+      grid-template-columns: 1fr;
+      gap: 1.15rem;
+    }
+
+    .card {
+      border-width: 1px;
+      border-radius: 14px;
+    }
+
+    .buttonWrap {
+      justify-self: start;
+      margin-top: 0.25rem;
+    }
   }
 }

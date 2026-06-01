@@ -110,8 +110,11 @@ export interface DivProcess {
 }
 
 export interface DivAvantages {
+    subtitle: RichText
     title: RichText
+    description: RichText
     cards: ProcessCard[]
+    firstButton: ButtonContent
 }
 
 export interface ProjectPreview {

@@ -5,7 +5,9 @@ import iconAccompagnement from '@/assets/icons/iconAccompagnement.webp'
 import iconFiabilite from '@/assets/icons/iconFiabilite.webp'
 
 export const divAvantagesContent: DivAvantages = {
-    title: 'Les avantages d\'un process personnalisé',
+    subtitle: 'Vos Avantages',
+    title: 'Ce que vous gagnez avec un accompagnement sur mesure',
+    description: 'Un process personnalisé, c\'est l\'assurence d\'un site web performant, aligné avec vos objectifs et conçu pour durer.',
     cards: [
         {
             id: 'personnalisation',
@@ -13,8 +15,8 @@ export const divAvantagesContent: DivAvantages = {
                 src: iconPersonnalise,
                 alt: 'Icône de personnalisation'
             },
-            title: 'Un site internet 100% personnalisé :',
-            description: 'pas de template, chaque projet reflète votre identité.'
+            title: 'Une identité unique',
+            description: 'Pas de template générique : votre site reflête votre marque, vos valeurs et votre différence.'
         },
         {
             id: 'performance',
@@ -22,8 +24,8 @@ export const divAvantagesContent: DivAvantages = {
                 src: iconPerformance,
                 alt: 'Icône de performance'
             },
-            title: 'Performance et visibilité :',
-            description: 'SEO intégrées, code optimisé, rapide et pensé pour Google.'
+            title: 'Performance et visibilité',
+            description: 'Un site rapide, optimisé SEO et techniquement solide pour mieux vous rendre visible.'
         },
         {
             id: 'accompagnement',
@@ -31,8 +33,8 @@ export const divAvantagesContent: DivAvantages = {
                 src: iconAccompagnement,
                 alt: 'Icône d\'accompagnement'
             },
-            title: 'Un accompagnement humain et réactif :',
-            description: 'un interlocuteur unique à chaque étape.'
+            title: 'Un accompagnement humain',
+            description: 'Un interlocuteur dédié, disponible et à l\'écoute tout au long de votre projet.'
         },
         {
             id: 'fiabilite',
@@ -40,8 +42,12 @@ export const divAvantagesContent: DivAvantages = {
                 src: iconFiabilite,
                 alt: 'Icône de fiabilité'
             },
-            title: 'Fiabilité et évolutivité :',
-            description: 'un développement web sur mesure pensé pour durer.'
+            title: 'Fiabilité et évolutivité',
+            description: 'Un site pensé pour durer et évoluer facilement selon vos besoins et votre croissance.'
         }
-    ]
+    ],
+    firstButton: {
+        label: 'Découvrez nos offres',
+        to: '/services'
+    }
 }
