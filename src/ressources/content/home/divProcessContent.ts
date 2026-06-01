@@ -1,12 +1,14 @@
 import type { DivProcess } from "@/ressources/content/contentTypes";
-import iconAnalyse from '@/assets/icons/iconAnalyse.webp'
-import iconConception from '@/assets/icons/iconConception.webp'
-import iconDev from '@/assets/icons/iconDev.webp'
-import iconTest from '@/assets/icons/iconTest.webp'
-import iconSuivi from '@/assets/icons/iconSuivi.webp'
+import iconAnalyse from '@/assets/icons/iconAnalyse3.webp'
+import iconConception from '@/assets/icons/iconConception3.webp'
+import iconDev from '@/assets/icons/iconDev3.webp'
+import iconTest from '@/assets/icons/iconTest3.webp'
+import iconSuivi from '@/assets/icons/iconSuivi3.webp'
 
 export const divProcessContent: DivProcess = {
+    subtitle: 'Notre méthode',
     title: 'Un process clair pour un site web sur mesure réussi',
+    description: 'De l\'analyse de vos besoins à la mise en ligne et au suivi, nous vous accompagnons à chaque étape de votre projet.',
     cards: [
         {
             id: 'analyse',
@@ -14,8 +16,9 @@ export const divProcessContent: DivProcess = {
                 src: iconAnalyse,
                 alt: 'Icône d\'analyse'
             },
+            number: '01',
             title: 'Analyse et cadrage',
-            description: 'Compréhension de vos besoins et objectifs.'
+            description: 'Nous comprenons vos besoins, vos objectifs et votre public cible pour poser des bases solides.'
         },
         {
             id: 'conception',
@@ -23,8 +26,9 @@ export const divProcessContent: DivProcess = {
                 src: iconConception,
                 alt: 'Icône de conception'
             },
+            number: '02',
             title: 'Conception',
-            description: 'Structure et design adaptés à votre marque.'
+            description: 'Nous concevons une structure et un design adaptés à votre marque et à vos utilisateurs.'
         },
         {
             id: 'developpement',
@@ -32,8 +36,9 @@ export const divProcessContent: DivProcess = {
                 src: iconDev,
                 alt: 'Icône de développement'
             },
+            number: '03',
             title: 'Développement',
-            description: 'Un code robuste et évolutif'
+            description: 'Nous développons un site robuste, sécurisé et évolutif, avec un code propre.'
         },
         {
             id: 'test',
@@ -41,8 +46,9 @@ export const divProcessContent: DivProcess = {
                 src: iconTest,
                 alt: 'Icône de test'
             },
+            number: '04',
             title: 'Tests et mise en ligne',
-            description: 'Validation qualité et déploiement.'
+            description: 'Nous testons chaque détail avant un déploiement sécurisé et optimisé.'
         },
         {
             id: 'suivi',
@@ -50,8 +56,9 @@ export const divProcessContent: DivProcess = {
                 src: iconSuivi,
                 alt: 'Icône de suivi'
             },
+            number: '05',
             title: 'Suivi et maintenance',
-            description: 'Accompagnement et évolutions dans le temps.'
+            description: 'Nous restons à vos cötés pour assurer la performance et faire évoluer votre site.'
         }
     ]
 }

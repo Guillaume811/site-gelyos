@@ -6,9 +6,6 @@
   gap: 1rem;
   padding: 1rem;
   max-width: 200px;
-  //border-radius: 0.75rem;
-  //border: 1px solid rgba(0, 0, 0, 0.08);
-  //background: #fff;
 
   .icon {
     width: 48px;
@@ -29,19 +26,141 @@
   .content {
     display: grid;
     gap: 0.25rem;
+  }
 
-    /*.title {
-      margin: 0;
-      font-size: 1rem;
-      line-height: 1.25rem;
-      font-weight: 600;
-    }*/
+  .number,
+  .title,
+  .description {
+    margin: 0;
+  }
 
+  .description {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: $color-text;
+  }
+}
+
+.process {
+  --process-desktop-gap: 1.5rem;
+  --process-mobile-icon-col: 56px;
+  --process-mobile-col-gap: 0.85rem;
+
+  position: relative;
+  width: min(220px, 100%);
+  max-width: 220px;
+  padding: 0;
+  gap: 0;
+
+  .icon {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 56px;
+    height: 56px;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 999px;
+    padding: 0.35rem;
+    z-index: 2;
+  }
+
+  .content {
+    width: 100%;
+    min-height: 205px;
+    align-content: start;
+    gap: 0.5rem;
+    padding: 2.2rem 1rem 1rem;
+    border: 2px solid $color-primary;
+    border-radius: 18px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .number {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: $color-primary;
+    letter-spacing: 0.08em;
+  }
+
+  .title,
+  .description {
+    text-align: center;
+  }
+
+  .description {
+    font-size: 0.9rem;
+  }
+
+  .connector {
+    position: absolute;
+    top: 50%;
+    left: calc(100% + (var(--process-desktop-gap) / 2));
+    width: 0.8rem;
+    height: 0.8rem;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .connector::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-top: 3px solid $color-secondary;
+    border-right: 3px solid $color-secondary;
+    border-radius: 3px;
+    transform: rotate(45deg);
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: none;
+    display: grid;
+    grid-template-columns: var(--process-mobile-icon-col) 1fr;
+    column-gap: var(--process-mobile-col-gap);
+    align-items: start;
+    margin-block: 0.75rem;
+    padding-bottom: 0.9rem;
+
+    .icon {
+      position: relative;
+      top: 0;
+      left: 0;
+      transform: none;
+      background: transparent;
+      padding: 0;
+      height: 100%;
+      margin-top: 0;
+      margin-inline: auto;
+      align-self: stretch;
+      justify-self: center;
+    }
+
+    .content {
+      min-height: 0;
+      padding: 1rem;
+      text-align: left;
+    }
+
+    .number,
+    .title,
     .description {
-      margin: 0;
-      font-size: 0.95rem;
-      line-height: 1.4;
-      color: $color-text;
+      text-align: left;
+    }
+
+    .connector {
+      top: calc(100% + 0.25rem);
+      left: calc(
+        var(--process-mobile-icon-col) +
+        var(--process-mobile-col-gap) +
+        ((100% - var(--process-mobile-icon-col) - var(--process-mobile-col-gap)) / 2)
+      );
+      transform: translate(-50%, -50%);
+    }
+
+    .connector::after {
+      transform: rotate(135deg);
     }
   }
 }

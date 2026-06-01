@@ -97,12 +97,15 @@ export interface ServicesPreview {
 export interface ProcessCard {
     id: RichText
     icon: ImageContent
+    number?: RichText
     title: RichText
     description: RichText
 }
 
 export interface DivProcess {
+    subtitle: RichText
     title: RichText
+    description: RichText
     cards: ProcessCard[]
 }
 

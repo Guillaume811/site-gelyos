@@ -13,11 +13,20 @@ export function DivProcess({ data, className }: DivProcessProps) {
 
   return (
     <div className={containerClass}>
-        <Heading level={2} className={styles.title}>{data.title}</Heading>
+        <div className={styles.headingBlock}>
+          <Heading level={3} className={styles.subtitle}>{data.subtitle}</Heading>
+          <Heading level={2} className={styles.title}>{data.title}</Heading>
+          <p className={styles.description}>{data.description}</p>
+        </div>
         <ul className={styles.list} role="list">
-            {data.cards.map((card: ProcessCardContent) => (
+            {data.cards.map((card: ProcessCardContent, index) => (
             <li key={card.id} className={styles.item}>
-                <CardProcess card={card} className={styles.processCard} />
+                <CardProcess
+                  card={card}
+                  className={styles.processCard}
+                  process
+                  showConnector={index < data.cards.length - 1}
+                />
             </li>
             ))}
         </ul>
