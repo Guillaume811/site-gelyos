@@ -1,18 +1,23 @@
 .container {
-  display: grid;
-  grid-template-columns: minmax(250px, 0.78fr) minmax(520px, 1.42fr);
-  grid-template-areas:
-    'left right'
-    'button right';
-  align-items: start;
-  column-gap: 3rem;
-  row-gap: 1.25rem;
   width: 100%;
   max-width: 1200px;
   margin-inline: auto;
 
+  .content {
+    display: grid;
+    gap: 5rem;
+    width: 100%;
+  }
+
+  .top {
+    display: grid;
+    grid-template-columns: minmax(250px, 0.78fr) minmax(520px, 1.42fr);
+    align-items: start;
+    column-gap: 3rem;
+    width: 100%;
+  }
+
   .left {
-    grid-area: left;
     display: grid;
     gap: 0.65rem;
     text-align: left;
@@ -36,8 +41,8 @@
   }
 
   .buttonWrap {
-    grid-area: button;
-    justify-self: start;
+    display: flex;
+    justify-content: center;
     width: 100%;
   }
 
@@ -45,14 +50,13 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    max-width: none;
+    width: fit-content;
+    max-width: max-content;
     text-decoration: none;
     text-align: center;
   }
 
   .grid {
-    grid-area: right;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0;
@@ -110,7 +114,7 @@
     object-fit: contain;
   }
 
-  .content {
+  .cardContent {
     display: grid;
     gap: 0.35rem;
     text-align: left;
@@ -127,13 +131,15 @@
   }
 
   @media (max-width: 992px) {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      'left'
-      'right'
-      'button';
-    row-gap: 2rem;
-    column-gap: 0;
+    .content {
+      gap: 2rem;
+    }
+
+    .top {
+      grid-template-columns: 1fr;
+      row-gap: 2rem;
+      column-gap: 0;
+    }
 
     .grid {
       grid-template-columns: 1fr;
@@ -146,7 +152,7 @@
     }
 
     .buttonWrap {
-      justify-self: start;
+      justify-self: stretch;
       margin-top: 0.25rem;
     }
   }
