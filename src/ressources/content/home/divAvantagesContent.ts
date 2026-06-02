@@ -1,8 +1,8 @@
 import type { DivAvantages } from "@/ressources/content/contentTypes";
-import iconPersonnalise from '@/assets/icons/iconPersonnalise.webp'
-import iconPerformance from '@/assets/icons/iconPerformance.webp'
-import iconAccompagnement from '@/assets/icons/iconAccompagnement.webp'
-import iconFiabilite from '@/assets/icons/iconFiabilite.webp'
+import iconPersonnalise from '@/assets/icons/iconPersonnalise3.webp'
+import iconPerformance from '@/assets/icons/iconPerformance3.webp'
+import iconAccompagnement from '@/assets/icons/iconAccompagnement3.webp'
+import iconFiabilite from '@/assets/icons/iconFiabilite3.webp'
 
 export const divAvantagesContent: DivAvantages = {
     subtitle: 'Vos Avantages',
