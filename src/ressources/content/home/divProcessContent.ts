@@ -1,9 +1,9 @@
 import type { DivProcess } from "@/ressources/content/contentTypes";
-import iconAnalyse from '@/assets/icons/iconAnalyse3.webp'
-import iconConception from '@/assets/icons/iconConception3.webp'
-import iconDev from '@/assets/icons/iconDev3.webp'
-import iconTest from '@/assets/icons/iconTest3.webp'
-import iconSuivi from '@/assets/icons/iconSuivi3.webp'
+import iconAnalyse from '@/assets/icons/iconAnalyse.webp'
+import iconConception from '@/assets/icons/iconConception.webp'
+import iconDev from '@/assets/icons/iconDev.webp'
+import iconTest from '@/assets/icons/iconTest.webp'
+import iconSuivi from '@/assets/icons/iconSuivi.webp'
 
 export const divProcessContent: DivProcess = {
     subtitle: 'Notre méthode',
