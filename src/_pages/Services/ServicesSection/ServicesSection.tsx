@@ -1,13 +1,14 @@
 /* Component ServicesSection
  * Render logic:
- * - Displays one service block with inline-typed text, accordion details and image.
+ * - Displays one service offer with structured objective, audience and pricing content.
  * - Supports left/right alternation using the reverse prop from parent page.
  *
  * View TSX:
  * - Uses shared TwoColumnSection to preserve existing responsive structure.
- * - Keeps semantic heading and lazy-loaded image for each service section.
+ * - Keeps semantic text, accessible action link and lazy-loaded service image.
  */
-import Accordion from '@/components/Accordion/Accordion'
+import Link from 'next/link'
+import buttonStyles from '@/components/Buttons/Button.module.scss'
 import Heading from '@/components/Heading/Heading'
 import TwoColumnSection from '@/components/TwoColumnSection/TwoColumnSection'
 import { getAssetSrc } from '@/lib/getAssetSrc'
@@ -53,10 +54,13 @@ function renderInlineContent(content: InlineContent) {
 }
 
 export default function ServicesSection({
+  icon,
   title,
-  text,
+  textObjectif,
+  textForWhom,
+  price,
+  secondButton,
   image,
-  ServiceAccordionItems,
   reverse = false,
   className,
 }: Props) {
@@ -66,9 +70,46 @@ export default function ServicesSection({
       className={className}
       left={
         <div className={styles.left}>
-          <Heading level={2}>{title}</Heading>
-          <div className={styles.text}>{renderInlineContent(text)}</div>
-          <Accordion items={ServiceAccordionItems} />
+          <div className={styles.header}>
+            {icon && (
+              <div className={styles.icon} aria-hidden="true">
+                <img src={getAssetSrc(icon.src)} alt="" />
+              </div>
+            )}
+
+            <Heading level={2} className={styles.title}>
+              {title}
+            </Heading>
+          </div>
+
+          <div className={styles.objectif}>
+            {textObjectif.map((content, index) => (
+              <div key={`objectif-${index}`} className={styles.textGroup}>
+                <p className={styles.label}>{content.subtitle}</p>
+                <div className={styles.description}>{renderInlineContent(content.description)}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className={styles.forWhom}>
+            {textForWhom.map((content, index) => (
+              <div key={`for-whom-${index}`} className={styles.textGroup}>
+                <p className={styles.label}>{content.subtitle}</p>
+                <div className={styles.description}>{renderInlineContent(content.description)}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className={styles.footer}>
+            {price && <div className={styles.price}>{renderInlineContent(price)}</div>}
+
+            <Link
+              href={secondButton.to as string}
+              className={`${buttonStyles.btn} ${buttonStyles.secondary} ${styles.button}`}
+            >
+              {secondButton.label}
+            </Link>
+          </div>
         </div>
       }
       right={
