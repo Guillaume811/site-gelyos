@@ -82,12 +82,15 @@ export interface Content {
 export interface ServiceCard {
     id: RichText
     icon: ImageContent
+    subtitle?: RichText
     title: RichText
     description: InlineContent
+    price?: InlineContent
     secondButton: ButtonContent
 }
 
 export interface ServicesPreview {
+    subtitle: RichText
     title: RichText
     text: InlineContent
     firstButton: ButtonContent

@@ -1,10 +1,12 @@
 import type { ServicesPreview } from "@/ressources/content/contentTypes";
-import iconWeb from '@/assets/icons/iconWeb.webp'
-import iconApp from '@/assets/icons/iconApp.webp'
+import iconLandingPage from '@/assets/icons/iconLandingPage.webp'
+import iconSiteVitrine from '@/assets/icons/iconSiteVitrine.webp'
+import iconEcommerce from '@/assets/icons/iconEcommerce.webp'
 import iconMaintenance from '@/assets/icons/iconMaintenance.webp'
 import iconSeo from '@/assets/icons/iconSeo.webp'
 
 export const servicesPreviewContent: ServicesPreview = {
+    subtitle: 'Nos Services',
     title: 'Service de développement web sur mesure',
     text: [
         { type: 'text', text: 'GELYOS vous accompagne dans la ' },
@@ -18,57 +20,80 @@ export const servicesPreviewContent: ServicesPreview = {
         { type: 'text', text: ' pour garantir performance et visibilité.' },
     ],
     firstButton: {
-        label: 'Trouver la solution adaptée à mon projet',
+        label: 'Explorer nos services',
         to: '/services',
     },
+    // TODO: remplacer les lien par les lien des page correspondantes une fois créer
     cards: [
         {
-           id: 'web',
-           icon: { src: iconWeb, alt: 'Icône développement web' },
-           title: 'Création et refonte de sites internet sur mesure - Lancez votre projet dès aujourd\'hui',
+           id: 'landingPage',
+           icon: { src: iconLandingPage, alt: 'Icône de landing page' },
+           subtitle: 'Landing Page',
+           title: 'Une page pensée pour convaincre',
            description: [
-               { type: 'text', text: 'Du ' },
-               { type: 'strong', text: 'site vitrine sur mesure' },
-               { type: 'text', text: ' au ' },
-               { type: 'strong', text: 'site e-commerce personnalisé' },
-               { type: 'text', text: ', nous vous développons des solutions uniques, modernes et évolutives, adaptées à vos objectifs et à votre image de marque.' },
+               { type: 'text', text: 'Création de landing page pour présenter votre activité, mettre en avant votre offre et générer plus de demandes de contact.' },
            ],
-           secondButton: { label: 'Découvrir', to: '/services' }
+           price: [
+               { type: 'text', text: 'À partir de ' },
+               { type: 'accent', text: '590 € HT' },
+           ],
+           secondButton: { label: 'Découvrir l\'offre', to: '/services' }
         },
         {
-           id: 'app',
-           icon: { src: iconApp, alt: 'Icône de smartphone' },
-           title: 'Application web personnalisées - Transformez vos idées en réalité',
+           id: 'siteVitrine',
+           icon: { src: iconSiteVitrine, alt: 'Icône de site vitrine' },
+           subtitle: 'Site Vitrine',
+           title: 'Un site clair pour valoriser votre activité',
            description: [
-               { type: 'text', text: 'Nous vous concevons des ' },
-               { type: 'strong', text: 'applications web sur mesure' },
-               { type: 'text', text: ' performantes et sécurisées, pensées pour répondre à vos besoins spécifiques et améliorer vos processus métiers.' },
+               { type: 'text', text: 'Création de site vitrine pour présenter votre entreprise, renforcer votre crédibilité et faciliter la prise de contact.' },
            ],
-           secondButton: { label: 'Découvrir', to: '/services' }
+           price: [
+               { type: 'text', text: 'À partir de ' },
+               { type: 'accent', text: '990 € HT' },
+           ],
+           secondButton: { label: 'Découvrir l\'offre', to: '/services' }
+        },
+        {
+           id: 'Ecommerce',
+           icon: { src: iconEcommerce, alt: 'Icône d\'e-commerce' },
+           subtitle: 'Site E-commerce',
+           title: 'Développez vos ventes avec une boutique en ligne',
+           description: [
+               { type: 'text', text: 'Création de site e-commerce pour vendre vos produits en ligne, offrir une expérience d’achat fluide et développer votre activité.' },
+           ],
+           price: [
+               { type: 'text', text: 'À partir de ' },
+               { type: 'accent', text: '1590 € HT' },
+           ],
+           secondButton: { label: 'Découvrir l\'offre', to: '/services' }
         },
         {
            id: 'maintenance',
            icon: { src: iconMaintenance, alt: 'Icône de maintenance' },
-           title: 'Maintenance et support technique - Assurez sécurité et performance',
+           subtitle: 'Maintenance',
+           title: 'Un site suivi, sécurisé et à jour',
            description: [
-               { type: 'text', text: 'Un site doit rester rapide, sécurisé et à jour. Nous vous proposons la ' },
-               { type: 'strong', text: 'maintenance de site internet' },
-               { type: 'text', text: ' et un ' },
-               { type: 'strong', text: 'support technique continu' },
-               { type: 'text', text: ' pour assurer la fiabilité et l\'évolution de vos projets web.' },
+               { type: 'text', text: 'Maintenance de site web pour assurer les mises à jour, la sécurité, les sauvegardes et le bon fonctionnement de votre site.' },
            ],
-           secondButton: { label: 'Découvrir', to: '/services' }
+           price: [
+               { type: 'text', text: 'À partir de ' },
+               { type: 'accent', text: '49 € HT / mois' },
+           ],
+           secondButton: { label: 'Découvrir l\'offre', to: '/services' }
         },
         {
            id: 'seo',
            icon: { src: iconSeo, alt: 'Icône SEO' },
-           title: 'Optimisation SEO - Attirez plus de clients grâce à Google',
+           subtitle: 'SEO - Référencement',
+           title: 'Gagnez en visibilité sur Google',
            description: [
-               { type: 'text', text: 'Améliorez votre visibilité grâce à une ' },
-               { type: 'strong', text: 'optimisation SEO' },
-               { type: 'text', text: ' complète : structure technique, vitesse, contenus optimisés et suivi des performances pour attirer plus de clients.' },
+               { type: 'text', text: 'SEO pour améliorer le référencement naturel de votre site, renforcer votre présence en ligne et attirer plus de contacts qualifiés.' },
            ],
-           secondButton: { label: 'Découvrir', to: '/services' }
+           price: [
+               { type: 'text', text: 'À partir de ' },
+               { type: 'accent', text: '190 € HT / mois' },
+           ],
+           secondButton: { label: 'Découvrir l\'offre', to: '/services' }
         }
     ]
 
