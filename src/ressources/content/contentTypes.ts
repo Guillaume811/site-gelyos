@@ -151,6 +151,59 @@ export interface ServicePageContent {
     services: ServiceSectionContent[]
 }
 
+// ======== Service detail page content types ========
+
+export interface ProfitContent {
+    title: RichText
+    listProfit: InlineContent[]
+}
+
+export interface FaqContent {
+    title: RichText
+    faqItems: [
+        AccordionItemContent,
+        AccordionItemContent,
+        AccordionItemContent,
+    ]
+}
+
+export interface ItemPackContent {
+    icon: ImageContent
+    text: InlineContent
+}
+
+export interface CardPackItem {
+    icon: ImageContent
+    title: RichText
+    description: InlineContent
+    price: InlineContent
+    itemPackContent: ItemPackContent[]
+    secondButton: ButtonContent
+    text: InlineContent
+}
+
+export interface PacksContent {
+    subtitle: RichText
+    title: RichText
+    description: InlineContent
+    cardPackItem: CardPackItem[]
+}
+
+export interface SuggestionPackContent {
+    icon: ImageContent
+    subtitle: RichText
+    description: InlineContent
+}
+
+export interface DetailsPackContent {
+    icon: ImageContent
+    title: RichText
+    subtitle: RichText
+    itemPackContent: ItemPackContent[]
+    suggestionPackContent: SuggestionPackContent[]
+    firstButton: ButtonContent
+}
+
 // ======== About page content types ========
 export interface AboutSectionContent {
     id: RichText
