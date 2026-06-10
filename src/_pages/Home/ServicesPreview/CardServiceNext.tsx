@@ -45,30 +45,53 @@ function renderInlineContent(content: InlineContent) {
   )
 }
 
+/* Component CardServiceNext
+ * Render logic:
+ * - Displays the existing service content without changing its values.
+ * - Keeps optional subtitle and price blocks compatible with older card data.
+ *
+ * View TSX:
+ * - Groups headings and icon in the card header.
+ * - Groups price and service link in the card footer.
+ */
 export default function CardServiceNext({ data, className }: Props) {
-  const { icon, title, description, secondButton } = data
+  const { icon, subtitle, title, description, price, secondButton } = data
 
   return (
     <div className={`${cardStyles.card} ${className ?? ''}`}>
-      {icon && (
-        <div className={cardStyles.icon} aria-hidden="true">
-          <img src={getAssetSrc(icon.src)} alt={icon.alt} />
-        </div>
-      )}
+      <div className={cardStyles.header}>
+        <div className={cardStyles.titles}>
+          {subtitle && (
+            <Heading level={4} className={cardStyles.subtitle}>
+              {subtitle}
+            </Heading>
+          )}
 
-      <Heading level={3} className={cardStyles.title}>
-        {title}
-      </Heading>
+          <Heading level={3} className={cardStyles.title}>
+            {title}
+          </Heading>
+        </div>
+
+        {icon && (
+          <div className={cardStyles.icon} aria-hidden="true">
+            <img src={getAssetSrc(icon.src)} alt={icon.alt} />
+          </div>
+        )}
+      </div>
 
       <div className={cardStyles.text}>{renderInlineContent(description)}</div>
 
-      <Link
-        href={secondButton.to as string}
-        aria-label={`${secondButton.label} — ${title}`}
-        className={`${buttonStyles.btn} ${buttonStyles.secondary} ${cardStyles.button}`}
-      >
-        {secondButton.label}
-      </Link>
+      <div className={cardStyles.footer}>
+        {price && <div className={cardStyles.price}>{renderInlineContent(price)}</div>}
+
+        <Link
+          href={secondButton.to as string}
+          aria-label={`${secondButton.label} — ${title}`}
+          className={`${buttonStyles.btn} ${buttonStyles.secondary} ${cardStyles.button}`}
+        >
+          {secondButton.label}
+        </Link>
+      </div>
     </div>
   )
 }
