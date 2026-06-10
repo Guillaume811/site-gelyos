@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next'
+import { serviceRouteList } from '@/ressources/routes'
 
 const SITE_URL = 'https://gelyos.fr'
 
@@ -6,6 +7,12 @@ export const dynamic = 'force-static'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()
+  const servicePages: MetadataRoute.Sitemap = serviceRouteList.map(route => ({
+    url: `${SITE_URL}${route.path}`,
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  }))
 
   return [
     {
@@ -38,5 +45,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    ...servicePages,
   ]
 }

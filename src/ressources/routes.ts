@@ -8,12 +8,43 @@ export const routes = [
   { name: 'mentionsLegales', path: '/mentions-legales',label: 'Mentions légales' }
 ] as const
 
+export const serviceRoutes = {
+  landingPage: {
+    slug: 'landing-page',
+    path: '/services/landing-page',
+    label: 'landing page',
+  },
+  siteVitrine: {
+    slug: 'site-vitrine',
+    path: '/services/site-vitrine',
+    label: 'site vitrine',
+  },
+  siteEcommerce: {
+    slug: 'site-ecommerce',
+    path: '/services/site-ecommerce',
+    label: 'site e-commerce',
+  },
+  maintenance: {
+    slug: 'maintenance',
+    path: '/services/maintenance',
+    label: 'maintenance',
+  },
+  seo: {
+    slug: 'seo',
+    path: '/services/seo',
+    label: 'SEO',
+  },
+} as const
+
 // One element type from the `routes` array (union of all items)
 export type RouteItem = typeof routes[number]
+export type ServiceRouteItem = typeof serviceRoutes[keyof typeof serviceRoutes]
 // Union of all possible `name` values from RouteItem
 export type RouteName = RouteItem['name']
 // Union of all possible `path` values from RouteItem
-export type RoutePath = RouteItem['path']
+export type RoutePath = RouteItem['path'] | ServiceRouteItem['path']
+
+export const serviceRouteList: ServiceRouteItem[] = Object.values(serviceRoutes)
 
 // Turn the routes array into an object so we can get a route directly by its name without looping (access O(1))
 const routesMap: Record<RouteName, RouteItem> = routes.reduce((acc, r) => {
@@ -54,5 +85,9 @@ export function getMainNavRoutes(): RouteItem[] {
 
 // Check if a string is a known route path (narrows type to RoutePath)
 export function isRoutePath(value: string): value is RoutePath {
-  return routes.some(r => r.path === value)
+  return routes.some(r => r.path === value) || serviceRouteList.some(r => r.path === value)
+}
+
+export function getServiceRoute(slug: string): ServiceRouteItem | undefined {
+  return serviceRouteList.find(route => route.slug === slug)
 }

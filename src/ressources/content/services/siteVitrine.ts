@@ -1,8 +1,8 @@
 import type { ServiceSectionContent } from "@/ressources/content/contentTypes";
+import { serviceRoutes } from '@/ressources/routes'
 import pictureSiteVitrine from '@/assets/pictures/picture-siteVitrine.webp'
 import iconSiteVitrine from '@/assets/icons/iconSiteVitrine.webp'
 
-// TODO: remplacer le lien par la page correspondante une fois créée
 export const siteVitrine: ServiceSectionContent = {
     id: 'site-vitrine',
     icon: {
@@ -32,7 +32,7 @@ export const siteVitrine: ServiceSectionContent = {
     ],
     secondButton: {
         label: 'Découvrir l\'offre',
-        to: '/services',
+        to: serviceRoutes.siteVitrine.path,
     },
     image: {
         src: pictureSiteVitrine,

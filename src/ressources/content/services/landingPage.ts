@@ -1,8 +1,8 @@
 import type { ServiceSectionContent } from "@/ressources/content/contentTypes";
+import { serviceRoutes } from '@/ressources/routes'
 import iconLandingPage from '@/assets/icons/iconLandingPage.webp'
 import pictureLandingPage from '@/assets/pictures/picture-landingPage.webp'
 
-// TODO: remplacer le lien par la page correspondante une fois créée
 export const landingPage: ServiceSectionContent = {
     id: 'landing-page',
     icon: {
@@ -32,7 +32,7 @@ export const landingPage: ServiceSectionContent = {
     ],
     secondButton: {
         label: 'Découvrir l\'offre',
-        to: '/services',
+        to: serviceRoutes.landingPage.path,
     },
     image: {
         src: pictureLandingPage,

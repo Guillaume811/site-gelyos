@@ -1,4 +1,5 @@
 import type { ServicesPreview } from "@/ressources/content/contentTypes";
+import { serviceRoutes } from '@/ressources/routes'
 import iconLandingPage from '@/assets/icons/iconLandingPage.webp'
 import iconSiteVitrine from '@/assets/icons/iconSiteVitrine.webp'
 import iconEcommerce from '@/assets/icons/iconEcommerce.webp'
@@ -23,7 +24,6 @@ export const servicesPreviewContent: ServicesPreview = {
         label: 'Explorer nos services',
         to: '/services',
     },
-    // TODO: remplacer les lien par les lien des page correspondantes une fois créer
     cards: [
         {
            id: 'landingPage',
@@ -37,7 +37,7 @@ export const servicesPreviewContent: ServicesPreview = {
                { type: 'text', text: 'À partir de ' },
                { type: 'accent', text: '590 € HT' },
            ],
-           secondButton: { label: 'Découvrir l\'offre', to: '/services' }
+           secondButton: { label: 'Découvrir l\'offre', to: serviceRoutes.landingPage.path }
         },
         {
            id: 'siteVitrine',
@@ -51,7 +51,7 @@ export const servicesPreviewContent: ServicesPreview = {
                { type: 'text', text: 'À partir de ' },
                { type: 'accent', text: '990 € HT' },
            ],
-           secondButton: { label: 'Découvrir l\'offre', to: '/services' }
+           secondButton: { label: 'Découvrir l\'offre', to: serviceRoutes.siteVitrine.path }
         },
         {
            id: 'Ecommerce',
@@ -65,7 +65,7 @@ export const servicesPreviewContent: ServicesPreview = {
                { type: 'text', text: 'À partir de ' },
                { type: 'accent', text: '1590 € HT' },
            ],
-           secondButton: { label: 'Découvrir l\'offre', to: '/services' }
+           secondButton: { label: 'Découvrir l\'offre', to: serviceRoutes.siteEcommerce.path }
         },
         {
            id: 'maintenance',
@@ -79,7 +79,7 @@ export const servicesPreviewContent: ServicesPreview = {
                { type: 'text', text: 'À partir de ' },
                { type: 'accent', text: '49 € HT / mois' },
            ],
-           secondButton: { label: 'Découvrir l\'offre', to: '/services' }
+           secondButton: { label: 'Découvrir l\'offre', to: serviceRoutes.maintenance.path }
         },
         {
            id: 'seo',
@@ -93,7 +93,7 @@ export const servicesPreviewContent: ServicesPreview = {
                { type: 'text', text: 'À partir de ' },
                { type: 'accent', text: '190 € HT / mois' },
            ],
-           secondButton: { label: 'Découvrir l\'offre', to: '/services' }
+           secondButton: { label: 'Découvrir l\'offre', to: serviceRoutes.seo.path }
         }
     ]
 

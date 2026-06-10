@@ -1,4 +1,5 @@
 import type { ServiceSectionContent } from "@/ressources/content/contentTypes";
+import { serviceRoutes } from '@/ressources/routes'
 import iconMaintenance from '@/assets/icons/iconMaintenance.webp'
 import pictureMaintenance from '@/assets/pictures/picture-maintenance.webp'
 
@@ -31,7 +32,7 @@ export const maintenance: ServiceSectionContent = {
     ],
     secondButton: {
         label: 'Découvrir l\'offre',
-        to: '/services',
+        to: serviceRoutes.maintenance.path,
     },
     image: {
         src: pictureMaintenance,

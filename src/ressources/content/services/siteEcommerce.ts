@@ -1,8 +1,8 @@
 import type { ServiceSectionContent } from "@/ressources/content/contentTypes";
+import { serviceRoutes } from '@/ressources/routes'
 import iconEcommerce from '@/assets/icons/iconEcommerce.webp'
 import pictureEcommerce from '@/assets/pictures/picture-eCommerce.webp'
 
-// TODO: remplacer le lien par la page correspondante une fois créée
 export const siteEcommerce: ServiceSectionContent = {
     id: 'site-ecommerce',
     icon: {
@@ -32,7 +32,7 @@ export const siteEcommerce: ServiceSectionContent = {
     ],
     secondButton: {
         label: 'Découvrir l\'offre',
-        to: '/services',
+        to: serviceRoutes.siteEcommerce.path,
     },
     image: {
         src: pictureEcommerce,

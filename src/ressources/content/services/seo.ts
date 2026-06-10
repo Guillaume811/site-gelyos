@@ -1,4 +1,5 @@
 import type { ServiceSectionContent } from "@/ressources/content/contentTypes";
+import { serviceRoutes } from '@/ressources/routes'
 import iconSeo from '@/assets/icons/iconSeo.webp'
 import pictureSeo from '@/assets/pictures/picture-seo.webp'
 
@@ -31,7 +32,7 @@ export const seo: ServiceSectionContent = {
     ],
     secondButton: {
         label: 'Découvrir l\'offre',
-        to: '/services',
+        to: serviceRoutes.seo.path,
     },
     image: {
         src: pictureSeo,
