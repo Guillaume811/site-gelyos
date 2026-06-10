@@ -1,53 +1,40 @@
 import type { ServiceSectionContent } from "@/ressources/content/contentTypes";
-import pictureSeo from '@/assets/pictures/serviceSeo.webp'
+import iconSeo from '@/assets/icons/iconSeo.webp'
+import pictureSeo from '@/assets/pictures/picture-seo.webp'
 
 export const seo: ServiceSectionContent = {
     id: 'seo',
+    icon: {
+        src: iconSeo,
+        alt: 'Icône d\'optimisation SEO.'
+    },
     title: 'Optimisation SEO et référencement naturel',
-    text: [
-        { type: 'text', text: "Un site performant doit aussi être visible. Nous assurons l'" },
-        { type: 'strong', text: "optimisation SEO" },
-        { type: 'text', text: " de votre site pour améliorer son classement sur Google : technique, contenu et expérience utilisateur. L'objectif : plus de trafic qualité et donc plus de clients." },
+    textObjectif: [
+        {
+            subtitle: 'Objectif :',
+            description: [
+                { type: 'text', text: 'Nous optimisons votre site pour améliorer sa visibilité sur Google et renforcer votre présence en ligne sur les recherches les plus importantes pour votre activité. Ce service est idéal pour attirer un trafic plus qualifié, gagner en visibilité et générer davantage de contacts sur le long terme.' },
+            ]
+        }
     ],
+    textForWhom: [
+        {
+            subtitle: 'Pour qui ?',
+            description: [
+                { type: 'text', text: 'Indépendants, artisans, TPE, commerçants et entreprises qui veulent améliorer leur référencement naturel et être plus visibles auprès de leurs futurs clients.' },
+            ]
+        }
+    ],
+    price: [
+        { type: 'text', text: 'À partir de ' },
+        { type: 'accent', text: '190 € HT / mois' },
+    ],
+    secondButton: {
+        label: 'Découvrir l\'offre',
+        to: '/services',
+    },
     image: {
         src: pictureSeo,
         alt: 'Illustration de SEO avec des éléments de graphique.'
-    },
-    ServiceAccordionItems: [
-        {
-            id: 'audit',
-            title: 'Audit SEO complet',
-            description: [
-                { type: 'text', text: `Nous analysons votre site sous tous les angles : technique, contenus, maillage interne, backlinks, vitesse. Cet audit identifie les points forts et les axes d'amélioration.` }
-            ]
-        },
-        {
-            id: 'technique',
-            title: 'Optimisation technique',
-            description: [
-                { type: 'text', text: `Nous intervienons sur la structure du site : balises HTML, plan de site, indexation, vitesse de chargement et comptatibilité mobile. Chaque détail compte pour plaire à Google.` }
-            ]
-        },
-        {
-            id: 'contenu',
-            title: 'Optimisation des contenus',
-            description: [
-                { type: 'text', text: `Nous retravaillons les textes et les balises pour intégrer les bons mots-clés, améliorer la lisibilité et capter l'attention des visiteurs. Le but est de plaire autant aux utilisateurs qu'aux moteurs de recherche.` }
-            ]
-        },
-        {
-            id: 'suivi',
-            title: 'Suivi & reporting',
-            description: [
-                { type: 'text', text: `Vous recevez un suivi clair des performances : évolution du trafic, positions sur Google, conversions. Les actions sont ajustées en fonction des résultats.` }
-            ]
-        },
-        {
-            id: 'strategie',
-            title: 'Conseil stratégique',
-            description: [
-                { type: 'text', text: `Nous vous accompagnons sur la durée pour garder une longueur d'avance : stratégie de contenus, acquisition de backlinks, bonne pratiques SEO.` }
-            ]
-        }
-    ]
+    }
 }

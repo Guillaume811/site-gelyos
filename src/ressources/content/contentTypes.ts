@@ -69,6 +69,11 @@ export interface AccordionItemContent {
     description: InlineContent
 }
 
+export interface ParagraphContent {
+    subtitle: RichText
+    description: InlineContent
+}
+
 // ======== Home page content types ========
 //TODO: passer les 3 ? en obligatoire et changer le code dans le composant Hero + changer son nom
 export interface Content {
@@ -131,10 +136,13 @@ export interface ProjectPreview {
 
 export interface ServiceSectionContent {
     id: RichText
+    icon?: ImageContent
     title: RichText
-    text: InlineContent
+    textObjectif: ParagraphContent[]
+    textForWhom: ParagraphContent[]
+    price?: InlineContent
+    secondButton: ButtonContent
     image: ImageContent
-    ServiceAccordionItems: AccordionItemContent[]
 }
 
 export interface ServicePageContent {

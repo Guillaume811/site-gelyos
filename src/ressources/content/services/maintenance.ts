@@ -1,55 +1,40 @@
 import type { ServiceSectionContent } from "@/ressources/content/contentTypes";
-import pictureMaintenance from '@/assets/pictures/maintenance.webp'
+import iconMaintenance from '@/assets/icons/iconMaintenance.webp'
+import pictureMaintenance from '@/assets/pictures/picture-maintenance.webp'
 
 export const maintenance: ServiceSectionContent = {
     id: 'maintenance',
-    title: 'Maintenance & support technique',
-    text: [
-        { type: 'text', text: "Un site doit rester " },
-        { type: 'strong', text: "sécurisé, performant et à jour" },
-        { type: 'text', text: ". Nous assurons la " },
-        { type: 'strong', text: "maintenance de sites internet" },
-        { type: 'text', text: " pour garantir leur bon fonctionnement au quotidien et accompagner vos évolutions futures." },
-    ],
-    image: {
-        src: pictureMaintenance,
-        alt: `Illustration de maintenance d'un site web`
+    icon: {
+        src: iconMaintenance,
+        alt: 'Icône de maintenance et support technique.'
     },
-    ServiceAccordionItems: [
+    title: 'Maintenance & support technique',
+    textObjectif: [
         {
-            id: 'mises-a-jour',
-            title: 'Mises à jour régulières',
+            subtitle: 'Objectif :',
             description: [
-                { type: 'text', text: `Nous installons les dernières mises à jour de sécurité et de comptabilité pour protéger votre site contre les failles et garantir sa stabilité.` }
-            ]
-        },
-        {
-            id: 'surveillance',
-            title: 'Surveillance & monitoring',
-            description: [
-                { type: 'text', text: `Nous mettons en place un suivi continu pour anticiper les problèmes (pannes, lenteurs, attaques). Vous avez l'assurance d'un site toujours opérationnel.` }
-            ]
-        },
-        {
-            id: 'sauvegardes',
-            title: 'Sauvegardes & restauration',
-            description: [
-                { type: 'text', text: `Des sauvegardes régulières sont effectuées pour protéger vos données. En cas de problème, votre site peut être restauré rapidement.` }
-            ]
-        },
-        {
-            id: 'corrections',
-            title: 'Corrections rapides',
-            description: [
-                { type: 'text', text: `En cas de bug ou de panne, Nous intervenons rapidement pour corriger le problème et limiter l'impact sur votre activité.` }
-            ]
-        },
-        {
-            id: 'ameliorations',
-            title: 'Améliorations continues',
-            description: [
-                { type: 'text', text: `Nous accompagnons vos besoins d'évolution : ajout de nouvelles fonctionnalités, refonte partielles, optimisation des performances.` }
+                { type: 'text', text: 'Nous assurons la maintenance de votre site web pour le garder à jour, sécurisé et fonctionnel dans le temps. Ce service permet de limiter les risques techniques, de préserver la stabilité du site et de vous libérer de la gestion des tâches de maintenance au quotidien.' },
             ]
         }
-    ]
+    ],
+    textForWhom: [
+        {
+            subtitle: 'Pour qui ?',
+            description: [
+                { type: 'text', text: 'Professionnels, indépendants, TPE et entreprises qui souhaitent garder un site fiable, sécurisé et suivi régulièrement sans avoir à gérer eux-mêmes les aspects techniques.' },
+            ]
+        }
+    ],
+    price: [
+        { type: 'text', text: 'À partir de ' },
+        { type: 'accent', text: '49 € HT / mois' },
+    ],
+    secondButton: {
+        label: 'Découvrir l\'offre',
+        to: '/services',
+    },
+    image: {
+        src: pictureMaintenance,
+        alt: `Tableauau de bord de maintenance de site web avec graphiques de performance et alertes de sécurité.`
+    }
 }
