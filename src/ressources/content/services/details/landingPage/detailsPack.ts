@@ -1,17 +1,47 @@
 import type { DetailsPackContent } from '@/ressources/content/contentTypes'
 import { serviceRoutes } from '@/ressources/routes'
 
-export const detailsPackLandingPage: DetailsPackContent = {
-    icon: {
-        src: '',
-        alt: '',
+export const detailsPackLandingPage: DetailsPackContent = [
+    {
+        icon: {
+            src: '',
+            alt: '',
+        },
+        title: '',
+        subtitle: '',
+        itemPackContent: [],
+        suggestionPackContent: [],
+        firstButton: {
+            label: '',
+            to: serviceRoutes.landingPage.path,
+        },
     },
-    title: '',
-    subtitle: '',
-    itemPackContent: [],
-    suggestionPackContent: [],
-    firstButton: {
-        label: '',
-        to: serviceRoutes.landingPage.path,
+    {
+        icon: {
+            src: '',
+            alt: '',
+        },
+        title: '',
+        subtitle: '',
+        itemPackContent: [],
+        suggestionPackContent: [],
+        firstButton: {
+            label: '',
+            to: serviceRoutes.landingPage.path,
+        },
     },
-}
+    {
+        icon: {
+            src: '',
+            alt: '',
+        },
+        title: '',
+        subtitle: '',
+        itemPackContent: [],
+        suggestionPackContent: [],
+        firstButton: {
+            label: '',
+            to: serviceRoutes.landingPage.path,
+        },
+    },
+]
