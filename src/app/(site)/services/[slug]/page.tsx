@@ -24,5 +24,5 @@ export default async function ServiceDetailPage({ params }: Props) {
     notFound()
   }
 
-  return <ServiceDetail serviceName={serviceRoute.label} />
+  return <ServiceDetail serviceSlug={serviceRoute.slug} />
 }
