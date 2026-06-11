@@ -210,6 +210,15 @@ export type DetailsPackContent = [
     DetailsPackItemContent,
 ]
 
+export interface ServiceDetailPageContent {
+    header: PageHeaderContent
+    intro: IntroContent
+    profits: ProfitContent
+    faq: FaqContent
+    packs: PacksContent
+    detailsPack: DetailsPackContent
+}
+
 // ======== About page content types ========
 export interface AboutSectionContent {
     id: RichText
