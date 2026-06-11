@@ -478,7 +478,6 @@ Format recommandé :
 - [ ] Typecheck exécuté ou raison donnée
 - [ ] Tests exécutés ou raison donnée
 - [ ] Build exécuté ou raison donnée
-- [ ] UX responsive vérifiée si impact UI
 - [ ] Accessibilité minimale vérifiée
 - [ ] SEO préservé si impact route/page
 - [ ] Compte-rendu final avec chemins exacts des fichiers
