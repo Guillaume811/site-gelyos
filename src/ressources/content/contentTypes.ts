@@ -155,7 +155,7 @@ export interface ServicePageContent {
 
 export interface ProfitContent {
     title: RichText
-    listProfit: InlineContent[]
+    listProfit: RichText[]
 }
 
 export interface FaqContent {
@@ -192,10 +192,10 @@ export interface PacksContent {
 export interface SuggestionPackContent {
     icon: ImageContent
     subtitle: RichText
-    description: InlineContent
+    description: RichText
 }
 
-export interface DetailsPackContent {
+export interface DetailsPackItemContent {
     icon: ImageContent
     title: RichText
     subtitle: RichText
@@ -203,6 +203,12 @@ export interface DetailsPackContent {
     suggestionPackContent: SuggestionPackContent[]
     firstButton: ButtonContent
 }
+
+export type DetailsPackContent = [
+    DetailsPackItemContent,
+    DetailsPackItemContent,
+    DetailsPackItemContent,
+]
 
 // ======== About page content types ========
 export interface AboutSectionContent {
