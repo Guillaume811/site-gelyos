@@ -1,0 +1,111 @@
+.card {
+  padding: 1.5rem;
+  border: 2px solid $color-primary;
+  border-radius: $radius-1;
+  background: $color-bg;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+}
+
+.headerIcon,
+.itemIcon,
+.suggestionIcon {
+  flex: 0 0 auto;
+
+  img {
+    display: block;
+    object-fit: contain;
+  }
+}
+
+.headerIcon img {
+  width: 4rem;
+  height: 4rem;
+}
+
+.title,
+.subtitle,
+.suggestionTitle {
+  margin: 0;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+}
+
+.left {
+  padding-right: 2rem;
+  border-right: 2px solid $color-border;
+}
+
+.subtitle {
+  margin-bottom: 1.5rem;
+}
+
+.items,
+.suggestions {
+  display: grid;
+  gap: 1rem;
+}
+
+.item,
+.suggestion {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: center;
+
+  p {
+    margin: 0;
+  }
+}
+
+.itemIcon img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-left: 2rem;
+}
+
+.suggestionIcon img {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.suggestionTitle {
+  margin-bottom: 0.35rem;
+}
+
+.button {
+  align-self: center;
+  margin-top: auto;
+}
+
+@media (max-width: 992px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+
+  .left {
+    padding-right: 0;
+    padding-bottom: 2rem;
+    border-right: 0;
+    border-bottom: 2px solid $color-border;
+  }
+
+  .right {
+    padding-top: 2rem;
+    padding-left: 0;
+  }
+}
