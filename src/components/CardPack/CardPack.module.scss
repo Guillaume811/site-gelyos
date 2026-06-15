@@ -1,0 +1,135 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 330px;
+  height: 100%;
+  padding: 1.5rem;
+  border: 2px solid $color-border;
+  border-radius: $radius-1;
+  background: $color-bg;
+  transition:
+    transform 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+  transform-origin: center;
+}
+
+.active {
+  z-index: 1;
+  border-color: $color-primary;
+  transform: scale(1.05);
+  @include box-shadow($color-primary);
+}
+
+.header {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+  padding-bottom: 1.25rem;
+  border-bottom: 2px solid $color-border;
+}
+
+.icon,
+.itemIcon {
+  flex: 0 0 auto;
+
+  img {
+    display: block;
+    object-fit: contain;
+  }
+}
+
+.icon img {
+  width: 4rem;
+  height: 4rem;
+}
+
+.headerContent {
+  min-width: 0;
+}
+
+.title {
+  margin-bottom: 0.5rem;
+}
+
+.description,
+.price,
+.item p,
+.text {
+  margin: 0;
+}
+
+.price {
+  padding: 1.25rem 0;
+  font-family: $font-title;
+  text-align: center;
+
+  [data-inline='accent'] {
+    color: $color-secondary;
+  }
+}
+
+.items {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.itemIcon img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1.5rem;
+}
+
+.text {
+  text-align: center;
+
+  a {
+    position: relative;
+    display: inline-block;
+    color: inherit;
+    text-decoration: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: 50%;
+      bottom: -0.2rem;
+      left: 50%;
+      height: 1px;
+      background: currentColor;
+      transition: right 200ms ease, left 200ms ease;
+    }
+
+    &:hover::after,
+    &:focus-visible::after {
+      right: 0;
+      left: 0;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: min(100%, 330px);
+  }
+
+  .active {
+    transform: none;
+  }
+}
