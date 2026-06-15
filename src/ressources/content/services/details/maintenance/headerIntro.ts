@@ -2,7 +2,7 @@ import pictureHeaderService from '@/assets/pictures/header-service.webp'
 import type { IntroContent, PageHeaderContent } from '@/ressources/content/contentTypes'
 
 export const headerMaintenance: PageHeaderContent = {
-    title: 'Services en développment web sur mesure',
+    title: 'Un site suivi, sécurisé et toujours à jour',
     image: {
         src: pictureHeaderService,
         alt: '',
@@ -11,18 +11,6 @@ export const headerMaintenance: PageHeaderContent = {
 
 export const introMaintenance: IntroContent = {
     text: [
-        { type: 'text', text: 'En tant que ' },
-        { type: 'strong', text: 'développeur web sur mesure' },
-        { type: 'text', text: ', ' },
-        { type: 'emphasis', text: 'GELYOS' },
-        { type: 'text', text: ' vous propose des solutions digitales adaptées aux besoins des entreprises, startups et indépendants. De la ' },
-        { type: 'strong', text: 'création de sites internet personnalisés' },
-        { type: 'text', text: ' à la ' },
-        { type: 'strong', text: "conception d'applications web" },
-        { type: 'text', text: ', en passant par ' },
-        { type: 'strong', text: "l'optimisation SEO" },
-        { type: 'text', text: ' et la ' },
-        { type: 'strong', text: 'maintenance' },
-        { type: 'text', text: ', chaque service est conçu pour garantir performance, sécurité et visibilité.' },
+        { type: 'text', text: 'La maintenance de site web permet de garder votre site fiable, sécurisé et fonctionnel dans le temps. C’est une solution idéale pour éviter les problèmes techniques, assurer les mises à jour importantes et conserver un site stable sans avoir à gérer vous-même les aspects techniques.' },
     ],
 }
