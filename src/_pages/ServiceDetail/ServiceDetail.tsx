@@ -4,6 +4,7 @@ import HeaderSection from '@/components/HeaderSection/HeaderSection'
 import PageIntro from '@/components/PageIntro/PageIntro'
 import ProfitsSection from '@/components/ProfitsSection/ProfitsSection'
 import FaqSection from '@/components/FaqSection/FaqSection'
+import OffersSection from '@/components/OffersSection/OffersSection'
 import { serviceDetailsContent } from '@/ressources/content/services/details'
 import type { ServiceRouteItem } from '@/ressources/routes'
 import styles from './ServiceDetail.module.scss'
@@ -19,17 +20,18 @@ interface Props {
  * - Reuses one shared layout for every service detail page.
  *
  * View TSX:
- * - Renders the shared page header, introduction, benefits, and FAQ sections.
+ * - Renders the shared page header, introduction, benefits, offers, and FAQ sections.
  * - Keeps the remaining service sections available for later integration.
  */
 export default function ServiceDetail({ serviceSlug }: Props) {
-  const { header, intro, profits, faq } = serviceDetailsContent[serviceSlug]
+  const { header, intro, profits, faq, packs, detailsPack } = serviceDetailsContent[serviceSlug]
 
   return (
     <div className={styles.page}>
       <HeaderSection title={header.title} image={header.image} />
       <PageIntro text={intro.text} />
       <ProfitsSection {...profits} />
+      <OffersSection {...packs} detailsPack={detailsPack} />
       <FaqSection {...faq} />
     </div>
   )
