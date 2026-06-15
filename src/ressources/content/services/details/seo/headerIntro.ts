@@ -2,7 +2,7 @@ import pictureHeaderService from '@/assets/pictures/header-service.webp'
 import type { IntroContent, PageHeaderContent } from '@/ressources/content/contentTypes'
 
 export const headerSeo: PageHeaderContent = {
-    title: 'Services en développment web sur mesure',
+    title: 'Gagnez en visibilité sur Google',
     image: {
         src: pictureHeaderService,
         alt: '',
@@ -11,18 +11,6 @@ export const headerSeo: PageHeaderContent = {
 
 export const introSeo: IntroContent = {
     text: [
-        { type: 'text', text: 'En tant que ' },
-        { type: 'strong', text: 'développeur web sur mesure' },
-        { type: 'text', text: ', ' },
-        { type: 'emphasis', text: 'GELYOS' },
-        { type: 'text', text: ' vous propose des solutions digitales adaptées aux besoins des entreprises, startups et indépendants. De la ' },
-        { type: 'strong', text: 'création de sites internet personnalisés' },
-        { type: 'text', text: ' à la ' },
-        { type: 'strong', text: "conception d'applications web" },
-        { type: 'text', text: ', en passant par ' },
-        { type: 'strong', text: "l'optimisation SEO" },
-        { type: 'text', text: ' et la ' },
-        { type: 'strong', text: 'maintenance' },
-        { type: 'text', text: ', chaque service est conçu pour garantir performance, sécurité et visibilité.' },
+        { type: 'text', text: 'Le SEO permet d’améliorer la visibilité de votre site sur les moteurs de recherche afin d’attirer des visiteurs plus qualifiés. C’est une solution idéale pour renforcer votre présence en ligne, travailler vos pages stratégiques et générer plus de contacts sur le long terme sans dépendre uniquement de la publicité.' },
     ],
 }
