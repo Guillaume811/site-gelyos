@@ -4,8 +4,9 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 import { motion } from 'framer-motion'
+import { ChevronDown } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { getMainNavRoutes } from '@/ressources/routes'
+import { getMainNavRoutes, serviceRouteList } from '@/ressources/routes'
 import styles from './MainNavNext.module.scss'
 
 type Props = {
@@ -20,6 +21,7 @@ type Props = {
  *
  * View TSX:
  * - Renders a nav list with Next Link elements.
+ * - Renders the five service links in a dropdown under Services.
  * - Applies active class and aria-current on the current route.
  */
 export default function MainNavNext({ className }: Props) {
@@ -63,9 +65,13 @@ export default function MainNavNext({ className }: Props) {
 
         {navRoutes.map((route) => {
           const isActive = pathname.startsWith(route.path)
+          const hasServiceMenu = route.name === 'services'
 
           return (
-            <li key={route.name} className={styles.link}>
+            <li
+              key={route.name}
+              className={clsx(styles.link, hasServiceMenu && styles.hasSubmenu)}
+            >
               <Link
                 href={route.path}
                 ref={(el) => {
@@ -74,8 +80,31 @@ export default function MainNavNext({ className }: Props) {
                 className={isActive ? styles.active : undefined}
                 aria-current={isActive ? 'page' : undefined}
               >
-                {route.label}
+                <span>{route.label}</span>
+                {hasServiceMenu && (
+                  <ChevronDown className={styles.arrow} size={18} aria-hidden="true" />
+                )}
               </Link>
+
+              {hasServiceMenu && (
+                <ul className={styles.submenu} aria-label="Services">
+                  {serviceRouteList.map((service) => {
+                    const isServiceActive = pathname === service.path
+
+                    return (
+                      <li key={service.slug}>
+                        <Link
+                          href={service.path}
+                          aria-current={isServiceActive ? 'page' : undefined}
+                          className={isServiceActive ? styles.submenuActive : undefined}
+                        >
+                          {service.label}
+                        </Link>
+                      </li>
+                    )
+                  })}
+                </ul>
+              )}
             </li>
           )
         })}

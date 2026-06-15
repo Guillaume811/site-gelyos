@@ -26,7 +26,7 @@
   align-items: center;
   justify-content: center;
   padding: 0.35rem 0.6rem;
-  border-radius: 999px;
+  border-radius: 10px;
   background: rgba($color-bg, 0.72);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -140,13 +140,65 @@
 
 .menuItem { margin: 0; padding: 0; }
 
+.serviceRow {
+  display: flex;
+  align-items: center;
+}
+
+.submenuButton {
+  inline-size: 44px;
+  block-size: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.25rem;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: $color-text;
+  cursor: pointer;
+}
+
+.submenuArrow {
+  transition: transform 180ms ease;
+}
+
+.submenuArrowOpen {
+  transform: rotate(180deg);
+}
+
+.servicesSubmenu {
+  margin: 0 0 0.5rem 1.5rem;
+  padding: 0 0 0 1rem;
+  overflow: hidden;
+  list-style: none;
+  border-left: 1px solid $color-border;
+
+  li {
+    margin: 0;
+  }
+}
+
+.serviceSubmenuLink {
+  display: block;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  color: $color-text;
+  text-decoration: none;
+}
+
+.serviceSubmenuActive {
+  color: $color-primary;
+}
+
 .menuLink {
   display: inline-flex;
   align-items: center;
   width: auto;
   font-family: $font-title;
   padding: 1rem 1.5rem;
-  border-radius: 999rem;
+  border-radius: 10px;
   color: $color-text;
   text-decoration: none;
   background: transparent;
@@ -185,7 +237,7 @@
   gap: 0.5rem;
   padding: 0.5rem 1rem;
   border: 2px solid rgba($color-primary, 0.6);
-  border-radius: 999rem;
+  border-radius: 10px;
   background: rgba($color-bg, 0.72);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);

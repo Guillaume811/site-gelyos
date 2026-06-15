@@ -4,7 +4,12 @@ import { useMemo, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion, type Variants } from 'framer-motion'
-import { getAllExceptMentions, type RouteItem } from '@/ressources/routes'
+import { ChevronDown } from 'lucide-react'
+import {
+  getAllExceptMentions,
+  serviceRouteList,
+  type RouteItem,
+} from '@/ressources/routes'
 import clsx from 'clsx'
 import styles from './MobileHeaderNext.module.scss'
 import logo from '@/assets/pictures/logo-long.webp'
@@ -19,7 +24,13 @@ function isPathActive(pathname: string, routePath: string) {
 export default function MobileHeaderNext() {
   const pathname = usePathname() ?? '/'
   const [isOpen, setIsOpen] = useState(false)
+  const [isServicesOpen, setIsServicesOpen] = useState(false)
   const items: RouteItem[] = useMemo(() => getAllExceptMentions(), [])
+
+  const closeMenu = () => {
+    setIsOpen(false)
+    setIsServicesOpen(false)
+  }
 
   const panelVariants: Variants = {
     open: { x: 0, transition: { type: 'tween', duration: 0.25 } },
@@ -77,7 +88,14 @@ export default function MobileHeaderNext() {
             type="button"
             className={styles.iconBtn}
             aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
-            onClick={() => setIsOpen((open) => !open)}
+            onClick={() => {
+              if (isOpen) {
+                closeMenu()
+                return
+              }
+
+              setIsOpen(true)
+            }}
           >
             {isOpen ? (
               <svg viewBox="0 0 24 24" className={styles.icon} aria-hidden="true">
@@ -102,7 +120,7 @@ export default function MobileHeaderNext() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setIsOpen(false)}
+            onClick={closeMenu}
           />
         )}
       </AnimatePresence>
@@ -120,14 +138,77 @@ export default function MobileHeaderNext() {
 
             return (
               <motion.li key={route.path} className={styles.menuItem} variants={itemVariants}>
-                <Link
-                  href={route.path}
-                  className={clsx(styles.menuLink, active && styles.active)}
-                  aria-current={active ? 'page' : undefined}
-                  onClick={() => setIsOpen(false)}
-                >
-                  {route.label}
-                </Link>
+                {route.name === 'services' ? (
+                  <>
+                    <div className={styles.serviceRow}>
+                      <Link
+                        href={route.path}
+                        className={clsx(styles.menuLink, active && styles.active)}
+                        aria-current={active ? 'page' : undefined}
+                        onClick={closeMenu}
+                      >
+                        {route.label}
+                      </Link>
+
+                      <button
+                        type="button"
+                        className={styles.submenuButton}
+                        aria-label={isServicesOpen ? 'Masquer les services' : 'Afficher les services'}
+                        aria-expanded={isServicesOpen}
+                        aria-controls="mobile-services-submenu"
+                        onClick={() => setIsServicesOpen((open) => !open)}
+                      >
+                        <ChevronDown
+                          className={clsx(styles.submenuArrow, isServicesOpen && styles.submenuArrowOpen)}
+                          size={20}
+                          aria-hidden="true"
+                        />
+                      </button>
+                    </div>
+
+                    <AnimatePresence initial={false}>
+                      {isServicesOpen && (
+                        <motion.ul
+                          id="mobile-services-submenu"
+                          className={styles.servicesSubmenu}
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.2, ease: 'easeInOut' }}
+                        >
+                          {serviceRouteList.map((service) => {
+                            const serviceActive = pathname === service.path
+
+                            return (
+                              <li key={service.slug}>
+                                <Link
+                                  href={service.path}
+                                  className={clsx(
+                                    styles.serviceSubmenuLink,
+                                    serviceActive && styles.serviceSubmenuActive,
+                                  )}
+                                  aria-current={serviceActive ? 'page' : undefined}
+                                  onClick={closeMenu}
+                                >
+                                  {service.label}
+                                </Link>
+                              </li>
+                            )
+                          })}
+                        </motion.ul>
+                      )}
+                    </AnimatePresence>
+                  </>
+                ) : (
+                  <Link
+                    href={route.path}
+                    className={clsx(styles.menuLink, active && styles.active)}
+                    aria-current={active ? 'page' : undefined}
+                    onClick={closeMenu}
+                  >
+                    {route.label}
+                  </Link>
+                )}
               </motion.li>
             )
           })}
