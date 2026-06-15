@@ -12,22 +12,22 @@ export const serviceRoutes = {
   landingPage: {
     slug: 'landing-page',
     path: '/services/landing-page',
-    label: 'landing page',
+    label: 'Landing page',
   },
   siteVitrine: {
     slug: 'site-vitrine',
     path: '/services/site-vitrine',
-    label: 'site vitrine',
+    label: 'Site vitrine',
   },
   siteEcommerce: {
     slug: 'site-ecommerce',
     path: '/services/site-ecommerce',
-    label: 'site e-commerce',
+    label: 'Site e-commerce',
   },
   maintenance: {
     slug: 'maintenance',
     path: '/services/maintenance',
-    label: 'maintenance',
+    label: 'Maintenance',
   },
   seo: {
     slug: 'seo',
