@@ -15,12 +15,14 @@ import ServicesPreview from "./ServicesPreview/ServicesPreview";
 import { divAvantagesContent } from "@/ressources/content/home/divAvantagesContent";
 import ProjectPreview from "./ProjectPreview/ProjectPreview";
 import styles from './Home.module.scss'
+import LogoClients from "./LogoClients/LogoClients";
 
 export default function Home() {
   return (
     <div className={styles.root}>
       <Hero />
       <ServicesPreview />
+      <LogoClients />
       <SectionProcess process={divProcessContent} avantages={divAvantagesContent} />
       <ProjectPreview />
     </div>
