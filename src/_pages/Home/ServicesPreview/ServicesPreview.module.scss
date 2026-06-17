@@ -40,6 +40,22 @@
       flex-direction: column;
       justify-content: center;   /* CENTRÉ verticalement */
       gap: 1.5rem;
+
+      .subtitle,
+      .title {
+        margin: 0;
+      }
+
+      .subtitle {
+        color: $color-text;
+      }
+
+      .separator {
+        width: 100px;
+        height: 2px;
+        margin: 0;
+        background: $color-border;
+      }
     }
 
     .right {

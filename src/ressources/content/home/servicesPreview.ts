@@ -8,7 +8,7 @@ import iconSeo from '@/assets/icons/iconSeo.webp'
 
 export const servicesPreviewContent: ServicesPreview = {
     subtitle: 'Nos Services',
-    title: 'Service de développement web sur mesure',
+    title: 'Découvrez comment nous pouvons vous aider',
     text: [
         { type: 'text', text: 'GELYOS vous accompagne dans la ' },
         { type: 'strong', text: 'création de sites internet sur mesure' },

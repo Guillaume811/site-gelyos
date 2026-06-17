@@ -1,6 +1,7 @@
 import type { ProjectPreview } from '@/ressources/content/contentTypes'
 
 export const projectPreviewContent: ProjectPreview = {
+    subtitle: 'Nos réalisations',
     title: 'Un aperçu de nos créations',
     text: [
         { type: 'text', text: 'Découvrez les derniers projects de ' },

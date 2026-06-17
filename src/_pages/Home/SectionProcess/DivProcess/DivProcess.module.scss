@@ -22,6 +22,13 @@
     text-align: left;
   }
 
+  .separator {
+    width: 100px;
+    height: 2px;
+    margin: 0.9rem 0;
+    background: $color-border;
+  }
+
   .description {
     margin: 0;
     max-width: 72ch;

@@ -57,7 +57,7 @@ function renderInlineContent(content: InlineContent) {
 }
 
 export default function ProjectPreview() {
-  const { title, text, firstButton } = projectPreviewContent
+  const { subtitle, title, text, firstButton } = projectPreviewContent
   const { data, loading, error, reload } = usePortfolioData()
 
   const allProjects = useMemo<Project[]>(() => {
@@ -75,7 +75,11 @@ export default function ProjectPreview() {
     <section className={styles.projectPreview} aria-label="Project preview">
       <div className={styles.container}>
         <div className={styles.left}>
+          <Heading level={3} className={styles.subtitle}>
+            {subtitle}
+          </Heading>
           <Heading level={2} className={styles.title}>{title}</Heading>
+          <div className={styles.separator} aria-hidden="true" />
           {renderInlineContent(text)}
         </div>
         <div className={styles.right}>

@@ -16,6 +16,7 @@ export function DivProcess({ data, className }: DivProcessProps) {
         <div className={styles.headingBlock}>
           <Heading level={3} className={styles.subtitle}>{data.subtitle}</Heading>
           <Heading level={2} className={styles.title}>{data.title}</Heading>
+          <div className={styles.separator} aria-hidden="true" />
           <p className={styles.description}>{data.description}</p>
         </div>
         <ul className={styles.list} role="list">

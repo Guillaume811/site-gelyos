@@ -1,4 +1,6 @@
 .projectPreview {
+  width: min(calc(100% - 2rem), 1200px);
+  margin: 0 auto;
   padding: clamp(1rem, 5vw, 2rem);
 
   .container {
@@ -13,13 +15,25 @@
     }
 
     .left {
-    max-width: 800px;
+      max-width: 800px;
 
+      .subtitle,
       .title {
-        @media (max-width: 768px) {
-          margin: 0 0 2.5rem;
-        }
+        margin: 0;
+        text-align: left;
       }
+
+      .subtitle {
+        color: $color-text;
+      }
+
+      .separator {
+        width: 100px;
+        height: 2px;
+        margin: 1.5rem 0;
+        background: $color-border;
+      }
+
       p {
         font-size: 18px;
       }
@@ -39,7 +53,7 @@
     margin-top: 1.5rem;
     width: 100%;
     min-width: 0;
-    max-width: clamp(320px, 90vw, 1100px);
+    max-width: 1100px;
     margin-left: auto;
     margin-right: auto;
     padding: 0;

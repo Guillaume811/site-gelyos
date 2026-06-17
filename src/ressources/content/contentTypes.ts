@@ -126,6 +126,7 @@ export interface DivAvantages {
 }
 
 export interface ProjectPreview {
+    subtitle: RichText
     title: RichText
     text: InlineContent
     firstButton: ButtonContent

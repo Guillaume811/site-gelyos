@@ -24,6 +24,7 @@ export function DivAvantages({ data, className }: DivAvantagesProps) {
             <Heading level={2} className={styles.title}>
               {data.title}
             </Heading>
+            <div className={styles.separator} aria-hidden="true" />
             <p className={styles.description}>{data.description}</p>
           </div>
 

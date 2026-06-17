@@ -44,7 +44,7 @@ function renderInlineContent(content: InlineContent) {
 }
 
 export default function ServicesPreview() {
-  const { title, text, firstButton, cards } = servicesPreviewContent;
+  const { subtitle, title, text, firstButton, cards } = servicesPreviewContent;
 
   const sectionRef = useRef<HTMLElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
@@ -120,9 +120,13 @@ export default function ServicesPreview() {
       <div className={styles.stickyContainer}>
         {/* Colonne gauche (centrée verticalement via flex sur stickyContainer) */}
         <div className={styles.left}>
-          <Heading id="services-heading" level={2}>
+          <Heading level={3} className={styles.subtitle}>
+            {subtitle}
+          </Heading>
+          <Heading id="services-heading" level={2} className={styles.title}>
             {title}
           </Heading>
+          <div className={styles.separator} aria-hidden="true" />
 
           <div>{renderInlineContent(text)}</div>
           
