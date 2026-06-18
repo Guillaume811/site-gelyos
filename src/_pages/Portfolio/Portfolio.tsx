@@ -28,7 +28,7 @@ export default function Portfolio() {
       ...(data.vitrine ?? []),
       ...(data.ecommerce ?? []),
       ...(data.application ?? []),
-      ...(data.freelance ?? []),
+      ...(data.landingpage ?? []),
     ]
 
     return merged.slice().sort((a, b) => {

@@ -7,7 +7,7 @@ const CATEGORY_LABELS = {
   vitrine: "Sites vitrine",
   ecommerce: "E-commerce",
   application: "Applications",
-  freelance: "Freelance",
+  landingpage: "Landing page",
 } as const;
 
 export interface CardProjectContentProps {

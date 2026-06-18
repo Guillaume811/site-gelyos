@@ -244,7 +244,7 @@ export interface PortfolionSectionContent {
     vitrine: PortfolioSectionIntro
     ecommerce: PortfolioSectionIntro
     application: PortfolioSectionIntro
-    freelance: PortfolioSectionIntro
+    landingpage: PortfolioSectionIntro
 }
 
 export interface PortfolioPageContent {

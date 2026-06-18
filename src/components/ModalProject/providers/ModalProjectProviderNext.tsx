@@ -33,7 +33,7 @@ export function ModalProjectProviderNext({ children }: Props) {
       ...(data.vitrine ?? []),
       ...(data.ecommerce ?? []),
       ...(data.application ?? []),
-      ...(data.freelance ?? []),
+      ...(data.landingpage ?? []),
     ]
   }, [data])
 

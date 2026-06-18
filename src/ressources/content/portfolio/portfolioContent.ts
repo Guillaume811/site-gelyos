@@ -18,8 +18,8 @@ export const portfolioContent: PortfolioPageContent = {
             { type: 'strong', text: 'boutiques e-commerce personnalisées' },
             { type: 'text', text: ', ' },
             { type: 'strong', text: 'applications web' },
-            { type: 'text', text: ' et missions en tant que ' },
-            { type: 'strong', text: 'développeur web freelance' },
+            { type: 'text', text: ' et ' },
+            { type: 'strong', text: 'landing pages' },
             { type: 'text', text: '. Chaque réalisation reflète une approche unique, pensée pour répondre aux besoins réels de nos clients.' }
         ]
     },
@@ -41,9 +41,9 @@ export const portfolioContent: PortfolioPageContent = {
             description: `Conception d'**applications web sur mesure** adaptées aux besoins spécifiques des entreprises : outils internes, plateformes de gestion ou solutions métier. Des projets robustes, évolutifs et pensés pour simplifier les processus.`
         },
 
-        freelance: {
-            title: 'Missions Freelance',
-            description: `En tant que **développeur web freelance**, j'interviens sur des missions variées : intégration de nouvelles fonctionnalités, optimisation de sites existants, renfort technique ou accompagnement ponctuel. Une collaboration flexible, adaptée à vos besoins.`
+        landingpage: {
+            title: 'Landing Pages',
+            description: `Création de **landing pages sur mesure** pensées pour convertir : message clair, parcours court, appel à l'action visible et structure adaptée aux campagnes marketing, au SEO ou à la génération de leads.`
         }
     }
 }

@@ -1,6 +1,6 @@
 import type { AccordionItemContent } from "../contentTypes";
 
-export const CATEGORY_VALUES = ["vitrine", "ecommerce", "application", "freelance"] as const;
+export const CATEGORY_VALUES = ["vitrine", "ecommerce", "application", "landingpage"] as const;
 
 export type Category = typeof CATEGORY_VALUES[number];
 
@@ -30,5 +30,5 @@ export type PortfolioData = {
     vitrine: Project[]
     ecommerce: Project[]
     application: Project[]
-    freelance: Project[]
+    landingpage: Project[]
 }
