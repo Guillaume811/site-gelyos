@@ -20,11 +20,20 @@
 
 /* --------- Ciblage des sous-parties via data-part (déclarées dans CardProjectContent) --------- */
 
+/* Structure interne : media fixe, contenu étiré */
+.root [data-part="root"] {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 /* Zone média : applique le ratio configurable + masque le débordement */
 .root [data-part="media"] {
   display: block;
+  flex: 0 0 auto;
   width: 100%;
   aspect-ratio: 16 / 9;
+  overflow: hidden;
   object-fit: cover;
 }
 
@@ -40,14 +49,11 @@
 /* Corps : texte aligné à gauche + espacement */
 .root [data-part="body"] {
   text-align: left;
-  display: grid;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   gap: 0.5rem;
   margin-top: 0.75rem;
-
-  /* permet au corps de prendre l'espace restant si min-height est défini */
-  /* (inutile si tu ne définis pas --card-min-h) */
-  /* place le si tu veux un équilibrage vertical régulier */
-  /* grid-auto-rows: min-content; */
 }
 
 /* Titre (nom du projet) en color-primary */
@@ -75,7 +81,7 @@
 
 /* Actions : bouton collé à droite pour le skin Portfolio */
 .root [data-part="actions"] {
-  margin-top: 1.5rem;
+  margin-top: auto;
   display: flex;
   justify-content: flex-end; /* ⟵ à droite (Portfolio) */
 }
