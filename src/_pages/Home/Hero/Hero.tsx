@@ -4,8 +4,30 @@ import buttonStyles from '@/components/Buttons/Button.module.scss'
 import styles from './Hero.module.scss'
 import { heroContent } from '@/ressources/content/home/hero'
 import { AnimatedTitle } from '@/animations/AnimatedTitle/AnimatedTitle'
-import { TypewriterText } from '@/animations/TypewriterText/TypewriterText'
 import { SlideUpFadeStagger } from '@/animations/SlideUpFadeStagger/SlideUpFadeStagger'
+
+/* Function renderHeroText
+ * Logic:
+ * - Reads [[...]] markers from the hero text.
+ * - Renders marked text with the existing highlight style.
+ *
+ * Output:
+ * - Returns inline spans without showing marker characters.
+ */
+function renderHeroText(text: string) {
+  return text.split(/(\[\[.*?\]\])/g).map((part, index) => {
+    const isHighlighted = part.startsWith('[[') && part.endsWith(']]')
+    const cleanText = isHighlighted ? part.slice(2, -2) : part
+
+    return isHighlighted ? (
+      <span key={index} className={styles.highlight}>
+        {cleanText}
+      </span>
+    ) : (
+      <span key={index}>{cleanText}</span>
+    )
+  })
+}
 
 export default function Hero() {
 
@@ -18,9 +40,11 @@ export default function Hero() {
           <AnimatedTitle text={title} />
         </Heading>
 
-        <TypewriterText text={text} speed={8} startDelay={1500} className={styles.text} />
+        <SlideUpFadeStagger delay={1.8} stagger={0} duration={0.8}>
+          <p className={styles.text}>{renderHeroText(text)}</p>
+        </SlideUpFadeStagger>
 
-        <SlideUpFadeStagger className={styles.actions} delay={3} stagger={0.15} duration={1}>
+        <SlideUpFadeStagger className={styles.actions} delay={2.2} stagger={0.15} duration={1}>
           {firstButton && (
             <Link href={firstButton.to as string} className={`${buttonStyles.btn} ${buttonStyles.primary} ${styles.primaryBtn}`}>
               {firstButton.label}
