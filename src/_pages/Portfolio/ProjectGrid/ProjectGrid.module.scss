@@ -1,6 +1,7 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  margin-bottom: clamp(4rem, 10vw, 9rem);
   padding: 0 1rem;
 }
 
