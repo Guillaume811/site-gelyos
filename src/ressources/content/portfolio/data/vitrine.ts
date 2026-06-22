@@ -2,7 +2,7 @@ import type { Project } from '../types'
 
 export const vitrineProjects: Project[] = [
     {
-    order: 1,
+    order: 3,
     id: '0301',
     slug: 'projet-la-terrasse-des-oliviers',
     image: '/pictures/portfolio/sites-vitrine/ltdo/logo-ltdo.webp',

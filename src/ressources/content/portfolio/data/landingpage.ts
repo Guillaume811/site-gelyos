@@ -2,7 +2,7 @@ import type { Project } from '../types'
 
 export const landingpageProjects: Project[] = [
     {
-    order: 1,
+    order: 4,
     id: '0401',
     slug: 'projet-pema-bessege-psychopraticienne',
     image: '/pictures/portfolio/landingpage/pemaBessege/logo-pema.webp',
@@ -74,7 +74,7 @@ export const landingpageProjects: Project[] = [
     ],
   },
   {
-    order: 1,
+    order: 2,
     id: '0402',
     slug: 'projet-zoza-pizza',
     image: '/pictures/portfolio/landingpage/zozaPizza/logo-zoza.webp',
