@@ -72,6 +72,22 @@
       }
     }
 
+    .submenuDismissed {
+      &:hover,
+      &:focus-within {
+        .submenu {
+          visibility: hidden;
+          opacity: 0;
+          transform: translateY(-0.5rem);
+          pointer-events: none;
+        }
+
+        .arrow {
+          transform: rotate(0);
+        }
+      }
+    }
+
     .arrow {
       flex: 0 0 auto;
       transition: transform 180ms ease;

@@ -22,11 +22,13 @@ type Props = {
  * View TSX:
  * - Renders a nav list with Next Link elements.
  * - Renders the five service links in a dropdown under Services.
+ * - Closes the services dropdown after a service link click.
  * - Applies active class and aria-current on the current route.
  */
 export default function MainNavNext({ className }: Props) {
   const navRoutes = useMemo(() => getMainNavRoutes(), [])
   const pathname = usePathname() ?? '/'
+  const [isServicesSubmenuClosed, setIsServicesSubmenuClosed] = useState(false)
   const [indicatorStyle, setIndicatorStyle] = useState<{ left: number; width: number }>({
     left: 0,
     width: 0,
@@ -70,7 +72,17 @@ export default function MainNavNext({ className }: Props) {
           return (
             <li
               key={route.name}
-              className={clsx(styles.link, hasServiceMenu && styles.hasSubmenu)}
+              className={clsx(
+                styles.link,
+                hasServiceMenu && styles.hasSubmenu,
+                hasServiceMenu && isServicesSubmenuClosed && styles.submenuDismissed,
+              )}
+              onMouseEnter={() => {
+                if (hasServiceMenu) setIsServicesSubmenuClosed(false)
+              }}
+              onFocus={() => {
+                if (hasServiceMenu) setIsServicesSubmenuClosed(false)
+              }}
             >
               <Link
                 href={route.path}
@@ -97,6 +109,7 @@ export default function MainNavNext({ className }: Props) {
                           href={service.path}
                           aria-current={isServiceActive ? 'page' : undefined}
                           className={isServiceActive ? styles.submenuActive : undefined}
+                          onClick={() => setIsServicesSubmenuClosed(true)}
                         >
                           {service.label}
                         </Link>
