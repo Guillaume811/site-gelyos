@@ -1,7 +1,13 @@
 .wrapper {
   min-height: 100dvh;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto 1fr;
+}
+
+.wrapper > main {
+  width: 100%;
+  min-width: 0;
 }
 
 @media (max-width: 768px) {
